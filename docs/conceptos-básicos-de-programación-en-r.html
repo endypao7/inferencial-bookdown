@@ -1,0 +1,635 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Conceptos básicos de programación en R: | Estadística Inferencial en Rstudio</title>
+  <meta name="description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Conceptos básicos de programación en R: | Estadística Inferencial en Rstudio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Conceptos básicos de programación en R: | Estadística Inferencial en Rstudio" />
+  
+  <meta name="twitter:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  
+
+<meta name="author" content="Endy P. Salom" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="primeros-pasos.html"/>
+<link rel="next" href="hello-bookdown.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+<style type="text/css">
+/* Used with Pandoc 2.11+ new --citeproc when CSL is used */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Instalación y Configuración de R-STUDIO</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#rstudio-en-tu-equipo-escritorio"><i class="fa fa-check"></i><b>1.1</b> Rstudio en tu equipo (escritorio)</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#otra-opción-rstudio-en-la-nube"><i class="fa fa-check"></i><b>1.2</b> Otra opción: Rstudio en la nube</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="primeros-pasos.html"><a href="primeros-pasos.html"><i class="fa fa-check"></i><b>2</b> Primeros pasos</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#rscript"><i class="fa fa-check"></i><b>2.1</b> Rscript</a></li>
+<li class="chapter" data-level="2.2" data-path="primeros-pasos.html"><a href="primeros-pasos.html#paquetes-o-librerías-en-r"><i class="fa fa-check"></i><b>2.2</b> Paquetes o librerías en R</a></li>
+<li class="chapter" data-level="2.3" data-path="primeros-pasos.html"><a href="primeros-pasos.html#creación-de-reportes-en-r-con-r-markdown"><i class="fa fa-check"></i><b>2.3</b> Creación de reportes en R con R Markdown:</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="primeros-pasos.html"><a href="primeros-pasos.html#cómo-funciona-rmarkdown"><i class="fa fa-check"></i><b>2.3.1</b> ¿Cómo funciona Rmarkdown?</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html"><i class="fa fa-check"></i><b>3</b> Conceptos básicos de programación en R:</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#r-como-calculadora"><i class="fa fa-check"></i><b>3.1</b> R como calculadora</a></li>
+<li class="chapter" data-level="3.2" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#tipos-de-variables-en-r"><i class="fa fa-check"></i><b>3.2</b> Tipos de variables en R:</a></li>
+<li class="chapter" data-level="3.3" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>3.3</b> Estructuras de Datos en R:</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#vectores"><i class="fa fa-check"></i><b>3.3.1</b> Vectores</a></li>
+<li class="chapter" data-level="3.3.2" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#array"><i class="fa fa-check"></i><b>3.3.2</b> Array</a></li>
+<li class="chapter" data-level="3.3.3" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#matriz"><i class="fa fa-check"></i><b>3.3.3</b> Matriz</a></li>
+<li class="chapter" data-level="3.3.4" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#lista"><i class="fa fa-check"></i><b>3.3.4</b> Lista</a></li>
+<li class="chapter" data-level="3.3.5" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#dataframe"><i class="fa fa-check"></i><b>3.3.5</b> Dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#condicional-if-else."><i class="fa fa-check"></i><b>3.4</b> Condicional if-else.</a></li>
+<li class="chapter" data-level="3.5" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#bucles-for"><i class="fa fa-check"></i><b>3.5</b> Bucles for:</a></li>
+<li class="chapter" data-level="3.6" data-path="conceptos-básicos-de-programación-en-r.html"><a href="conceptos-básicos-de-programación-en-r.html#operadores-de-comparación-en-r"><i class="fa fa-check"></i><b>3.6</b> Operadores de comparación en R:</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="hello-bookdown.html"><a href="hello-bookdown.html"><i class="fa fa-check"></i><b>4</b> Hello bookdown</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="hello-bookdown.html"><a href="hello-bookdown.html#a-section"><i class="fa fa-check"></i><b>4.1</b> A section</a>
+<ul>
+<li class="chapter" data-level="" data-path="hello-bookdown.html"><a href="hello-bookdown.html#an-unnumbered-section"><i class="fa fa-check"></i>An unnumbered section</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>5</b> Cross-references</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="cross.html"><a href="cross.html#chapters-and-sub-chapters"><i class="fa fa-check"></i><b>5.1</b> Chapters and sub-chapters</a></li>
+<li class="chapter" data-level="5.2" data-path="cross.html"><a href="cross.html#captioned-figures-and-tables"><i class="fa fa-check"></i><b>5.2</b> Captioned figures and tables</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="parts.html"><a href="parts.html"><i class="fa fa-check"></i><b>6</b> Parts</a></li>
+<li class="chapter" data-level="7" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html"><i class="fa fa-check"></i><b>7</b> Footnotes and citations</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#footnotes"><i class="fa fa-check"></i><b>7.1</b> Footnotes</a></li>
+<li class="chapter" data-level="7.2" data-path="footnotes-and-citations.html"><a href="footnotes-and-citations.html#citations"><i class="fa fa-check"></i><b>7.2</b> Citations</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="blocks.html"><a href="blocks.html"><i class="fa fa-check"></i><b>8</b> Blocks</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="blocks.html"><a href="blocks.html#equations"><i class="fa fa-check"></i><b>8.1</b> Equations</a></li>
+<li class="chapter" data-level="8.2" data-path="blocks.html"><a href="blocks.html#theorems-and-proofs"><i class="fa fa-check"></i><b>8.2</b> Theorems and proofs</a></li>
+<li class="chapter" data-level="8.3" data-path="blocks.html"><a href="blocks.html#callout-blocks"><i class="fa fa-check"></i><b>8.3</b> Callout blocks</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="sharing-your-book.html"><a href="sharing-your-book.html"><i class="fa fa-check"></i><b>9</b> Sharing your book</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="sharing-your-book.html"><a href="sharing-your-book.html#publishing"><i class="fa fa-check"></i><b>9.1</b> Publishing</a></li>
+<li class="chapter" data-level="9.2" data-path="sharing-your-book.html"><a href="sharing-your-book.html#pages"><i class="fa fa-check"></i><b>9.2</b> 404 pages</a></li>
+<li class="chapter" data-level="9.3" data-path="sharing-your-book.html"><a href="sharing-your-book.html#metadata-for-sharing"><i class="fa fa-check"></i><b>9.3</b> Metadata for sharing</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Inferencial en Rstudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="conceptos-básicos-de-programación-en-r" class="section level1 hasAnchor" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Conceptos básicos de programación en R:<a href="conceptos-básicos-de-programación-en-r.html#conceptos-básicos-de-programación-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Si quieres aprender R, primero necesitas entender cómo funcionan los lenguajes de programación en general</p>
+<p>Todos los lenguajes (incluyendo R) tienen ciertas bases comunes:</p>
+<ul>
+<li>Variables → Almacenan datos.</li>
+<li>Operadores → Realizan cálculos o comparaciones.</li>
+<li>Estructuras de control → Permiten tomar decisiones y repetir tareas.</li>
+<li>Funciones → Agrupan código reutilizable.</li>
+</ul>
+<p><strong>Creación de Objetos</strong></p>
+<p>R es un lenguaje orientado a objetos. Los objetos pueden ser usados para guardar valores y pueden madificarse mediante funciones como por ejemplo sumar dos objetos o calcular la media.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="conceptos-básicos-de-programación-en-r.html#cb3-1" tabindex="-1"></a>X <span class="ot">&lt;-</span> <span class="dv">4</span></span>
+<span id="cb3-2"><a href="conceptos-básicos-de-programación-en-r.html#cb3-2" tabindex="-1"></a>Y <span class="ot">&lt;-</span> <span class="dv">2</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="conceptos-básicos-de-programación-en-r.html#cb4-1" tabindex="-1"></a>X<span class="sc">+</span>Y</span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div id="r-como-calculadora" class="section level2 hasAnchor" number="3.1">
+<h2><span class="header-section-number">3.1</span> R como calculadora<a href="conceptos-básicos-de-programación-en-r.html#r-como-calculadora" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Puedes hacer operaciones matemáticas básicas como +, -, *, /.<br />
+- También puedes calcular potencias (^), raíces cuadradas (sqrt()), logaritmos (log()) y funciones trigonométricas (sin(), cos(), tan()).
+- print() se usa para mostrar los resultados en la consola.</p>
+<ul>
+<li>Prueba este código en RStudio y verás cómo R funciona como una calculadora avanzada.</li>
+</ul>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="conceptos-básicos-de-programación-en-r.html#cb6-1" tabindex="-1"></a><span class="co"># Operaciones básicas</span></span>
+<span id="cb6-2"><a href="conceptos-básicos-de-programación-en-r.html#cb6-2" tabindex="-1"></a><span class="dv">5</span> <span class="sc">+</span> <span class="dv">3</span>       <span class="co"># Suma</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="conceptos-básicos-de-programación-en-r.html#cb8-1" tabindex="-1"></a><span class="dv">10</span> <span class="sc">-</span> <span class="dv">4</span>     <span class="co"># Resta</span></span></code></pre></div>
+<pre><code>## [1] 6</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="conceptos-básicos-de-programación-en-r.html#cb10-1" tabindex="-1"></a><span class="dv">6</span> <span class="sc">*</span> <span class="dv">7</span>  <span class="co"># Multiplicación</span></span></code></pre></div>
+<pre><code>## [1] 42</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="conceptos-básicos-de-programación-en-r.html#cb12-1" tabindex="-1"></a><span class="dv">20</span> <span class="sc">/</span> <span class="dv">5</span>   <span class="co"># División</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="conceptos-básicos-de-programación-en-r.html#cb14-1" tabindex="-1"></a><span class="co"># Potencias y raíces</span></span>
+<span id="cb14-2"><a href="conceptos-básicos-de-programación-en-r.html#cb14-2" tabindex="-1"></a><span class="dv">2</span><span class="sc">^</span><span class="dv">3</span>     <span class="co"># 2 elevado a la 3</span></span></code></pre></div>
+<pre><code>## [1] 8</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="conceptos-básicos-de-programación-en-r.html#cb16-1" tabindex="-1"></a><span class="fu">sqrt</span>(<span class="dv">16</span>)  <span class="co"># Raíz cuadrada de 16</span></span></code></pre></div>
+<pre><code>## [1] 4</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="conceptos-básicos-de-programación-en-r.html#cb18-1" tabindex="-1"></a><span class="co"># Operaciones avanzadas</span></span>
+<span id="cb18-2"><a href="conceptos-básicos-de-programación-en-r.html#cb18-2" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">100</span>, <span class="at">base =</span> <span class="dv">10</span>)  <span class="co"># Logaritmo base 10</span></span></code></pre></div>
+<pre><code>## [1] 2</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="conceptos-básicos-de-programación-en-r.html#cb20-1" tabindex="-1"></a><span class="fu">exp</span>(<span class="dv">2</span>)   <span class="co"># e^2</span></span></code></pre></div>
+<pre><code>## [1] 7.389056</code></pre>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="conceptos-básicos-de-programación-en-r.html#cb22-1" tabindex="-1"></a><span class="fu">sin</span>(pi <span class="sc">/</span> <span class="dv">2</span>)  <span class="co"># Seno de 90 grados (π/2 radianes)</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+</div>
+<div id="tipos-de-variables-en-r" class="section level2 hasAnchor" number="3.2">
+<h2><span class="header-section-number">3.2</span> Tipos de variables en R:<a href="conceptos-básicos-de-programación-en-r.html#tipos-de-variables-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<table>
+<colgroup>
+<col width="16%" />
+<col width="43%" />
+<col width="40%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Tipo</strong></th>
+<th><strong>Ejemplo</strong></th>
+<th><strong>Descripción</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Numeric</strong></td>
+<td><code>3.14, -2.5</code></td>
+<td>Números con decimales</td>
+</tr>
+<tr class="even">
+<td><strong>Integer</strong></td>
+<td><code>10L, -5L</code></td>
+<td>Números enteros</td>
+</tr>
+<tr class="odd">
+<td><strong>Character</strong></td>
+<td><code>"Hola"</code></td>
+<td>Texto o cadenas de caracteres</td>
+</tr>
+<tr class="even">
+<td><strong>Logical</strong></td>
+<td><code>TRUE, FALSE</code></td>
+<td>Valores lógicos (booleanos)</td>
+</tr>
+<tr class="odd">
+<td><strong>Factor</strong></td>
+<td><code>factor("azul", "rojo")</code></td>
+<td>Variables categóricas</td>
+</tr>
+<tr class="even">
+<td><strong>Date</strong></td>
+<td><code>as.Date("2024-02-05")</code></td>
+<td>Fechas</td>
+</tr>
+<tr class="odd">
+<td><strong>POSIXct</strong></td>
+<td><code>as.POSIXct("2024-02-05 14:30:00")</code></td>
+<td>Fechas y horas</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="conceptos-básicos-de-programación-en-r.html#cb24-1" tabindex="-1"></a><span class="co"># Numéricas (Numeric)</span></span>
+<span id="cb24-2"><a href="conceptos-básicos-de-programación-en-r.html#cb24-2" tabindex="-1"></a>num <span class="ot">&lt;-</span> <span class="fl">3.14</span>  <span class="co"># Número decimal</span></span>
+<span id="cb24-3"><a href="conceptos-básicos-de-programación-en-r.html#cb24-3" tabindex="-1"></a><span class="fu">class</span>(num)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="conceptos-básicos-de-programación-en-r.html#cb26-1" tabindex="-1"></a><span class="co"># Enteros (Integer)</span></span>
+<span id="cb26-2"><a href="conceptos-básicos-de-programación-en-r.html#cb26-2" tabindex="-1"></a>entero <span class="ot">&lt;-</span> <span class="dv">10</span><span class="dt">L</span>  <span class="co"># Número entero</span></span>
+<span id="cb26-3"><a href="conceptos-básicos-de-programación-en-r.html#cb26-3" tabindex="-1"></a><span class="fu">class</span>(entero)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="conceptos-básicos-de-programación-en-r.html#cb28-1" tabindex="-1"></a><span class="co"># Cadenas de Texto (Character)</span></span>
+<span id="cb28-2"><a href="conceptos-básicos-de-programación-en-r.html#cb28-2" tabindex="-1"></a>texto <span class="ot">&lt;-</span> <span class="st">&quot;Hola, mundo&quot;</span></span>
+<span id="cb28-3"><a href="conceptos-básicos-de-programación-en-r.html#cb28-3" tabindex="-1"></a><span class="fu">class</span>(texto)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="conceptos-básicos-de-programación-en-r.html#cb30-1" tabindex="-1"></a><span class="co"># Lógicos (Logical)</span></span>
+<span id="cb30-2"><a href="conceptos-básicos-de-programación-en-r.html#cb30-2" tabindex="-1"></a>logico <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb30-3"><a href="conceptos-básicos-de-programación-en-r.html#cb30-3" tabindex="-1"></a><span class="fu">class</span>(logico)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="conceptos-básicos-de-programación-en-r.html#cb32-1" tabindex="-1"></a><span class="co"># Factores (Factor)</span></span>
+<span id="cb32-2"><a href="conceptos-básicos-de-programación-en-r.html#cb32-2" tabindex="-1"></a>colores <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;rojo&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;verde&quot;</span>, <span class="st">&quot;rojo&quot;</span>))</span>
+<span id="cb32-3"><a href="conceptos-básicos-de-programación-en-r.html#cb32-3" tabindex="-1"></a><span class="fu">class</span>(colores)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="conceptos-básicos-de-programación-en-r.html#cb34-1" tabindex="-1"></a><span class="fu">levels</span>(colores)  <span class="co"># Ver categorías</span></span></code></pre></div>
+<pre><code>## [1] &quot;azul&quot;  &quot;rojo&quot;  &quot;verde&quot;</code></pre>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="conceptos-básicos-de-programación-en-r.html#cb36-1" tabindex="-1"></a><span class="co"># Fechas y Tiempos (Date y POSIXct)</span></span>
+<span id="cb36-2"><a href="conceptos-básicos-de-programación-en-r.html#cb36-2" tabindex="-1"></a>fecha <span class="ot">&lt;-</span> <span class="fu">as.Date</span>(<span class="st">&quot;2024-02-05&quot;</span>)  <span class="co"># Convertir a fecha</span></span>
+<span id="cb36-3"><a href="conceptos-básicos-de-programación-en-r.html#cb36-3" tabindex="-1"></a>hora <span class="ot">&lt;-</span> <span class="fu">as.POSIXct</span>(<span class="st">&quot;2024-02-05 14:30:00&quot;</span>)  <span class="co"># Fecha y hora</span></span>
+<span id="cb36-4"><a href="conceptos-básicos-de-programación-en-r.html#cb36-4" tabindex="-1"></a><span class="fu">class</span>(fecha)</span></code></pre></div>
+<pre><code>## [1] &quot;Date&quot;</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="conceptos-básicos-de-programación-en-r.html#cb38-1" tabindex="-1"></a><span class="fu">class</span>(hora)</span></code></pre></div>
+<pre><code>## [1] &quot;POSIXct&quot; &quot;POSIXt&quot;</code></pre>
+<p>Nota: La función class permite ver qué tipo de variable estamos utilizando</p>
+</div>
+<div id="estructuras-de-datos-en-r" class="section level2 hasAnchor" number="3.3">
+<h2><span class="header-section-number">3.3</span> Estructuras de Datos en R:<a href="conceptos-básicos-de-programación-en-r.html#estructuras-de-datos-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En R, los datos se pueden organizar en diferentes estructuras según la forma en que se almacena y manipula la información.</p>
+<table>
+<colgroup>
+<col width="15%" />
+<col width="50%" />
+<col width="34%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th><strong>Estructura</strong></th>
+<th><strong>Descripción</strong></th>
+<th><strong>Ejemplo</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Vector</strong></td>
+<td>Secuencia de elementos del mismo tipo</td>
+<td><code>c(1, 2, 3, 4, 5)</code></td>
+</tr>
+<tr class="even">
+<td><strong>Matrix</strong></td>
+<td>Tabla bidimensional con el mismo tipo de dato</td>
+<td><code>matrix(1:9, nrow = 3, ncol = 3)</code></td>
+</tr>
+<tr class="odd">
+<td><strong>List</strong></td>
+<td>Contiene diferentes tipos de datos</td>
+<td><code>list(nombre = "Ana", edad = 25)</code></td>
+</tr>
+<tr class="even">
+<td><strong>Data Frame</strong></td>
+<td>Tabla con columnas de diferentes tipos</td>
+<td><code>data.frame(Nombre = c("Ana", "Carlos"), Edad = c(25, 30))</code></td>
+</tr>
+<tr class="odd">
+<td><strong>Factor</strong></td>
+<td>Variable categórica con niveles</td>
+<td><code>factor(c("rojo", "azul", "verde"))</code></td>
+</tr>
+<tr class="even">
+<td><strong>Array</strong></td>
+<td>Estructura multidimensional</td>
+<td><code>array(1:8, dim = c(2,2,2))</code></td>
+</tr>
+</tbody>
+</table>
+<div id="vectores" class="section level3 hasAnchor" number="3.3.1">
+<h3><span class="header-section-number">3.3.1</span> Vectores<a href="conceptos-básicos-de-programación-en-r.html#vectores" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="conceptos-básicos-de-programación-en-r.html#cb40-1" tabindex="-1"></a><span class="co"># Vector numérico</span></span>
+<span id="cb40-2"><a href="conceptos-básicos-de-programación-en-r.html#cb40-2" tabindex="-1"></a>vector <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>, <span class="dv">5</span>)</span>
+<span id="cb40-3"><a href="conceptos-básicos-de-programación-en-r.html#cb40-3" tabindex="-1"></a>vector</span></code></pre></div>
+<pre><code>## [1] 1 2 3 4 5</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="conceptos-básicos-de-programación-en-r.html#cb42-1" tabindex="-1"></a><span class="co"># Vector de caracteres</span></span>
+<span id="cb42-2"><a href="conceptos-básicos-de-programación-en-r.html#cb42-2" tabindex="-1"></a>caracteres<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;rojo&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;verde&quot;</span>)</span>
+<span id="cb42-3"><a href="conceptos-básicos-de-programación-en-r.html#cb42-3" tabindex="-1"></a>caracteres</span></code></pre></div>
+<pre><code>## [1] &quot;rojo&quot;  &quot;azul&quot;  &quot;verde&quot;</code></pre>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="conceptos-básicos-de-programación-en-r.html#cb44-1" tabindex="-1"></a><span class="co"># Vector lógico</span></span>
+<span id="cb44-2"><a href="conceptos-básicos-de-programación-en-r.html#cb44-2" tabindex="-1"></a>logico<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>)</span>
+<span id="cb44-3"><a href="conceptos-básicos-de-programación-en-r.html#cb44-3" tabindex="-1"></a>logico</span></code></pre></div>
+<pre><code>## [1]  TRUE FALSE  TRUE</code></pre>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="conceptos-básicos-de-programación-en-r.html#cb46-1" tabindex="-1"></a><span class="co"># Mostrar tipo</span></span>
+<span id="cb46-2"><a href="conceptos-básicos-de-programación-en-r.html#cb46-2" tabindex="-1"></a><span class="fu">class</span>(vector)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<p>###Factor</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="conceptos-básicos-de-programación-en-r.html#cb48-1" tabindex="-1"></a><span class="co"># Crear un factor con categorías</span></span>
+<span id="cb48-2"><a href="conceptos-básicos-de-programación-en-r.html#cb48-2" tabindex="-1"></a>colores <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="fu">c</span>(<span class="st">&quot;rojo&quot;</span>, <span class="st">&quot;azul&quot;</span>, <span class="st">&quot;verde&quot;</span>, <span class="st">&quot;rojo&quot;</span>))</span>
+<span id="cb48-3"><a href="conceptos-básicos-de-programación-en-r.html#cb48-3" tabindex="-1"></a></span>
+<span id="cb48-4"><a href="conceptos-básicos-de-programación-en-r.html#cb48-4" tabindex="-1"></a><span class="co"># Ver niveles</span></span>
+<span id="cb48-5"><a href="conceptos-básicos-de-programación-en-r.html#cb48-5" tabindex="-1"></a><span class="fu">levels</span>(colores)</span></code></pre></div>
+<pre><code>## [1] &quot;azul&quot;  &quot;rojo&quot;  &quot;verde&quot;</code></pre>
+</div>
+<div id="array" class="section level3 hasAnchor" number="3.3.2">
+<h3><span class="header-section-number">3.3.2</span> Array<a href="conceptos-básicos-de-programación-en-r.html#array" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Similar a una matriz pero con más de 2 dimensiones.</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="conceptos-básicos-de-programación-en-r.html#cb50-1" tabindex="-1"></a><span class="co"># Crear un array de 3 dimensiones (2x2x2)</span></span>
+<span id="cb50-2"><a href="conceptos-básicos-de-programación-en-r.html#cb50-2" tabindex="-1"></a>mi_array <span class="ot">&lt;-</span> <span class="fu">array</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>, <span class="at">dim =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>))</span>
+<span id="cb50-3"><a href="conceptos-básicos-de-programación-en-r.html#cb50-3" tabindex="-1"></a></span>
+<span id="cb50-4"><a href="conceptos-básicos-de-programación-en-r.html#cb50-4" tabindex="-1"></a><span class="co"># Mostrar array</span></span>
+<span id="cb50-5"><a href="conceptos-básicos-de-programación-en-r.html#cb50-5" tabindex="-1"></a><span class="fu">print</span>(mi_array)</span></code></pre></div>
+<pre><code>## , , 1
+## 
+##      [,1] [,2]
+## [1,]    1    3
+## [2,]    2    4
+## 
+## , , 2
+## 
+##      [,1] [,2]
+## [1,]    5    7
+## [2,]    6    8</code></pre>
+</div>
+<div id="matriz" class="section level3 hasAnchor" number="3.3.3">
+<h3><span class="header-section-number">3.3.3</span> Matriz<a href="conceptos-básicos-de-programación-en-r.html#matriz" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="conceptos-básicos-de-programación-en-r.html#cb52-1" tabindex="-1"></a><span class="co"># Crear una matriz 3x3 con números del 1 al 9</span></span>
+<span id="cb52-2"><a href="conceptos-básicos-de-programación-en-r.html#cb52-2" tabindex="-1"></a>matriz <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">9</span>, <span class="at">nrow =</span> <span class="dv">3</span>, <span class="at">ncol =</span> <span class="dv">3</span>)</span>
+<span id="cb52-3"><a href="conceptos-básicos-de-programación-en-r.html#cb52-3" tabindex="-1"></a>matriz</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="conceptos-básicos-de-programación-en-r.html#cb54-1" tabindex="-1"></a><span class="co"># Mostrar matriz</span></span>
+<span id="cb54-2"><a href="conceptos-básicos-de-programación-en-r.html#cb54-2" tabindex="-1"></a><span class="fu">print</span>(matriz)</span></code></pre></div>
+<pre><code>##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9</code></pre>
+</div>
+<div id="lista" class="section level3 hasAnchor" number="3.3.4">
+<h3><span class="header-section-number">3.3.4</span> Lista<a href="conceptos-básicos-de-programación-en-r.html#lista" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Puede contener diferentes tipos de datos (vectores, matrices, data frames, etc.).</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="conceptos-básicos-de-programación-en-r.html#cb56-1" tabindex="-1"></a><span class="co"># Crear una lista con diferentes tipos de datos</span></span>
+<span id="cb56-2"><a href="conceptos-básicos-de-programación-en-r.html#cb56-2" tabindex="-1"></a>mi_lista <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="at">nombre =</span> <span class="st">&quot;Ana&quot;</span>, <span class="at">edad =</span> <span class="dv">25</span>, <span class="at">notas =</span> <span class="fu">c</span>(<span class="dv">9</span>, <span class="dv">8</span>, <span class="dv">10</span>))</span>
+<span id="cb56-3"><a href="conceptos-básicos-de-programación-en-r.html#cb56-3" tabindex="-1"></a></span>
+<span id="cb56-4"><a href="conceptos-básicos-de-programación-en-r.html#cb56-4" tabindex="-1"></a><span class="co"># Mostrar contenido de la lista</span></span>
+<span id="cb56-5"><a href="conceptos-básicos-de-programación-en-r.html#cb56-5" tabindex="-1"></a><span class="fu">print</span>(mi_lista)</span></code></pre></div>
+<pre><code>## $nombre
+## [1] &quot;Ana&quot;
+## 
+## $edad
+## [1] 25
+## 
+## $notas
+## [1]  9  8 10</code></pre>
+</div>
+<div id="dataframe" class="section level3 hasAnchor" number="3.3.5">
+<h3><span class="header-section-number">3.3.5</span> Dataframe<a href="conceptos-básicos-de-programación-en-r.html#dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Es una tabla donde cada columna puede tener diferentes tipos de datos.<br />
+Es la estructura más utilizada en análisis de datos.</p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="conceptos-básicos-de-programación-en-r.html#cb58-1" tabindex="-1"></a><span class="co"># Crear un data frame</span></span>
+<span id="cb58-2"><a href="conceptos-básicos-de-programación-en-r.html#cb58-2" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">Nombre =</span> <span class="fu">c</span>(<span class="st">&quot;Ana&quot;</span>, <span class="st">&quot;Carlos&quot;</span>, <span class="st">&quot;Luis&quot;</span>),  <span class="at">Edad =</span> <span class="fu">c</span>(<span class="dv">25</span>, <span class="dv">30</span>, <span class="dv">22</span>), <span class="at">Aprobado =</span> <span class="fu">c</span>(<span class="cn">TRUE</span>, <span class="cn">FALSE</span>, <span class="cn">TRUE</span>))</span>
+<span id="cb58-3"><a href="conceptos-básicos-de-programación-en-r.html#cb58-3" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="conceptos-básicos-de-programación-en-r.html#cb58-4" tabindex="-1"></a><span class="co"># Mostrar data frame</span></span>
+<span id="cb58-5"><a href="conceptos-básicos-de-programación-en-r.html#cb58-5" tabindex="-1"></a>df</span></code></pre></div>
+<pre><code>##   Nombre Edad Aprobado
+## 1    Ana   25     TRUE
+## 2 Carlos   30    FALSE
+## 3   Luis   22     TRUE</code></pre>
+</div>
+</div>
+<div id="condicional-if-else." class="section level2 hasAnchor" number="3.4">
+<h2><span class="header-section-number">3.4</span> Condicional if-else.<a href="conceptos-básicos-de-programación-en-r.html#condicional-if-else." class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>En R, la sintáxis del condicional consiste en:</p>
+<ul>
+<li><strong><code>if (A)</code></strong>: evalúa si se cumple la condición A.</li>
+<li><strong><code>else if (B)</code></strong>: si no se cumple la condición o condiciones anteriores, entonces evalúe si se cumple la condición B.</li>
+<li><strong><code>else</code></strong>: si no se cumple ninguna de las condiciones anteriores entonces haga lo siguiente.</li>
+</ul>
+<p><strong>Ejemplo:</strong></p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="conceptos-básicos-de-programación-en-r.html#cb60-1" tabindex="-1"></a>a<span class="ot">&lt;-</span><span class="dv">9</span></span>
+<span id="cb60-2"><a href="conceptos-básicos-de-programación-en-r.html#cb60-2" tabindex="-1"></a> <span class="cf">if</span> (a<span class="sc">&lt;</span><span class="dv">0</span>){</span>
+<span id="cb60-3"><a href="conceptos-básicos-de-programación-en-r.html#cb60-3" tabindex="-1"></a> <span class="fu">print</span>(<span class="st">&quot;a es negativo&quot;</span>)</span>
+<span id="cb60-4"><a href="conceptos-básicos-de-programación-en-r.html#cb60-4" tabindex="-1"></a> }<span class="cf">else</span> <span class="cf">if</span> (a<span class="sc">&gt;</span><span class="dv">0</span>){</span>
+<span id="cb60-5"><a href="conceptos-básicos-de-programación-en-r.html#cb60-5" tabindex="-1"></a> <span class="fu">print</span>(<span class="st">&quot;a es positivo&quot;</span>)</span>
+<span id="cb60-6"><a href="conceptos-básicos-de-programación-en-r.html#cb60-6" tabindex="-1"></a> }<span class="cf">else</span>{</span>
+<span id="cb60-7"><a href="conceptos-básicos-de-programación-en-r.html#cb60-7" tabindex="-1"></a> <span class="fu">print</span>(<span class="st">&quot;a es igual a cero&quot;</span>)</span>
+<span id="cb60-8"><a href="conceptos-básicos-de-programación-en-r.html#cb60-8" tabindex="-1"></a> }</span></code></pre></div>
+<pre><code>## [1] &quot;a es positivo&quot;</code></pre>
+</div>
+<div id="bucles-for" class="section level2 hasAnchor" number="3.5">
+<h2><span class="header-section-number">3.5</span> Bucles for:<a href="conceptos-básicos-de-programación-en-r.html#bucles-for" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Usado para repetir un bloque específico de código, siguiendo una secuencia dada.</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="conceptos-básicos-de-programación-en-r.html#cb62-1" tabindex="-1"></a>suma<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb62-2"><a href="conceptos-básicos-de-programación-en-r.html#cb62-2" tabindex="-1"></a> <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>){</span>
+<span id="cb62-3"><a href="conceptos-básicos-de-programación-en-r.html#cb62-3" tabindex="-1"></a> suma<span class="ot">&lt;-</span>suma<span class="sc">+</span>i</span>
+<span id="cb62-4"><a href="conceptos-básicos-de-programación-en-r.html#cb62-4" tabindex="-1"></a> }</span>
+<span id="cb62-5"><a href="conceptos-básicos-de-programación-en-r.html#cb62-5" tabindex="-1"></a> suma</span></code></pre></div>
+<pre><code>## [1] 55</code></pre>
+</div>
+<div id="operadores-de-comparación-en-r" class="section level2 hasAnchor" number="3.6">
+<h2><span class="header-section-number">3.6</span> Operadores de comparación en R:<a href="conceptos-básicos-de-programación-en-r.html#operadores-de-comparación-en-r" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="conceptos-básicos-de-programación-en-r.html#cb64-1" tabindex="-1"></a><span class="co"># Asignación de valores</span></span>
+<span id="cb64-2"><a href="conceptos-básicos-de-programación-en-r.html#cb64-2" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">1</span></span>
+<span id="cb64-3"><a href="conceptos-básicos-de-programación-en-r.html#cb64-3" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb64-4"><a href="conceptos-básicos-de-programación-en-r.html#cb64-4" tabindex="-1"></a></span>
+<span id="cb64-5"><a href="conceptos-básicos-de-programación-en-r.html#cb64-5" tabindex="-1"></a><span class="co"># Operaciones y comentarios explicativos</span></span>
+<span id="cb64-6"><a href="conceptos-básicos-de-programación-en-r.html#cb64-6" tabindex="-1"></a></span>
+<span id="cb64-7"><a href="conceptos-básicos-de-programación-en-r.html#cb64-7" tabindex="-1"></a><span class="co"># ¿b es diferente de a?</span></span>
+<span id="cb64-8"><a href="conceptos-básicos-de-programación-en-r.html#cb64-8" tabindex="-1"></a>b <span class="sc">!=</span> a  <span class="co"># TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="conceptos-básicos-de-programación-en-r.html#cb66-1" tabindex="-1"></a><span class="co"># ¿es a igual a b?</span></span>
+<span id="cb66-2"><a href="conceptos-básicos-de-programación-en-r.html#cb66-2" tabindex="-1"></a><span class="fu">isTRUE</span>(a <span class="sc">==</span> b)  <span class="co"># FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="conceptos-básicos-de-programación-en-r.html#cb68-1" tabindex="-1"></a><span class="co"># Negar que a es menor que b</span></span>
+<span id="cb68-2"><a href="conceptos-básicos-de-programación-en-r.html#cb68-2" tabindex="-1"></a><span class="sc">!</span>(a <span class="sc">&lt;</span> b)  <span class="co"># FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="conceptos-básicos-de-programación-en-r.html#cb70-1" tabindex="-1"></a><span class="co"># ¿es a menor que b o b menor que a?</span></span>
+<span id="cb70-2"><a href="conceptos-básicos-de-programación-en-r.html#cb70-2" tabindex="-1"></a>(a <span class="sc">&lt;</span> b <span class="sc">|</span> b <span class="sc">&lt;</span> a)  <span class="co"># TRUE</span></span></code></pre></div>
+<pre><code>## [1] TRUE</code></pre>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="conceptos-básicos-de-programación-en-r.html#cb72-1" tabindex="-1"></a><span class="co"># ¿es a menor o igual a b o b igual a a?</span></span>
+<span id="cb72-2"><a href="conceptos-básicos-de-programación-en-r.html#cb72-2" tabindex="-1"></a>(a <span class="sc">&lt;=</span> b <span class="sc">&amp;</span> b <span class="sc">==</span> a)  <span class="co"># FALSE</span></span></code></pre></div>
+<pre><code>## [1] FALSE</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="primeros-pasos.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="hello-bookdown.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/index.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["_main.pdf", "_main.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
