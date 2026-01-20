@@ -57,17 +57,17 @@ pre code {
 
 
 
-
 .book-body::before {
-  content: "USO ACADÉMICO";
+  content: "Mag. Endy P. S.";
   position: fixed;
-  top: 50%;
-  left: 50%;
+  top: 55%;
+  left: 65%;
   transform: translate(-50%, -50%) rotate(-30deg);
   font-size: 80px;
-  color: rgba(0, 0, 0, 0.08);
-  z-index: 0;
+  color: rgba(0, 0, 0, 0.04);
+  z-index: 9999;
   pointer-events: none;
   white-space: nowrap;
 }
+
 
