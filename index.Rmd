@@ -20,12 +20,12 @@ github-repo: rstudio/bookdown-demo
 </style> <br>
 
 
-
+<p><center> **BIENVENIDO A LA GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL**</center></p>  
+<p><center> Aquí encontrarás todo lo que necesitas, desde cómo instalar el programa hasta los primeros pasos</center></p>
 
 # Conoce Rstudio
 
-<p><center> **BIENVENIDO A LA GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL**</center></p>  
-<p><center> Aquí encontrarás todo lo que necesitas, desde cómo instalar el programa hasta los primeros pasos</center></p>
+
 
 ## Instalación y Configuración de R-STUDIO
 
