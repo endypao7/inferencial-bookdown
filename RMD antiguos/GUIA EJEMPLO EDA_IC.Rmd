@@ -1,0 +1,488 @@
+---
+title: "EDA + IC: EJEMPLO APLICADO"
+subtitle: "Universidad del Norte"
+
+
+output:
+  html_document: 
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+    theme: journal
+    code_folding: none
+    df_print: paged
+    fig_width: 6
+    fig_height: 4
+    keep_md: false
+---
+
+
+<style>
+  body {
+    text-align: justify;
+  }
+</style> <br>
+
+
+
+# Análisis Exploratorio de Datos
+
+
+El análisis exploratorio de datos ([Ver video](https://www.youtube.com/watch?v=UeMpYEktLfU&ab_channel=Comunicaci%C3%B3nNum%C3%A9rica)) (EDA por sus siglas en inglés) implica el uso de gráficos y visualizaciones para explorar y analizar un conjunto de datos. El objetivo es explorar, investigar y aprender, no confirmar hipótesis estadísticas.
+
+## ¿Cuándo debo utilizarlo?
+
+El análisis exploratorio de datos es una potente herramienta para explorar un conjunto de datos. Incluso cuando su objetivo es efectuar análisis planificados, el EDA puede utilizarse para limpiar datos, para análisis de subgrupos o simplemente para comprender mejor los datos. Un paso inicial importante en cualquier análisis de datos es representar los datos gráficamente.
+
+**No gráfico:** Calcula estadísticas descriptivas de las variables
+
+**Gráfico:** Calcula estadísticas de forma gráfica
+
+**Univariado:** Analiza una sola variable a la vez
+
+**Multivariado:** Analiza dos o más variables
+
+A su vez, cada uno de esas dividisiones puede subdividirse según los tipos de datos con los que trabajemos: categóricos o numéricos.
+
+
+## Contexto:
+
+El presente dataset recopila información sobre variables psicológicas y sociodemográficas de una muestra de 500 individuos, con el objetivo de analizar su relación con el bienestar emocional y la calidad de vida. Entre las variables incluidas se encuentran aspectos como el nivel de estrés, la satisfacción con la vida, la calidad del sueño y el estado emocional, junto con factores sociodemográficos como edad, género, nivel educativo e ingreso mensual. Este conjunto de datos permite explorar patrones en la salud mental y el impacto de distintas condiciones económicas y sociales.
+
+Para garantizar la calidad de los datos y obtener conclusiones válidas, es necesario realizar un Análisis Exploratorio de Datos (EDA) antes de proceder con cualquier modelado estadístico o inferencia.
+
+**La base de datos contiene las siguientes variables:**
+
+| Variable              | Tipo                 | Definición                                                        | Escala de Medición |
+|----------------------|---------------------|------------------------------------------------------------------|--------------------|
+| genero               | Categórica nominal  | Identidad de género del individuo (masculino, femenino, otro).  | Nominal           |
+| edad                 | Numérica discreta   | Edad del individuo en años cumplidos.                           | Razón             |
+| nivel_educacion    | Categórica ordinal  | Nivel de educación alcanzado (primaria, secundaria, pregrado, posgrado). | Ordinal           |
+| horas_sueno         | Numérica continua   | Cantidad de horas promedio de sueño diarias.                    | Razón             |
+| satisfaccion_vida  | Numérica ordinal    | Nivel de satisfacción con la vida en escala de 1 (bajo) a 5 (alto). | Ordinal           |
+| rendimiento_academico | Categórica ordinal  | Evaluación del rendimiento académico (malo, regular, bueno).    | Ordinal           |
+| ingresos_mensuales  | Numérica continua   | Ingresos mensuales en dólares estadounidenses.                  | Razón             |
+
+
+
+**Ahora si, a relizar un análisis Exploratorio de datos EDA**
+
+## Instalar y Cargar paquetes
+
+Lo primero que tenemos que hacer es cargar los paquetes que vamos a utilizar para el análisis. En este caso vamos a usar:
+
+
+```{r include=FALSE}
+# Instalar paquetes - Esto se realiza una sola vez:
+install.packages("dplyr")
+install.packages("ggplot2")
+install.packages("readr")
+install.packages("tibble")
+install.packages("rmarkdown")
+install.packages("stats")
+```
+
+
+
+
+```{r warning=FALSE}
+
+library(dplyr)# Manipulación de Datos
+library(ggplot2)# Visualización de datos 
+library(tibble)# Tablas
+library(readr) #Para cargar la base de datos
+library(rmarkdown)
+library(stats)
+```
+
+Recordar que si no ha instalado estos paquetes debe correr primero el comando: **`install.packages("nombre del paquete")`**, **Recuerde que los paquetes deben instalarse una única vez**
+
+
+
+Algunos paquetes utilizados para importar y exportar bases de datos en R son:
+
+Algunos paquetes utilizados para importar y exportar bases de datos en R y Python son:
+
+- **[utils](https://www.rdocumentation.org/packages/utils/versions/3.6.2)**: permite importar y exportar datos en varios formatos.
+- **[rgdal](https://cran.r-project.org/web/packages/rgdal/index.html)**: permite importar y exportar datos geoespaciales.
+- **[readr](https://readr.tidyverse.org/)**: permite importar y exportar datos en varios formatos.
+- **[readxl](https://readxl.tidyverse.org/)**: Importar datos en formato "Excel".
+- **[haven](https://haven.tidyverse.org/)**: Importar y exportar datos en "SPSS", "Stata" y "SAS".
+- **[httr](https://cran.r-project.org/web/packages/httr/index.html)**: Herramientas para trabajar con URLs y archivos HTTP.
+- **[rvest](https://rvest.tidyverse.org/)**: útil para extraer información de las páginas web.
+- **[xml2](https://cran.r-project.org/web/packages/xml2/index.html)**: Leer archivos HTML o XML.
+- **csv**: Importar y exportar datos `.csv`.
+- **[pandas](https://pandas.pydata.org/)**: Importar y exportar datos `.csv`, `Excel`, `SAS`, `SPSS`, `html`, `stata`, `sql`, etc.
+
+
+## Cargar base de datos:
+
+Tenga en cuenta que debe utilizar la dirección de donde está guardada la base de datos en caso de usar Rstudio descargado en su equipo, o importarlo en la carpeta files en caso de estar trabajando en Rstudio cloud.
+**Aquí puede ir a un video acerca de importación de datos o datasets: **([Ver video para Rstudio de escritorio](https://www.youtube.com/watch?v=agkPSaYEDgQ)) o también ([Ver video para Rstudio Cloud](https://www.youtube.com/watch?v=anWyri9tbzk))**
+
+```{r echo=TRUE}
+datos <- read_csv("dataset_psicologia2.csv") #Ojo esta es la dirección en la que la profe tenía guardados sus datos, es necesario cambiarla.
+```
+
+**Nombres de variables**
+Aquí podemos ver qué variables fueron importadas en nuestro Data Frame:
+
+```{r}
+names(datos)# nombres de variables
+```
+**Mostrar o llamar una variable**
+
+```{r}
+head(datos$nivel_educacion) #Se utiliza el simbilo $ despues del nombre de la base. Se uba la función head para mostrar solo los primero sdatos y no todos.
+```
+
+
+**Dimensiones**
+
+Es importante conocer las dimensiones del Dataset cargado para asegurarse que se incluyeron todas las variables y observaciones.
+
+```{r}
+dim(datos) #Dimensiones: num filas x num columnas
+```
+**Mostrar las primeras filas de la base de datos**
+
+```{r}
+head(datos)
+```
+
+
+
+**Tipos de datos**
+Con esto es posible verificar que los datos están correctamente cargados de acuerdo a la naturaleza de cada variable:
+
+```{r}
+str(datos)
+```
+Vemos que la variable **Nivel de satisfacción con la vida** es de naturaleza categórica, sin embargo, R las leyó como numéricas. Se debe corregir de la siguiente manera:
+
+```{r}
+#Convertir variables en factores
+datos$satisfaccion_vida <- as.factor(datos$satisfaccion_vida) #OJO: con el signo "$" llamo a una variable específica de mi dataset
+
+```
+
+Revisar nuevamente el Dataset:
+
+```{r}
+str(datos)
+```
+
+## Revisión de valores faltantes (N/A):
+
+Sumar N/As por cada columna (variable)
+
+```{r}
+# Contar valores faltantes por variable
+colSums(is.na(datos))
+```
+**Nota importante:** Cuando se identifican datos faltantes en un conjunto de datos durante un Análisis Exploratorio de Datos (EDA), es fundamental evaluar su impacto en el análisis y decidir el mejor método para tratarlos. El primer paso consiste en cuantificar la cantidad de valores ausentes y analizar su distribución a lo largo de las variables. Si los valores perdidos son escasos y aleatorios, una opción válida puede ser eliminarlos sin afectar significativamente los resultados. Sin embargo, cuando los valores faltantes son numerosos o siguen un patrón sistemático, es recomendable aplicar métodos de imputación, como el reemplazo por la media o mediana en variables numéricas, o el uso de la moda en variables categóricas. También pueden emplearse técnicas más avanzadas, como la imputación por regresión o el uso de modelos de aprendizaje automático. 
+
+En cualquier caso, **la decisión sobre el tratamiento de los datos ausentes debe tomarse considerando el contexto del estudio y asegurando que no se introduzcan sesgos que afecten la validez de las conclusiones.**
+
+
+## Revisión de valores atípicos (outliers)
+
+**Nota importante:** La detección de valores atípicos es un paso crucial en un Análisis Exploratorio de Datos (EDA), ya que estos pueden influir en la interpretación de los resultados y en la robustez de los modelos estadísticos. **Un valor atípico es una observación que se aleja significativamente del resto de los datos** y puede ser causado por errores de medición, registros incorrectos o, en algunos casos, por la naturaleza de la propia distribución de los datos. Para identificarlos, se pueden utilizar técnicas gráficas como los gráficos de caja y bigotes. 
+
+Una vez detectados, es importante analizar su origen: si los valores son producto de errores, pueden ser corregidos o eliminados; si son casos extremos pero válidos, se pueden utilizar transformaciones más complejas para reducir su impacto. **La decisión de mantener, corregir o eliminar valores atípicos debe basarse en la naturaleza del problema y el contexto del estudio, asegurando que el análisis refleje con precisión la realidad de los datos.**  
+
+
+Un resumen estadístico general de las variables nos puede mostrar el resumen de los cinco números para las variables numéricas: (mínimo, primer cuartil, segundo cuartil (que equivale a la mediana), tercer cuartil y valor máximo). Estos cinco números nos brindan una idea de la distribución de los datos: **la media se ve alterada por valores extremos, mientras que la mediana no**, cuando la media se aleja mucho de la mediana, puede ser un indicador de datos atípicos o extremos.
+
+En este caso, las variables numéricas son **Edad e Ingreso mensual:**
+
+```{r}
+# Resumen estadístico general
+summary(datos)
+```
+
+Note que la media y mediana de la edad son muy similares, mientras que en el caso de ingreso mensual, se alejan un poco más. Note también que el valor máximo en esta última variable se encuentra alejado del tercer cuartil. Todo esto lo podemos visualizar en un gráfico de Caja y Bigotes:
+
+
+**Caja y bigotes para la variable edad**
+
+```{r}
+boxplot(datos$edad, horizontal=TRUE, col='steelblue', main="Boxplot de edad")
+```
+**Caja y bigotes para la variable Ingreso mensual**
+
+
+```{r}
+# Desactivar notación científica (cuando las cifras son muy largas)
+options(scipen=999)
+
+# Generar el boxplot sin notación científica
+boxplot(datos$ingreso_mensual, horizontal=TRUE, col='cadetblue4', main="Boxplot de Ingresos Mensuales")
+```
+
+El gráfico se ve de esta manera por los valores extremos. Así se vería sin esos datos atípicos:
+
+```{r}
+# Desactivar notación científica
+options(scipen=999)
+
+# Generar boxplot sin valores extremos
+boxplot(datos$ingreso_mensual, horizontal=TRUE, col='cadetblue4', 
+        main="Boxplot de Ingreso Mensual (Sin Valores Extremos)", 
+        outline=FALSE)  # Esto elimina los valores atípicos visualmente
+```
+
+
+## Exploración de variables:
+
+### Representación en tablas:
+
+Tabla de Frecuencia para Nivel de escolaridad
+
+```{r}
+
+# Tabla de Frecuencia para Nivel de Educación
+tabla_educacion <- table(datos$nivel_educacion)
+print(tabla_educacion)
+
+
+
+```
+
+Tabla de Frecuencia para género
+```{r}
+
+# Tabla de Frecuencia para interés en política
+tabla_genero <- table(datos$genero)
+print(tabla_genero)
+
+```
+Tabla de frecuencia agrupada para ingreso mensual
+
+
+
+## Gráficos:
+
+
+**Nota:** Encuentra aquí la guía de colores para tus gráficos > **([guía de colores](https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/))
+
+
+Gráfico para la variable genero:
+
+```{r}
+ggplot(datos, aes(x = genero, fill = genero)) +  
+  geom_bar() +  
+  labs(title = "Distribución de Género", x = "Género", y = "Frecuencia") +  
+  theme_minimal()
+```
+
+Gráfico para la variable edad:
+
+```{r}
+ggplot(datos, aes(x = edad)) +  
+  geom_histogram(bins = 10, fill = "steelblue", color = "black", alpha = 0.7) +  
+  labs(title = "Distribución de Edades", x = "Edad", y = "Frecuencia") +  
+  theme_minimal()
+```
+
+
+Gráfico para ingreso mensual
+```{r}
+
+ggplot(datos, aes(x = ingreso_mensual)) +
+  geom_histogram(bins = 10, fill = "cyan4", color = "black", alpha = 0.7) +
+  labs(title = "Distribución del Ingreso Mensual", 
+       x = "Ingreso Mensual", 
+       y = "Frecuencia") +
+  theme_minimal()
+  
+```
+## Hallazgos EDA
+
+- La edad promedio está en torno a los 35-40 años, con rango amplio desde adultos jóvenes hasta mayores.
+- Predomina la educación universitaria, seguida de secundaria y posgrado, lo que muestra diversidad en el nivel educativo.
+- Los ingresos tienen una distribución asimétrica: la mayoría concentra ingresos bajos o medios, con algunos valores altos que generan una cola derecha (outliers).
+
+
+# Intervalo de confianza para la media
+
+Para calcular los intervalos de confianza para la media, se deben conocer tres componentes: la media muestral, el error muestral y el valor de la distribución correspondiente al nivel de confianza asignado para el intervalo.
+
+El intervalo de confianza para estimar la media poblacional $\mu$ se construye de la siguiente manera:
+
+$$
+IC_{\mu} = (\bar{X} - Z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + Z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}})
+$$
+
+Para el caso con distribución t:
+
+$$IC_{\mu} = (\bar{X} - t_{\alpha/2,n-1gdl} \cdot  \frac{s}{\sqrt{n}} \leq \mu \leq \bar{X} + t_{\alpha/2,n-1gdl} \cdot  \frac{s}{\sqrt{n}})$$
+Veamos parte por parte cómo hacerlo:
+
+### Calcular la Media muestral
+
+La media muestral:  $$\bar{X}$$
+
+es el promedio calculado a partir de una muestra aleatoria.En R disponemos de la función `mean` para calcularla facilmente a partir de un conjunto de datos.
+
+
+### Calcular el Error muestral
+
+El error muestral de la media es esta parte de la ecuación:
+
+$$ \frac{\sigma}{\sqrt n}$$
+
+
+donde $\sigma$ es la desviación estándar poblacional y $n$ es el tamaño
+de la muestra.
+
+
+Cuando la desviación estándar poblacional no es conocida, se utiliza la desviación
+estándar muestral ($s$):
+
+
+$$ \frac{s}{\sqrt n}.$$
+
+### Calcular el Valor Crítico
+
+Teniendo en cuenta los supuestos, podemos determinar si la media sigue una **distribución Normal (Z)** (datos normales, desviación estándar poblacional conocida y muestra lo suficientemente grande) o **distribución t-student (t)** (datos no normales, desviación estándar poblacional desconocida y muestra pequeña)
+
+También debemos recordar que los intervalos de confianza son aleatorios puesto que se contruyen a partir de una muestra aleatoria, por lo tanto, existe un nivel de confianza $1-\alpha$ y un margen de error conocido $\alpha$ para estimar el parámtero. 
+
+Ese valor $\alpha$ se divide entre 2 para distribuirlo a cada lado del intervalo de confianza.  
+
+Es por esto que, Una vez determinada la distribución apropiada para el caso, se define el valor crítico para $\alpha/2$: 
+
+- $Z_{\alpha/2}$ para el caso Normal
+- $t_{\alpha/2}$ para el caso t-student
+
+***Las funciones `d, p, q, r` nos permitían realizar operaciones a partir de las distribuciones de probabilidad*** 
+
++ **d**: Calcula la funcion de densidad de probabilidad (PDF) o la funcion de masa de probabilidad (PMF) para una distribucion.  
++ **p**: Calcula la funcion de distribucion acumulada (CDF), que nos dice la probabilidad de obtener un valor menor o igual a un punto dado.  
++ **q**: Calcula cuantiles o percentiles de la distribucion.  
++ **r**: Genera valores aleatorios a partir de la distribucion especificada.  
+
+**Para calcular el valor crítico utilizaremos la función `q`, que calcula el valor de Z o de t a partir de una probabilidad dada:**
+
+
+## Intervalo de confianza para la media de horas de sueño:
+
+Datos: 
+```{r}
+
+#Sacar la variable aparte de la base y omitir valores faltantes
+horas_sueno = na.omit(datos$horas_sueno)
+
+n  = length(horas_sueno)
+xbarra = mean(horas_sueno)
+s    = sd(horas_sueno)
+se   = s/sqrt(n)
+
+#mostrar valores
+n
+xbarra
+s
+se
+
+```
+
+```{r}
+
+#margen de error
+alfa = 0.05
+
+# t crítico
+tcrit <- qt(alfa/2, df = n-1, lower.tail = F)
+
+```
+_Nota: el parámetro ´lower.tail = FALSE´ se utiliza para que el valor crítico sea el de la derecha (positivo). Ya sabemos que estas dos distribuciones son siméticas y el valor es el mismo para cada lado del intervalo_
+
+
+```{r}
+#Limite inferior
+IC_inf <- xbarra - tcrit*se
+#Limite superior
+IC_sup <- xbarra + tcrit*se
+
+#mostrar resultados
+IC_inf
+IC_sup
+```
+
+Resultado
+```{r}
+c(media_muestral = xbarra, Lim_inf = IC_inf, Lim_sup = IC_sup)
+```
+
+***Respuesta:*** Con un 95% de confianza, el tiempo promedio de sueño de la población está entre 6.90 y 7.16 horas.
+
+
+# Prueba de hipotesis para la media
+
+Recordemos que:
+
+Una prueba de hipótesis es un procedimiento estadístico utilizado para tomar decisiones sobre un parámetro poblacional basándose en una muestra. Matemáticamente, se trata de evaluar la validez de una afirmación acerca de una población utilizando teoría de probabilidades y distribuciones muestrales
+
+***El objetivo de una prueba de hipótesis es evaluar si los datos de una muestra proporcionan evidencia estadísticamente significativa para rechazar una hipótesis sobre la media poblacional***
+
+- **Hipótesis nula $H_0$** La hipótesis que se debe comprobar. Inicialmente se asume como verdadera.
+
+- **Hipótesis alternativa $H_1$** Se establece como el “complemento” de $H_0$  
+  - Prueba bilateral: \( H_1: \mu \neq \mu_0 \)
+  - Prueba unilateral derecha: \( H_1: \mu > \mu_0 \)
+  - Prueba unilateral izquierda: \( H_A: \mu < \mu_0 \)
+
+
+Plantear las hipótesis:
+
+$$
+\begin{aligned}
+H_0\!:\! & \quad \mu = 7 \quad \text{(la media poblacional de las horas de sueño es 7)} \\
+H_A\!:\! & \quad \mu \neq 7 \quad \text{(la media poblacional de las horas de sueli es diferente de 7)}
+\end{aligned}
+$$
+
+
+Organizar los datos:
+
+```{r}
+# Datos
+xbarra = mean(horas_sueno)        # media muestral
+u_poblacional = 7         # valor de la hipótesis nula
+```
+
+Revisar normalidad de los datos
+
+```{r}
+qqnorm(horas_sueno); qqline(horas_sueno, col = 2)
+shapiro.test(horas_sueno[1:500]) # limitado a 500 obs para evitar advertencias
+
+```
+La distribución es aproximadamente normal, y dado el tamaño de la muestra (n = 490), se utiliza la prueba t.
+
+
+Calcular el estadístico de prueba:
+
+```{r}
+t_test <- t.test(horas_sueno, mu = 7, alternative = "two.sided", conf.level = 0.95)
+t_test
+
+```
+
+Decisión:
+
+***Respuesta:*** El p-valor será aproximadamente 0.58, este valor es mayor que $\alpha= 0.05$, se acepta $H_0$, por lo tanto, no hay evidencia de que la media difiera de 7 horas.
+
+
+ 
+
+
+
+
+
+
+
+
+

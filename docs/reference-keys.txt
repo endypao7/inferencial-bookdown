@@ -39,3 +39,16 @@ dataframe
 condicional-if-else.
 bucles-for
 operadores-de-comparación-en-r
+url-your-book-url-like-httpsbookdown.orgyihuibookdown
+conoce-rstudio
+exploración-y-análisis-de-datos-eda
+dataframes-bases-de-datos
+creación-de-dataframes
+importar-un-dataframe-desde-un-archivo-csv
+pre-procesamiento-de-una-base-de-datos-preinstalada-en-r
+eliminación-de-columnas-innecesarias
+filtrado-de-datos
+transformación-de-datos
+cambio-de-tipo-de-variable
+ordenamiento-de-datos
+actividades-para-practicar
