@@ -186,6 +186,17 @@ div.csl-indent {
 <li class="chapter" data-level="2.1.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#importar-un-dataframe-desde-un-archivo-csv"><i class="fa fa-check"></i><b>2.1.2</b> Importar un Dataframe desde un archivo CSV</a></li>
 </ul></li>
 <li class="chapter" data-level="2.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#pre-procesamiento-de-una-base-de-datos-preinstalada-en-r"><i class="fa fa-check"></i><b>2.2</b> Pre procesamiento de una Base de Datos Preinstalada en R</a></li>
+<li class="chapter" data-level="2.3" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#análilsis-exploratorio-de-datos-eda-básico"><i class="fa fa-check"></i><b>2.3</b> Análilsis exploratorio de Datos (EDA) básico</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#ejemplo-contexto"><i class="fa fa-check"></i><b>2.3.1</b> Ejemplo (Contexto):</a></li>
+<li class="chapter" data-level="2.3.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#cargar-base-de-datos"><i class="fa fa-check"></i><b>2.3.2</b> Cargar base de datos:</a></li>
+<li class="chapter" data-level="2.3.3" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-faltantes-na"><i class="fa fa-check"></i><b>2.3.3</b> Revisión de valores faltantes (N/A):</a></li>
+<li class="chapter" data-level="2.3.4" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-atípicos-outliers"><i class="fa fa-check"></i><b>2.3.4</b> Revisión de valores atípicos (outliers)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#exploración-de-variables"><i class="fa fa-check"></i><b>2.3.5</b> Exploración de variables:</a></li>
+<li class="chapter" data-level="2.3.6" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#gráficos"><i class="fa fa-check"></i><b>2.3.6</b> Gráficos:</a></li>
+<li class="chapter" data-level="2.3.7" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#análisis-bivariado"><i class="fa fa-check"></i><b>2.3.7</b> Análisis Bivariado</a></li>
+<li class="chapter" data-level="2.3.8" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#conlusiones"><i class="fa fa-check"></i><b>2.3.8</b> Conlusiones</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="cross.html"><a href="cross.html"><i class="fa fa-check"></i><b>3</b> Cross-references</a>
 <ul>
@@ -550,7 +561,474 @@ div.csl-indent {
 <li><strong>Guarda el dataframe</strong> en un archivo CSV y vuelve a importarlo en R.</li>
 </ol>
 <hr />
+</div>
+<div id="análilsis-exploratorio-de-datos-eda-básico" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> Análilsis exploratorio de Datos (EDA) básico<a href="exploración-y-análisis-de-datos-eda.html#análilsis-exploratorio-de-datos-eda-básico" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>El análisis exploratorio de datos (<a href="https://www.youtube.com/watch?v=UeMpYEktLfU&amp;ab_channel=Comunicaci%C3%B3nNum%C3%A9rica">Ver video</a>) (EDA por sus siglas en inglés) implica el uso de gráficos y visualizaciones para explorar y analizar un conjunto de datos. El objetivo es explorar, investigar y aprender, no confirmar hipótesis estadísticas.</p>
+<p><strong>¿Cuándo debo utilizarlo?</strong></p>
+<p>El análisis exploratorio de datos es una potente herramienta para explorar un conjunto de datos. Incluso cuando su objetivo es efectuar análisis planificados, el EDA puede utilizarse para limpiar datos, para análisis de subgrupos o simplemente para comprender mejor los datos. Un paso inicial importante en cualquier análisis de datos es representar los datos gráficamente.</p>
+<p><strong>No gráfico:</strong> Calcula estadísticas descriptivas de las variables</p>
+<p><strong>Gráfico:</strong> Calcula estadísticas de forma gráfica</p>
+<p><strong>Univariado:</strong> Analiza una sola variable a la vez</p>
+<p><strong>Multivariado:</strong> Analiza dos o más variables</p>
+<p>A su vez, cada uno de esas dividisiones puede subdividirse según los tipos de datos con los que trabajemos: categóricos o numéricos.</p>
+<div id="ejemplo-contexto" class="section level3 hasAnchor" number="2.3.1">
+<h3><span class="header-section-number">2.3.1</span> Ejemplo (Contexto):<a href="exploración-y-análisis-de-datos-eda.html#ejemplo-contexto" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El presente estudio se basa en una encuesta aplicada a una muestra representativa de 500 ciudadanos de la ciudad de Springfield, con el objetivo de analizar su nivel de confianza en el gobierno, entre otras. Además, se examina el impacto de las redes sociales en la formación de la opinión pública y su posible influencia en el comportamiento electoral.</p>
+<p>Para garantizar la calidad de los datos y obtener conclusiones válidas, es necesario realizar un Análisis Exploratorio de Datos (EDA) antes de proceder con cualquier modelado estadístico o inferencia.</p>
+<p><strong>La base de datos contiene las siguientes variables:</strong></p>
+<table>
+<colgroup>
+<col width="38%" />
+<col width="17%" />
+<col width="29%" />
+<col width="14%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Tipo de Variable</th>
+<th>Categoría/Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Edad</td>
+<td>Numérica</td>
+<td>Continua</td>
+<td>Años cumplidos</td>
+</tr>
+<tr class="even">
+<td>Género</td>
+<td>Categórica</td>
+<td>Nominal</td>
+<td>Identificación de género (Masculino, Femenino, No Binario)</td>
+</tr>
+<tr class="odd">
+<td>Nivel de Educación</td>
+<td>Categórica</td>
+<td>Ordinal</td>
+<td>Último nivel educativo alcanzado (Primaria, Secundaria, Universitaria, Posgrado)</td>
+</tr>
+<tr class="even">
+<td>Ingreso Mensual</td>
+<td>Numérica</td>
+<td>Continua</td>
+<td>Ingresos mensuales en moneda local</td>
+</tr>
+<tr class="odd">
+<td>Interés en Política</td>
+<td>Categórica</td>
+<td>Ordinal</td>
+<td>Nivel de interés en política (Escala Likert del 1 al 5)</td>
+</tr>
+<tr class="even">
+<td>Frecuencia de Voto</td>
+<td>Categórica</td>
+<td>Ordinal</td>
+<td>Frecuencia con la que vota (Nunca, A veces, Siempre)</td>
+</tr>
+<tr class="odd">
+<td>Ideología Política</td>
+<td>Categórica</td>
+<td>Nominal</td>
+<td>Identificación ideológica (Izquierda, Centro, Derecha)</td>
+</tr>
+<tr class="even">
+<td>Confianza en el Gobierno</td>
+<td>Categórica</td>
+<td>Ordinal</td>
+<td>Nivel de confianza en el gobierno (Escala Likert del 1 al 10)</td>
+</tr>
+<tr class="odd">
+<td>Uso de Redes para Informarse</td>
+<td>Categórica</td>
+<td>Ordinal</td>
+<td>Nivel de uso de redes sociales para informarse (Bajo, Medio, Alto)</td>
+</tr>
+<tr class="even">
+<td>Participación en Protestas</td>
+<td>Categórica</td>
+<td>Nominal</td>
+<td>Si ha participado en protestas (Sí, No)</td>
+</tr>
+</tbody>
+</table>
+<p><strong><em>Instalar y Cargar paquetes</em></strong></p>
+<p>Lo primero que tenemos que hacer es cargar los paquetes que vamos a utilizar para el análisis. En este caso vamos a usar:</p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="exploración-y-análisis-de-datos-eda.html#cb51-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)<span class="co"># Incluye paquetes de importación, visualización entre otros</span></span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.4     ✔ readr     2.1.5
+## ✔ forcats   1.0.0     ✔ stringr   1.5.1
+## ✔ ggplot2   4.0.0     ✔ tibble    3.3.0
+## ✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+## ✔ purrr     1.0.2     
+## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="exploración-y-análisis-de-datos-eda.html#cb53-1" tabindex="-1"></a><span class="fu">library</span>(dplyr)<span class="co"># Manipulación de Datos</span></span>
+<span id="cb53-2"><a href="exploración-y-análisis-de-datos-eda.html#cb53-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)<span class="co"># Visualización de datos </span></span>
+<span id="cb53-3"><a href="exploración-y-análisis-de-datos-eda.html#cb53-3" tabindex="-1"></a><span class="fu">library</span>(readxl)<span class="co"># Importación de datos</span></span>
+<span id="cb53-4"><a href="exploración-y-análisis-de-datos-eda.html#cb53-4" tabindex="-1"></a><span class="fu">library</span>(tibble)<span class="co"># Tablas</span></span>
+<span id="cb53-5"><a href="exploración-y-análisis-de-datos-eda.html#cb53-5" tabindex="-1"></a><span class="fu">library</span>(readr) <span class="co">#Para cargar la base de datos</span></span></code></pre></div>
+<div class="warning">
+<p>Si no ha instalado estos paquetes debe correr primero el comando: <strong><code>install.packages("nombre del paquete")</code></strong>, <strong>Recuerde que los paquetes deben instalarse una única vez, posteriormente se pueden llamar utilizando la función “library”</strong></p>
+</div>
+</div>
+<div id="cargar-base-de-datos" class="section level3 hasAnchor" number="2.3.2">
+<h3><span class="header-section-number">2.3.2</span> Cargar base de datos:<a href="exploración-y-análisis-de-datos-eda.html#cargar-base-de-datos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Tenga en cuenta que debe utilizar la dirección de donde está guardada la base de datos en caso de usar Rstudio descargado en su equipo, o importarlo en la carpeta files en caso de estar trabajando en Rstudio cloud.
+<strong>Aquí puede ir a un video acerca de importación de datos o datasets: </strong>(<a href="https://www.youtube.com/watch?v=agkPSaYEDgQ">Ver video para Rstudio de escritorio</a>) o también (<a href="https://www.youtube.com/watch?v=anWyri9tbzk">Ver video para Rstudio Cloud</a>)**</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="exploración-y-análisis-de-datos-eda.html#cb54-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;DATA/dataset_opinion_publica.csv&quot;</span>) <span class="co">#Ojo esta es la dirección en la que la profe tenía guardados sus datos, es necesario cambiarla.</span></span></code></pre></div>
+<pre><code>## Rows: 500 Columns: 10
+## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (6): genero, nivel_de_educacion, frecuencia_de_voto, ideologia_politica,...
+## dbl (4): edad, ingreso_mensual, interes_en_politica, confianza_en_gobierno
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p><strong>Nombres de variables</strong>
+Aquí podemos ver qué variables fueron importadas en nuestro Data Frame:</p>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="exploración-y-análisis-de-datos-eda.html#cb56-1" tabindex="-1"></a><span class="fu">names</span>(datos)<span class="co"># nombres de variables</span></span></code></pre></div>
+<pre><code>##  [1] &quot;edad&quot;                    &quot;genero&quot;                 
+##  [3] &quot;nivel_de_educacion&quot;      &quot;ingreso_mensual&quot;        
+##  [5] &quot;interes_en_politica&quot;     &quot;frecuencia_de_voto&quot;     
+##  [7] &quot;ideologia_politica&quot;      &quot;confianza_en_gobierno&quot;  
+##  [9] &quot;uso_de_redes_informarse&quot; &quot;participacion_protestas&quot;</code></pre>
+<p><strong>Mostrar o llamar una variable</strong></p>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="exploración-y-análisis-de-datos-eda.html#cb58-1" tabindex="-1"></a><span class="fu">head</span>(datos<span class="sc">$</span>nivel_de_educacion) <span class="co">#Se utiliza el simbilo $ despues del nombre de la base. Se uba la función head para mostrar solo los primero sdatos y no todos.</span></span></code></pre></div>
+<pre><code>## [1] &quot;Secundaria&quot;    &quot;Universitaria&quot; &quot;Universitaria&quot; &quot;Posgrado&quot;     
+## [5] &quot;Universitaria&quot; &quot;Universitaria&quot;</code></pre>
+<p><strong>Dimensiones</strong></p>
+<p>Es importante conocer las dimensiones del Dataset cargado para asegurarse que se incluyeron todas las variables y observaciones.</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="exploración-y-análisis-de-datos-eda.html#cb60-1" tabindex="-1"></a><span class="fu">dim</span>(datos) <span class="co">#Dimensiones: num filas x num columnas</span></span></code></pre></div>
+<pre><code>## [1] 500  10</code></pre>
+<p><strong>Mostrar las primeras filas de la base de datos</strong></p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="exploración-y-análisis-de-datos-eda.html#cb62-1" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 10
+##    edad genero     nivel_de_educacion ingreso_mensual interes_en_politica
+##   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;                        &lt;dbl&gt;               &lt;dbl&gt;
+## 1    56 Femenino   Secundaria                   2333.                   4
+## 2    69 No binario Universitaria                1692.                   1
+## 3    46 Masculino  Universitaria                6550.                   3
+## 4    32 Masculino  Posgrado                     3327.                   1
+## 5    60 Femenino   Universitaria                5944.                   5
+## 6    25 Masculino  Universitaria                4389.                   4
+## # ℹ 5 more variables: frecuencia_de_voto &lt;chr&gt;, ideologia_politica &lt;chr&gt;,
+## #   confianza_en_gobierno &lt;dbl&gt;, uso_de_redes_informarse &lt;chr&gt;,
+## #   participacion_protestas &lt;chr&gt;</code></pre>
+<p><strong>Tipos de datos</strong>
+Con esto es posible verificar que los datos están correctamente cargados de acuerdo a la naturaleza de cada variable:</p>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="exploración-y-análisis-de-datos-eda.html#cb64-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<pre><code>## spc_tbl_ [500 × 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ edad                   : num [1:500] 56 69 46 32 60 25 78 38 56 75 ...
+##  $ genero                 : chr [1:500] &quot;Femenino&quot; &quot;No binario&quot; &quot;Masculino&quot; &quot;Masculino&quot; ...
+##  $ nivel_de_educacion     : chr [1:500] &quot;Secundaria&quot; &quot;Universitaria&quot; &quot;Universitaria&quot; &quot;Posgrado&quot; ...
+##  $ ingreso_mensual        : num [1:500] 2333 1692 6550 3327 5944 ...
+##  $ interes_en_politica    : num [1:500] 4 1 3 1 5 4 7 5 10 4 ...
+##  $ frecuencia_de_voto     : chr [1:500] &quot;A veces&quot; &quot;Siempre&quot; &quot;Siempre&quot; &quot;Siempre&quot; ...
+##  $ ideologia_politica     : chr [1:500] &quot;Centro&quot; &quot;Derecha&quot; &quot;Centro&quot; &quot;Centro&quot; ...
+##  $ confianza_en_gobierno  : num [1:500] 1 6 5 9 2 8 5 2 10 6 ...
+##  $ uso_de_redes_informarse: chr [1:500] &quot;Alto&quot; &quot;Medio&quot; &quot;Medio&quot; &quot;Alto&quot; ...
+##  $ participacion_protestas: chr [1:500] &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   edad = col_double(),
+##   ..   genero = col_character(),
+##   ..   nivel_de_educacion = col_character(),
+##   ..   ingreso_mensual = col_double(),
+##   ..   interes_en_politica = col_double(),
+##   ..   frecuencia_de_voto = col_character(),
+##   ..   ideologia_politica = col_character(),
+##   ..   confianza_en_gobierno = col_double(),
+##   ..   uso_de_redes_informarse = col_character(),
+##   ..   participacion_protestas = col_character()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+<p>Supongamos que las variables <strong>Interés en política</strong> y <strong>Confianza en el gobierno</strong> se deben manejar como variables categóricas, pero R las lee como numéricas. Es posible cambiar el tipo de variable:</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="exploración-y-análisis-de-datos-eda.html#cb66-1" tabindex="-1"></a><span class="co">#Convertir variables en factores</span></span>
+<span id="cb66-2"><a href="exploración-y-análisis-de-datos-eda.html#cb66-2" tabindex="-1"></a>datos<span class="sc">$</span>interes_en_politica <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>interes_en_politica) <span class="co">#OJO: con el signo &quot;$&quot; llamo a una variable específica de mi dataset</span></span>
+<span id="cb66-3"><a href="exploración-y-análisis-de-datos-eda.html#cb66-3" tabindex="-1"></a>datos<span class="sc">$</span>confianza_en_gobierno <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(datos<span class="sc">$</span>confianza_en_gobierno)</span></code></pre></div>
+<p>Revisar nuevamente el Dataset:</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="exploración-y-análisis-de-datos-eda.html#cb67-1" tabindex="-1"></a><span class="fu">str</span>(datos)</span></code></pre></div>
+<pre><code>## spc_tbl_ [500 × 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ edad                   : num [1:500] 56 69 46 32 60 25 78 38 56 75 ...
+##  $ genero                 : chr [1:500] &quot;Femenino&quot; &quot;No binario&quot; &quot;Masculino&quot; &quot;Masculino&quot; ...
+##  $ nivel_de_educacion     : chr [1:500] &quot;Secundaria&quot; &quot;Universitaria&quot; &quot;Universitaria&quot; &quot;Posgrado&quot; ...
+##  $ ingreso_mensual        : num [1:500] 2333 1692 6550 3327 5944 ...
+##  $ interes_en_politica    : Factor w/ 10 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 4 1 3 1 5 4 7 5 10 4 ...
+##  $ frecuencia_de_voto     : chr [1:500] &quot;A veces&quot; &quot;Siempre&quot; &quot;Siempre&quot; &quot;Siempre&quot; ...
+##  $ ideologia_politica     : chr [1:500] &quot;Centro&quot; &quot;Derecha&quot; &quot;Centro&quot; &quot;Centro&quot; ...
+##  $ confianza_en_gobierno  : Factor w/ 10 levels &quot;1&quot;,&quot;2&quot;,&quot;3&quot;,&quot;4&quot;,..: 1 6 5 9 2 8 5 2 10 6 ...
+##  $ uso_de_redes_informarse: chr [1:500] &quot;Alto&quot; &quot;Medio&quot; &quot;Medio&quot; &quot;Alto&quot; ...
+##  $ participacion_protestas: chr [1:500] &quot;No&quot; &quot;No&quot; &quot;No&quot; &quot;No&quot; ...
+##  - attr(*, &quot;spec&quot;)=
+##   .. cols(
+##   ..   edad = col_double(),
+##   ..   genero = col_character(),
+##   ..   nivel_de_educacion = col_character(),
+##   ..   ingreso_mensual = col_double(),
+##   ..   interes_en_politica = col_double(),
+##   ..   frecuencia_de_voto = col_character(),
+##   ..   ideologia_politica = col_character(),
+##   ..   confianza_en_gobierno = col_double(),
+##   ..   uso_de_redes_informarse = col_character(),
+##   ..   participacion_protestas = col_character()
+##   .. )
+##  - attr(*, &quot;problems&quot;)=&lt;externalptr&gt;</code></pre>
+</div>
+<div id="revisión-de-valores-faltantes-na" class="section level3 hasAnchor" number="2.3.3">
+<h3><span class="header-section-number">2.3.3</span> Revisión de valores faltantes (N/A):<a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-faltantes-na" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Sumar N/As por cada columna (variable)</p>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="exploración-y-análisis-de-datos-eda.html#cb69-1" tabindex="-1"></a><span class="co"># Contar valores faltantes por variable</span></span>
+<span id="cb69-2"><a href="exploración-y-análisis-de-datos-eda.html#cb69-2" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(datos))</span></code></pre></div>
+<pre><code>##                    edad                  genero      nivel_de_educacion 
+##                       0                       0                       0 
+##         ingreso_mensual     interes_en_politica      frecuencia_de_voto 
+##                      10                       0                       0 
+##      ideologia_politica   confianza_en_gobierno uso_de_redes_informarse 
+##                      10                       0                       0 
+## participacion_protestas 
+##                      10</code></pre>
+<div class="warning">
+<p><strong>Nota importante:</strong> Cuando se identifican datos faltantes en un conjunto de datos durante un Análisis Exploratorio de Datos (EDA), es fundamental evaluar su impacto en el análisis y decidir el mejor método para tratarlos. El primer paso consiste en cuantificar la cantidad de valores ausentes y analizar su distribución a lo largo de las variables. Si los valores perdidos son escasos y aleatorios, una opción válida puede ser eliminarlos sin afectar significativamente los resultados. Sin embargo, cuando los valores faltantes son numerosos o siguen un patrón sistemático, es recomendable aplicar métodos de imputación, como el reemplazo por la media o mediana en variables numéricas, o el uso de la moda en variables categóricas. También pueden emplearse técnicas más avanzadas, como la imputación por regresión o el uso de modelos de aprendizaje automático.</p>
+<p>En cualquier caso, <strong>la decisión sobre el tratamiento de los datos ausentes debe tomarse considerando el contexto del estudio y asegurando que no se introduzcan sesgos que afecten la validez de las conclusiones.</strong></p>
+</div>
+</div>
+<div id="revisión-de-valores-atípicos-outliers" class="section level3 hasAnchor" number="2.3.4">
+<h3><span class="header-section-number">2.3.4</span> Revisión de valores atípicos (outliers)<a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-atípicos-outliers" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Nota importante:</strong> La detección de valores atípicos es un paso crucial en un Análisis Exploratorio de Datos (EDA), ya que estos pueden influir en la interpretación de los resultados y en la robustez de los modelos estadísticos. <strong>Un valor atípico es una observación que se aleja significativamente del resto de los datos</strong> y puede ser causado por errores de medición, registros incorrectos o, en algunos casos, por la naturaleza de la propia distribución de los datos. Para identificarlos, se pueden utilizar técnicas gráficas como los gráficos de caja y bigotes.</p>
+<p>Una vez detectados, es importante analizar su origen: si los valores son producto de errores, pueden ser corregidos o eliminados; si son casos extremos pero válidos, se pueden utilizar transformaciones más complejas para reducir su impacto. <strong>La decisión de mantener, corregir o eliminar valores atípicos debe basarse en la naturaleza del problema y el contexto del estudio, asegurando que el análisis refleje con precisión la realidad de los datos.</strong></p>
+<p>Un resumen estadístico general de las variables nos puede mostrar el resumen de los cinco números para las variables numéricas: (mínimo, primer cuartil, segundo cuartil (que equivale a la mediana), tercer cuartil y valor máximo). Estos cinco números nos brindan una idea de la distribución de los datos: <strong>la media se ve alterada por valores extremos, mientras que la mediana no</strong>, cuando la media se aleja mucho de la mediana, puede ser un indicador de datos atípicos o extremos.</p>
+<p>En este caso, las variables numéricas son <strong>Edad e Ingreso mensual:</strong></p>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="exploración-y-análisis-de-datos-eda.html#cb71-1" tabindex="-1"></a><span class="co"># Resumen estadístico general</span></span>
+<span id="cb71-2"><a href="exploración-y-análisis-de-datos-eda.html#cb71-2" tabindex="-1"></a><span class="fu">summary</span>(datos)</span></code></pre></div>
+<pre><code>##       edad          genero          nivel_de_educacion ingreso_mensual   
+##  Min.   :18.00   Length:500         Length:500         Min.   :   125.6  
+##  1st Qu.:35.00   Class :character   Class :character   1st Qu.:  2634.0  
+##  Median :50.00   Mode  :character   Mode  :character   Median :  5268.8  
+##  Mean   :50.34                                         Mean   :  6040.2  
+##  3rd Qu.:66.00                                         3rd Qu.:  7264.7  
+##  Max.   :80.00                                         Max.   :412545.0  
+##                                                        NA&#39;s   :10        
+##  interes_en_politica frecuencia_de_voto ideologia_politica
+##  4      : 56         Length:500         Length:500        
+##  5      : 56         Class :character   Class :character  
+##  8      : 56         Mode  :character   Mode  :character  
+##  10     : 53                                              
+##  6      : 49                                              
+##  9      : 49                                              
+##  (Other):181                                              
+##  confianza_en_gobierno uso_de_redes_informarse participacion_protestas
+##  6      : 59           Length:500              Length:500             
+##  8      : 56           Class :character        Class :character       
+##  10     : 54           Mode  :character        Mode  :character       
+##  7      : 52                                                          
+##  1      : 50                                                          
+##  3      : 50                                                          
+##  (Other):179</code></pre>
+<div class="note">
+<p>Note que la media y mediana de la edad son muy similares, mientras que en el caso de ingreso mensual, se alejan un poco más. Note también que el valor máximo en esta última variable se encuentra alejado del tercer cuartil. Todo esto lo podemos visualizar mejor en un gráfico de Caja y Bigotes.</p>
+</div>
+<p><strong>Caja y bigotes para la variable edad</strong></p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="exploración-y-análisis-de-datos-eda.html#cb73-1" tabindex="-1"></a><span class="fu">boxplot</span>(datos<span class="sc">$</span>edad, <span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;steelblue&#39;</span>, <span class="at">main=</span><span class="st">&quot;Boxplot de edad&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
+<p><strong>Caja y bigotes para la variable Ingreso mensual</strong></p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="exploración-y-análisis-de-datos-eda.html#cb74-1" tabindex="-1"></a><span class="co"># Desactivar notación científica (cuando las cifras son muy largas)</span></span>
+<span id="cb74-2"><a href="exploración-y-análisis-de-datos-eda.html#cb74-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span>
+<span id="cb74-3"><a href="exploración-y-análisis-de-datos-eda.html#cb74-3" tabindex="-1"></a></span>
+<span id="cb74-4"><a href="exploración-y-análisis-de-datos-eda.html#cb74-4" tabindex="-1"></a><span class="co"># Generar el boxplot sin notación científica</span></span>
+<span id="cb74-5"><a href="exploración-y-análisis-de-datos-eda.html#cb74-5" tabindex="-1"></a><span class="fu">boxplot</span>(datos<span class="sc">$</span>ingreso_mensual, <span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;cadetblue4&#39;</span>, <span class="at">main=</span><span class="st">&quot;Boxplot de Ingreso Mensual&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-40-1.png" width="672" /></p>
+<p>El gráfico se ve de esta manera por los valores extremos. Así se vería sin esos datos atípicos:</p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="exploración-y-análisis-de-datos-eda.html#cb75-1" tabindex="-1"></a><span class="co"># Desactivar notación científica</span></span>
+<span id="cb75-2"><a href="exploración-y-análisis-de-datos-eda.html#cb75-2" tabindex="-1"></a><span class="fu">options</span>(<span class="at">scipen=</span><span class="dv">999</span>)</span>
+<span id="cb75-3"><a href="exploración-y-análisis-de-datos-eda.html#cb75-3" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="exploración-y-análisis-de-datos-eda.html#cb75-4" tabindex="-1"></a><span class="co"># Generar boxplot sin valores extremos</span></span>
+<span id="cb75-5"><a href="exploración-y-análisis-de-datos-eda.html#cb75-5" tabindex="-1"></a><span class="fu">boxplot</span>(datos<span class="sc">$</span>ingreso_mensual, <span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;cadetblue4&#39;</span>, </span>
+<span id="cb75-6"><a href="exploración-y-análisis-de-datos-eda.html#cb75-6" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Boxplot de Ingreso Mensual (Sin Valores Extremos)&quot;</span>, </span>
+<span id="cb75-7"><a href="exploración-y-análisis-de-datos-eda.html#cb75-7" tabindex="-1"></a>        <span class="at">outline=</span><span class="cn">FALSE</span>)  <span class="co"># Esto elimina los valores atípicos visualmente</span></span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-41-1.png" width="672" />
+En esta ocasión, reemplazaremos los atípicos por el valor de la mediana a manera de imputación:</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="exploración-y-análisis-de-datos-eda.html#cb76-1" tabindex="-1"></a><span class="co"># Calcular la mediana del ingreso mensual</span></span>
+<span id="cb76-2"><a href="exploración-y-análisis-de-datos-eda.html#cb76-2" tabindex="-1"></a>mediana <span class="ot">&lt;-</span> <span class="fu">median</span>(datos<span class="sc">$</span>ingreso_mensual, <span class="at">na.rm=</span><span class="cn">TRUE</span>)</span>
+<span id="cb76-3"><a href="exploración-y-análisis-de-datos-eda.html#cb76-3" tabindex="-1"></a></span>
+<span id="cb76-4"><a href="exploración-y-análisis-de-datos-eda.html#cb76-4" tabindex="-1"></a><span class="co"># Reemplazar valores atípicos con la mediana</span></span>
+<span id="cb76-5"><a href="exploración-y-análisis-de-datos-eda.html#cb76-5" tabindex="-1"></a>datos<span class="sc">$</span>ingreso_mensual <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(datos<span class="sc">$</span>ingreso_mensual <span class="sc">%in%</span> <span class="fu">boxplot.stats</span>(datos<span class="sc">$</span>ingreso_mensual)<span class="sc">$</span>out, </span>
+<span id="cb76-6"><a href="exploración-y-análisis-de-datos-eda.html#cb76-6" tabindex="-1"></a>                                mediana, </span>
+<span id="cb76-7"><a href="exploración-y-análisis-de-datos-eda.html#cb76-7" tabindex="-1"></a>                                datos<span class="sc">$</span>ingreso_mensual)</span>
+<span id="cb76-8"><a href="exploración-y-análisis-de-datos-eda.html#cb76-8" tabindex="-1"></a></span>
+<span id="cb76-9"><a href="exploración-y-análisis-de-datos-eda.html#cb76-9" tabindex="-1"></a><span class="co"># Verificar con un nuevo boxplot</span></span>
+<span id="cb76-10"><a href="exploración-y-análisis-de-datos-eda.html#cb76-10" tabindex="-1"></a><span class="fu">boxplot</span>(datos<span class="sc">$</span>ingreso_mensual, <span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;cadetblue4&#39;</span>, </span>
+<span id="cb76-11"><a href="exploración-y-análisis-de-datos-eda.html#cb76-11" tabindex="-1"></a>        <span class="at">main=</span><span class="st">&quot;Boxplot de Ingreso Mensual (Atípicos Reemplazados con Mediana)&quot;</span>)</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+</div>
+<div id="exploración-de-variables" class="section level3 hasAnchor" number="2.3.5">
+<h3><span class="header-section-number">2.3.5</span> Exploración de variables:<a href="exploración-y-análisis-de-datos-eda.html#exploración-de-variables" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Representación en tablas:</strong></p>
+<p>Tabla de Frecuencia para Nivel de Educación</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="exploración-y-análisis-de-datos-eda.html#cb77-1" tabindex="-1"></a><span class="co"># Tabla de Frecuencia para Nivel de Educación</span></span>
+<span id="cb77-2"><a href="exploración-y-análisis-de-datos-eda.html#cb77-2" tabindex="-1"></a>tabla_educacion <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>nivel_de_educacion)</span>
+<span id="cb77-3"><a href="exploración-y-análisis-de-datos-eda.html#cb77-3" tabindex="-1"></a><span class="fu">print</span>(tabla_educacion)</span></code></pre></div>
+<pre><code>## 
+##      Posgrado      Primaria    Secundaria Universitaria 
+##            78            51           189           182</code></pre>
+<p>Tabla de Frecuencia para Ideología Política</p>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="exploración-y-análisis-de-datos-eda.html#cb79-1" tabindex="-1"></a><span class="co"># Tabla de Frecuencia para Ideología Política</span></span>
+<span id="cb79-2"><a href="exploración-y-análisis-de-datos-eda.html#cb79-2" tabindex="-1"></a>tabla_ideologia <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>ideologia_politica)</span>
+<span id="cb79-3"><a href="exploración-y-análisis-de-datos-eda.html#cb79-3" tabindex="-1"></a><span class="fu">print</span>(tabla_ideologia)</span></code></pre></div>
+<pre><code>## 
+##    Centro   Derecha Izquierda 
+##       181       156       153</code></pre>
+<p>Tabla de Frecuencia para interés en política</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="exploración-y-análisis-de-datos-eda.html#cb81-1" tabindex="-1"></a><span class="co"># Tabla de Frecuencia para interés en política</span></span>
+<span id="cb81-2"><a href="exploración-y-análisis-de-datos-eda.html#cb81-2" tabindex="-1"></a>tabla_interes_pol <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>interes_en_politica)</span>
+<span id="cb81-3"><a href="exploración-y-análisis-de-datos-eda.html#cb81-3" tabindex="-1"></a><span class="fu">print</span>(tabla_interes_pol)</span></code></pre></div>
+<pre><code>## 
+##  1  2  3  4  5  6  7  8  9 10 
+## 46 44 47 56 56 49 44 56 49 53</code></pre>
+<p>Tabla de frecuencia agrupada para ingreso mensual</p>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="exploración-y-análisis-de-datos-eda.html#cb83-1" tabindex="-1"></a><span class="co"># Determinar automáticamente el número de intervalos con la regla de Sturges</span></span>
+<span id="cb83-2"><a href="exploración-y-análisis-de-datos-eda.html#cb83-2" tabindex="-1"></a>num_intervals <span class="ot">&lt;-</span> <span class="fu">nclass.Sturges</span>(datos<span class="sc">$</span>ingreso_mensual)</span>
+<span id="cb83-3"><a href="exploración-y-análisis-de-datos-eda.html#cb83-3" tabindex="-1"></a></span>
+<span id="cb83-4"><a href="exploración-y-análisis-de-datos-eda.html#cb83-4" tabindex="-1"></a><span class="co"># Agrupar ingresos en intervalos automáticos</span></span>
+<span id="cb83-5"><a href="exploración-y-análisis-de-datos-eda.html#cb83-5" tabindex="-1"></a>datos<span class="sc">$</span>ingreso_grupo <span class="ot">&lt;-</span> <span class="fu">cut</span>(datos<span class="sc">$</span>ingreso_mensual, <span class="at">breaks =</span> num_intervals, <span class="at">include.lowest =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb83-6"><a href="exploración-y-análisis-de-datos-eda.html#cb83-6" tabindex="-1"></a></span>
+<span id="cb83-7"><a href="exploración-y-análisis-de-datos-eda.html#cb83-7" tabindex="-1"></a><span class="co"># Crear la tabla de frecuencia</span></span>
+<span id="cb83-8"><a href="exploración-y-análisis-de-datos-eda.html#cb83-8" tabindex="-1"></a>tabla_ingreso <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>ingreso_grupo)</span>
+<span id="cb83-9"><a href="exploración-y-análisis-de-datos-eda.html#cb83-9" tabindex="-1"></a></span>
+<span id="cb83-10"><a href="exploración-y-análisis-de-datos-eda.html#cb83-10" tabindex="-1"></a><span class="co"># Convertir en data frame para mejor presentación</span></span>
+<span id="cb83-11"><a href="exploración-y-análisis-de-datos-eda.html#cb83-11" tabindex="-1"></a>tabla_ingreso_df <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tabla_ingreso)</span>
+<span id="cb83-12"><a href="exploración-y-análisis-de-datos-eda.html#cb83-12" tabindex="-1"></a><span class="fu">colnames</span>(tabla_ingreso_df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Rango de Ingreso&quot;</span>, <span class="st">&quot;Frecuencia&quot;</span>)</span>
+<span id="cb83-13"><a href="exploración-y-análisis-de-datos-eda.html#cb83-13" tabindex="-1"></a></span>
+<span id="cb83-14"><a href="exploración-y-análisis-de-datos-eda.html#cb83-14" tabindex="-1"></a><span class="co"># Calcular la frecuencia relativa</span></span>
+<span id="cb83-15"><a href="exploración-y-análisis-de-datos-eda.html#cb83-15" tabindex="-1"></a>frecuencia_relativa <span class="ot">&lt;-</span> <span class="fu">prop.table</span>(tabla_ingreso) <span class="sc">*</span> <span class="dv">100</span>  <span class="co"># Convertir a porcentaje</span></span>
+<span id="cb83-16"><a href="exploración-y-análisis-de-datos-eda.html#cb83-16" tabindex="-1"></a>tabla_ingreso_df<span class="sc">$</span>frecuencia_relativa <span class="ot">&lt;-</span> <span class="fu">round</span>(frecuencia_relativa, <span class="dv">2</span>)  <span class="co"># Agregar columna con % y redondear</span></span>
+<span id="cb83-17"><a href="exploración-y-análisis-de-datos-eda.html#cb83-17" tabindex="-1"></a></span>
+<span id="cb83-18"><a href="exploración-y-análisis-de-datos-eda.html#cb83-18" tabindex="-1"></a>tabla_ingreso_df <span class="co">#Mostrar la tabla resultante</span></span></code></pre></div>
+<pre><code>##       Rango de Ingreso Frecuencia frecuencia_relativa
+## 1       [113,1.38e+03]         52               10.61
+## 2  (1.38e+03,2.63e+03]         70               14.29
+## 3  (2.63e+03,3.88e+03]         56               11.43
+## 4  (3.88e+03,5.14e+03]         61               12.45
+## 5  (5.14e+03,6.39e+03]         89               18.16
+## 6  (6.39e+03,7.64e+03]         58               11.84
+## 7  (7.64e+03,8.89e+03]         60               12.24
+## 8  (8.89e+03,1.01e+04]         43                8.78
+## 9  (1.01e+04,1.14e+04]          0                0.00
+## 10 (1.14e+04,1.27e+04]          1                0.20</code></pre>
+</div>
+<div id="gráficos" class="section level3 hasAnchor" number="2.3.6">
+<h3><span class="header-section-number">2.3.6</span> Gráficos:<a href="exploración-y-análisis-de-datos-eda.html#gráficos" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="note">
+<p><strong>Nota:</strong> Encuentra aquí la guía de colores para tus gráficos &gt; **(<a href="https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/">guía de colores</a>)</p>
+</div>
+<p>Gráfico para la variable genero:</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="exploración-y-análisis-de-datos-eda.html#cb85-1" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> genero, <span class="at">fill =</span> genero)) <span class="sc">+</span>  </span>
+<span id="cb85-2"><a href="exploración-y-análisis-de-datos-eda.html#cb85-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span>  </span>
+<span id="cb85-3"><a href="exploración-y-análisis-de-datos-eda.html#cb85-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución de Género&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Género&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb85-4"><a href="exploración-y-análisis-de-datos-eda.html#cb85-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>Gráfico para la variable edad:</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="exploración-y-análisis-de-datos-eda.html#cb86-1" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> edad)) <span class="sc">+</span>  </span>
+<span id="cb86-2"><a href="exploración-y-análisis-de-datos-eda.html#cb86-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;steelblue&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  </span>
+<span id="cb86-3"><a href="exploración-y-análisis-de-datos-eda.html#cb86-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución de Edades&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Edad&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb86-4"><a href="exploración-y-análisis-de-datos-eda.html#cb86-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+<p>Gráfico para ingreso mensual</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="exploración-y-análisis-de-datos-eda.html#cb87-1" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> ingreso_mensual)) <span class="sc">+</span>  </span>
+<span id="cb87-2"><a href="exploración-y-análisis-de-datos-eda.html#cb87-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins =</span> <span class="dv">10</span>, <span class="at">fill =</span> <span class="st">&quot;cyan4&quot;</span>, <span class="at">color =</span> <span class="st">&quot;black&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.7</span>) <span class="sc">+</span>  </span>
+<span id="cb87-3"><a href="exploración-y-análisis-de-datos-eda.html#cb87-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución del Ingreso Mensual&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Ingreso Mensual&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb87-4"><a href="exploración-y-análisis-de-datos-eda.html#cb87-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 10 rows containing non-finite outside the scale range
+## (`stat_bin()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+<p>Gráfico para ideología</p>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="exploración-y-análisis-de-datos-eda.html#cb89-1" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> ideologia_politica, <span class="at">fill =</span> ideologia_politica)) <span class="sc">+</span>  </span>
+<span id="cb89-2"><a href="exploración-y-análisis-de-datos-eda.html#cb89-2" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span>  </span>
+<span id="cb89-3"><a href="exploración-y-análisis-de-datos-eda.html#cb89-3" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución de la Ideología Política&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Ideología Política&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Frecuencia&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb89-4"><a href="exploración-y-análisis-de-datos-eda.html#cb89-4" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
+<p>Gráfico circular para voto</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="exploración-y-análisis-de-datos-eda.html#cb90-1" tabindex="-1"></a>tabla_voto <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>frecuencia_de_voto)</span>
+<span id="cb90-2"><a href="exploración-y-análisis-de-datos-eda.html#cb90-2" tabindex="-1"></a>df_voto <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(tabla_voto)</span>
+<span id="cb90-3"><a href="exploración-y-análisis-de-datos-eda.html#cb90-3" tabindex="-1"></a><span class="fu">colnames</span>(df_voto) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Frecuencia de Voto&quot;</span>, <span class="st">&quot;Frecuencia&quot;</span>)</span>
+<span id="cb90-4"><a href="exploración-y-análisis-de-datos-eda.html#cb90-4" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="exploración-y-análisis-de-datos-eda.html#cb90-5" tabindex="-1"></a><span class="fu">ggplot</span>(df_voto, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> Frecuencia, <span class="at">fill =</span> <span class="st">`</span><span class="at">Frecuencia de Voto</span><span class="st">`</span>)) <span class="sc">+</span>  </span>
+<span id="cb90-6"><a href="exploración-y-análisis-de-datos-eda.html#cb90-6" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>, <span class="at">width =</span> <span class="dv">1</span>) <span class="sc">+</span>  </span>
+<span id="cb90-7"><a href="exploración-y-análisis-de-datos-eda.html#cb90-7" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="st">&quot;y&quot;</span>, <span class="at">start =</span> <span class="dv">0</span>) <span class="sc">+</span>  </span>
+<span id="cb90-8"><a href="exploración-y-análisis-de-datos-eda.html#cb90-8" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Frecuencia de Voto (Gráfico Circular)&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb90-9"><a href="exploración-y-análisis-de-datos-eda.html#cb90-9" tabindex="-1"></a>  <span class="fu">theme_void</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
+</div>
+<div id="análisis-bivariado" class="section level3 hasAnchor" number="2.3.7">
+<h3><span class="header-section-number">2.3.7</span> Análisis Bivariado<a href="exploración-y-análisis-de-datos-eda.html#análisis-bivariado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>diagrama de barras agrupadas genero vs votos</p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="exploración-y-análisis-de-datos-eda.html#cb91-1" tabindex="-1"></a><span class="co"># Crear gráfico de barras agrupadas</span></span>
+<span id="cb91-2"><a href="exploración-y-análisis-de-datos-eda.html#cb91-2" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> frecuencia_de_voto, <span class="at">fill =</span> genero)) <span class="sc">+</span>  </span>
+<span id="cb91-3"><a href="exploración-y-análisis-de-datos-eda.html#cb91-3" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">&quot;dodge&quot;</span>) <span class="sc">+</span>  <span class="co"># &quot;dodge&quot; agrupa las barras</span></span>
+<span id="cb91-4"><a href="exploración-y-análisis-de-datos-eda.html#cb91-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Frecuencia de Voto por Género&quot;</span>, <span class="at">x =</span> <span class="st">&quot;Frecuencia de Voto&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Cantidad de Personas&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb91-5"><a href="exploración-y-análisis-de-datos-eda.html#cb91-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="_main_files/figure-html/unnamed-chunk-52-1.png" width="672" /></p>
+<p>diagrama de cajas y bigotes genero vs ingresos mensuales</p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="exploración-y-análisis-de-datos-eda.html#cb92-1" tabindex="-1"></a><span class="co"># Crear el boxplot de ingreso mensual según género</span></span>
+<span id="cb92-2"><a href="exploración-y-análisis-de-datos-eda.html#cb92-2" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> genero, <span class="at">y =</span> ingreso_mensual, <span class="at">fill =</span> genero)) <span class="sc">+</span>  </span>
+<span id="cb92-3"><a href="exploración-y-análisis-de-datos-eda.html#cb92-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span>  <span class="co"># Agregar boxplot</span></span>
+<span id="cb92-4"><a href="exploración-y-análisis-de-datos-eda.html#cb92-4" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Distribución del Ingreso Mensual por Género&quot;</span>, </span>
+<span id="cb92-5"><a href="exploración-y-análisis-de-datos-eda.html#cb92-5" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">&quot;Género&quot;</span>, </span>
+<span id="cb92-6"><a href="exploración-y-análisis-de-datos-eda.html#cb92-6" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">&quot;Ingreso Mensual&quot;</span>) <span class="sc">+</span>  </span>
+<span id="cb92-7"><a href="exploración-y-análisis-de-datos-eda.html#cb92-7" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<pre><code>## Warning: Removed 10 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-53-1.png" width="672" /></p>
+<p>Diagrama de dispersión Edad vs ingreso</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="exploración-y-análisis-de-datos-eda.html#cb94-1" tabindex="-1"></a><span class="co"># Relación entre edad e ingreso</span></span>
+<span id="cb94-2"><a href="exploración-y-análisis-de-datos-eda.html#cb94-2" tabindex="-1"></a><span class="fu">ggplot</span>(datos, <span class="fu">aes</span>(<span class="at">x =</span> edad, <span class="at">y =</span> ingreso_mensual)) <span class="sc">+</span></span>
+<span id="cb94-3"><a href="exploración-y-análisis-de-datos-eda.html#cb94-3" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.5</span>, <span class="at">color =</span> <span class="st">&quot;blue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb94-4"><a href="exploración-y-análisis-de-datos-eda.html#cb94-4" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">color =</span> <span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb94-5"><a href="exploración-y-análisis-de-datos-eda.html#cb94-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb94-6"><a href="exploración-y-análisis-de-datos-eda.html#cb94-6" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Relación entre Edad e Ingreso&quot;</span>)</span></code></pre></div>
+<pre><code>## `geom_smooth()` using formula = &#39;y ~ x&#39;</code></pre>
+<pre><code>## Warning: Removed 10 rows containing non-finite outside the scale range
+## (`stat_smooth()`).</code></pre>
+<pre><code>## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_point()`).</code></pre>
+<p><img src="_main_files/figure-html/unnamed-chunk-54-1.png" width="672" /></p>
+<p>Matriz de correlación entre variables numéricas</p>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="exploración-y-análisis-de-datos-eda.html#cb98-1" tabindex="-1"></a><span class="co">#Correlación entre variables numéricas </span></span>
+<span id="cb98-2"><a href="exploración-y-análisis-de-datos-eda.html#cb98-2" tabindex="-1"></a></span>
+<span id="cb98-3"><a href="exploración-y-análisis-de-datos-eda.html#cb98-3" tabindex="-1"></a><span class="co"># Cargar librería necesaria</span></span>
+<span id="cb98-4"><a href="exploración-y-análisis-de-datos-eda.html#cb98-4" tabindex="-1"></a><span class="fu">library</span>(corrplot)</span></code></pre></div>
+<pre><code>## corrplot 0.95 loaded</code></pre>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="exploración-y-análisis-de-datos-eda.html#cb100-1" tabindex="-1"></a><span class="co"># Seleccionar solo las variables numéricas de interés</span></span>
+<span id="cb100-2"><a href="exploración-y-análisis-de-datos-eda.html#cb100-2" tabindex="-1"></a>datos_correlacion <span class="ot">&lt;-</span> datos[, <span class="fu">c</span>(<span class="st">&quot;edad&quot;</span>, <span class="st">&quot;ingreso_mensual&quot;</span>)]</span>
+<span id="cb100-3"><a href="exploración-y-análisis-de-datos-eda.html#cb100-3" tabindex="-1"></a></span>
+<span id="cb100-4"><a href="exploración-y-análisis-de-datos-eda.html#cb100-4" tabindex="-1"></a><span class="co"># Calcular la matriz de correlación</span></span>
+<span id="cb100-5"><a href="exploración-y-análisis-de-datos-eda.html#cb100-5" tabindex="-1"></a>matriz_cor <span class="ot">&lt;-</span> <span class="fu">cor</span>(datos_correlacion, <span class="at">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span>
+<span id="cb100-6"><a href="exploración-y-análisis-de-datos-eda.html#cb100-6" tabindex="-1"></a></span>
+<span id="cb100-7"><a href="exploración-y-análisis-de-datos-eda.html#cb100-7" tabindex="-1"></a><span class="co"># Mostrar matriz de correlación en consola</span></span>
+<span id="cb100-8"><a href="exploración-y-análisis-de-datos-eda.html#cb100-8" tabindex="-1"></a><span class="fu">print</span>(matriz_cor)</span></code></pre></div>
+<pre><code>##                       edad ingreso_mensual
+## edad            1.00000000      0.04279635
+## ingreso_mensual 0.04279635      1.00000000</code></pre>
+<hr />
+</div>
+<div id="conlusiones" class="section level3 hasAnchor" number="2.3.8">
+<h3><span class="header-section-number">2.3.8</span> Conlusiones<a href="exploración-y-análisis-de-datos-eda.html#conlusiones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>El Análisis Exploratorio de Datos (EDA) realizado sobre la encuesta de opinión pública permitió identificar patrones y relaciones clave entre variables sociodemográficas y políticas. A través del análisis de distribuciones, correlaciones y visualizaciones, se detectaron valores faltantes y valores atípicos. El EDA es un paso esencial y no opcional en cualquier investigación cuantitativa, ya que proporciona una comprensión profunda de los datos y permite tomar decisiones informadas sobre el tratamiento de variables y la aplicación de modelos.</p>
+<p><strong>Hallazgos</strong></p>
+<ul>
+<li><p><strong>Edad</strong> : La distribución de edades es relativamente uniforme, sin concentraciones extremas en grupos específicos.</p></li>
+<li><p><strong>Género</strong>: Se observó una distribución equilibrada de género en la muestra. El análisis de caja y bigotes mostró que existen diferencias en los ingresos según el género, con una mediana salarial mayor en ciertos grupos.</p></li>
+<li><p><strong>Nivel de Educación</strong>: La mayoría de los encuestados tienen estudios universitarios, seguidos de aquellos con educación secundaria. .</p></li>
+<li><p><strong>Ingreso Mensual</strong>: Se identificaron valores atípicos, lo que indica la presencia de individuos con ingresos significativamente mayores que el resto. La distribución de ingresos no es homogénea, con una concentración en los rangos medios y menores diferencias por edad.</p></li>
+<li><p><strong>Frecuencia de Voto</strong>️ : La mayoría de los encuestados afirmaron votar siempre o a veces, con pocos casos de abstención total.</p></li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -590,7 +1068,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Exploracion_datos.Rmd",
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/01-Exploraciondatos.Rmd",
 "text": "Edit"
 },
 "history": {

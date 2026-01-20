@@ -52,3 +52,12 @@ transformación-de-datos
 cambio-de-tipo-de-variable
 ordenamiento-de-datos
 actividades-para-practicar
+análilsis-exploratorio-de-datos-eda-básico
+ejemplo-contexto
+cargar-base-de-datos
+revisión-de-valores-faltantes-na
+revisión-de-valores-atípicos-outliers
+exploración-de-variables
+gráficos
+análisis-bivariado
+conlusiones

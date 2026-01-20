@@ -54,3 +54,20 @@ pre code {
   border-color: #6f42c1;
   background-color: #f3e8ff;
 }
+
+
+
+
+.book-body::before {
+  content: "USO ACADÉMICO";
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) rotate(-30deg);
+  font-size: 80px;
+  color: rgba(0, 0, 0, 0.08);
+  z-index: 0;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
