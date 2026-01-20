@@ -700,6 +700,7 @@ print(matriz_cor)
 ---
 
 
+
 ### Conlusiones
 
 El Análisis Exploratorio de Datos (EDA) realizado sobre la encuesta de opinión pública permitió identificar patrones y relaciones clave entre variables sociodemográficas y políticas. A través del análisis de distribuciones, correlaciones y visualizaciones, se detectaron valores faltantes y valores atípicos. El EDA es un paso esencial y no opcional en cualquier investigación cuantitativa, ya que proporciona una comprensión profunda de los datos y permite tomar decisiones informadas sobre el tratamiento de variables y la aplicación de modelos.
