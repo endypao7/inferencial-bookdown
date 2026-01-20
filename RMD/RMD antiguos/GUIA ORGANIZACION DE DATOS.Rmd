@@ -1,0 +1,519 @@
+---
+title: "ORGANIZACIÓN DE DATOS Y MEDICIONES"
+subtitle: "Universidad del Norte"
+
+
+output:
+  html_document: 
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+    theme: journal
+    code_folding: hide
+    df_print: paged
+    fig_width: 6
+    fig_height: 4
+    keep_md: false
+---
+
+
+![](IMAGES/Logo_UN.jpg){width=150px}
+<style>
+  body {
+    text-align: justify;
+  }
+</style> <br>
+
+
+<p><center> **BIENVENIDO A LA 3ra GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL**</center></p>  
+<p><center> Aquí encontrarás todo lo relacionado con organización de datos en tablas y gráficos y análisis.</center></p>
+
+
+
+# Representación de datos según su Naturaleza
+
+![](IMAGES/data_viz.png){width=700px}
+
+
+
+
+Antes de realizar un EDA es muy importante tener en cuenta la clasificación de las variables, con el fin de aplicar las mediciones y las visualizaciones(gráficas) adecuadas. **Tenga muy en cuenta las siguientes tabla:**
+
+### Medidas según naturaleza de las variables
+
+```{r echo=FALSE}
+tabla <- data.frame(
+  "Naturaleza de la variable" = c("Cualitativa", "", "Cuantitativa", ""),
+  "Escala de Medidas" = c("Ordinal", "Nominal", "Continuas", "Discretas"),
+  "Frecuencias" = c("Si", "Si", "Agrupadas", "Agrupadas/No agrupadas (pocos datos)"),
+  "Medidas de Localizacion" = c("Moda", "Moda", "Media, Mediana y Moda", "Media, Mediana y Moda"),
+  "Medidas de Dispersion" = c("No", "No", "Si", "Si"),
+  "Medidas de Distribucion" = c("No", "No", "Si", "Si"),
+  "Graficos" = c("Sectores, Barras", "Sectores, Barras (sin orden)", "Histograma, Cajas y Bigotes, Dispersion.", "Histograma, Cajas y Bigotes, Dispersion.")
+)
+
+# Create the table with kableExtra
+library(knitr)
+library(kableExtra)
+
+tabla %>%
+  kable("html", align = "c", col.names = c(
+    "Naturaleza de la variable", 
+    "Escala de Medidas", 
+    "Frecuencias", 
+    "Medidas de Localizacion", 
+    "Medidas de Dispersion", 
+    "Medidas de Distribucion", 
+    "Graficos"
+  )) %>%
+  kable_styling(full_width = F, position = "center", bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+  row_spec(0, bold = TRUE, background = "#D9E2F1", color = "black") %>%
+  row_spec(1:2, background = "white", color = "black") %>%
+  row_spec(3:4, background = "#E7E7E7", color = "black")
+```
+
+
+
+### Visualizaciones o gráficos según naturaleza de las variables
+
+
+```{r echo=FALSE}
+tabla <- data.frame(
+  "Tipo de Tabla" = c(
+    "De Frecuencia (Variable Cualitativa)",
+    "De Frecuencia (Variable Cuantitativa)",
+    "De Asociacion (Dos Variables Cualitativas)",
+    "De Asociacion (Una Variable Cualitativa y una Cuantitativa Discreta)",
+    "De Asociacion (Una Variable Cualitativa y una Cuantitativa Continua)",
+    "De Asociacion (Dos Variables Cuantitativas)"
+  ),
+  "Tipo de Grafico" = c(
+    "- Barras simples\n- Pastel",
+    "- Histograma",
+    "- Barras compuestas\n- Barras superpuestas",
+    "- Barras:\n  * Compuestas\n  * Superpuestas",
+    "- Poligono de Frecuencia\n- Box plot (diagrama de cajas y bigotes)",
+    "- Diagrama de Puntos"
+  ),
+  stringsAsFactors = FALSE
+)
+
+# Creating the table using kableExtra
+tabla %>%
+  kable("html", escape = FALSE, align = "l", col.names = c("Tipo de Tabla", "Tipo de Grafico")) %>%
+  kable_styling(full_width = F, position = "center", bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>%
+  row_spec(0, bold = TRUE, background = "#D9E2F1", color = "black") %>%
+  row_spec(c(3, 4), background = "#F2F2F2", color = "black") %>%
+  row_spec(c(2, 5), background = "white", color = "black") %>%
+  row_spec(c(1, 6), background = "#E7E7E7", color = "black") %>%
+  column_spec(1, width = "8cm") %>%
+  column_spec(2, width = "6cm")
+```
+
+
+# Ejemplo práctico para aprender a organizar datos y analizarlos
+
+**Exploración de la Intersección entre la Psicología y la Ciencia de Datos: Comportamiento Humano en Entornos Digitales**
+
+## Creando una base de datos a partir de vectores:
+
+En un centro de investigación psicológica enfocado en el comportamiento humano en entornos digitales como redes sociales y plataformas de juegos en línea. Recopilamos datos que incluyen variables demográficas, patrones de uso de redes sociales, datos de juegos en línea y mediciones psicológicas. Utilizamos herramientas de ciencia de datos y análisis estadístico para identificar patrones significativos que ayuden a comprender cómo diferentes factores influyen en el comportamiento en línea y el bienestar psicológico. Este enfoque integrado entre la psicología y la ciencia de datos nos permite desarrollar intervenciones efectivas para mejorar la calidad de vida en línea y promover la salud mental de los usuarios.
+
+## Construcción de una base de datos
+
+
+## Cargar paquetes
+
+Lo primero que tenemos que hacer es cargar los paquetes que vamos a utilizar para el análisis. En este caso vamos a usar:
+
+```{r warning=FALSE}
+library(tidyverse)# Incluye paquetes de importación, visualización entre otros
+library(dplyr)# Manipulación de Datos
+library(ggplot2)# Visualización de datos 
+library(readxl)# Importación de datos
+library(tibble)# Tablas
+```
+
+Recordar que si no ha instalado estos paquetes debe correr primero el comando: **`install.packages("nombre del paquete")`**
+
+
+
+A continuación se construirá la primera base de datos a partir de las variables. Para esto, como se observa en los siguientes comandos, se parte por la construcción de 11 variables de 20 casos cada una:
+
+
+```{r}
+#Creación de las variables: todas tienen la misma cantidad de casos.
+Paciente <- c("Mario", "Luis", "Pedro", "Maria", "Sandra", "Erika", "Laura","Luz","Olga")
+Edad <- c(18, 20, 20, 17, 19, 22, 22, 22,31)
+Sexo <- c("Masculino", "Femenino", "Masculino", "Femenino", "Masculino", "Femenino", "Masculino", "Femenino","Femenino")
+Educacion <- c("Universidad", "Secundaria", "Universidad", "Posgrado", "Universidad", "Universidad", "Universidad", "Posgrado","Posgrado")
+Ocupacion <- c("Estudiante", "Profesional", "Estudiante", "Profesional", "Estudiante", "Profesional", "Estudiante", "Profesional","Posgrado")
+Red_Social_Principal <- c("Instagram", "Facebook", "Instagram", "Twitter", "TikTok", "Instagram", "Facebook", "Instagram","TikTok")
+Tiempo_en_Redes_Sociales <- c(2.5, 3.0, 2.0, 2.5, 3.5, 2.2, 2.8, 3.0,2.0)
+Horas_Semanales_de_Juego <- c(15, 20, 12, 10, 18, 15, 20, 15,41)
+Autoestima <- c(8.2, 6.9, 7.8, 7.0, 8.5, 7.3, 8.0, 7.6,9)
+Ansiedad_Social <- c(42, 50, 38, 45, 35, 48, 40, 42,45)
+Satisfaccion_con_la_Vida <- c(7.5, 6.9, 8.0, 7.2, 7.8, 6.5, 7.0, 7.3,8)
+Estres<- c(2,2,1,3,4,2,1,4,4)
+
+```
+
+
+
+A partir de las variables ya creadas se puede construir una base de datos.
+
+```{r}
+df=data.frame(Paciente, Edad,Sexo,Edad,Educacion, Ocupacion, Red_Social_Principal,Horas_Semanales_de_Juego,Ansiedad_Social,Satisfaccion_con_la_Vida,Estres)
+df
+``` 
+# Representación de datos
+
+La representación de datos se refiere al proceso de presentar la información de manera visual o tabular para facilitar su comprensión, análisis y comunicación. Esta representación puede tomar diversas formas, incluyendo gráficos, tablas, diagramas, mapas y resúmenes estadísticos. El objetivo principal de la representación de datos es convertir datos crudos en información comprensible y significativa.
+
+Aquí hay una descripción de algunas formas comunes de representación de datos:
+
+**Gráficos:** Los gráficos son representaciones visuales de datos que utilizan diferentes tipos de elementos visuales, como líneas, barras, puntos y áreas, para mostrar la relación entre variables o la distribución de datos. Algunos tipos comunes de gráficos incluyen gráficos de barras, gráficos de líneas, gráficos circulares, histogramas y diagramas de dispersión.
+
+**Tablas:** Las tablas son representaciones tabulares de datos que organizan la información en filas y columnas. Las tablas son útiles para mostrar datos detallados o para comparar valores entre diferentes categorías o grupos. Pueden incluir valores numéricos, texto descriptivo y otras características.
+
+## ¿CÓMO HACER GRÁFICOS? 
+
+Para visualizar los datos en formato dataframe puede usar el __comando View() o también head()__ para visualizar las primeras filas en consola.
+
+```{r}
+head(df)
+```
+
+### Diagrama de barras
+
+ggplot2 es un sistema para crear gráficos de forma declarativa, basado en la Gramática de los Gráficos. Se deben proporcionar los datos, indicar a ggplot2 cómo asignar las variables a la estética y qué tipo de gráficas utilizar. La función geom_bar() se utiliza para producir gráficos de área 1d: gráficos de barras para x categóricas, e histogramas para y continuas
+
+```{r warning=FALSE}
+library(ggplot2)
+ggplot(data=df, aes(x=Paciente, y=Edad)) + geom_bar(stat="identity")+labs(title = "Distribución de Edad por Paciente")
+```
+
+El diagrama puede ser dibujado en forma horizontal usando la función coord_flip()
+
+```{r}
+ggplot(data=df, aes(x=Paciente, y=Edad)) + geom_bar(stat="identity")+labs(title = "Distribución de Edad por Paciente")+ coord_flip()
+```
+
+Podemos cambiar el ancho, así como también el color de las barras y bordes. Nótese que se puede hacer una copia de la gráfica en una variable, en este ejemplo en p para que luego pueda ser usada para presentar el grafico o realizar más transformaciones
+
+```{r}
+ggplot(data=df, aes(x=Paciente, y=Edad)) + geom_bar(stat="identity",width=0.5)+labs(title = "Distribución de Edad por Paciente")
+```
+Es posible cambiar los colores
+
+```{r}
+ggplot(data=df, aes(x=Paciente, y=Edad)) + geom_bar(stat="identity",width=0.5,color="blue", fill="green3")+labs(title = "Distribución de Edad por Paciente")
+```
+
+```{r}
+ggplot(data=df, aes(x=Paciente, y=Edad)) + geom_bar(stat="identity",width=0.8, fill="steelblue")+labs(title = "Distribución de Edad por Paciente")
+```
+E incluso pueden verse cada vez mejor, esta vez con proporciones:
+
+```{r}
+#creando tabla de resumen
+Tabla_1 <- df %>%
+  dplyr::group_by(Red_Social_Principal) %>%                                  
+  dplyr::summarise(Total = n()) %>%                                
+  dplyr::mutate(Porcentaje = round(Total/sum(Total)*100, 1)) %>%   
+  dplyr::arrange(Red_Social_Principal)
+
+
+"Grafico"
+
+G1<-ggplot(Tabla_1, aes(x =Red_Social_Principal, y=Total) ) + 
+  geom_bar(width = 0.7,stat="identity",                 
+           position = position_dodge(), fill="cyan4") +  
+  ylim(c(0,5))+
+  #xlim(c(0,300)) +                  
+  #ggtitle("Un título") + 
+  labs(x="Red Social", y= "Frecuencias \n (Porcentajes)")   +   
+  geom_text(aes(label=paste0(Total," ", "", "(", Porcentaje, "%", ")")),  
+            vjust=-0.9, 
+            color="black", 
+            hjust=0.5,
+            # define text position and size
+            position = position_dodge(0.9),  
+            angle=0, 
+            size=4.5) +   
+  theme(axis.text.x = element_text(angle = 0, vjust = 1, hjust=1)) +      
+  theme_bw(base_size = 16) +
+  #coord_flip() +                                                         
+  facet_wrap(~"Distribución de Tipo de Red Social")
+G1
+```
+
+### Gráfico de barras agrupado
+
+Un gráfico de barras agrupado muestra un valor numérico para un conjunto de entidades divididas en grupos y subgrupos.
+
+El conjunto de datos para el presente ejemplo proporciona 3 columnas: el valor numérico (value), y 2 variables categóricas. En el llamada aes(), x es (categ), y el subgrupo (categ) se da al argumento fill. En la función geom_bar(), debe especificarse position=“dodge” para que las barras estén una al lado de la otra.
+
+* El siguiente llamado es utilizado para el gráfico de barras agrupado
+
+```{r}
+head(df)
+```
+
+
+```{r}
+ggplot(df, aes(fill = Sexo, y = Edad, x = Red_Social_Principal, label = Edad)) +
+  geom_bar(position = "dodge", stat = "identity") +
+  labs(title = "Distribución de la Red Social según la Edad y Sexo",
+       x = "Red Social Principal",
+       y = "Edad",
+       fill = "Sexo")  
+```
+
+Esta es otra alternativa:
+
+```{r}
+ggplot(df, aes(fill = Sexo, x = Red_Social_Principal)) +
+  geom_bar(position = "stack") +
+  geom_text(stat = 'count', aes(label = ..count..), position = position_stack(vjust = 0.5), size = 3, color = "black") +
+  labs(title = "Distribución de la Red Social según el Sexo",
+       x = "Red Social Principal",
+       y = "Frecuencia") +
+  scale_fill_manual(values = c("blue2", "pink2"), name = "Sexo", labels = c("Hombre", "Mujer")) +
+  theme(legend.position = "right")  # Ubicación de la leyenda 
+```
+
+
+### Histograma
+
+Los histogramas son útiles para representar la distribución de variables continuas como Edad, Tiempo en Redes Sociales y Horas Semanales de Juego. Cada barra del histograma muestra la frecuencia de los datos..
+
+```{r}
+ggplot(data = df, aes(x = Edad)) +
+  geom_histogram(binwidth = 1, fill = "skyblue", color = "black", alpha = 0.8) +
+  labs(title = "Histograma de Edades",
+       x = "Edad",
+       y = "Frecuencia")
+```
+
+### Gráfico Circular
+
+ggplot2 no ofrece ningún geom específica para construir diagramas circulares (piecharts). El truco es el siguiente: El marco de datos de entrada tiene 2 columnas: los nombres de los grupos (group here) y su valor (value here), se construye un gráfico de barras apilado con una sola barra utilizando la función geom_bar(), luego se hace circular con coord_polar()
+
+```{r warning=FALSE}
+library(magrittr)
+library(dplyr)
+
+#Tabla resumen
+Tabla_2 <- df %>% 
+  group_by(Sexo) %>% # Variable a ser transformada
+  count() %>% 
+  ungroup() %>% 
+  mutate(Porcentaje = `n` / sum(`n`)) %>% 
+  arrange(Porcentaje) %>%
+  mutate(etiquetas = scales::percent(Porcentaje))
+
+#Grafico #2
+require(scales)
+ggplot(Tabla_2, aes(x = "", y = Porcentaje, fill = Sexo)) +
+  geom_col(color = "black") +
+  geom_label(aes(label = etiquetas),
+             position = position_stack(vjust = 0.5),
+             show.legend = FALSE) +
+  guides(fill = guide_legend(title = "Distribución de Pacientes según el Sexo")) + scale_color_gradient() +
+  coord_polar(theta = "y") + ggtitle ("")
+  #theme_void() 
+```
+
+## ¿CÓMO HACER TABLAS?
+
+La libreria questionr de R contiene la función freq la cual genera y formatea tablas de frecuencia simples a partir de una variable o una tabla, con porcentajes y opciones de formato. El resultado es un objeto de la clase data.frame.
+
+```{r warning=FALSE}
+library(questionr)
+
+Tabla_Sexo <- questionr::freq(Sexo, cum = TRUE, sort = "dec", total = TRUE)
+knitr::kable(Tabla_Sexo)
+```
+
+La tabla puede ordenarse opcionalmente en frecuencia descendente, y funciona bien con kable. Si deseamos ver la estructura de la tabla generada por freq() utilizamos la función str()
+
+```{r}
+str(Tabla_Sexo) 
+```
+
+### Tabla de frecuencias agrupada
+
+Para realizar una tabla de frecuencias agrupada utilizaremos en este ejemplo la Regla de Sturges, en la que el número de clases es obtenido por medio de: $c=1+ln(N)/ln(2)$
+ donde $N$ representa el número total de datos. Consideremos el Ejemplo 23 de los apuntes, en el que se representan las edades de un conjunto de estudiantes.
+ 
+ Ejemplo: Se tienen las siguientes edades de algunos estudiantes
+ 
+```{r}
+edades <- c(22, 19, 16, 13, 18, 15, 20, 14, 15, 16,
+          15, 16, 20, 13, 15, 18, 15, 13, 18, 15)
+knitr::kable(head(edades))
+```
+ 
+Encontremos el número de clases usando la regla de Sturges
+
+```{r}
+n_sturges = 1 + log(length(edades))/log(2)
+n_sturgesc = ceiling(n_sturges)
+n_sturgesf = floor(n_sturges)
+
+n_clases = 0
+if (n_sturgesc%%2 == 0) {
+  n_clases = n_sturgesf
+} else {
+  n_clases = n_sturgesc
+}
+R = max(edades) - min(edades)
+w = ceiling(R/n_clases)
+```
+
+Calculemos ahora nuestra tabla de frecuencias con número de clases n_clases. Primero creamos una lista de fronteras de clases bins y luego agrupamos los datos basados en estas
+
+```{r}
+bins <- seq(min(edades), max(edades) + w, by = w)
+bins
+```
+
+```{r}
+Edades <- cut(edades, bins)
+Freq_table <- transform(table(Edades), Rel_Freq=prop.table(Freq), Cum_Freq=cumsum(Freq))
+knitr::kable(Freq_table)
+```
+```{r}
+str(Freq_table)
+```
+
+Podemos también crear un histograma para la tabla de frecuencias agrupada
+
+```{r}
+df2 <- data.frame(x = Freq_table$Edades, y = Freq_table$Freq)
+knitr::kable(df2)
+
+```
+
+```{r}
+ggplot(data=df2, aes(x=x, y=y)) +
+  geom_bar(stat="identity", color="blue", fill="green") +
+  xlab("Rango de Edades") +
+  ylab("Frecuencia")
+```
+
+# Análisis Estadístico (Medidas)
+
+Una función multiuso muy útil en R es summary(X), donde X puede ser uno de cualquier número de objetos, incluyendo conjuntos de datos, variables y modelos lineales, por nombrar algunos. Cuando se utiliza, el comando proporciona datos de resumen relacionados con el objeto individual que se introdujo en él. Así, la función de resumen tiene diferentes resultados dependiendo del tipo de objeto que tome como argumento. Además de ser ampliamente aplicable, este método es valioso porque a menudo proporciona exactamente lo que se necesita en términos de estadísticas de resumen.
+
+Usando la función summary() podemos obtener estadísticos de interes y valores de posición:
+
+```{r}
+summary(df$Horas_Semanales_de_Juego)
+```
+Del anterior resultado se puede observar que la hora mínima en el juego fue de 10, el 25\% se ubicó en 15 horas indicando que dedicaron 15 o menor o igual a 15, al igual que el 50\%, en promedio dedicaron 18,4 horas de juego, el 75\% dedicó menos o igual que 20 horas y la hora que más dedicaron fue de 41.
+
+Por otro lado, se puede notar la función summary() no nos entrega todos los estadísticos de interés, para solucionar esto podemos hacer uso de la librería, pastecs y la función stat.desc(), como se muestra a continuación.
+
+```{r}
+library(pastecs)
+stat.desc(df)
+```
+
+## Caja y bigotes
+
+Los gráficos de caja (box plots), también conocidos como diagramas de cajas y bigotes, son una representación gráfica que permite resumir las características principales de los datos (posición, dispersión, asimetría, …) e identificar la presencia de valores atípicos. En esta sección revisaremos cómo hacer box plots en R base y en ggplot2.
+
+Utilizando boxplot() R base
+
+```{r}
+boxplot(df$Edad, horizontal=TRUE, col='steelblue')
+```
+
+Usando geom_boxplot() de la librería ggplot2
+
+```{r warning=FALSE}
+library(tidyverse)
+library(hrbrthemes)
+library(viridis)
+df %>% 
+  ggplot(aes(x = "", y = Edad)) +
+  geom_boxplot(color = "black", fill = "yellow2", alpha = 0.5) +
+  theme_ipsum() +
+  theme(legend.position = "none", plot.title = element_text(size = 11)) +
+  ggtitle("Distribución de las Edades") +
+  coord_flip()
+
+```
+Diagrama de caja y bigotes según categoría
+
+```{r}
+ggplot(df, aes(x = Sexo, y = Edad, fill = Sexo)) +
+  geom_boxplot() +
+  labs(title = "Diagrama de Edades según el Sexo",
+       x = "Sexo", y = "Edades") +
+  scale_fill_manual(values = c("lightblue", "pink")) +
+  theme_minimal()
+```
+
+
+## Coeficiente de Variación
+
+El coeficiente de variación (CV) es una medida estadística que se utiliza para evaluar la variabilidad relativa de una muestra o población en relación con su media. Se calcula como la desviación estándar de los datos dividida por la media, y se expresa como un porcentaje multiplicado por 100 para facilitar su interpretación.
+
+El CV es útil cuando se comparan distribuciones de datos con diferentes escalas o unidades, ya que normaliza la variabilidad en relación con la magnitud de los datos. Esto permite realizar comparaciones más significativas entre diferentes conjuntos de datos.
+
+$$CV = \left( \frac{\text{Desviación Estándar}}{\text{Media}} \right) \times 100$$
+
+Ahora vamos a hallar el coeficiente de variación de la variable **Edad**.
+
+```{r}
+media <- mean(df$Edad)
+desviacion <- sd(df$Edad)
+coef_variacion <- (desviacion / media) * 100
+cat("El coeficiente de variación es:", coef_variacion, "%\n")
+```
+
+## Asimetría
+
+El **coeficiente de asimetría de Pearson** es que es una medida estandarizada de la asimetría de una distribución de datos. Se calcula como el tercer momento estandarizado de la distribución, es decir, la diferencia promedio al cubo entre los datos y la media, dividida por la desviación estándar al cubo. Si el coeficiente de asimetría de Pearson es cero, la distribución es simétrica. Si es positivo, la cola de la distribución está en el lado derecho, y si es negativo, la cola está en el lado izquierdo. Esto proporciona información sobre la forma y dirección de la asimetría en la distribución de datos.
+
+  $$\text{Coeficiente de Asimetría de Pearson} = \frac{E[(X - \mu)^3]}{\sigma^3}$$
+  
+
+```{r include=FALSE}
+library(e1071)
+coef_pearson <- skewness(df$Edad)
+cat("El coeficiente de asimetría de Pearson es:", coef_pearson, "\n")
+```
+Como el coefiente de asmetría de Pearson es mayo que cero, indica que la edad presenta distribución asimetrica hacia la derecha.
+
+## Medidas de la curtosis
+
+La curtosis es una medida estadística que describe la forma de la distribución de los datos en relación con una distribución normal estándar. La curtosis es una medida de la **"picudez"** de la distribución, es decir, cuán puntiaguda o aplanada es en comparación con una distribución normal.
+
+$$\text{Curtosis} = \frac{1}{n} \sum_{i=1}^{n} \left(\frac{x_i - \bar{x}}{s}\right)^4 - 3$$
+
+
+
+
+**Platicúrtica:** Una distribución platicúrtica es aquella que tiene un exceso de curtosis negativo en comparación con la distribución normal estándar (cuyo exceso de curtosis es 0). Esto significa que la distribución tiene colas más ligeras y es más aplanada en comparación con la distribución normal. En una distribución platicúrtica, los valores se concentran más cerca de la media y hay menos valores extremos en comparación con una distribución normal.
+
+**Mesocúrtica:** Una distribución mesocúrtica es aquella que tiene un exceso de curtosis igual a 0, es decir, su forma es similar a la de una distribución normal estándar. Esto significa que la distribución tiene una cantidad "normal" de picos y colas, y su forma se asemeja a una campana simétrica.
+
+**Leptocúrtica:** Una distribución leptocúrtica es aquella que tiene un exceso de curtosis positivo en comparación con la distribución normal estándar. Esto significa que la distribución tiene colas más pesadas y es más puntiaguda en comparación con la distribución normal. En una distribución leptocúrtica, los valores tienden a agruparse más cerca de la media y hay más valores extremos en comparación con una distribución normal.
+
+```{r}
+curtosis <- kurtosis(df$Edad)
+cat("La curtosis de la muestra es:", curtosis, "\n")
+```
+
+
+
+
+
+
+
+

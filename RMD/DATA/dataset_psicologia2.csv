@@ -1,0 +1,501 @@
+﻿genero,edad,nivel_educacion,ingreso_mensual,frecuencia_sueno,horas_sueno,estado_emocional,nivel_estres,satisfaccion_vida
+no binario,58,universitaria,2019,pobre,3.98994258421647,estable,60,8.0
+no binario,40,universitaria,2391,regular,5.06228750429731,deprimido,70,6.0
+femenino,45,secundaria,1710,pobre,7.54875734272494,estable,22,8.0
+masculino,39,posgrado,3166,buena,6.77169511913735,deprimido,55,1.0
+masculino,25,universitaria,1864,regular,5.89885886488569,estable,52,7.0
+masculino,29,posgrado,2772,regular,5.82704191452761,ansioso,39,4.0
+masculino,37,secundaria,3196,buena,7.82735055221906,ansioso,39,5.0
+femenino,18,universitaria,1554,buena,4.5837385233549,estable,58,4.0
+masculino,27,posgrado,3318,regular,8.12226464963567,estable,45,4.0
+masculino,43,universitaria,813,pobre,7.67394401685638,estable,46,5.0
+masculino,32,universitaria,2684,regular,5.69490621933452,ansioso,58,3.0
+masculino,32,secundaria,3709,buena,6.85337810296309,estable,67,1.0
+no binario,44,universitaria,20000,regular,8.3396503205744,ansioso,81,4.0
+femenino,30,universitaria,3232,regular,9.02637264289938,estable,62,9.0
+masculino,41,secundaria,2057,regular,9.23345559146275,deprimido,80,4.0
+no binario,21,universitaria,2739,pobre,7.5566008192709,estable,69,1.0
+no binario,23,universitaria,3385,regular,,ansioso,55,9.0
+femenino,18,universitaria,1437,regular,7.68324188490872,estable,54,5.0
+masculino,36,universitaria,3301,pobre,6.6128333346159,ansioso,79,6.0
+masculino,33,secundaria,1373,regular,5.49561437184382,deprimido,35,8.0
+no binario,49,posgrado,2101,pobre,8.26621522419691,ansioso,51,1.0
+femenino,35,posgrado,4598,regular,8.04198816384495,estable,53,2.0
+no binario,49,posgrado,2909,regular,8.89150562147096,estable,15,7.0
+no binario,54,universitaria,2427,regular,9.49983893400651,ansioso,45,3.0
+femenino,30,secundaria,3283,regular,9.20778690713401,estable,55,3.0
+masculino,39,secundaria,2305,regular,8.18397355762665,estable,8,5.0
+femenino,27,universitaria,2997,regular,6.94531859322499,ansioso,56,10.0
+no binario,42,posgrado,2224,regular,6.86307508503625,ansioso,46,1.0
+femenino,24,universitaria,616,pobre,6.38070559143715,ansioso,57,4.0
+masculino,25,universitaria,2878,pobre,5.82840820251988,deprimido,61,10.0
+masculino,38,posgrado,2091,pobre,6.41486082188218,estable,71,5.0
+masculino,36,universitaria,2041,regular,7.92075643301389,deprimido,25,3.0
+femenino,38,secundaria,2503,regular,7.57701553049986,estable,51,6.0
+masculino,36,secundaria,3574,regular,5.19151502527244,ansioso,41,5.0
+femenino,30,universitaria,2736,regular,8.79677683002106,estable,50,1.0
+masculino,34,universitaria,3173,buena,8.93671189998528,deprimido,48,8.0
+femenino,51,universitaria,3003,pobre,9.22460740378079,estable,32,8.0
+femenino,35,secundaria,2581,buena,5.16460714628261,estable,23,10.0
+no binario,22,secundaria,3037,regular,6.38023804844346,ansioso,82,7.0
+masculino,27,universitaria,2389,regular,6.38562870068156,ansioso,30,5.0
+femenino,24,secundaria,1501,pobre,6.32325292260669,deprimido,54,10.0
+femenino,26,posgrado,27778,regular,6.15295157240779,ansioso,33,5.0
+femenino,22,secundaria,678,regular,6.15998449825495,estable,73,1.0
+no binario,18,universitaria,1711,buena,5.54416289951169,estable,23,1.0
+femenino,42,secundaria,2452,buena,6.15576468073985,estable,37,10.0
+no binario,42,secundaria,2371,regular,6.50194533505267,deprimido,32,10.0
+masculino,32,secundaria,2164,buena,7.29047516462394,estable,51,2.0
+masculino,28,universitaria,3291,pobre,7.90846428440833,ansioso,43,8.0
+no binario,27,universitaria,1644,pobre,8.43681039913751,deprimido,86,3.0
+masculino,39,universitaria,409,regular,5.7987723415234,ansioso,50,10.0
+femenino,37,posgrado,3124,pobre,7.06382298340786,estable,70,1.0
+femenino,39,universitaria,2536,regular,10.5035512930201,deprimido,62,1.0
+femenino,35,secundaria,2413,regular,6.30719881626702,ansioso,60,7.0
+masculino,41,universitaria,2187,buena,8.11064485906099,estable,58,1.0
+femenino,39,universitaria,1150,regular,5.9524830089766,ansioso,54,10.0
+masculino,41,universitaria,1738,pobre,8.59805335218344,ansioso,39,9.0
+masculino,40,posgrado,2906,buena,7.81827523200814,estable,45,8.0
+femenino,52,universitaria,2515,buena,5.62268601963519,estable,57,1.0
+femenino,24,posgrado,13650,regular,8.5377870155141,estable,13,3.0
+masculino,50,secundaria,2979,regular,8.6886076043592,ansioso,22,4.0
+masculino,32,secundaria,3129,regular,8.32420057749761,estable,44,1.0
+no binario,34,universitaria,2392,pobre,3.0,deprimido,22,9.0
+masculino,36,universitaria,2487,regular,7.2157398682844,ansioso,52,1.0
+masculino,31,universitaria,3627,regular,9.2798246877277,estable,57,2.0
+masculino,18,universitaria,2816,regular,6.7430258829684,estable,63,7.0
+femenino,32,universitaria,3476,buena,6.01278250102307,ansioso,67,8.0
+femenino,35,secundaria,2464,pobre,6.76855809687042,estable,59,4.0
+masculino,18,universitaria,3684,regular,3.42544102549494,deprimido,58,6.0
+masculino,40,secundaria,2439,regular,5.29255436307759,ansioso,54,10.0
+femenino,29,secundaria,3234,buena,6.86911670078119,estable,51,1.0
+femenino,49,secundaria,2224,buena,,estable,38,2.0
+femenino,38,universitaria,1638,regular,,deprimido,83,6.0
+femenino,27,posgrado,3301,regular,7.96201945210683,estable,38,2.0
+masculino,37,universitaria,4337,pobre,5.45184854832115,estable,75,10.0
+femenino,38,universitaria,2239,regular,9.22865598062966,ansioso,64,6.0
+masculino,44,secundaria,3675,buena,8.78571437091686,ansioso,81,1.0
+femenino,33,universitaria,2310,pobre,7.92584009721465,estable,61,6.0
+femenino,18,universitaria,3239,regular,6.74059251330119,estable,44,3.0
+masculino,22,secundaria,1709,regular,8.29237066113546,deprimido,45,5.0
+femenino,26,secundaria,2721,regular,6.06987111318334,estable,30,5.0
+masculino,39,universitaria,1889,regular,5.68268042909739,ansioso,66,1.0
+femenino,32,posgrado,1418,pobre,3.65710727968569,estable,51,10.0
+femenino,29,secundaria,20000,regular,7.28989483790125,ansioso,49,4.0
+masculino,27,secundaria,3788,buena,3.53101492458954,estable,51,9.0
+masculino,37,universitaria,1869,buena,6.9634993117964,deprimido,40,6.0
+masculino,26,universitaria,1793,regular,7.66201088385858,estable,44,6.0
+femenino,31,posgrado,1642,pobre,8.18436513065435,estable,62,5.0
+femenino,26,posgrado,2133,buena,8.53272944002408,estable,70,2.0
+femenino,21,universitaria,3033,buena,7.92289173930564,ansioso,51,10.0
+femenino,45,secundaria,3070,regular,5.71063321574711,estable,54,4.0
+masculino,22,universitaria,2854,pobre,8.33612346455346,estable,53,7.0
+femenino,36,posgrado,3108,regular,7.09491212123111,ansioso,53,1.0
+femenino,29,universitaria,2125,pobre,4.20300841666004,estable,46,10.0
+no binario,24,posgrado,23562,buena,6.8302947236152,estable,59,2.0
+no binario,38,posgrado,3046,regular,4.32492043618726,estable,61,9.0
+masculino,39,universitaria,2275,buena,5.41976433891451,ansioso,53,9.0
+femenino,48,secundaria,1731,buena,6.070967984043,ansioso,58,1.0
+masculino,38,universitaria,1398,regular,6.11959213522129,estable,41,8.0
+masculino,34,universitaria,4658,pobre,8.39046359791538,estable,53,1.0
+masculino,61,universitaria,1140,buena,6.90189123199375,ansioso,59,1.0
+masculino,28,universitaria,2523,regular,5.59433236183725,ansioso,48,7.0
+femenino,25,universitaria,4047,buena,6.04921084935788,ansioso,48,6.0
+femenino,30,secundaria,3170,buena,6.1371635709774,ansioso,43,6.0
+femenino,34,universitaria,2352,regular,7.282331562639,estable,59,4.0
+no binario,41,secundaria,2927,regular,7.8094839616944,ansioso,54,3.0
+no binario,39,universitaria,3928,buena,6.36867389551448,ansioso,90,1.0
+masculino,34,secundaria,2652,pobre,6.49080016003437,estable,48,8.0
+masculino,26,universitaria,2045,regular,7.77712058254488,deprimido,52,5.0
+masculino,46,universitaria,3662,pobre,5.69591856848016,estable,35,5.0
+femenino,44,secundaria,3995,pobre,6.75899362876776,ansioso,63,9.0
+masculino,28,universitaria,1712,buena,6.78607482009244,estable,45,9.0
+masculino,42,secundaria,3075,regular,5.85218354823369,estable,52,9.0
+masculino,40,secundaria,2603,pobre,6.01029914302448,estable,64,10.0
+masculino,45,universitaria,3061,buena,6.53889183937984,deprimido,73,10.0
+masculino,36,posgrado,2921,regular,5.67710882469097,ansioso,46,8.0
+masculino,24,posgrado,2484,regular,6.85698226187736,ansioso,45,8.0
+femenino,43,universitaria,2851,pobre,5.08604594038884,deprimido,53,7.0
+femenino,28,universitaria,1532,pobre,7.56337747594721,ansioso,68,9.0
+masculino,40,universitaria,1376,regular,6.29615444110547,ansioso,52,2.0
+masculino,52,universitaria,3077,pobre,8.19839980542882,deprimido,53,1.0
+femenino,21,universitaria,2569,buena,7.63943229888807,estable,62,5.0
+femenino,51,secundaria,2395,pobre,6.23180198020974,deprimido,61,1.0
+masculino,49,universitaria,1159,buena,6.4787266945364,deprimido,66,6.0
+masculino,30,secundaria,2044,regular,7.91408911958046,estable,21,8.0
+masculino,32,universitaria,2654,pobre,8.10319647705505,deprimido,32,2.0
+femenino,28,secundaria,2111,pobre,7.71506284100998,ansioso,32,7.0
+no binario,29,universitaria,2565,buena,7.49242865017293,ansioso,56,10.0
+no binario,41,universitaria,2808,pobre,4.32809878711957,estable,30,5.0
+femenino,26,secundaria,2390,regular,7.1790946320181,estable,47,8.0
+masculino,33,universitaria,2842,regular,4.87255694197522,estable,56,10.0
+no binario,34,universitaria,2306,regular,7.11405156648082,estable,79,8.0
+masculino,34,universitaria,2245,buena,6.00875013668372,estable,46,
+masculino,37,universitaria,2297,buena,6.8417409309123,estable,50,9.0
+no binario,51,universitaria,3011,regular,5.22987116861961,estable,54,8.0
+masculino,30,secundaria,3157,regular,6.75346122030589,ansioso,41,8.0
+masculino,27,secundaria,4368,buena,9.2791611614764,ansioso,2,2.0
+masculino,43,universitaria,1713,regular,9.73774761726047,estable,73,5.0
+femenino,39,secundaria,1934,regular,3.2670402247697,estable,45,6.0
+masculino,37,posgrado,3015,regular,4.5185166244154,deprimido,39,3.0
+masculino,41,secundaria,3810,buena,4.86871707794212,deprimido,54,8.0
+femenino,21,universitaria,3481,regular,5.08555515062224,estable,41,1.0
+femenino,46,universitaria,2126,pobre,10.1186511990588,ansioso,64,4.0
+masculino,40,secundaria,1957,regular,8.52330403102343,estable,43,7.0
+masculino,45,posgrado,3857,buena,6.83558077573744,estable,63,6.0
+masculino,29,secundaria,3734,regular,8.47227832154397,estable,46,8.0
+masculino,18,secundaria,2672,regular,10.3920208102159,estable,35,1.0
+femenino,30,universitaria,3861,regular,7.95563488570534,estable,61,
+no binario,26,universitaria,2494,regular,9.66330481427049,deprimido,87,6.0
+femenino,57,posgrado,1846,regular,5.2787476787953,estable,35,3.0
+femenino,31,posgrado,2460,regular,5.38101610936818,estable,43,5.0
+masculino,33,universitaria,2564,pobre,8.60192478818864,ansioso,32,5.0
+femenino,46,posgrado,125522,regular,8.33762978704639,estable,74,2.0
+masculino,41,posgrado,2363,pobre,8.30514476490956,estable,52,4.0
+femenino,42,secundaria,2165,pobre,7.72864369730284,deprimido,15,10.0
+masculino,61,secundaria,2893,buena,6.29335946073092,estable,17,5.0
+masculino,37,universitaria,2075,pobre,8.42444499073082,ansioso,64,7.0
+femenino,54,universitaria,2886,regular,9.77159138693811,ansioso,54,4.0
+femenino,38,universitaria,2929,buena,8.8606111433061,estable,20,10.0
+femenino,20,universitaria,2277,pobre,4.92877867247314,estable,32,5.0
+masculino,18,universitaria,2465,regular,7.71201531593722,deprimido,56,3.0
+no binario,41,secundaria,4405,buena,7.01851953698154,estable,51,5.0
+masculino,25,posgrado,3738,regular,7.13064990592859,deprimido,22,8.0
+masculino,35,universitaria,3744,regular,6.72644770935501,ansioso,61,3.0
+femenino,53,posgrado,2546,regular,5.10149460126202,ansioso,44,3.0
+masculino,38,universitaria,1828,regular,7.49692586941111,estable,69,5.0
+femenino,32,secundaria,2957,regular,9.02759294647997,estable,57,5.0
+masculino,18,secundaria,2553,regular,9.45484860439403,ansioso,68,10.0
+femenino,27,universitaria,5368,regular,7.71989834327903,estable,21,5.0
+femenino,29,posgrado,954,buena,5.89552613311321,estable,61,5.0
+femenino,42,universitaria,2338,regular,6.1254750708796,ansioso,66,4.0
+masculino,40,universitaria,3687,regular,6.08285202707292,estable,58,3.0
+femenino,35,secundaria,821,buena,7.90502506541634,estable,33,2.0
+femenino,37,universitaria,2292,pobre,6.64635499096403,ansioso,49,4.0
+masculino,32,universitaria,2767,pobre,11.3563241374351,estable,21,9.0
+femenino,35,universitaria,2324,regular,6.59756308102688,estable,41,9.0
+femenino,38,universitaria,1755,regular,7.22213927260456,estable,39,7.0
+masculino,39,universitaria,2402,regular,6.68980752574707,deprimido,55,10.0
+masculino,53,universitaria,3571,pobre,6.03615979232268,estable,82,9.0
+masculino,24,universitaria,1421,regular,8.27135773582685,estable,55,9.0
+masculino,50,universitaria,3632,pobre,6.20864181039902,deprimido,44,6.0
+no binario,42,universitaria,3231,regular,7.0035561356622,ansioso,64,6.0
+masculino,20,posgrado,1511,regular,6.57717964967308,deprimido,62,10.0
+femenino,32,secundaria,1299,buena,3.0,estable,54,9.0
+femenino,29,posgrado,2528,regular,7.97639547449155,estable,40,4.0
+masculino,26,universitaria,2729,buena,7.23663875667,estable,59,3.0
+masculino,20,posgrado,3449,pobre,5.71984446600195,estable,60,3.0
+no binario,30,universitaria,20000,regular,9.04465012896111,estable,54,2.0
+masculino,31,universitaria,2836,regular,5.10565574324327,estable,79,10.0
+femenino,32,secundaria,3531,regular,4.33308018141889,ansioso,85,6.0
+femenino,18,secundaria,3437,pobre,5.96962053238666,ansioso,35,6.0
+femenino,39,secundaria,3161,buena,5.22349671656011,estable,56,4.0
+masculino,42,universitaria,2759,buena,,estable,32,6.0
+femenino,43,posgrado,2805,regular,7.1289456564254,estable,42,4.0
+femenino,43,posgrado,3462,regular,6.44490783613089,deprimido,43,10.0
+femenino,37,universitaria,3382,pobre,7.01400455056462,estable,48,3.0
+femenino,50,secundaria,2451,buena,5.57341061249076,deprimido,76,8.0
+masculino,26,secundaria,2792,regular,7.27257656709671,deprimido,38,3.0
+femenino,23,posgrado,3854,regular,7.28550976604928,estable,58,1.0
+masculino,38,posgrado,3677,pobre,6.89239184590282,ansioso,62,3.0
+masculino,39,universitaria,1718,regular,6.99572243492411,estable,54,1.0
+masculino,28,secundaria,3659,regular,5.33767155713129,estable,58,4.0
+masculino,35,secundaria,2431,regular,8.40278765106039,estable,40,4.0
+masculino,38,universitaria,1241,buena,4.77124082239401,ansioso,43,2.0
+femenino,39,secundaria,3534,regular,10.3428128476398,estable,40,6.0
+femenino,44,secundaria,2568,pobre,9.43620283380669,estable,17,10.0
+femenino,44,secundaria,3274,pobre,7.77964693788,ansioso,59,1.0
+no binario,18,universitaria,4051,pobre,4.971957044857,estable,44,4.0
+masculino,52,universitaria,3364,buena,7.63918574144326,estable,47,4.0
+femenino,40,universitaria,2217,regular,4.50521862218999,ansioso,60,8.0
+femenino,29,secundaria,2392,buena,6.5950845672535,ansioso,51,6.0
+masculino,24,posgrado,1710,pobre,8.18618643966082,estable,48,5.0
+masculino,44,posgrado,20000,pobre,8.2609129581595,ansioso,42,6.0
+femenino,38,universitaria,2892,regular,7.0494542272757,deprimido,74,2.0
+femenino,46,secundaria,2261,regular,6.64275436922718,deprimido,52,10.0
+masculino,34,secundaria,3027,pobre,7.39532842922623,estable,52,2.0
+masculino,33,secundaria,3166,buena,,estable,65,6.0
+masculino,57,universitaria,2791,regular,6.4356473967296,deprimido,56,
+femenino,18,universitaria,2181,regular,9.71879072486556,estable,37,8.0
+masculino,39,universitaria,1302,regular,4.39285047607316,estable,44,9.0
+masculino,39,secundaria,2592,pobre,9.44366672611796,deprimido,38,5.0
+masculino,39,universitaria,1670,regular,7.79215816223276,ansioso,25,1.0
+femenino,41,secundaria,3017,buena,6.45933372010367,ansioso,47,5.0
+masculino,32,universitaria,3118,buena,10.3564253359177,ansioso,59,4.0
+no binario,47,universitaria,2753,regular,6.93970057378756,estable,42,2.0
+femenino,18,universitaria,1670,pobre,9.841187997346,ansioso,57,5.0
+masculino,27,posgrado,1896,pobre,7.0372069749065,estable,61,6.0
+femenino,34,universitaria,2107,buena,7.83013810465067,ansioso,48,4.0
+femenino,37,universitaria,2618,regular,6.13847358183667,deprimido,43,10.0
+femenino,39,universitaria,4385,pobre,5.60749449034074,estable,39,8.0
+femenino,41,secundaria,1763,buena,3.99936183805778,estable,46,9.0
+femenino,20,universitaria,775,pobre,6.06689695555125,estable,73,3.0
+femenino,35,posgrado,2404,regular,8.09071834972786,ansioso,51,4.0
+femenino,40,posgrado,1829,regular,5.34672504513197,deprimido,43,
+femenino,48,posgrado,762,pobre,5.26080584371997,estable,43,9.0
+no binario,34,universitaria,1801,pobre,6.34164154037092,deprimido,51,2.0
+masculino,51,universitaria,2201,buena,7.23870131014533,estable,52,1.0
+femenino,32,universitaria,1618,buena,6.25809897170047,estable,70,4.0
+masculino,35,secundaria,3073,regular,8.81855176837155,deprimido,44,5.0
+masculino,37,secundaria,3226,buena,7.43894863886774,deprimido,65,10.0
+femenino,30,posgrado,2240,regular,6.94593630845146,estable,41,9.0
+femenino,42,posgrado,1315,pobre,5.34607584615073,ansioso,53,2.0
+masculino,22,secundaria,2975,regular,5.5965395695764,estable,45,9.0
+femenino,35,secundaria,1816,pobre,,estable,65,10.0
+femenino,30,posgrado,1836,pobre,6.50145480608406,estable,71,4.0
+masculino,30,posgrado,2619,regular,8.65924490323366,ansioso,73,5.0
+masculino,47,universitaria,1719,pobre,4.54945959272331,estable,60,10.0
+femenino,46,universitaria,2264,buena,7.50278920089306,estable,42,2.0
+femenino,51,secundaria,1883,pobre,6.21301383251479,ansioso,48,4.0
+masculino,32,posgrado,2814,regular,9.19505661295331,ansioso,55,2.0
+no binario,35,universitaria,1823,pobre,7.64076706297987,estable,19,3.0
+femenino,19,universitaria,1825,buena,5.46230526973548,estable,71,2.0
+femenino,31,universitaria,1730,pobre,5.03791251801579,ansioso,34,4.0
+femenino,53,universitaria,2509,regular,7.34440282994295,estable,43,4.0
+masculino,31,universitaria,3472,regular,6.53946808328213,ansioso,70,7.0
+femenino,23,universitaria,1789,buena,6.87425035068672,deprimido,56,5.0
+masculino,35,universitaria,2674,regular,,estable,57,5.0
+femenino,47,secundaria,1975,buena,7.98251883799525,deprimido,39,5.0
+masculino,19,universitaria,1629,regular,5.3877479077337,estable,26,10.0
+masculino,32,posgrado,3373,regular,12.2063644051988,estable,38,4.0
+masculino,40,posgrado,2045,pobre,7.44112133857603,ansioso,58,6.0
+masculino,55,posgrado,3797,buena,6.19543923048041,estable,61,3.0
+femenino,29,secundaria,1950,buena,6.78283975683144,estable,51,3.0
+femenino,50,universitaria,3026,buena,7.81319579176083,deprimido,44,9.0
+no binario,31,universitaria,3389,regular,7.95126278978861,estable,56,6.0
+masculino,25,secundaria,4213,regular,4.3377158966426,deprimido,41,10.0
+femenino,24,secundaria,1835,buena,3.90079617297016,deprimido,58,5.0
+masculino,33,posgrado,2561,pobre,6.86513963580518,estable,33,4.0
+femenino,35,universitaria,3249,buena,8.25520326708803,estable,78,6.0
+no binario,32,universitaria,2099,pobre,7.2493612496403,estable,9,10.0
+masculino,46,secundaria,2976,regular,8.53828836016918,deprimido,71,7.0
+femenino,37,universitaria,2155,regular,7.6047826871994,deprimido,40,5.0
+masculino,34,universitaria,1593,buena,7.6173881797942,ansioso,69,5.0
+masculino,29,universitaria,710,regular,9.52028024203367,ansioso,28,8.0
+femenino,22,universitaria,2912,regular,5.40683864014737,ansioso,45,6.0
+masculino,18,secundaria,2226,buena,5.81314652548277,ansioso,53,10.0
+femenino,37,universitaria,3874,buena,7.58276841124148,estable,35,1.0
+femenino,35,posgrado,1607,regular,7.38099774917556,ansioso,42,9.0
+femenino,49,posgrado,2109,buena,3.71924756112104,estable,57,1.0
+masculino,38,secundaria,3146,regular,7.80670064992521,deprimido,58,7.0
+femenino,43,posgrado,2291,regular,5.06517038243975,estable,32,5.0
+masculino,35,secundaria,2890,pobre,5.16168404476185,estable,35,
+femenino,27,secundaria,3582,regular,9.59067032916363,estable,53,10.0
+femenino,38,universitaria,4241,regular,8.74053670493545,deprimido,71,2.0
+no binario,38,universitaria,2541,regular,5.87775762437257,estable,61,8.0
+femenino,27,secundaria,1830,regular,9.50000848739561,estable,27,2.0
+femenino,35,universitaria,1632,buena,6.20545386314303,estable,39,4.0
+masculino,55,universitaria,2063,buena,8.5429725259589,ansioso,22,5.0
+femenino,24,secundaria,2159,buena,9.06507698659736,ansioso,62,3.0
+femenino,50,universitaria,1531,regular,8.99650443739397,estable,37,10.0
+femenino,33,universitaria,2978,buena,8.88198392415378,estable,50,10.0
+masculino,50,posgrado,3639,regular,6.5689981692861,ansioso,59,7.0
+masculino,27,universitaria,2145,regular,6.17989672276137,ansioso,48,10.0
+femenino,34,secundaria,1668,regular,8.88089120659751,deprimido,37,8.0
+femenino,38,universitaria,1481,buena,6.89241562156148,ansioso,52,8.0
+femenino,34,secundaria,3116,pobre,5.9763450681036,estable,30,
+femenino,42,universitaria,2525,regular,5.4625053125715,estable,86,1.0
+masculino,33,universitaria,976,buena,8.9523667220748,deprimido,13,9.0
+masculino,47,universitaria,2401,regular,8.13709123811003,estable,83,1.0
+femenino,37,posgrado,2500,buena,9.2194215030643,deprimido,59,4.0
+femenino,42,universitaria,1825,regular,6.07065639037805,estable,41,6.0
+masculino,23,posgrado,1523,pobre,7.38953084088434,deprimido,54,2.0
+femenino,28,posgrado,2138,pobre,5.37021861253394,estable,49,6.0
+femenino,46,universitaria,1938,regular,7.12933534479096,estable,84,7.0
+femenino,40,secundaria,1960,regular,5.73069632642109,deprimido,83,10.0
+masculino,34,secundaria,658,regular,7.58335879655558,ansioso,62,2.0
+no binario,34,universitaria,2381,pobre,6.94354627698041,ansioso,46,5.0
+femenino,43,secundaria,3259,buena,9.16840247338874,estable,52,1.0
+femenino,33,universitaria,3425,pobre,7.47583672315403,estable,38,8.0
+femenino,36,universitaria,4159,pobre,6.39402926377136,deprimido,36,8.0
+femenino,19,secundaria,2712,regular,4.38964400428713,ansioso,45,
+femenino,53,universitaria,1658,regular,6.32076808161982,estable,73,6.0
+no binario,43,posgrado,2902,buena,6.12086874016061,estable,43,6.0
+masculino,43,universitaria,3380,regular,8.72187856647458,ansioso,54,7.0
+femenino,18,secundaria,4009,regular,7.68604488946704,ansioso,69,3.0
+femenino,35,secundaria,3149,regular,6.11829045691214,ansioso,56,9.0
+no binario,31,secundaria,3635,regular,7.34187241104242,ansioso,58,
+femenino,21,posgrado,2851,regular,7.20122161276937,ansioso,40,8.0
+masculino,42,universitaria,1478,buena,7.49399165817139,estable,52,5.0
+no binario,47,universitaria,1811,pobre,6.55373167953581,estable,35,2.0
+no binario,29,secundaria,4010,buena,8.77748195959678,deprimido,39,
+femenino,33,universitaria,3063,regular,8.9643030799379,ansioso,33,7.0
+femenino,52,secundaria,1966,regular,5.24431710232685,deprimido,43,7.0
+femenino,19,universitaria,1935,pobre,8.49417829945017,ansioso,55,5.0
+femenino,42,universitaria,1763,pobre,5.87950447496491,estable,48,5.0
+masculino,32,universitaria,2619,buena,7.33280148469837,deprimido,35,1.0
+no binario,34,posgrado,2300,pobre,8.50141784677375,estable,35,7.0
+femenino,29,universitaria,1747,pobre,7.74121488783894,ansioso,30,6.0
+masculino,46,universitaria,3471,pobre,6.98733337369805,estable,56,8.0
+masculino,24,universitaria,2515,pobre,7.14420547829931,deprimido,54,8.0
+masculino,45,universitaria,3106,regular,10.3760578587748,deprimido,29,8.0
+no binario,49,universitaria,2196,buena,9.15495203703475,estable,25,6.0
+femenino,19,universitaria,2640,regular,7.01561162430773,deprimido,49,5.0
+femenino,24,universitaria,3327,pobre,6.51881216272281,estable,43,10.0
+femenino,41,universitaria,3041,pobre,9.76251230089304,estable,32,8.0
+masculino,25,secundaria,3253,buena,7.13488708783801,ansioso,66,5.0
+masculino,28,secundaria,1039,buena,7.60418922717519,ansioso,49,3.0
+masculino,31,universitaria,2642,regular,8.96409055698624,ansioso,50,4.0
+femenino,32,secundaria,2347,regular,6.08011866591188,ansioso,59,5.0
+masculino,42,posgrado,1980,buena,6.34677987262085,estable,56,9.0
+femenino,29,universitaria,20000,buena,6.4268408735938,deprimido,45,1.0
+femenino,36,secundaria,3841,pobre,7.2569922641649,deprimido,33,7.0
+femenino,42,posgrado,2844,regular,3.37515630482966,ansioso,68,4.0
+masculino,20,universitaria,2384,buena,6.37274284512063,estable,24,4.0
+femenino,28,secundaria,3251,buena,8.06079334735074,deprimido,71,8.0
+femenino,44,secundaria,2064,regular,7.46771130297547,estable,42,
+femenino,31,universitaria,2611,pobre,7.52596023517358,ansioso,81,9.0
+no binario,18,universitaria,3657,regular,4.61970188106107,ansioso,47,
+femenino,26,universitaria,2234,regular,7.32478248111954,ansioso,42,7.0
+masculino,43,posgrado,1861,buena,6.82787523568091,ansioso,51,9.0
+no binario,31,universitaria,2061,buena,7.03050718484361,deprimido,70,5.0
+femenino,31,secundaria,1659,regular,8.33918539290667,deprimido,23,6.0
+masculino,34,secundaria,2702,buena,9.17212622131697,estable,45,4.0
+femenino,42,universitaria,2762,regular,6.62195369191745,estable,54,3.0
+femenino,30,universitaria,3185,regular,6.10379308124863,deprimido,52,8.0
+masculino,40,secundaria,3941,buena,6.62838874037572,estable,52,3.0
+masculino,41,universitaria,3624,regular,8.16154891022747,ansioso,45,
+masculino,25,secundaria,1499,regular,6.82211919074488,estable,33,7.0
+no binario,34,posgrado,4099,regular,6.37362809334865,deprimido,93,9.0
+masculino,30,universitaria,2611,buena,6.9213604701134,deprimido,28,2.0
+masculino,39,posgrado,2191,regular,9.03092530425058,ansioso,65,8.0
+masculino,20,posgrado,3985,buena,5.61902285903959,ansioso,33,1.0
+masculino,50,secundaria,2843,pobre,6.53384293900457,deprimido,20,10.0
+femenino,48,universitaria,3885,regular,5.41629554772706,deprimido,52,10.0
+no binario,27,universitaria,2465,regular,10.3581163836995,estable,82,9.0
+masculino,28,universitaria,1915,pobre,6.29040678995013,ansioso,59,8.0
+masculino,26,posgrado,927,regular,8.3590811282213,ansioso,25,10.0
+masculino,34,universitaria,3401,regular,7.05687539739121,estable,40,6.0
+no binario,30,universitaria,1790,regular,6.73695657546436,ansioso,39,3.0
+femenino,36,universitaria,3197,pobre,6.45758646208189,ansioso,33,3.0
+femenino,18,universitaria,2596,regular,5.79456768687264,deprimido,65,9.0
+femenino,37,posgrado,2878,regular,9.01236452661307,estable,87,10.0
+femenino,35,posgrado,3513,buena,7.93889598156742,ansioso,28,5.0
+masculino,19,universitaria,2112,regular,7.04669606199128,ansioso,62,10.0
+femenino,38,posgrado,2131,regular,5.35762997579586,ansioso,34,4.0
+masculino,36,universitaria,2315,regular,6.27037890166203,deprimido,66,5.0
+no binario,33,secundaria,3348,regular,8.42964052489615,estable,53,5.0
+femenino,35,universitaria,2120,regular,5.50822997786078,estable,46,6.0
+femenino,39,universitaria,2360,regular,6.14219451622294,estable,61,4.0
+femenino,38,posgrado,3137,regular,8.17475977235543,estable,83,7.0
+masculino,31,secundaria,3123,pobre,7.57204963163361,estable,71,4.0
+masculino,47,posgrado,3137,regular,6.09991273906426,estable,47,7.0
+masculino,35,secundaria,2539,pobre,9.47892268014119,deprimido,61,4.0
+femenino,34,secundaria,3110,regular,5.21384959728762,estable,34,2.0
+femenino,44,secundaria,2729,regular,9.12351617785379,estable,56,9.0
+masculino,45,posgrado,1994,buena,8.22125922578872,deprimido,64,5.0
+masculino,28,universitaria,3944,regular,3.85364342746533,ansioso,57,10.0
+femenino,25,universitaria,1010,regular,7.48024762373151,ansioso,41,2.0
+no binario,28,universitaria,3176,buena,8.20153768063608,estable,49,3.0
+femenino,23,posgrado,2773,regular,5.81247901893583,estable,41,9.0
+femenino,18,posgrado,2518,regular,6.98400060514905,deprimido,57,5.0
+masculino,38,universitaria,2011,regular,4.56472309008328,ansioso,45,6.0
+masculino,34,universitaria,2292,pobre,5.6386494221683,deprimido,47,1.0
+masculino,41,secundaria,3945,regular,7.20515008363396,estable,41,7.0
+femenino,35,universitaria,2422,buena,7.40678193479796,estable,66,7.0
+masculino,39,universitaria,2192,regular,6.88950817719247,estable,55,8.0
+masculino,30,posgrado,1797,buena,,estable,36,10.0
+no binario,25,universitaria,2104,regular,7.89072420328928,deprimido,54,2.0
+no binario,43,universitaria,2433,regular,8.99125683937253,estable,42,2.0
+masculino,43,secundaria,1414,buena,6.09874625227423,estable,52,3.0
+femenino,18,secundaria,3414,regular,7.08476028737653,estable,78,7.0
+femenino,44,universitaria,2578,buena,6.20338556562718,deprimido,34,1.0
+masculino,18,universitaria,3672,regular,6.87865182343457,deprimido,53,10.0
+masculino,35,universitaria,3292,buena,7.24113338000707,deprimido,29,7.0
+femenino,31,universitaria,3632,regular,6.84678915300455,ansioso,59,7.0
+masculino,34,secundaria,1431,regular,6.46787504532089,estable,28,7.0
+femenino,46,posgrado,2964,regular,6.29315897935995,deprimido,24,7.0
+no binario,22,universitaria,2211,regular,7.05106626604242,estable,58,2.0
+femenino,32,universitaria,2463,buena,6.69891818896485,ansioso,39,6.0
+femenino,61,secundaria,2020,regular,6.18332705684609,estable,20,10.0
+femenino,20,universitaria,2672,regular,7.5660434044683,deprimido,30,9.0
+femenino,29,universitaria,2575,regular,7.60559224087067,ansioso,66,7.0
+masculino,35,universitaria,804,regular,7.25535540631455,estable,53,9.0
+femenino,37,posgrado,3182,regular,5.34838011816891,ansioso,53,5.0
+masculino,30,posgrado,2623,regular,7.60370454893664,estable,63,1.0
+femenino,32,secundaria,1723,regular,7.63872426581642,deprimido,53,1.0
+femenino,46,secundaria,1619,regular,6.57530692170643,estable,2,10.0
+femenino,33,posgrado,1948,buena,7.83044810817333,deprimido,50,1.0
+masculino,38,secundaria,1233,regular,8.89653434871563,deprimido,29,1.0
+femenino,39,universitaria,2610,regular,7.49170369479194,deprimido,36,3.0
+femenino,39,universitaria,3702,pobre,8.14765955996409,ansioso,26,6.0
+femenino,40,secundaria,2654,regular,8.92386018821537,deprimido,56,5.0
+masculino,36,posgrado,2922,regular,9.48833040074402,deprimido,84,9.0
+no binario,28,posgrado,1313,pobre,6.27890528029763,ansioso,57,10.0
+masculino,34,universitaria,1269,pobre,6.38824822811937,estable,79,2.0
+masculino,25,secundaria,1783,regular,6.50662181240638,estable,47,6.0
+femenino,36,posgrado,3077,pobre,8.65161488177593,deprimido,42,3.0
+masculino,32,universitaria,1792,regular,7.87257694117408,estable,62,2.0
+femenino,34,universitaria,2947,regular,8.43666880413604,deprimido,31,5.0
+masculino,24,universitaria,2325,pobre,7.45213270650604,ansioso,30,
+masculino,32,universitaria,2807,pobre,6.56730840464037,estable,5,5.0
+masculino,24,universitaria,1669,regular,4.81577261815962,deprimido,17,1.0
+masculino,31,posgrado,1741,pobre,4.44302268900672,estable,43,10.0
+femenino,40,posgrado,2417,pobre,10.0168317869433,deprimido,52,5.0
+femenino,37,posgrado,2333,pobre,7.00594199867915,ansioso,45,2.0
+no binario,44,secundaria,1069,regular,7.83733285985323,estable,21,6.0
+femenino,40,universitaria,2930,buena,8.04174052840121,estable,33,4.0
+femenino,36,universitaria,940,regular,9.16948185518247,estable,38,4.0
+femenino,45,universitaria,2168,pobre,7.95020311503929,ansioso,63,3.0
+femenino,47,universitaria,2544,regular,7.03955550544075,deprimido,55,7.0
+masculino,21,secundaria,1938,regular,8.11431327423182,ansioso,38,8.0
+masculino,44,universitaria,1377,buena,7.52095508819099,estable,26,7.0
+no binario,43,secundaria,2181,regular,6.05701761113604,estable,48,3.0
+femenino,44,universitaria,2412,pobre,8.43773788944839,estable,23,2.0
+masculino,26,universitaria,1761,buena,7.24666202521564,estable,40,
+femenino,59,secundaria,1414,regular,6.94794114855545,ansioso,45,10.0
+masculino,18,universitaria,1544,buena,5.61888427693834,estable,68,8.0
+femenino,35,universitaria,2077,buena,8.72208272445581,deprimido,63,6.0
+masculino,36,secundaria,2138,pobre,6.41517983495555,estable,53,4.0
+masculino,34,secundaria,3636,buena,6.85110510508392,deprimido,47,2.0
+femenino,42,universitaria,1471,pobre,6.95805090644918,estable,43,4.0
+femenino,36,universitaria,2805,pobre,6.91451667269407,ansioso,59,1.0
+femenino,27,universitaria,2166,buena,7.83348852512266,ansioso,29,8.0
+masculino,49,universitaria,2574,buena,8.35288575849028,ansioso,45,7.0
+masculino,32,secundaria,1969,regular,7.80493463235106,deprimido,68,9.0
+femenino,41,universitaria,3142,regular,4.79322079260274,ansioso,38,1.0
+femenino,28,secundaria,1138,pobre,3.38596088759714,estable,27,10.0
+femenino,24,secundaria,2623,regular,,estable,50,8.0
+masculino,29,posgrado,2521,regular,6.72809727304875,ansioso,54,10.0
+masculino,24,secundaria,3345,regular,6.77640558600878,estable,76,4.0
+masculino,40,secundaria,2320,regular,4.91092795921089,estable,36,2.0
+femenino,19,universitaria,2897,buena,5.98096113343258,ansioso,42,3.0
+femenino,25,secundaria,2820,buena,4.27132304707905,estable,69,1.0
+masculino,35,universitaria,1982,regular,10.9584733277232,estable,46,6.0
+femenino,18,posgrado,2433,regular,7.81991241732737,ansioso,55,1.0
+femenino,30,universitaria,2393,buena,6.99076909160589,deprimido,57,9.0
+masculino,32,posgrado,3396,buena,,estable,69,6.0
+femenino,48,universitaria,2691,regular,6.59982494325224,estable,64,5.0
+femenino,32,universitaria,2732,regular,8.23064651529598,ansioso,49,1.0
+femenino,30,secundaria,4375,regular,8.16729031007441,estable,31,8.0
+masculino,28,universitaria,2833,regular,7.68113803528384,estable,49,3.0
+femenino,39,universitaria,2790,pobre,9.11507825957752,deprimido,61,9.0
+femenino,32,universitaria,2925,regular,4.28340384235528,estable,69,2.0
+no binario,30,secundaria,3738,regular,5.34632238836952,ansioso,60,1.0
+no binario,32,secundaria,3269,pobre,6.97124819302468,estable,27,6.0
+masculino,46,universitaria,2771,regular,7.22395557952007,deprimido,52,1.0
+masculino,51,universitaria,2011,regular,6.2013521946026,ansioso,33,7.0
+masculino,29,universitaria,2786,pobre,8.79676918930533,deprimido,43,6.0
+no binario,35,universitaria,2613,regular,3.93610634665795,ansioso,34,3.0
+femenino,32,secundaria,1031,buena,5.47853370278008,deprimido,76,6.0
+masculino,54,universitaria,1267,pobre,9.40587733207478,ansioso,47,8.0
+femenino,41,universitaria,1064,regular,8.33852505123554,ansioso,78,3.0
+masculino,18,universitaria,3632,pobre,4.72344165754305,estable,24,10.0
+masculino,31,universitaria,2995,pobre,8.23529241422822,estable,38,2.0
+femenino,18,secundaria,620,buena,7.54834337201275,estable,62,3.0
+masculino,34,universitaria,2874,regular,5.00361749753516,estable,42,3.0
+masculino,42,universitaria,2551,buena,7.53936423170155,estable,80,4.0
+masculino,26,posgrado,2295,regular,8.33949191498304,deprimido,40,
+femenino,22,universitaria,1904,pobre,5.50735150615103,ansioso,18,8.0
+femenino,48,universitaria,1485,regular,7.77950788387869,deprimido,49,6.0
+femenino,25,posgrado,3190,buena,5.14639982757506,ansioso,44,5.0
+no binario,44,secundaria,2038,buena,7.79459031148311,ansioso,48,10.0
+masculino,37,universitaria,2394,regular,5.5254374185661,deprimido,38,5.0
+masculino,44,posgrado,2969,regular,6.43638177361863,estable,40,9.0
+femenino,45,posgrado,2928,regular,5.43739692325016,ansioso,38,2.0
+masculino,46,universitaria,2185,regular,8.04650103614525,deprimido,44,10.0
+femenino,47,universitaria,2068,buena,6.78332679487096,estable,33,10.0
+masculino,38,secundaria,2708,buena,7.74781509570894,estable,67,10.0
+femenino,37,universitaria,1557,buena,7.92600506481519,estable,37,4.0
+femenino,25,universitaria,2745,regular,6.99318828778673,estable,69,4.0
+femenino,23,universitaria,2639,regular,6.86311545986534,deprimido,28,2.0

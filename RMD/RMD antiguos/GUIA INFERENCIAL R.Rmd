@@ -1,0 +1,386 @@
+---
+title: "Primeros pasos con R"
+subtitle: "Universidad del Norte"
+
+
+output:
+  html_document: 
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+    theme: journal
+    code_folding: hide
+    df_print: paged
+    fig_width: 6
+    fig_height: 4
+    keep_md: false
+---
+
+
+![](IMAGES/Logo_UN.jpg){width=150px}
+<style>
+  body {
+    text-align: justify;
+  }
+</style> <br>
+
+
+<p><center> **BIENVENIDO A LA GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL**</center></p>  
+<p><center> Aquí encontrarás todo lo que necesitas, desde cómo instalar el programa hasta los primeros pasos</center></p>
+
+# Instalación y Configuración de R-STUDIO
+
+## Rstudio en tu equipo (escritorio)
+Para comenzar a usar R, el primer paso es instalarlo en tu computadora. R es compatible con casi todas las plataformas, incluyendo los sistemas operativos más comunes. *Windows, Mac OS X y Linux*. [Links de descarga para y RStudio](https://posit.co/download/rstudio-desktop/). **Nota:** Antes de instalar Rstudio, debes instalar R (el motor)
+
+RStudio es un entorno de desarrollo integrado (IDE) disponible para R, el cual tiene un buen editor con resaltado de sintaxis, un visor de objetos de R y un gran número de características agradables que están integradas.Ademas, esta dedicado a la computación estadística y gráficos.
+
+## Otra opción: Rstudio en la nube
+Puedes utilizar Rstudio en cualquier dispositivo conectado a internet y guardar todos tus archivos en la nube. Encontras todo tal como lo dejaste en cualquier equipo. Recuerda que esta versión tiene un límite de horas de uso mensual. [Link de acceso a RStudio Cloud](https://posit.cloud/)
+
+
+# Primeros pasos
+
+## Rscript
+
+Puede resultar de mucha utilidad trabajar y guardar los comandos usados en un “script” de R. El script es básicamente un documento de texto donde puedes ir escribiendo todos los comandos a ejecutar, es la hoja de ruta que el programa seguirá para analizar tus datos. Considera el hecho de que si se antepone a una línea de comando el signo #, este no será ejecutado y el programa lo considerará como un comentario.
+
+![](IMAGES/Rscript.png){width=500} 
+
+
+## Paquetes o librerías en R
+
+Las librerías en R son colecciones de funciones, datos y documentación que amplían las capacidades del lenguaje base. También se les llama paquetes (packages). Estas librerías permiten a los usuarios realizar análisis de datos, visualización, modelado estadístico, aprendizaje automático, entre otras tareas, sin necesidad de programar todo desde cero.  
+
+**Ejemplo: “Mundo” Tidyverse en R-Studio**
+
+![](IMAGES/RTIDY.png){width=500} 
+
+El **Tidyverse** es una colección de paquetes del R que permiten preparar, procesar y graficar bases de datos. Se destacan los siguientes:
+
+- **[ggplot](https://ggplot2.tidyverse.org/)**: permite crear visualizaciones elegantes de los datos de una manera relativamente sencilla.
+- **[stringr](https://stringr.tidyverse.org/)**: permite manipular cadenas de caracteres con el fin de realizar sustituciones, detectar duplicados, analizar patrones, etc.
+
+- **[tidyr](https://tidyr.tidyverse.org/)**: tiene como objetivo obtener datos ordenados. Destacan funciones como `gather` para crear factores con base en nombres de columnas y `separate` para crear factores separando los caracteres de una columna.
+
+- **[readr](https://readr.tidyverse.org/)**: permite importar y exportar bases de datos en diferentes formatos y tiene implementada la función `problems` que detecta problemas en nuestras bases.
+
+Para más información visitar la página web:  
+[https://www.tidyverse.org/packages/](https://www.tidyverse.org/packages/)  
+
+Para instalar librerías: Install.pachages("nombre de la librería") por primera vez y para llamarla o utilizarla library(nombre de la librería) o en su defecto, require(nombre de la librería)
+
+
+
+```{r echo=TRUE, warning=FALSE}
+# Instalar la librería (solo la primera vez)
+#install.packages("tidyverse")
+
+# Cargar la librería
+library(tidyverse)
+
+```
+
+
+## Creación de reportes en R con R Markdown:
+
+![](IMAGES/datos_R.png){width=500} 
+R Markdown es un formato de documento que combina código R, texto y visualizaciones en un solo archivo, permitiendo generar informes dinámicos en varios formatos como HTML, PDF y Word. Es ampliamente utilizado en análisis de datos, reportes automatizados y documentación reproducible.
+
+Se basa en el lenguaje Markdown para formatear el texto y en R para ejecutar código dentro del documento.
+
+### ¿Cómo funciona Rmarkdown?
+
+- En RStudio, ve a File > New File > R Markdown  
+- Selecciona el formato de salida (HTML, PDF, Word).  
+- Se generará un archivo con extensión .Rmd.  
+
+![](IMAGES/newrm.png){width=500}  
+
+**Estructura de un archivo R Markdown Un archivo .Rmd tiene tres partes principales:**  
+
+- Encabezado YAML: Define el título, autor y formato de salida.
+- Texto en Markdown: Usa sintaxis Markdown para formatear el contenido.
+- Chunks de código R: Secciones de código R que pueden ejecutarse y mostrar resultados.  
+
+![](IMAGES/encabezrm.png){width=500} 
+
+Si escribes sobre este tipo de ventana, estarás generando solo texto, pero puedes incluir chunks o "trozos" de código a lo largo de todo tu trabajo y crear informes como este que estas leyendo.
+
+![](IMAGES/chunks.png){width=500} 
+
+
+**Renderizar el documento**
+
+- Para generar el documento final, haz clic en "Knit" en RStudio.
+- Selecciona el formato de salida (HTML, PDF o Word).
+- Se creará un archivo con los resultados y el código ejecutado.
+
+
+![](IMAGES/KNIT.png){width=500} 
+
+# Conceptos básicos de programación en R:
+
+Si quieres aprender R, primero necesitas entender cómo funcionan los lenguajes de programación en general
+
+Todos los lenguajes (incluyendo R) tienen ciertas bases comunes:  
+
+- Variables → Almacenan datos.
+- Operadores → Realizan cálculos o comparaciones.
+- Estructuras de control → Permiten tomar decisiones y repetir tareas.
+- Funciones → Agrupan código reutilizable.  
+
+**Creación de Objetos**
+
+R es un lenguaje orientado a objetos. Los objetos pueden ser usados para guardar valores y pueden madificarse mediante funciones como por ejemplo sumar dos objetos o calcular la media.
+
+```{r echo=TRUE}
+X <- 4
+Y <- 2
+```
+
+```{r}
+X+Y
+```
+
+## R como calculadora
+
+Puedes hacer operaciones matemáticas básicas como +, -, *, /.  
+- También puedes calcular potencias (^), raíces cuadradas (sqrt()), logaritmos (log()) y funciones trigonométricas (sin(), cos(), tan()).
+- print() se usa para mostrar los resultados en la consola.
+
+- Prueba este código en RStudio y verás cómo R funciona como una calculadora avanzada.
+
+```{r echo=TRUE, warning=FALSE}
+# Operaciones básicas
+5 + 3       # Suma
+10 - 4     # Resta
+6 * 7  # Multiplicación
+20 / 5   # División
+
+# Potencias y raíces
+2^3     # 2 elevado a la 3
+sqrt(16)  # Raíz cuadrada de 16
+
+# Operaciones avanzadas
+log(100, base = 10)  # Logaritmo base 10
+exp(2)   # e^2
+sin(pi / 2)  # Seno de 90 grados (π/2 radianes)
+
+```
+## Tipos de variables en R:
+
+| **Tipo**      | **Ejemplo**                           | **Descripción**                   |
+|--------------|--------------------------------------|-----------------------------------|
+| **Numeric**  | `3.14, -2.5`                         | Números con decimales            |
+| **Integer**  | `10L, -5L`                           | Números enteros                  |
+| **Character**| `"Hola"`                             | Texto o cadenas de caracteres    |
+| **Logical**  | `TRUE, FALSE`                        | Valores lógicos (booleanos)      |
+| **Factor**   | `factor("azul", "rojo")`             | Variables categóricas            |
+| **Date**     | `as.Date("2024-02-05")`              | Fechas                           |
+| **POSIXct**  | `as.POSIXct("2024-02-05 14:30:00")`  | Fechas y horas                   |
+
+
+```{r, echo=TRUE}
+# Numéricas (Numeric)
+num <- 3.14  # Número decimal
+class(num)
+
+# Enteros (Integer)
+entero <- 10L  # Número entero
+class(entero)
+
+# Cadenas de Texto (Character)
+texto <- "Hola, mundo"
+class(texto)
+
+# Lógicos (Logical)
+logico <- TRUE
+class(logico)
+
+# Factores (Factor)
+colores <- factor(c("rojo", "azul", "verde", "rojo"))
+class(colores)
+levels(colores)  # Ver categorías
+
+# Fechas y Tiempos (Date y POSIXct)
+fecha <- as.Date("2024-02-05")  # Convertir a fecha
+hora <- as.POSIXct("2024-02-05 14:30:00")  # Fecha y hora
+class(fecha)
+class(hora)
+```
+Nota: La función class permite ver qué tipo de variable estamos utilizando
+
+## Estructuras de Datos en R:
+En R, los datos se pueden organizar en diferentes estructuras según la forma en que se almacena y manipula la información.
+
+| **Estructura** | **Descripción**                                     | **Ejemplo**                        |
+|----------------|-----------------------------------------------------|------------------------------------|
+| **Vector**     | Secuencia de elementos del mismo tipo               | `c(1, 2, 3, 4, 5)`                |
+| **Matrix**     | Tabla bidimensional con el mismo tipo de dato       | `matrix(1:9, nrow = 3, ncol = 3)` |
+| **List**       | Contiene diferentes tipos de datos                  | `list(nombre = "Ana", edad = 25)` |
+| **Data Frame** | Tabla con columnas de diferentes tipos              | `data.frame(Nombre = c("Ana", "Carlos"), Edad = c(25, 30))` |
+| **Factor**     | Variable categórica con niveles                     | `factor(c("rojo", "azul", "verde"))` |
+| **Array**      | Estructura multidimensional                         | `array(1:8, dim = c(2,2,2))`     |
+
+### Vectores
+
+```{r}
+# Vector numérico
+vector <- c(1, 2, 3, 4, 5)
+vector
+
+# Vector de caracteres
+caracteres<- c("rojo", "azul", "verde")
+caracteres
+
+# Vector lógico
+logico<- c(TRUE, FALSE, TRUE)
+logico
+
+# Mostrar tipo
+class(vector)
+
+```
+###Factor
+```{r}
+# Crear un factor con categorías
+colores <- factor(c("rojo", "azul", "verde", "rojo"))
+
+# Ver niveles
+levels(colores)
+
+```
+
+### Array
+Similar a una matriz pero con más de 2 dimensiones.
+```{r}
+# Crear un array de 3 dimensiones (2x2x2)
+mi_array <- array(1:8, dim = c(2,2,2))
+
+# Mostrar array
+print(mi_array)
+
+```
+
+
+### Matriz
+```{r}
+# Crear una matriz 3x3 con números del 1 al 9
+matriz <- matrix(1:9, nrow = 3, ncol = 3)
+matriz
+# Mostrar matriz
+print(matriz)
+
+```
+
+### Lista
+Puede contener diferentes tipos de datos (vectores, matrices, data frames, etc.).
+```{r}
+# Crear una lista con diferentes tipos de datos
+mi_lista <- list(nombre = "Ana", edad = 25, notas = c(9, 8, 10))
+
+# Mostrar contenido de la lista
+print(mi_lista)
+
+```
+
+### Dataframe
+Es una tabla donde cada columna puede tener diferentes tipos de datos.  
+Es la estructura más utilizada en análisis de datos.
+```{r}
+# Crear un data frame
+df <- data.frame(Nombre = c("Ana", "Carlos", "Luis"),  Edad = c(25, 30, 22), Aprobado = c(TRUE, FALSE, TRUE))
+
+# Mostrar data frame
+df
+
+```
+
+## Condicional if-else.
+
+En R, la sintáxis del condicional consiste en:
+
+- **`if (A)`**: evalúa si se cumple la condición A.
+- **`else if (B)`**: si no se cumple la condición o condiciones anteriores, entonces evalúe si se cumple la condición B.
+- **`else`**: si no se cumple ninguna de las condiciones anteriores entonces haga lo siguiente.
+
+**Ejemplo:**
+
+```{r}
+a<-9
+ if (a<0){
+ print("a es negativo")
+ }else if (a>0){
+ print("a es positivo")
+ }else{
+ print("a es igual a cero")
+ }
+```
+
+## Bucles for:
+
+Usado para repetir un bloque específico de código, siguiendo una secuencia dada.
+
+```{r}
+suma<-0
+ for (i in 1:10){
+ suma<-suma+i
+ }
+ suma
+```
+
+
+## Operadores de comparación en R:
+
+```{r}
+# Asignación de valores
+a <- 1
+b <- 3
+
+# Operaciones y comentarios explicativos
+
+# ¿b es diferente de a?
+b != a  # TRUE
+
+# ¿es a igual a b?
+isTRUE(a == b)  # FALSE
+
+# Negar que a es menor que b
+!(a < b)  # FALSE
+
+# ¿es a menor que b o b menor que a?
+(a < b | b < a)  # TRUE
+
+# ¿es a menor o igual a b o b igual a a?
+(a <= b & b == a)  # FALSE
+```
+
+
+# Actividades para practicar
+
+## Operaciones matemáticas básicas:
+**Objetivo:** Familiarizarte con operaciones aritméticas y asignación de variables en R.  
+**Instrucciones:**  
+
+- Crea una variable para almacenar el valor de un número (puede ser tu edad, por ejemplo).
+- Realiza las siguientes operaciones: suma, resta, multiplicación, división, y cálculo de potencia (elevación).
+- Imprime el resultado de cada operación en la consola.
+
+## Crear y manipular un vector:
+
+**Objetivo:** Aprender a crear vectores y trabajar con ellos.  
+
+**Instrucciones:**  
+
+- Crea un vector con 5 números (pueden ser números enteros o decimales).
+- Calcula la suma, media y desviación estándar de los números del vector.
+- Crea un vector para una variable categórica con 5 datos
+- Convierte los dos vectores en un dataframe  
+
+
+
+**En esta primera parte hemos explorado y nos hemos familiarizado con el lenguaje de programación en R.  
+Hemos dado los primeros pasos. En el siguiente iniciaremos con el tratamiento de datos.**
+

@@ -1,0 +1,434 @@
+---
+title: "EDA: EJEMPLO APLICADO"
+subtitle: "Universidad del Norte"
+
+
+output:
+  html_document: 
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+    theme: journal
+    code_folding: none
+    df_print: paged
+    fig_width: 6
+    fig_height: 4
+    keep_md: false
+---
+
+
+![](IMAGES/Logo_UN.jpg){width=150px}
+<style>
+  body {
+    text-align: justify;
+  }
+</style> <br>
+
+
+<p><center> **BIENVENIDO A LA 4ta GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL**</center></p>  
+<p><center> Aquí encontrarás un ejemplo completo de la aplicación de un EDA.</center></p>
+
+
+
+# Análisis Exploratorio de Datos
+
+
+El análisis exploratorio de datos ([Ver video](https://www.youtube.com/watch?v=UeMpYEktLfU&ab_channel=Comunicaci%C3%B3nNum%C3%A9rica)) (EDA por sus siglas en inglés) implica el uso de gráficos y visualizaciones para explorar y analizar un conjunto de datos. El objetivo es explorar, investigar y aprender, no confirmar hipótesis estadísticas.
+
+## ¿Cuándo debo utilizarlo?
+
+El análisis exploratorio de datos es una potente herramienta para explorar un conjunto de datos. Incluso cuando su objetivo es efectuar análisis planificados, el EDA puede utilizarse para limpiar datos, para análisis de subgrupos o simplemente para comprender mejor los datos. Un paso inicial importante en cualquier análisis de datos es representar los datos gráficamente.
+
+**No gráfico:** Calcula estadísticas descriptivas de las variables
+
+**Gráfico:** Calcula estadísticas de forma gráfica
+
+**Univariado:** Analiza una sola variable a la vez
+
+**Multivariado:** Analiza dos o más variables
+
+A su vez, cada uno de esas dividisiones puede subdividirse según los tipos de datos con los que trabajemos: categóricos o numéricos.
+
+
+## Contexto:
+
+El presente estudio se basa en una encuesta aplicada a una muestra representativa de 500 ciudadanos de la ciudad de Springfield, con el objetivo de analizar su nivel de interés en la política, la confianza en el gobierno, entre otras. Además, se examina el impacto de las redes sociales en la formación de la opinión pública y su posible influencia en el comportamiento electoral.
+
+Para garantizar la calidad de los datos y obtener conclusiones válidas, es necesario realizar un Análisis Exploratorio de Datos (EDA) antes de proceder con cualquier modelado estadístico o inferencia.
+
+**La base de datos contiene las siguientes variables:**
+
+
+
+| Variable                          | Tipo de Variable | Categoría/Tipo | Descripción |
+|-----------------------------------|----------------|---------------------------|-------------|
+| Edad                              | Numérica       | Continua                      | Años cumplidos |
+| Género                            | Categórica     | Nominal                    | Identificación de género (Masculino, Femenino, No Binario) |
+| Nivel de Educación                | Categórica     | Ordinal                    | Último nivel educativo alcanzado (Primaria, Secundaria, Universitaria, Posgrado) |
+| Ingreso Mensual                   | Numérica       | Continua                      | Ingresos mensuales en moneda local |
+| Interés en Política               | Categórica       | Ordinal                     | Nivel de interés en política (Escala Likert del 1 al 5) |
+| Frecuencia de Voto                | Categórica     | Ordinal                     | Frecuencia con la que vota (Nunca, A veces, Siempre) |
+| Ideología Política                | Categórica     | Nominal                     | Identificación ideológica (Izquierda, Centro, Derecha) |
+| Confianza en el Gobierno          | Categórica       | Ordinal                     | Nivel de confianza en el gobierno (Escala Likert del 1 al 10) |
+| Uso de Redes para Informarse      | Categórica     | Ordinal                     | Nivel de uso de redes sociales para informarse (Bajo, Medio, Alto) |
+| Participación en Protestas        | Categórica     | Nominal                     | Si ha participado en protestas (Sí, No) |
+
+
+**Ahora si, a relizar un análisis Exploratorio de datos EDA**
+
+## Instalar y Cargar paquetes
+
+Lo primero que tenemos que hacer es cargar los paquetes que vamos a utilizar para el análisis. En este caso vamos a usar:
+
+```{r warning=FALSE}
+
+library(tidyverse)# Incluye paquetes de importación, visualización entre otros
+library(dplyr)# Manipulación de Datos
+library(ggplot2)# Visualización de datos 
+library(readxl)# Importación de datos
+library(tibble)# Tablas
+library(readr) #Para cargar la base de datos
+
+```
+
+Recordar que si no ha instalado estos paquetes debe correr primero el comando: **`install.packages("nombre del paquete")`**, **Recuerde que los paquetes deben instalarse una única vez**
+
+
+
+Algunos paquetes utilizados para importar y exportar bases de datos en R son:
+
+Algunos paquetes utilizados para importar y exportar bases de datos en R y Python son:
+
+- **[utils](https://www.rdocumentation.org/packages/utils/versions/3.6.2)**: permite importar y exportar datos en varios formatos.
+- **[rgdal](https://cran.r-project.org/web/packages/rgdal/index.html)**: permite importar y exportar datos geoespaciales.
+- **[readr](https://readr.tidyverse.org/)**: permite importar y exportar datos en varios formatos.
+- **[readxl](https://readxl.tidyverse.org/)**: Importar datos en formato "Excel".
+- **[haven](https://haven.tidyverse.org/)**: Importar y exportar datos en "SPSS", "Stata" y "SAS".
+- **[httr](https://cran.r-project.org/web/packages/httr/index.html)**: Herramientas para trabajar con URLs y archivos HTTP.
+- **[rvest](https://rvest.tidyverse.org/)**: útil para extraer información de las páginas web.
+- **[xml2](https://cran.r-project.org/web/packages/xml2/index.html)**: Leer archivos HTML o XML.
+- **csv**: Importar y exportar datos `.csv`.
+- **[pandas](https://pandas.pydata.org/)**: Importar y exportar datos `.csv`, `Excel`, `SAS`, `SPSS`, `html`, `stata`, `sql`, etc.
+
+
+## Cargar base de datos:
+
+Tenga en cuenta que debe utilizar la dirección de donde está guardada la base de datos en caso de usar Rstudio descargado en su equipo, o importarlo en la carpeta files en caso de estar trabajando en Rstudio cloud.
+**Aquí puede ir a un video acerca de importación de datos o datasets: **([Ver video para Rstudio de escritorio](https://www.youtube.com/watch?v=agkPSaYEDgQ)) o también ([Ver video para Rstudio Cloud](https://www.youtube.com/watch?v=anWyri9tbzk))**
+
+```{r echo=TRUE}
+datos <- read_csv("DATA/dataset_opinion_publica.csv") #Ojo esta es la dirección en la que la profe tenía guardados sus datos, es necesario cambiarla.
+```
+
+**Nombres de variables**
+Aquí podemos ver qué variables fueron importadas en nuestro Data Frame:
+
+```{r}
+names(datos)# nombres de variables
+```
+**Mostrar o llamar una variable**
+
+```{r}
+head(datos$nivel_de_educacion) #Se utiliza el simbilo $ despues del nombre de la base. Se uba la función head para mostrar solo los primero sdatos y no todos.
+```
+
+
+**Dimensiones**
+
+Es importante conocer las dimensiones del Dataset cargado para asegurarse que se incluyeron todas las variables y observaciones.
+
+```{r}
+dim(datos) #Dimensiones: num filas x num columnas
+```
+**Mostrar las primeras filas de la base de datos**
+
+```{r}
+head(datos)
+```
+
+
+**Tipos de datos**
+Con esto es posible verificar que los datos están correctamente cargados de acuerdo a la naturaleza de cada variable:
+
+```{r}
+str(datos)
+```
+Vemos que las variables **Interés en política** y **Confianza en el gobierno** son de naturaleza categórica, sin embargo, R las leyó como numéricas. Se debe corregir de la siguiente manera:
+
+```{r}
+#Convertir variables en factores
+datos$interes_en_politica <- as.factor(datos$interes_en_politica) #OJO: con el signo "$" llamo a una variable específica de mi dataset
+datos$confianza_en_gobierno <- as.factor(datos$confianza_en_gobierno)
+```
+
+Revisar nuevamente el Dataset:
+
+```{r}
+str(datos)
+```
+
+## Revisión de valores faltantes (N/A):
+
+Sumar N/As por cada columna (variable)
+
+```{r}
+# Contar valores faltantes por variable
+colSums(is.na(datos))
+```
+**Nota importante:** Cuando se identifican datos faltantes en un conjunto de datos durante un Análisis Exploratorio de Datos (EDA), es fundamental evaluar su impacto en el análisis y decidir el mejor método para tratarlos. El primer paso consiste en cuantificar la cantidad de valores ausentes y analizar su distribución a lo largo de las variables. Si los valores perdidos son escasos y aleatorios, una opción válida puede ser eliminarlos sin afectar significativamente los resultados. Sin embargo, cuando los valores faltantes son numerosos o siguen un patrón sistemático, es recomendable aplicar métodos de imputación, como el reemplazo por la media o mediana en variables numéricas, o el uso de la moda en variables categóricas. También pueden emplearse técnicas más avanzadas, como la imputación por regresión o el uso de modelos de aprendizaje automático. 
+
+En cualquier caso, **la decisión sobre el tratamiento de los datos ausentes debe tomarse considerando el contexto del estudio y asegurando que no se introduzcan sesgos que afecten la validez de las conclusiones.**
+
+
+## Revisión de valores atípicos (outliers)
+
+**Nota importante:** La detección de valores atípicos es un paso crucial en un Análisis Exploratorio de Datos (EDA), ya que estos pueden influir en la interpretación de los resultados y en la robustez de los modelos estadísticos. **Un valor atípico es una observación que se aleja significativamente del resto de los datos** y puede ser causado por errores de medición, registros incorrectos o, en algunos casos, por la naturaleza de la propia distribución de los datos. Para identificarlos, se pueden utilizar técnicas gráficas como los gráficos de caja y bigotes. 
+
+Una vez detectados, es importante analizar su origen: si los valores son producto de errores, pueden ser corregidos o eliminados; si son casos extremos pero válidos, se pueden utilizar transformaciones más complejas para reducir su impacto. **La decisión de mantener, corregir o eliminar valores atípicos debe basarse en la naturaleza del problema y el contexto del estudio, asegurando que el análisis refleje con precisión la realidad de los datos.**  
+
+
+Un resumen estadístico general de las variables nos puede mostrar el resumen de los cinco números para las variables numéricas: (mínimo, primer cuartil, segundo cuartil (que equivale a la mediana), tercer cuartil y valor máximo). Estos cinco números nos brindan una idea de la distribución de los datos: **la media se ve alterada por valores extremos, mientras que la mediana no**, cuando la media se aleja mucho de la mediana, puede ser un indicador de datos atípicos o extremos.
+
+En este caso, las variables numéricas son **Edad e Ingreso mensual:**
+
+```{r}
+# Resumen estadístico general
+summary(datos)
+```
+
+Note que la media y mediana de la edad son muy similares, mientras que en el caso de ingreso mensual, se alejan un poco más. Note también que el valor máximo en esta última variable se encuentra alejado del tercer cuartil. Todo esto lo podemos visualizar en un gráfico de Caja y Bigotes:
+
+
+**Caja y bigotes para la variable edad**
+
+```{r}
+boxplot(datos$edad, horizontal=TRUE, col='steelblue', main="Boxplot de edad")
+```
+**Caja y bigotes para la variable Ingreso mensual**
+
+
+```{r}
+# Desactivar notación científica (cuando las cifras son muy largas)
+options(scipen=999)
+
+# Generar el boxplot sin notación científica
+boxplot(datos$ingreso_mensual, horizontal=TRUE, col='cadetblue4', main="Boxplot de Ingreso Mensual")
+```
+
+El gráfico se ve de esta manera por los valores extremos. Así se vería sin esos datos atípicos:
+
+```{r}
+# Desactivar notación científica
+options(scipen=999)
+
+# Generar boxplot sin valores extremos
+boxplot(datos$ingreso_mensual, horizontal=TRUE, col='cadetblue4', 
+        main="Boxplot de Ingreso Mensual (Sin Valores Extremos)", 
+        outline=FALSE)  # Esto elimina los valores atípicos visualmente
+```
+En esta ocasión, reemplazaremos los atípicos por el valor de la mediana a manera de imputación:
+
+```{r}
+# Calcular la mediana del ingreso mensual
+mediana <- median(datos$ingreso_mensual, na.rm=TRUE)
+
+# Reemplazar valores atípicos con la mediana
+datos$ingreso_mensual <- ifelse(datos$ingreso_mensual %in% boxplot.stats(datos$ingreso_mensual)$out, 
+                                mediana, 
+                                datos$ingreso_mensual)
+
+# Verificar con un nuevo boxplot
+boxplot(datos$ingreso_mensual, horizontal=TRUE, col='cadetblue4', 
+        main="Boxplot de Ingreso Mensual (Atípicos Reemplazados con Mediana)")
+```
+
+## Exploración de variables:
+
+### Representación en tablas:
+
+Tabla de Frecuencia para Nivel de Educación
+
+```{r}
+
+# Tabla de Frecuencia para Nivel de Educación
+tabla_educacion <- table(datos$nivel_de_educacion)
+print(tabla_educacion)
+
+
+
+```
+
+Tabla de Frecuencia para Ideología Política
+```{r}
+
+# Tabla de Frecuencia para Ideología Política
+tabla_ideologia <- table(datos$ideologia_politica)
+print(tabla_ideologia)
+
+```
+Tabla de Frecuencia para interés en política
+```{r}
+
+# Tabla de Frecuencia para interés en política
+tabla_interes_pol <- table(datos$interes_en_politica)
+print(tabla_interes_pol)
+
+```
+Tabla de frecuencia agrupada para ingreso mensual
+
+```{r}
+# Determinar automáticamente el número de intervalos con la regla de Sturges
+num_intervals <- nclass.Sturges(datos$ingreso_mensual)
+
+# Agrupar ingresos en intervalos automáticos
+datos$ingreso_grupo <- cut(datos$ingreso_mensual, breaks = num_intervals, include.lowest = TRUE)
+
+# Crear la tabla de frecuencia
+tabla_ingreso <- table(datos$ingreso_grupo)
+
+# Convertir en data frame para mejor presentación
+tabla_ingreso_df <- as.data.frame(tabla_ingreso)
+colnames(tabla_ingreso_df) <- c("Rango de Ingreso", "Frecuencia")
+
+# Calcular la frecuencia relativa
+frecuencia_relativa <- prop.table(tabla_ingreso) * 100  # Convertir a porcentaje
+tabla_ingreso_df$frecuencia_relativa <- round(frecuencia_relativa, 2)  # Agregar columna con % y redondear
+
+tabla_ingreso_df #Mostrar la tabla resultante
+
+```
+
+
+## Gráficos:
+
+
+**Nota:** Encuentra aquí la guía de colores para tus gráficos > **([guía de colores](https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/))
+
+
+Gráfico para la variable genero:
+
+```{r}
+ggplot(datos, aes(x = genero, fill = genero)) +  
+  geom_bar() +  
+  labs(title = "Distribución de Género", x = "Género", y = "Frecuencia") +  
+  theme_minimal()
+```
+
+Gráfico para la variable edad:
+
+```{r}
+ggplot(datos, aes(x = edad)) +  
+  geom_histogram(bins = 10, fill = "steelblue", color = "black", alpha = 0.7) +  
+  labs(title = "Distribución de Edades", x = "Edad", y = "Frecuencia") +  
+  theme_minimal()
+```
+
+
+Gráfico para ingreso mensual
+```{r}
+ggplot(datos, aes(x = ingreso_mensual)) +  
+  geom_histogram(bins = 10, fill = "cyan4", color = "black", alpha = 0.7) +  
+  labs(title = "Distribución del Ingreso Mensual", x = "Ingreso Mensual", y = "Frecuencia") +  
+  theme_minimal()
+```
+
+
+Gráfico para ideología
+
+```{r}
+ggplot(datos, aes(x = ideologia_politica, fill = ideologia_politica)) +  
+  geom_bar() +  
+  labs(title = "Distribución de la Ideología Política", x = "Ideología Política", y = "Frecuencia") +  
+  theme_minimal()
+```
+
+Gráfico circular para voto
+
+```{r}
+tabla_voto <- table(datos$frecuencia_de_voto)
+df_voto <- as.data.frame(tabla_voto)
+colnames(df_voto) <- c("Frecuencia de Voto", "Frecuencia")
+
+ggplot(df_voto, aes(x = "", y = Frecuencia, fill = `Frecuencia de Voto`)) +  
+  geom_bar(stat = "identity", width = 1) +  
+  coord_polar("y", start = 0) +  
+  labs(title = "Frecuencia de Voto (Gráfico Circular)") +  
+  theme_void()
+```
+
+## Análisis Bivariado
+
+
+diagrama de barras agrupadas genero vs votos
+```{r}
+# Crear gráfico de barras agrupadas
+ggplot(datos, aes(x = frecuencia_de_voto, fill = genero)) +  
+  geom_bar(position = "dodge") +  # "dodge" agrupa las barras
+  labs(title = "Frecuencia de Voto por Género", x = "Frecuencia de Voto", y = "Cantidad de Personas") +  
+  theme_minimal()
+```
+
+diagrama de cajas y bigotes genero vs ingresos mensuales
+```{r}
+# Crear el boxplot de ingreso mensual según género
+ggplot(datos, aes(x = genero, y = ingreso_mensual, fill = genero)) +  
+  geom_boxplot() +  # Agregar boxplot
+  labs(title = "Distribución del Ingreso Mensual por Género", 
+       x = "Género", 
+       y = "Ingreso Mensual") +  
+  theme_minimal()
+```
+
+
+Diagrama de dispersión Edad vs ingreso
+
+```{r}
+# Relación entre edad e ingreso
+ggplot(datos, aes(x = edad, y = ingreso_mensual)) +
+  geom_point(alpha = 0.5, color = "blue") +
+  geom_smooth(method = "lm", color = "red") +
+  theme_minimal() +
+  ggtitle("Relación entre Edad e Ingreso")
+
+```
+Matriz de correlación entre variables numéricas
+
+```{r}
+#Correlación entre variables numéricas 
+
+# Cargar librería necesaria
+library(corrplot)
+
+# Seleccionar solo las variables numéricas de interés
+datos_correlacion <- datos[, c("edad", "ingreso_mensual")]
+
+# Calcular la matriz de correlación
+matriz_cor <- cor(datos_correlacion, use = "complete.obs")
+
+# Mostrar matriz de correlación en consola
+print(matriz_cor)
+
+```
+
+
+
+## Conlusiones
+
+El Análisis Exploratorio de Datos (EDA) realizado sobre la encuesta de opinión pública permitió identificar patrones y relaciones clave entre variables sociodemográficas y políticas. A través del análisis de distribuciones, correlaciones y visualizaciones, se detectaron valores faltantes y valores atípicos. El EDA es un paso esencial y no opcional en cualquier investigación cuantitativa, ya que proporciona una comprensión profunda de los datos y permite tomar decisiones informadas sobre el tratamiento de variables y la aplicación de modelos.
+
+**Hallazgos**
+
+- **Edad** : La distribución de edades es relativamente uniforme, sin concentraciones extremas en grupos específicos.
+
+- **Género**: Se observó una distribución equilibrada de género en la muestra. El análisis de caja y bigotes mostró que existen diferencias en los ingresos según el género, con una mediana salarial mayor en ciertos grupos. 
+
+- **Nivel de Educación**: La mayoría de los encuestados tienen estudios universitarios, seguidos de aquellos con educación secundaria. .  
+
+- **Ingreso Mensual**: Se identificaron valores atípicos, lo que indica la presencia de individuos con ingresos significativamente mayores que el resto. La distribución de ingresos no es homogénea, con una concentración en los rangos medios y menores diferencias por edad.  
+
+- **Frecuencia de Voto**️ : La mayoría de los encuestados afirmaron votar siempre o a veces, con pocos casos de abstención total. 
+
+
+
+

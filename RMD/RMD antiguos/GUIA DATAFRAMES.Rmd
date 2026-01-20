@@ -1,0 +1,313 @@
+---
+title: "INTRODUCCIÓN: DATAFRAMES (BASES DE DATOS)"
+subtitle: "Universidad del Norte"
+
+
+output:
+  html_document: 
+    toc: true
+    toc_depth: 2
+    toc_float: true
+    number_sections: true
+    theme: journal
+    code_folding: hide
+    df_print: paged
+    fig_width: 6
+    fig_height: 4
+    keep_md: false
+---
+
+
+![](IMAGES/Logo_UN.jpg){width=150px}
+<style>
+  body {
+    text-align: justify;
+  }
+</style> <br>
+
+
+<p><center> **BIENVENIDO A LA 2da GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL**</center></p>  
+<p><center> Aquí encontrarás todo lo relacionado con bases de datos, importación y preprocesamiento.</center></p>
+
+# Dataframes (bases de datos)
+
+Un **dataframe** es una estructura de datos en R similar a una tabla, donde las columnas representan variables y las filas representan observaciones.
+
+
+![](IMAGES/structures.jpg){width=600px}
+
+
+
+
+## Creación de Dataframes
+
+Es posible crear un dataframe con la función `data.frame()`. 
+
+```{r}
+
+#Vectores o listas
+nombre = c("Ana", "Luis", "Carlos", "Sofia")
+edad = c(23, 25, 30, 22)
+ciudad = c("Bogota", "Medellin", "Cali", "Barranquilla")
+ingresos = c(2500000, 3000000, 2800000, 2700000)
+
+
+
+# Crear un dataframe manualmente
+df <- data.frame(nombre,edad,ciudad,ingresos)
+  
+# Ver el dataframe
+df
+```
+
+## Acceso a los Datos
+
+Para acceder a las columnas de un dataframe existen varias maneras
+
+```{r}
+# Acceder a una columna específica
+df$nombre
+
+```
+
+```{r}
+# Acceder a una fila específica
+df[2, ]
+
+```
+
+```{r}
+
+# Acceder a una celda específica
+df[3, 2]
+```
+
+
+
+## Modificación de Dataframes
+
+Es posible agregar, modificar o eliminar columnas y filas en un dataframe
+
+
+Agregar una nueva columna
+```{r}
+# Agregar una nueva columna
+df$puntaje <- c(85, 90, 78, 88)
+df
+```
+
+
+Modificar un valor
+```{r}
+# Modificar un valor
+df$ingresos[1] <- 2600000
+
+```
+
+Eliminar una columna
+```{r}
+# Eliminar una columna
+df$ciudad <- NULL
+df
+```
+
+
+
+## Filtrado de Datos
+
+También, es posible filtrar filas que cumplen ciertas condiciones:
+
+```{r}
+# Filtrar personas con ingresos mayores a 2.8 millones
+subset(df, ingresos > 2800000)
+
+```
+
+```{r}
+
+# Filtrar personas con puntaje mayor a 80
+df[df$puntaje > 80, ]
+```
+
+
+## Ordenamiento de Dataframes
+
+```{r}
+# Ordenar por edad
+df_ordenado <- df[order(df$edad), ]
+df_ordenado
+```
+
+## Guardar Dataframes
+
+Guardar un dataframe como un archivo CSV (Este es un formato muy común en el que se suelen encontrar las bases de datos):
+
+```{r}
+# Guardar dataframe en un archivo CSV
+write.csv(df, "datos.csv", row.names = FALSE)
+help("write.csv")
+
+```
+
+## Importar un Dataframe desde un archivo CSV
+
+```{r}
+# Leer un archivo CSV
+df_importado <- read.csv("datos.csv")
+df_importado
+```
+
+Otra forma para importar datos, es a través de la ventana de archivos
+
+![](IMAGES/import_manual.png){width=600px}
+<style>
+  body {
+    text-align: justify;
+  }
+</style> <br>
+
+También puedo importar datos directamente desde donde esté guardada la base de datos en el equipo (cuando se utiliza la versión Rstudio de escritorio) La línea de código sería la siguiente:
+
+```{r eval=FALSE, include=FALSE}
+library(readr)
+datos <- read_csv("C:/Users/esalom.UNINORTE/Downloads/datos.csv.csv")
+datos
+```
+
+
+# Pre procesamiento de una Base de Datos Preinstalada en R
+
+R incluye varias bases de datos preinstaladas. En este ejemplo, usaremos `mtcars`, una base de datos con información sobre automóviles.
+
+```{r}
+# Cargar la base de datos mtcars
+data("mtcars")
+```
+
+```{r}
+datos <- mtcars
+head(datos)# Ver las primeras filas
+```
+
+
+
+## Exploración de Datos
+
+Para ver las dimensiones del dataframe o el tamaño de mi base de datos:
+
+```{r}
+# Dimensiones del dataframe
+dim(datos)
+```
+
+Ver los tipos de datos o variables
+```{r}
+# Ver estructura de los datos
+str(datos)
+```
+Hacer un resumen estadístico (muy general). Esta es la primera impresión de todas las variables
+```{r}
+# Resumen estadístico general
+summary(datos)
+```
+
+
+
+## Verificación y Manejo de Datos Faltantes
+
+Verificar:
+
+```{r}
+# Verificar valores faltantes
+sum(is.na(datos))
+```
+Eliminar:
+```{r}
+# Si hubiera valores NA, podríamos eliminarlos con:
+df <- na.omit(datos)
+```
+
+
+## Eliminación de Columnas Innecesarias
+
+Si algunas columnas no son relevantes para el análisis, es posible eliminarlas.
+
+```{r}
+# Eliminar la columna 'carb'
+datos
+datos$carb <- NULL
+head(datos)
+```
+
+## Filtrado de Datos
+
+Se pueden filtrar observaciones basadas en condiciones específicas.
+
+```{r}
+# Filtrar autos con más de 20 millas por galón (mpg)
+df_filtrado <- subset(datos, mpg > 20)
+df_filtrado
+```
+
+## Transformación de Datos
+
+Podemos agregar columnas nuevas basadas en cálculos.
+
+```{r}
+# Crear una nueva columna con consumo en km por litro
+datos$km_per_l <- datos$mpg * 0.425144
+head(datos)
+```
+
+## Cambio de Tipo de Variable
+
+Podemos convertir una variable numérica en categórica.
+
+```{r}
+str(datos)
+```
+
+
+```{r}
+# Convertir la variable 'cyl' (cilindros) en factor
+datos$cyl <- as.factor(datos$cyl)
+```
+
+
+```{r}
+# Ver estructura para confirmar el cambio
+str(datos)
+```
+
+
+## Ordenamiento de Datos
+
+```{r}
+# Ordenar por caballos de fuerza (hp)
+df_ordenado <- datos[order(datos$hp), ]
+head(df_ordenado)
+```
+
+
+## Actividades para practicar
+
+1. **Crea un dataframe** con datos de 5 amigos, incluyendo nombre, edad y ciudad.
+2. **Filtra** las personas mayores de 25 años.
+3. **Agrega una nueva columna** con su ocupación.
+4. **Guarda el dataframe** en un archivo CSV y vuelve a importarlo en R.
+
+---
+
+
+
+En la siguiente guía (número 3) podrás encontrar lo que necesitas saber para hacer tablas y gráficios en R
+
+
+
+
+
+
+
+
+
+
