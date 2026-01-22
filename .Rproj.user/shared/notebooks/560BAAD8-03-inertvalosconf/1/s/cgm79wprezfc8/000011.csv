@@ -1,0 +1,2 @@
+"0",""
+"0","datos_transporte$condicion_justa <- ifelse(datos_transporte$nota >= 3.5, 1, 0)"

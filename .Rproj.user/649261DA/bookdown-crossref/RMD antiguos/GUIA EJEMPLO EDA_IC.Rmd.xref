@@ -1,0 +1,18 @@
+h1:análisis-exploratorio-de-datos Análisis Exploratorio de Datos
+h2:cuándo-debo-utilizarlo ¿Cuándo debo utilizarlo?
+h2:contexto Contexto:
+h2:instalar-y-cargar-paquetes Instalar y Cargar paquetes
+h2:cargar-base-de-datos Cargar base de datos:
+h2:revisión-de-valores-faltantes-na Revisión de valores faltantes (N/A):
+h2:revisión-de-valores-atípicos-outliers Revisión de valores atípicos (outliers)
+h2:exploración-de-variables Exploración de variables:
+h3:representación-en-tablas Representación en tablas:
+h2:gráficos Gráficos:
+h2:hallazgos-eda Hallazgos EDA
+h1:intervalo-de-confianza-para-la-media Intervalo de confianza para la media
+h3:calcular-la-media-muestral Calcular la Media muestral
+h3:calcular-el-error-muestral Calcular el Error muestral
+h3:calcular-el-valor-crítico Calcular el Valor Crítico
+h2:intervalo-de-confianza-para-la-media-de-horas-de-sueño Intervalo de confianza para la media de horas de sueño:
+h1:prueba-de-hipotesis-para-la-media Prueba de hipotesis para la media
+

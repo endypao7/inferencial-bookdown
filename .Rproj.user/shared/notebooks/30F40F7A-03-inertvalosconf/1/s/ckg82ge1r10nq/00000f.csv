@@ -1,0 +1,4 @@
+"0","hist(datos$nota,"
+"0","     col = ""lightblue"","
+"0","     main = ""Distribución del GPA"","
+"0","     xlab = ""GPA"")"

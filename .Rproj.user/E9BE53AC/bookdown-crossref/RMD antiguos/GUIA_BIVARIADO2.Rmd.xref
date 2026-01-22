@@ -1,0 +1,18 @@
+h1:construcción-de-la-base-de-datos-simulada Construcción de la base de datos simulada
+h1:comparación-de-variable-numérica-cuantitativa-y-variable-categórica-cuantitativa 1. Comparación de variable numérica (cuantitativa) y variable categórica (cuantitativa)
+h2:prueba-t-para-comparación-de-medias 1.1 Prueba t para comparación de medias
+h3:prueba-t-para-comparar-ingreso-numérica-según-sexo-categórica-2-categorías Prueba t para comparar ingreso (numérica) según sexo (categórica: 2 categorías)
+h2:anova-análisis-de-varianza-de-un-factor 1.2 ANOVA (Análisis de varianza de un factor)
+h3:anova-para-comparar-ingreso-numérica-según-nivel-de-educación-categórica-más-de-2-categorías Anova para comparar ingreso (numérica) según nivel de educación (categórica: más de 2 categorías)
+h1:comparación-de-dos-variables-categóricas-cualitativas 2. Comparación de dos variables categóricas (cualitativas)
+h2:prueba-de-diferencia-de-proporciones 2.1 Prueba de diferencia de proporciones
+h3:diferencia-de-proporciones-empleo-formal-según-zona Diferencia de proporciones: Empleo formal según zona
+h2:prueba-chi-cuadrado 2.2 Prueba Chi-cuadrado
+h3:prueba-chi-cuadrado-educación-vs.-tipo-de-empleo Prueba chi-cuadrado: Educación vs. Tipo de empleo
+h1:comparación-entre-dos-variables-numéricas-cuantitativas 3. Comparación entre dos variables numéricas (cuantitativas)
+h2:coeficiente-de-correlación-de-pearson 3.1 Coeficiente de correlación de Pearson
+h3:correlación-años-de-educación-vs.-ingreso Correlación: Años de educación vs. ingreso
+h2:regresión-lineal 3.2 Regresión lineal
+h3:regresión-lineal-simple-predecir-ingreso-por-educación Regresión lineal simple: Predecir ingreso por educación
+h2:conclusiones Conclusiones
+

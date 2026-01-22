@@ -1,0 +1,24 @@
+h1:instalación-y-configuración-de-r-studio Instalación y Configuración de R-STUDIO
+h2:rstudio-en-tu-equipo-escritorio Rstudio en tu equipo (escritorio)
+h2:otra-opción-rstudio-en-la-nube Otra opción: Rstudio en la nube
+h1:primeros-pasos Primeros pasos
+h2:rscript Rscript
+h2:paquetes-o-librerías-en-r Paquetes o librerías en R
+h2:creación-de-reportes-en-r-con-r-markdown Creación de reportes en R con R Markdown:
+h3:cómo-funciona-rmarkdown ¿Cómo funciona Rmarkdown?
+h1:conceptos-básicos-de-programación-en-r Conceptos básicos de programación en R:
+h2:r-como-calculadora R como calculadora
+h2:tipos-de-variables-en-r Tipos de variables en R:
+h2:estructuras-de-datos-en-r Estructuras de Datos en R:
+h3:vectores Vectores
+h3:array Array
+h3:matriz Matriz
+h3:lista Lista
+h3:dataframe Dataframe
+h2:condicional-if-else. Condicional if-else.
+h2:bucles-for Bucles for:
+h2:operadores-de-comparación-en-r Operadores de comparación en R:
+h1:actividades-para-practicar Actividades para practicar
+h2:operaciones-matemáticas-básicas Operaciones matemáticas básicas:
+h2:crear-y-manipular-un-vector Crear y manipular un vector:
+

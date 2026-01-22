@@ -1,0 +1,26 @@
+h1:estadísticos Estadísticos:
+h2:datos-númericos Datos númericos
+h3:media 
+h3:desviación-estándar 
+h2:datos-categóricos Datos categóricos
+h3:proporción-función-mean Proporción: Función mean
+h1:comandos-dpqr-para-distribuciones-de-probabilidad Comandos  para distribuciones de probabilidad
+h2:d-densidad-funcion-de-densidad-de-probabilidad-pdf  d  (densidad): Funcion de Densidad de Probabilidad (PDF)
+h3:p-probabilidad-acumulada-funcion-de-distribucion-acumulada  p  (probabilidad acumulada): Funcion de Distribucion Acumulada:
+h2:q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles  q  (cuartiles - valores de la variable x): Cuantiles o Percentiles
+h2:r-ramdom-values-generacion-de-valores-aleatorios  r  (ramdom values): Generacion de Valores Aleatorios
+h1:distribuciones-de-probabilidad-discretas Distribuciones de probabilidad discretas
+h2:distribucion-de-bernoulli Distribucion de Bernoulli
+h2:distribucion-binomial Distribucion Binomial
+h1:distribuciones-de-probabilidad-continuas Distribuciones de probabilidad continuas
+h2:distribucion-normal Distribucion Normal
+h3:distribucion-normal-estandar Distribucion Normal Estandar
+h2:distribucion-t-de-student Distribucion t de Student
+h3:los-grados-de-libertad-en-la-distribución-t Los grados de libertad en la distribución t:
+h2:distribucion-chi-cuadrado Distribucion Chi-cuadrado
+h3:distribucion-f Distribucion F
+h1:distribuciones-muestrales-simulaciones-de-múltiples-muestras Distribuciones muestrales: Simulaciones de múltiples muestras
+h2:simulación-de-la-distribución-muestral-de-la-media Simulación de la distribución muestral de la media
+h2:simulación-de-la-distribucion-muestral-de-la-varianza Simulación de la distribucion Muestral de la Varianza
+h2:simulación-de-la-distribucion-muestral-de-la-proporcion Simulación de la distribucion Muestral de la Proporcion
+

@@ -1,0 +1,15 @@
+h1:exploración-y-análisis-de-datos-eda Exploración y Análisis de Datos (EDA)
+h2:dataframes-bases-de-datos Dataframes (bases de datos)
+h3:creación-de-dataframes Creación de Dataframes
+h3:importar-un-dataframe-desde-un-archivo-csv Importar un Dataframe desde un archivo CSV
+h2:pre-procesamiento-de-una-base-de-datos-preinstalada-en-r Pre procesamiento de una Base de Datos Preinstalada en R
+h2:análilsis-exploratorio-de-datos-eda-básico Análilsis exploratorio de Datos (EDA) básico
+h3:ejemplo-contexto Ejemplo (Contexto):
+h3:cargar-base-de-datos Cargar base de datos:
+h3:revisión-de-valores-faltantes-na Revisión de valores faltantes (N/A):
+h3:revisión-de-valores-atípicos-outliers Revisión de valores atípicos (outliers)
+h3:exploración-de-variables Exploración de variables:
+h3:gráficos Gráficos:
+h3:análisis-bivariado Análisis Bivariado
+h3:conlusiones Conlusiones
+
