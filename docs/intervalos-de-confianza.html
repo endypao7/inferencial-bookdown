@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lección 4 Intervalos de confianza | Estadística Inferencial en Rstudio</title>
+  <meta name="description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lección 4 Intervalos de confianza | Estadística Inferencial en Rstudio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lección 4 Intervalos de confianza | Estadística Inferencial en Rstudio" />
+  
+  <meta name="twitter:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  
+
+<meta name="author" content="Endy P. Salom" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="distribuciones-muestrales.html"/>
+<link rel="next" href="análisis-bivariado-1.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#instalación-y-configuración-de-r-studio"><i class="fa fa-check"></i><b>1.1</b> Instalación y Configuración de R-STUDIO</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#rstudio-en-tu-equipo-escritorio"><i class="fa fa-check"></i><b>1.1.1</b> Rstudio en tu equipo (escritorio)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#primeros-pasos"><i class="fa fa-check"></i><b>1.2</b> Primeros pasos</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#creación-de-reportes-en-r-con-r-markdown"><i class="fa fa-check"></i><b>1.2.1</b> Creación de reportes en R con R Markdown:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#conceptos-básicos-de-programación-en-r"><i class="fa fa-check"></i><b>1.3</b> Conceptos básicos de programación en R:</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#tipos-de-variables-en-r"><i class="fa fa-check"></i><b>1.3.1</b> Tipos de variables en R:</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>1.3.2</b> Estructuras de Datos en R:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html"><i class="fa fa-check"></i><b>2</b> Exploración y Análisis de Datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#dataframes-bases-de-datos"><i class="fa fa-check"></i><b>2.1</b> Dataframes (bases de datos)</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#creación-de-dataframes"><i class="fa fa-check"></i><b>2.1.1</b> Creación de Dataframes</a></li>
+<li class="chapter" data-level="2.1.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#importar-un-dataframe-desde-un-archivo-csv"><i class="fa fa-check"></i><b>2.1.2</b> Importar un Dataframe desde un archivo CSV</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#pre-procesamiento-de-una-base-de-datos-preinstalada-en-r"><i class="fa fa-check"></i><b>2.2</b> Pre procesamiento de una Base de Datos Preinstalada en R</a></li>
+<li class="chapter" data-level="2.3" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#análilsis-exploratorio-de-datos-eda-básico"><i class="fa fa-check"></i><b>2.3</b> Análilsis exploratorio de Datos (EDA) básico</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#ejemplo-contexto"><i class="fa fa-check"></i><b>2.3.1</b> Ejemplo (Contexto):</a></li>
+<li class="chapter" data-level="2.3.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#cargar-base-de-datos"><i class="fa fa-check"></i><b>2.3.2</b> Cargar base de datos:</a></li>
+<li class="chapter" data-level="2.3.3" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-faltantes-na"><i class="fa fa-check"></i><b>2.3.3</b> Revisión de valores faltantes (N/A):</a></li>
+<li class="chapter" data-level="2.3.4" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-atípicos-outliers"><i class="fa fa-check"></i><b>2.3.4</b> Revisión de valores atípicos (outliers)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#exploración-de-variables"><i class="fa fa-check"></i><b>2.3.5</b> Exploración de variables:</a></li>
+<li class="chapter" data-level="2.3.6" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#gráficos"><i class="fa fa-check"></i><b>2.3.6</b> Gráficos:</a></li>
+<li class="chapter" data-level="2.3.7" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#análisis-bivariado"><i class="fa fa-check"></i><b>2.3.7</b> Análisis Bivariado</a></li>
+<li class="chapter" data-level="2.3.8" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#conlusiones"><i class="fa fa-check"></i><b>2.3.8</b> Conlusiones</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html"><i class="fa fa-check"></i><b>3</b> Distribuciones Muestrales</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#estadísticos"><i class="fa fa-check"></i><b>3.1</b> Estadísticos:</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#datos-númericos-media-varianza-y-desviación-estándar"><i class="fa fa-check"></i><b>3.1.1</b> Datos númericos (media, varianza y desviación estándar)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#datos-categóricos-proporción"><i class="fa fa-check"></i><b>3.1.2</b> Datos categóricos (proporción)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#comandos-dpqr-para-distribuciones-de-probabilidad"><i class="fa fa-check"></i><b>3.2</b> Comandos <code>dpqr</code> para distribuciones de probabilidad</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#d-densidad-funcion-de-densidad-de-probabilidad-pdf"><i class="fa fa-check"></i><b>3.2.1</b> <font color="red"> d </font> (densidad): Funcion de Densidad de Probabilidad (PDF)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#p-probabilidad-acumulada-funcion-de-distribucion-acumulada"><i class="fa fa-check"></i><b>3.2.2</b> <font color="red"> p </font> (probabilidad acumulada): Funcion de Distribucion Acumulada:</a></li>
+<li class="chapter" data-level="3.2.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#r-ramdom-values-generacion-de-valores-aleatorios"><i class="fa fa-check"></i><b>3.2.3</b> <font color="red"> r </font> (ramdom values): Generacion de Valores Aleatorios</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-de-probabilidad-discretas"><i class="fa fa-check"></i><b>3.3</b> Distribuciones de probabilidad discretas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-de-bernoulli"><i class="fa fa-check"></i><b>3.3.1</b> Distribucion de Bernoulli</a></li>
+<li class="chapter" data-level="3.3.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-binomial"><i class="fa fa-check"></i><b>3.3.2</b> Distribucion Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-de-probabilidad-continuas"><i class="fa fa-check"></i><b>3.4</b> Distribuciones de probabilidad continuas</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-normal"><i class="fa fa-check"></i><b>3.4.1</b> Distribucion Normal</a></li>
+<li class="chapter" data-level="3.4.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-normal-estandar"><i class="fa fa-check"></i><b>3.4.2</b> Distribucion Normal Estandar</a></li>
+<li class="chapter" data-level="3.4.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-t-de-student"><i class="fa fa-check"></i><b>3.4.3</b> Distribucion t de Student</a></li>
+<li class="chapter" data-level="3.4.4" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-chi-cuadrado"><i class="fa fa-check"></i><b>3.4.4</b> Distribucion Chi-cuadrado</a></li>
+<li class="chapter" data-level="3.4.5" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-f"><i class="fa fa-check"></i><b>3.4.5</b> Distribucion F</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-muestrales-simulaciones-de-múltiples-muestras"><i class="fa fa-check"></i><b>3.5</b> Distribuciones muestrales: Simulaciones de múltiples muestras</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#simulación-de-la-distribución-muestral-de-la-media"><i class="fa fa-check"></i><b>3.5.1</b> Simulación de la distribución muestral de la media</a></li>
+<li class="chapter" data-level="3.5.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#simulación-de-la-distribucion-muestral-de-la-varianza"><i class="fa fa-check"></i><b>3.5.2</b> Simulación de la distribucion Muestral de la Varianza</a></li>
+<li class="chapter" data-level="3.5.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#simulación-de-la-distribucion-muestral-de-la-proporción"><i class="fa fa-check"></i><b>3.5.3</b> Simulación de la distribucion Muestral de la Proporción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>4</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#media"><i class="fa fa-check"></i><b>4.1</b> MEDIA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media"><i class="fa fa-check"></i><b>4.1.1</b> Intervalos de confianza para la media</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejemplo-intervalo-de-confianza-para-media-poblacional"><i class="fa fa-check"></i><b>4.1.2</b> Ejemplo intervalo de confianza para media poblacional:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#prueba-de-hipótesis-para-la-media"><i class="fa fa-check"></i><b>4.1.3</b> Prueba de hipótesis para la media</a></li>
+<li class="chapter" data-level="4.1.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejemplo-prueba-de-hipótesis-para-media-poblacional"><i class="fa fa-check"></i><b>4.1.4</b> Ejemplo prueba de hipótesis para media poblacional:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#proporción"><i class="fa fa-check"></i><b>4.2</b> PROPORCIÓN</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-proporción"><i class="fa fa-check"></i><b>4.2.1</b> Intervalo de confianza para la proporción</a></li>
+<li class="chapter" data-level="4.2.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejemplo-intervalo-de-confianza-para-la-proporción"><i class="fa fa-check"></i><b>4.2.2</b> Ejemplo intervalo de confianza para la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#cómo-se-aplica-caso-simulado"><i class="fa fa-check"></i><b>4.3</b> ¿Cómo se aplica?: Caso simulado</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html"><i class="fa fa-check"></i><b>5</b> Análisis Bivariado</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#construcción-de-la-base-de-datos-simulada"><i class="fa fa-check"></i><b>5.0.1</b> Construcción de la base de datos simulada</a></li>
+<li class="chapter" data-level="5.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#variable-numérica-cuantitativa-y-variable-categórica-cualitativa"><i class="fa fa-check"></i><b>5.1</b> Variable numérica (cuantitativa) y variable categórica (cualitativa)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-t-para-comparación-de-medias"><i class="fa fa-check"></i><b>5.1.1</b> Prueba t para comparación de medias</a></li>
+<li class="chapter" data-level="5.1.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#anova-análisis-de-varianza-de-un-factor"><i class="fa fa-check"></i><b>5.1.2</b> ANOVA (Análisis de varianza de un factor)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#dos-variables-categóricas-cualitativas"><i class="fa fa-check"></i><b>5.2</b> Dos variables categóricas (cualitativas)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-de-diferencia-de-proporciones"><i class="fa fa-check"></i><b>5.2.1</b> Prueba de diferencia de proporciones</a></li>
+<li class="chapter" data-level="5.2.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-chi-cuadrado"><i class="fa fa-check"></i><b>5.2.2</b> Prueba Chi-cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#dos-variables-numéricas-cuantitativas"><i class="fa fa-check"></i><b>5.3</b> Dos variables numéricas (cuantitativas)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>5.3.1</b> Coeficiente de correlación de Pearson</a></li>
+<li class="chapter" data-level="5.3.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>5.3.2</b> Regresión lineal simple</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#conclusiones"><i class="fa fa-check"></i><b>5.4</b> Conclusiones</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">
+  Published with bookdown
+</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Inferencial en Rstudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="intervalos-de-confianza" class="section level1 hasAnchor" number="4">
+<h1><span class="header-section-number">Lección 4</span> Intervalos de confianza<a href="intervalos-de-confianza.html#intervalos-de-confianza" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p><strong>Paquetes necesarios</strong></p>
+<div id="media" class="section level2 hasAnchor" number="4.1">
+<h2><span class="header-section-number">4.1</span> MEDIA<a href="intervalos-de-confianza.html#media" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><img src="IMAGES/media_estima.png" /></p>
+<div id="intervalos-de-confianza-para-la-media" class="section level3 hasAnchor" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Intervalos de confianza para la media<a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para calcular el intervalo de confianza para la media, se deben conocer tres componentes: la media muestral, el error muestral y el valor de la distribución correspondiente al nivel de confianza asignado para el intervalo.</p>
+<p><img src="IMAGES/media_estima2.png" /></p>
+<p>El intervalo de confianza para estimar la media poblacional <span class="math inline">\(\mu\)</span> se construye de la siguiente manera:</p>
+<p><span class="math display">\[
+IC_{\mu} = (\bar{X} - Z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + Z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}})
+\]</span>
+Para el caso con distribución t:</p>
+<p><span class="math display">\[IC_{\mu} = (\bar{X} - t_{\alpha/2,n-1gdl} \cdot  \frac{s}{\sqrt{n}} \leq \mu \leq \bar{X} + t_{\alpha/2,n-1gdl} \cdot  \frac{s}{\sqrt{n}})\]</span></p>
+<p>Veamos parte por parte cómo hacerlo:</p>
+<p><strong>Calcular la Media muestral</strong></p>
+<p>La media muestral: <span class="math display">\[\bar{X}\]</span></p>
+<p>es el promedio calculado a partir de una muestra aleatoria. En R disponemos de la función <code>mean</code> para calcularla facilmente a partir de un conjunto de datos.</p>
+<p><strong>Calcular el Error muestral</strong></p>
+<p><span class="math display">\[ \frac{\sigma}{\sqrt n}\]</span></p>
+<p><span class="math inline">\(\sigma\)</span> es la desviación estándar poblacional y <span class="math inline">\(n\)</span> es el tamaño
+de la muestra.</p>
+<p>Cuando la desviación estándar poblacional no es conocida, se utiliza la desviación
+estándar muestral (<span class="math inline">\(s\)</span>):</p>
+<p><span class="math display">\[ \frac{s}{\sqrt n}.\]</span></p>
+<p><strong>Calcular el Valor Crítico</strong></p>
+<p>Teniendo en cuenta los supuestos, podemos determinar si la media sigue una <strong>distribución Normal (Z)</strong> (datos normales, desviación estándar poblacional conocida y muestra lo suficientemente grande) o <strong>distribución t-student (t)</strong> (datos no normales, desviación estándar poblacional desconocida y muestra pequeña)</p>
+<p>También debemos recordar que los intervalos de confianza son aleatorios puesto que se contruyen a partir de una muestra aleatoria, por lo tanto, existe un nivel de confianza <span class="math inline">\(1-\alpha\)</span> y un margen de error conocido <span class="math inline">\(\alpha\)</span> para estimar el parámtero.</p>
+<p>Ese valor <span class="math inline">\(\alpha\)</span> se divide entre 2 para distribuirlo a cada lado del intervalo de confianza.</p>
+<p>Es por esto que, Una vez determinada la distribución apropiada para el caso, se define el valor crítico para <span class="math inline">\(\alpha/2\)</span>:</p>
+<ul>
+<li><span class="math inline">\(Z_{\alpha/2}\)</span> para el caso Normal</li>
+<li><span class="math inline">\(t_{\alpha/2}\)</span> para el caso t-student</li>
+</ul>
+<p><strong><em>Ya conocemos también las funciones <code>d, p, q, r</code> que nos permitían realizar operaciones a partir de las distribuciones de probabilidad</em></strong></p>
+<ul>
+<li><strong>d</strong>: Calcula la funcion de densidad de probabilidad (PDF) o la funcion de masa de probabilidad (PMF) para una distribucion.<br />
+</li>
+<li><strong>p</strong>: Calcula la funcion de distribucion acumulada (CDF), que nos dice la probabilidad de obtener un valor menor o igual a un punto dado.<br />
+</li>
+<li><strong>q</strong>: Calcula cuantiles o percentiles de la distribucion.<br />
+</li>
+<li><strong>r</strong>: Genera valores aleatorios a partir de la distribucion especificada.</li>
+</ul>
+<p>Para calcular el valor crítico utilizaremos la función <code>q</code>, que calcula el valor de Z o de t a partir de una probabilidad dada:</p>
+<p><strong><em>Para el caso <span class="math inline">\(1-\alpha = 95%\)</span>, con <span class="math inline">\(\alpha = 5\% = 0.05\)</span>:</em></strong></p>
+<p>Distribución normal:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="intervalos-de-confianza.html#cb1-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<p>Distribución t con 9 grados de libertad (ejemplo):</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="intervalos-de-confianza.html#cb3-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#df = Grados de libertad</span></span></code></pre></div>
+<pre><code>## [1] 2.262157</code></pre>
+<div class="note">
+<p>Nota: el parámetro ´lower.tail = FALSE´ se utiliza para que el valor crítico sea el de la derecha (positivo). Ya sabemos que estas dos distribuciones son siméticas y el valor es el mismo para cada lado del intervalo_</p>
+</div>
+<p><strong>Calcular el Intervalo de Confianza</strong></p>
+<p>Entonces, para calcular el intervalo de confianza se debe tener la estructura:</p>
+<p>límite inferior (izquierda) del intervalo de confianza:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="intervalos-de-confianza.html#cb5-1" tabindex="-1"></a>limite_inf <span class="ot">=</span> media muestral <span class="sc">-</span> <span class="fu">qdistribucion</span>(valor correspondiente) <span class="sc">*</span> error_muestral</span></code></pre></div>
+<p>Para el límite superior (derecha) del intervalo de confianza:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="intervalos-de-confianza.html#cb6-1" tabindex="-1"></a>limite_sup <span class="ot">=</span> media muestral <span class="sc">+</span> <span class="fu">qdistribucion</span>(valor correspondiente) <span class="sc">*</span> error_muestral</span></code></pre></div>
+</div>
+<div id="ejemplo-intervalo-de-confianza-para-media-poblacional" class="section level3 hasAnchor" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Ejemplo intervalo de confianza para media poblacional:<a href="intervalos-de-confianza.html#ejemplo-intervalo-de-confianza-para-media-poblacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un grupo de investigadores quiere estimar el tiempo promedio que los ciudadanos de un país dedican diariamente a informarse con los noticieros. Se toma una muestra aleatoria de 1,500 personas, obteniendo una media muestral de 45 minutos diarios. Estudios previos indican que la desviación estándar poblacional es de 20 minutos. Calcular un intervalo de confianza del 95% para el tiempo promedio que la población dedica a informarse a través de noticieros.</p>
+<p>Primero, organizar los datos y guardarlos en objetos con los nombres que consideremos adecuados:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="intervalos-de-confianza.html#cb7-1" tabindex="-1"></a><span class="co"># Datos</span></span>
+<span id="cb7-2"><a href="intervalos-de-confianza.html#cb7-2" tabindex="-1"></a>x_barra <span class="ot">&lt;-</span> <span class="dv">45</span>       <span class="co"># media muestral</span></span>
+<span id="cb7-3"><a href="intervalos-de-confianza.html#cb7-3" tabindex="-1"></a>desv_est <span class="ot">&lt;-</span> <span class="dv">20</span>       <span class="co"># desviación estándar poblacional</span></span>
+<span id="cb7-4"><a href="intervalos-de-confianza.html#cb7-4" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">1500</span>         <span class="co"># tamaño de muestra</span></span>
+<span id="cb7-5"><a href="intervalos-de-confianza.html#cb7-5" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span></code></pre></div>
+<p>Teniendo en cuenta el ejercicio, la media sigue en este caso una distribución Normal, ya que se trata de un amuestra grande y la desviación estándar poblacional es conocida.
+Ahora se debe determinar el valor crítico <span class="math inline">\(Z_{\alpha/2}\)</span></p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="intervalos-de-confianza.html#cb8-1" tabindex="-1"></a><span class="co"># Valor crítico Z</span></span>
+<span id="cb8-2"><a href="intervalos-de-confianza.html#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="intervalos-de-confianza.html#cb8-3" tabindex="-1"></a>z_alpha_2 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#El valor de Z para alpha/2</span></span>
+<span id="cb8-4"><a href="intervalos-de-confianza.html#cb8-4" tabindex="-1"></a>z_alpha_2</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<p>Calcular el error, en este caso: $ $</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="intervalos-de-confianza.html#cb10-1" tabindex="-1"></a><span class="co"># Error:</span></span>
+<span id="cb10-2"><a href="intervalos-de-confianza.html#cb10-2" tabindex="-1"></a>error <span class="ot">&lt;-</span> desv_est <span class="sc">/</span> <span class="fu">sqrt</span>(n) <span class="co">#sqrt calcula la raiz</span></span>
+<span id="cb10-3"><a href="intervalos-de-confianza.html#cb10-3" tabindex="-1"></a><span class="co">#Tenga en cuenta que cada dato proporcionado por el ejercicio ya lo habíamos guardado con nombres apropiados.</span></span>
+<span id="cb10-4"><a href="intervalos-de-confianza.html#cb10-4" tabindex="-1"></a></span>
+<span id="cb10-5"><a href="intervalos-de-confianza.html#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="intervalos-de-confianza.html#cb10-6" tabindex="-1"></a>error</span></code></pre></div>
+<pre><code>## [1] 0.5163978</code></pre>
+<p>Construir el ntervalo de confianza:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="intervalos-de-confianza.html#cb12-1" tabindex="-1"></a><span class="co"># Intervalo de confianza</span></span>
+<span id="cb12-2"><a href="intervalos-de-confianza.html#cb12-2" tabindex="-1"></a>ic_izquierda <span class="ot">&lt;-</span> x_barra <span class="sc">-</span> z_alpha_2 <span class="sc">*</span> error</span>
+<span id="cb12-3"><a href="intervalos-de-confianza.html#cb12-3" tabindex="-1"></a>ic_derecha <span class="ot">&lt;-</span> x_barra <span class="sc">+</span> z_alpha_2 <span class="sc">*</span> error</span>
+<span id="cb12-4"><a href="intervalos-de-confianza.html#cb12-4" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="intervalos-de-confianza.html#cb12-5" tabindex="-1"></a><span class="fu">c</span>(ic_izquierda, ic_derecha) <span class="co">#Esto permite concatenar los dos números para que se muestren juntos</span></span></code></pre></div>
+<pre><code>## [1] 43.98788 46.01212</code></pre>
+<p><strong>Respuesta:</strong> Con un 95% de confianza, el tiempo promedio que los ciudadanos dedican a informarse sobre política está entre 43.99 y 46.01 minutos</p>
+<hr />
+</div>
+<div id="prueba-de-hipótesis-para-la-media" class="section level3 hasAnchor" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Prueba de hipótesis para la media<a href="intervalos-de-confianza.html#prueba-de-hipótesis-para-la-media" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Recordemos que:</p>
+<p>Una prueba de hipótesis es un procedimiento estadístico utilizado para tomar decisiones sobre un parámetro poblacional basándose en una muestra. Matemáticamente, se trata de evaluar la validez de una afirmación acerca de una población utilizando teoría de probabilidades y distribuciones muestrales</p>
+<p><strong><em>El objetivo de una prueba de hipótesis es evaluar si los datos de una muestra proporcionan evidencia estadísticamente significativa para rechazar una hipótesis sobre la media poblacional</em></strong></p>
+<ul>
+<li><p><strong>Hipótesis nula <span class="math inline">\(H_0\)</span></strong> La hipótesis que se debe comprobar. Inicialmente se asume como verdadera.</p></li>
+<li><p><strong>Hipótesis alternativa <span class="math inline">\(H_1\)</span></strong> Se establece como el “complemento” de <span class="math inline">\(H_0\)</span></p>
+<ul>
+<li>Prueba bilateral: <span class="math inline">\(H_1: \mu \neq \mu_0\)</span></li>
+<li>Prueba unilateral derecha: <span class="math inline">\(H_1: \mu &gt; \mu_0\)</span></li>
+<li>Prueba unilateral izquierda: <span class="math inline">\(H_A: \mu &lt; \mu_0\)</span></li>
+</ul></li>
+</ul>
+<p><strong>Seleccionar el estadístico de prueba</strong></p>
+<p><em><strong>Caso 1: Desviación estándar poblacional </strong>conocida<strong> (prueba Z)</strong></em></p>
+<p><span class="math display">\[
+Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
+\]</span></p>
+<p><em><strong>Caso 2: Desviación estándar poblacional </strong>desconocida<strong> (prueba t de Student)</strong></em></p>
+<p><span class="math display">\[
+T = \frac{\bar{X} - \mu}{S / \sqrt{n}}, \quad T \sim t_{n-1}
+\]</span></p>
+<p><strong>Calcular el Valor o valores Críticos:</strong></p>
+<p><strong><em>Volvemos a utilizar las funcionas <code>d, p, q, r</code> para las distribuciones de probabilidad</em></strong></p>
+<p>Nuevamente, teniendo en cuenta los supuestos, podemos determinar si la media sigue una <strong>distribución Normal (Z)</strong> (datos normales, desviación estándar poblacional conocida y muestra lo suficientemente grande) o <strong>distribución t-student (t)</strong> (datos no normales, desviación estándar poblacional desconocida y muestra pequeña)</p>
+<p>También debemos recordar que las pruebas de hipótesis tienen un nivel de significancia <span class="math inline">\(\alpha\)</span>.</p>
+<p>Una vez determinada la distribución apropiada para el caso,y el tipo de prueba <strong><em>(bilateral o unilateral)</em></strong> se define el valor crítico para <span class="math inline">\(\alpha\)</span> o <span class="math inline">\(\alpha/2\)</span>.</p>
+<p><img src="IMAGES/colas_ph.png" /></p>
+<p><strong><em>Caso bilateral con <span class="math inline">\(\alpha = 5\%\)</span></em></strong></p>
+<p><span class="math inline">\(H_1: \mu \neq \mu_0\)</span></p>
+<p>En este caso el valor <span class="math inline">\(\alpha\)</span> se divide entre 2 para encontrar los valores críticos de cada lado. Es decir, existen dos valores críticos.</p>
+<ul>
+<li>Ejemplo: Caso con distribución Normal <span class="math inline">\(Z_{\alpha/2}\)</span> (bilateral)</li>
+</ul>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="intervalos-de-confianza.html#cb14-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>) <span class="co">#Valor crítico por la izquierda</span></span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="intervalos-de-confianza.html#cb16-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#Valor crítico por la derecha</span></span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<ul>
+<li>Ejemplo: Caso con distribución t con 9 grados de libertad <span class="math inline">\(t_{\alpha/2,n-1 gdl}\)</span> (bilateral)</li>
+</ul>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="intervalos-de-confianza.html#cb18-1" tabindex="-1"></a><span class="co">#Valor crítico por la izquierda</span></span>
+<span id="cb18-2"><a href="intervalos-de-confianza.html#cb18-2" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>) <span class="co">#df = Grados de libertad</span></span></code></pre></div>
+<pre><code>## [1] -2.262157</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="intervalos-de-confianza.html#cb20-1" tabindex="-1"></a><span class="co">#Valor crítico por la derecha</span></span>
+<span id="cb20-2"><a href="intervalos-de-confianza.html#cb20-2" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="at">df=</span><span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#df = Grados de libertad</span></span></code></pre></div>
+<pre><code>## [1] 2.262157</code></pre>
+<p><strong><em>Caso Unilateral cola derecha con <span class="math inline">\(\alpha = 5\%\)</span></em></strong></p>
+<p><span class="math inline">\(H_1: \mu &gt; \mu_0\)</span></p>
+<p>En este caso el valor <span class="math inline">\(\alpha\)</span> NO divide entre 2. Es decir, sólo se tiene un valor crítico por la derecha.</p>
+<ul>
+<li>Ejemplo: Caso con distribución Normal <span class="math inline">\(Z_{\alpha}\)</span> (Unilateral derecha)</li>
+</ul>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="intervalos-de-confianza.html#cb22-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#Valor crítico por la derecha</span></span></code></pre></div>
+<pre><code>## [1] 1.644854</code></pre>
+<ul>
+<li>Ejemplo: Caso con distribución t con 9 grados de libertal <span class="math inline">\(t_{\alpha,n-1 gdl}\)</span> (Unilateral derecha)</li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="intervalos-de-confianza.html#cb24-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span> <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#Valor crítico por la derecha</span></span></code></pre></div>
+<pre><code>## [1] 1.833113</code></pre>
+<p><strong><em>Caso Unilateral cola izquierda con <span class="math inline">\(\alpha = 5\%\)</span></em></strong></p>
+<p><span class="math inline">\(H_1: \mu &lt; \mu_0\)</span></p>
+<p>En este caso el valor <span class="math inline">\(\alpha\)</span> NO divide entre 2. Es decir, sólo se tiene un valor crítico por la izquierda.</p>
+<ul>
+<li>Ejemplo: Caso con distribución Normal <span class="math inline">\(Z_{\alpha}\)</span> (Unilateral izquierda)</li>
+</ul>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="intervalos-de-confianza.html#cb26-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.05</span>) <span class="co">#Valor crítico por la izquierda</span></span></code></pre></div>
+<pre><code>## [1] -1.644854</code></pre>
+<ul>
+<li>Ejemplo: Caso con distribución t con 9 grados de libertal <span class="math inline">\(t_{\alpha,n-1 gdl}\)</span> (Unilateral izquierda)</li>
+</ul>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="intervalos-de-confianza.html#cb28-1" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.05</span>, <span class="at">df=</span> <span class="dv">9</span>) <span class="co">#Valor crítico por la derecha</span></span></code></pre></div>
+<pre><code>## [1] -1.833113</code></pre>
+<p><strong>Calcular el p valor</strong></p>
+<p>El p-valor es la probabilidad, bajo la suposición de que la hipótesis nula <span class="math inline">\(H_0\)</span> es cierta, de obtener un valor de la estadística de prueba tan extremo o más extremo que el observado.</p>
+<p>En otras palabras, mide qué tan probable es el resultado muestral si <span class="math inline">\(H_0\)</span> fuera verdadera.</p>
+<p><strong><em>Aquí el comando utilizado es ´p´ para calcular la probabilidad:</em></strong></p>
+<ul>
+<li>P valor para una prueba bilateral (se multiplica por 2 al ser de dos colas):</li>
+</ul>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="intervalos-de-confianza.html#cb30-1" tabindex="-1"></a>pvalor_z <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(z), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)        <span class="co"># si se usa distribución Z</span></span>
+<span id="cb30-2"><a href="intervalos-de-confianza.html#cb30-2" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="intervalos-de-confianza.html#cb30-3" tabindex="-1"></a>pvalor_t <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pt</span>(<span class="fu">abs</span>(T), <span class="at">df=</span> n<span class="dv">-1</span> gdl, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)       <span class="co"># si se usa t de Student</span></span></code></pre></div>
+<ul>
+<li>P valor Para una prueba Unilateral derecha:</li>
+</ul>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="intervalos-de-confianza.html#cb31-1" tabindex="-1"></a>pvalor_z <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb31-2"><a href="intervalos-de-confianza.html#cb31-2" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="intervalos-de-confianza.html#cb31-3" tabindex="-1"></a>pvalor_t <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(T, <span class="at">df =</span> n<span class="dv">-1</span> gdl, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<ul>
+<li>P valor Para una prueba Unilateral izquierda:</li>
+</ul>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="intervalos-de-confianza.html#cb32-1" tabindex="-1"></a>pvalor_z <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(Z)</span>
+<span id="cb32-2"><a href="intervalos-de-confianza.html#cb32-2" tabindex="-1"></a></span>
+<span id="cb32-3"><a href="intervalos-de-confianza.html#cb32-3" tabindex="-1"></a>pvalor_t <span class="ot">&lt;-</span> <span class="dv">1</span> <span class="sc">-</span> <span class="fu">pt</span>(T, <span class="at">df =</span> n<span class="dv">-1</span> gdl)</span></code></pre></div>
+<div class="note">
+<p>Recuerde que lower.tail = FALSE es para que calcule la probabilidad acumulada por la derecha_</p>
+</div>
+<p><strong>Tomar la decisión</strong></p>
+<ul>
+<li><strong>Usando valor crítico</strong>:
+<ul>
+<li>Se rechaza <span class="math inline">\(H_0\)</span> si el estadístico de prueba cae fuera del intervalo definido por el o los valores críticos.</li>
+</ul></li>
+<li><strong>Usando p-valor</strong>:
+<ul>
+<li>Se rechaza <span class="math inline">\(H_0\)</span> si <span class="math inline">\(p \leq \alpha\)</span>.</li>
+</ul></li>
+</ul>
+</div>
+<div id="ejemplo-prueba-de-hipótesis-para-media-poblacional" class="section level3 hasAnchor" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Ejemplo prueba de hipótesis para media poblacional:<a href="intervalos-de-confianza.html#ejemplo-prueba-de-hipótesis-para-media-poblacional" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>La pobreza puede influir en el desarrollo del lenguaje en la infancia debido a factores como el acceso limitado a recursos educativos y la menor exposición a vocabulario variado en el hogar. Se estima que, en el país la población general de niños de 5 años, el tamaño promedio del vocabulario es de 2,000 palabras, con una desviación estándar de 300 palabras. Sin embargo, no se sabe con certeza si este valor se mantiene en niños que crecen en contextos de pobreza.
+Para investigar esto, un grupo de psicólogos selecciona una muestra de 180 niños en situación de pobreza y encuentra que su vocabulario promedio es de 1,950 palabras. ¿El tamaño del vocabulario en niños de 5 años en pobreza del país es realmente 2,000 palabras, o hay evidencia de que es diferente? Tenga en cuenta una significancia del 5%.</p>
+<p>Plantear las hipótesis:</p>
+<p><span class="math display">\[
+\begin{aligned}
+H_0\!:\! &amp; \quad \mu = 2000 \quad \text{(el tamaño promedio del vocabulario es 2000 palabras)} \\
+H_A\!:\! &amp; \quad \mu \neq 2000 \quad \text{(el tamaño promedio del vocabulario es diferente de 2000 palabras)}
+\end{aligned}
+\]</span></p>
+<p>Organizar los datos porporcionados:</p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="intervalos-de-confianza.html#cb33-1" tabindex="-1"></a><span class="co"># Datos</span></span>
+<span id="cb33-2"><a href="intervalos-de-confianza.html#cb33-2" tabindex="-1"></a>x_bar <span class="ot">&lt;-</span> <span class="dv">1950</span>         <span class="co"># media muestral</span></span>
+<span id="cb33-3"><a href="intervalos-de-confianza.html#cb33-3" tabindex="-1"></a>u <span class="ot">&lt;-</span> <span class="dv">2000</span>          <span class="co"># valor de la hipótesis nula</span></span>
+<span id="cb33-4"><a href="intervalos-de-confianza.html#cb33-4" tabindex="-1"></a>sigma <span class="ot">&lt;-</span> <span class="dv">300</span>          <span class="co"># desviación estándar poblacional</span></span>
+<span id="cb33-5"><a href="intervalos-de-confianza.html#cb33-5" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">180</span>              <span class="co"># tamaño de la muestra</span></span>
+<span id="cb33-6"><a href="intervalos-de-confianza.html#cb33-6" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span>         <span class="co"># nivel de significancia</span></span></code></pre></div>
+<p>Calcular el estadístico de prueba:
+Al tratarse de una muestra grande con desviación estándar poblacional conocida, se utilizará Z.</p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="intervalos-de-confianza.html#cb34-1" tabindex="-1"></a>Z <span class="ot">&lt;-</span> (x_bar <span class="sc">-</span> u) <span class="sc">/</span> (sigma <span class="sc">/</span> <span class="fu">sqrt</span>(n))</span>
+<span id="cb34-2"><a href="intervalos-de-confianza.html#cb34-2" tabindex="-1"></a>Z</span></code></pre></div>
+<pre><code>## [1] -2.236068</code></pre>
+<p>Calcular valores críticos. Al se runa prueba bilateral, alpha se divide entre 2 (Son dos valores críticos)</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="intervalos-de-confianza.html#cb36-1" tabindex="-1"></a><span class="co"># Valor crítico para prueba bilateral</span></span>
+<span id="cb36-2"><a href="intervalos-de-confianza.html#cb36-2" tabindex="-1"></a>z_izquierda <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb36-3"><a href="intervalos-de-confianza.html#cb36-3" tabindex="-1"></a>z_izquierda</span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="intervalos-de-confianza.html#cb38-1" tabindex="-1"></a><span class="co"># Valor crítico para prueba bilateral</span></span>
+<span id="cb38-2"><a href="intervalos-de-confianza.html#cb38-2" tabindex="-1"></a>z_derecha <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>, <span class="at">lower.tail=</span><span class="cn">FALSE</span>)</span>
+<span id="cb38-3"><a href="intervalos-de-confianza.html#cb38-3" tabindex="-1"></a>z_derecha</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<p>Calcular p valor</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="intervalos-de-confianza.html#cb40-1" tabindex="-1"></a><span class="co"># Valor crítico para prueba bilateral</span></span>
+<span id="cb40-2"><a href="intervalos-de-confianza.html#cb40-2" tabindex="-1"></a>z_izquierda <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(alpha <span class="sc">/</span> <span class="dv">2</span>)</span>
+<span id="cb40-3"><a href="intervalos-de-confianza.html#cb40-3" tabindex="-1"></a>z_izquierda</span></code></pre></div>
+<pre><code>## [1] -1.959964</code></pre>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="intervalos-de-confianza.html#cb42-1" tabindex="-1"></a><span class="co"># p-valor</span></span>
+<span id="cb42-2"><a href="intervalos-de-confianza.html#cb42-2" tabindex="-1"></a>p_valor <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pnorm</span>(<span class="fu">abs</span>(Z), <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb42-3"><a href="intervalos-de-confianza.html#cb42-3" tabindex="-1"></a>p_valor</span></code></pre></div>
+<pre><code>## [1] 0.02534732</code></pre>
+<p>Decisión:</p>
+<ul>
+<li><p>Como Z = -2.23, cae en la región crítica, (menor a -1.96), se rechaza <span class="math inline">\(H_0\)</span></p></li>
+<li><p>El p-valor será aproximadamente 0.025, este valor es menor que <span class="math inline">\(\alpha= 0.05\)</span>, se rechaza <span class="math inline">\(H_0\)</span> (esta es otra manera de decidir)</p></li>
+</ul>
+<p><strong><em>Respuesta:</em></strong> Hay suficiente evidencia estadística para afirmar que el tamaño promedio del vocabulario en niños de 5 años en situación de pobreza es significativamente diferente de 2,000 palabras.</p>
+<hr />
+</div>
+</div>
+<div id="proporción" class="section level2 hasAnchor" number="4.2">
+<h2><span class="header-section-number">4.2</span> PROPORCIÓN<a href="intervalos-de-confianza.html#proporción" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="intervalo-de-confianza-para-la-proporción" class="section level3 hasAnchor" number="4.2.1">
+<h3><span class="header-section-number">4.2.1</span> Intervalo de confianza para la proporción<a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-proporción" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Para calcular los intervalos de confianza para la proporción, se deben conocer tres componentes: la media muestral, el error muestral y el valor de la distribución correspondiente al nivel de confianza asignado para el intervalo.</p>
+<p><span class="math display">\[
+IC_{p} = (\bar{p} - Z_{\alpha/2} \cdot  \sqrt \frac{\overline{p}(1-\overline{p})}{n} \leq p \leq \bar{p} + Z_{\alpha/2} \cdot  \sqrt \frac{\overline{p}(1-\overline{p})}{n})
+\]</span></p>
+<p><strong>Error muestral</strong></p>
+<p>El error muestral de la proporción es</p>
+<p><span class="math display">\[\sqrt \frac{\overline{p}(1-\overline{p})}{n}\]</span></p>
+<p>donde <span class="math inline">\(\overline{p}\)</span> es la proporción muestral y <span class="math inline">\(n\)</span> es el tamaño
+de la muestra.</p>
+<p><strong>Calcular el Valor Crítico</strong></p>
+<p>Teniendo en cuenta los supuestos, la proporción sigue una <strong>distribución Normal (Z)</strong></p>
+<p>El valor <span class="math inline">\(1-\alpha\)</span> se divide entre 2 para distribuirlo a cada lado del intervalo de confianza y se busca el valor <span class="math inline">\(Z_{\alpha/2}\)</span>.</p>
+<p><strong><em>Para el caso <span class="math inline">\(1-\alpha = 95%\)</span>, con <span class="math inline">\(\alpha = 5\% = 0.05\)</span>:</em></strong></p>
+<p>Distribución normal:</p>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="intervalos-de-confianza.html#cb44-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<div class="note">
+<p>El parámetro ´lower.tail = FALSE´ se utiliza para que el valor crítico sea el de la derecha (positivo). Ya sabemos que estas dos distribuciones son siméticas y el valor es el mismo para cada lado del intervalo_</p>
+</div>
+<p><strong>Calcular el Intervalo de Confianza</strong></p>
+<p>Entonces, para calcular el intervalo de confianza se debe tener la estructura:</p>
+<p>límite inferior (izquierda) del intervalo de confianza:</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="intervalos-de-confianza.html#cb46-1" tabindex="-1"></a>limite_inf <span class="ot">=</span> proporción muestral <span class="sc">-</span> <span class="fu">qnorm</span>(valor correspondiente) <span class="sc">*</span> error_muestral</span></code></pre></div>
+<p>Para el límite superior (derecha) del intervalo de confianza:</p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="intervalos-de-confianza.html#cb47-1" tabindex="-1"></a>limite_sup <span class="ot">=</span> proporción muestral <span class="sc">+</span> <span class="fu">qnorm</span>(valor correspondiente) <span class="sc">*</span> error_muestral</span></code></pre></div>
+</div>
+<div id="ejemplo-intervalo-de-confianza-para-la-proporción" class="section level3 hasAnchor" number="4.2.2">
+<h3><span class="header-section-number">4.2.2</span> Ejemplo intervalo de confianza para la proporción<a href="intervalos-de-confianza.html#ejemplo-intervalo-de-confianza-para-la-proporción" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Un estudio quiere analizar la brecha de acceso a servicios de salud mental en comunidades rurales. Se estima que, a nivel nacional, el 40% de los adultos tiene acceso a estos servicios (𝑝 = 0.40). Para evaluar si este porcentaje es menor en zonas rurales, un investigador encuestó a 300 adultos de comunidades rurales y encontró que 98 de ellos tienen acceso a atención psicológica.
+Calcular un intervalo de confianza del 95% para la proporción de adultos con acceso a servicios de salud mental en la muestra (rural) y analizar los resultados.</p>
+<p>Organizar los datos:</p>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="intervalos-de-confianza.html#cb48-1" tabindex="-1"></a><span class="co"># Datos</span></span>
+<span id="cb48-2"><a href="intervalos-de-confianza.html#cb48-2" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="dv">300</span>        <span class="co"># tamaño de la muestra</span></span>
+<span id="cb48-3"><a href="intervalos-de-confianza.html#cb48-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">98</span>         <span class="co"># número de adultos con acceso</span></span>
+<span id="cb48-4"><a href="intervalos-de-confianza.html#cb48-4" tabindex="-1"></a>p_gorro <span class="ot">&lt;-</span> x <span class="sc">/</span> n  <span class="co"># proporción muestral</span></span>
+<span id="cb48-5"><a href="intervalos-de-confianza.html#cb48-5" tabindex="-1"></a>alpha <span class="ot">&lt;-</span> <span class="fl">0.05</span></span></code></pre></div>
+<p>Teniendo en cuenta el ejercicio, la proporción sigue en este caso una distribución Normal, ya que se trata de una muestra grande.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="intervalos-de-confianza.html#cb49-1" tabindex="-1"></a><span class="co"># Valor crítico Z</span></span>
+<span id="cb49-2"><a href="intervalos-de-confianza.html#cb49-2" tabindex="-1"></a></span>
+<span id="cb49-3"><a href="intervalos-de-confianza.html#cb49-3" tabindex="-1"></a>z_alpha_2 <span class="ot">&lt;-</span> <span class="fu">qnorm</span>(<span class="fl">0.025</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>) <span class="co">#El valor de Z para alpha/2</span></span>
+<span id="cb49-4"><a href="intervalos-de-confianza.html#cb49-4" tabindex="-1"></a>z_alpha_2</span></code></pre></div>
+<pre><code>## [1] 1.959964</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="intervalos-de-confianza.html#cb51-1" tabindex="-1"></a><span class="co"># Error estándar</span></span>
+<span id="cb51-2"><a href="intervalos-de-confianza.html#cb51-2" tabindex="-1"></a>error_p <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(p_gorro <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> p_gorro) <span class="sc">/</span> n)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="intervalos-de-confianza.html#cb52-1" tabindex="-1"></a><span class="co"># Intervalo de confianza</span></span>
+<span id="cb52-2"><a href="intervalos-de-confianza.html#cb52-2" tabindex="-1"></a>izquierda <span class="ot">=</span> p_gorro <span class="sc">-</span> (z_alpha_2 <span class="sc">*</span> error_p)</span>
+<span id="cb52-3"><a href="intervalos-de-confianza.html#cb52-3" tabindex="-1"></a>derecha <span class="ot">=</span> p_gorro <span class="sc">+</span> (z_alpha_2 <span class="sc">*</span> error_p)</span>
+<span id="cb52-4"><a href="intervalos-de-confianza.html#cb52-4" tabindex="-1"></a></span>
+<span id="cb52-5"><a href="intervalos-de-confianza.html#cb52-5" tabindex="-1"></a><span class="fu">c</span>(izquierda, derecha)</span></code></pre></div>
+<pre><code>## [1] 0.2735960 0.3797374</code></pre>
+</div>
+</div>
+<div id="cómo-se-aplica-caso-simulado" class="section level2 hasAnchor" number="4.3">
+<h2><span class="header-section-number">4.3</span> ¿Cómo se aplica?: Caso simulado<a href="intervalos-de-confianza.html#cómo-se-aplica-caso-simulado" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>¿El programa de becas de transporte garantiza condiciones académicas justas?</strong></p>
+<p>En muchas universidades públicas, los estudiantes de estratos socioeconómicos bajos reciben una <strong>beca de transporte</strong> con el objetivo de reducir barreras de acceso y permanencia.</p>
+<p>La universidad desea evaluar si, <strong>en promedio</strong>, los estudiantes beneficiarios del programa mantienen un rendimiento académico acorde con el estándar institucional.</p>
+<p>El reglamento académico establece que un rendimiento promedio <strong>adecuado</strong> corresponde a una <strong>nota de 3.5</strong> (en una escala de 0 a 5).</p>
+<hr />
+<p><strong>Pregunta de investigación</strong></p>
+<p>¿El promedio poblacional de los estudiantes beneficiarios del programa de transporte es <strong>distinto de 3.5</strong>?</p>
+<hr />
+<p><strong>Parámetro de interés</strong></p>
+<p>Sea<br />
+<span class="math display">\[\mu\]</span>
+la media poblacional de la nota de los estudiantes beneficiarios del programa de transporte.</p>
+<hr />
+<p><strong>Formulación de hipótesis</strong></p>
+<p><span class="math display">\[
+H_0: \mu = 3.5
+\]</span></p>
+<p><span class="math display">\[
+H_1: \mu \neq 3.5
+\]</span></p>
+<p>Se plantea una <strong>prueba bilateral</strong>, ya que no se asume a priori si el rendimiento es mayor o menor que el estándar.</p>
+<hr />
+<p><strong>Nivel de significancia</strong></p>
+<p><span class="math display">\[
+\alpha = 0.05
+\]</span></p>
+<hr />
+<p><strong>Base de datos</strong></p>
+<p>Se tomó una muestra de <strong>36 estudiantes beneficiarios</strong>.<br />
+La base de datos contiene cinco variables relevantes para el análisis académico y social.</p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="intervalos-de-confianza.html#cb54-1" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb54-2"><a href="intervalos-de-confianza.html#cb54-2" tabindex="-1"></a>  <span class="at">id =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">36</span>,</span>
+<span id="cb54-3"><a href="intervalos-de-confianza.html#cb54-3" tabindex="-1"></a>  </span>
+<span id="cb54-4"><a href="intervalos-de-confianza.html#cb54-4" tabindex="-1"></a>  <span class="at">nota =</span> <span class="fu">c</span>(</span>
+<span id="cb54-5"><a href="intervalos-de-confianza.html#cb54-5" tabindex="-1"></a>    <span class="fl">3.1</span>, <span class="fl">3.2</span>, <span class="fl">3.3</span>, <span class="fl">3.3</span>, <span class="fl">3.4</span>, <span class="fl">3.4</span>, <span class="fl">3.4</span>, <span class="fl">3.5</span>, <span class="fl">3.5</span>,</span>
+<span id="cb54-6"><a href="intervalos-de-confianza.html#cb54-6" tabindex="-1"></a>    <span class="fl">3.5</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.6</span>, <span class="fl">3.7</span>, <span class="fl">3.7</span>, <span class="fl">3.7</span>, <span class="fl">3.8</span>, <span class="fl">3.8</span>,</span>
+<span id="cb54-7"><a href="intervalos-de-confianza.html#cb54-7" tabindex="-1"></a>    <span class="fl">3.8</span>, <span class="fl">3.9</span>, <span class="fl">3.9</span>, <span class="fl">3.9</span>, <span class="fl">3.5</span>, <span class="fl">3.6</span>, <span class="fl">3.7</span>, <span class="fl">3.8</span>, <span class="fl">3.4</span>,</span>
+<span id="cb54-8"><a href="intervalos-de-confianza.html#cb54-8" tabindex="-1"></a>    <span class="fl">3.3</span>, <span class="fl">3.2</span>, <span class="fl">3.6</span>, <span class="fl">3.7</span>, <span class="fl">3.8</span>, <span class="fl">3.9</span>, <span class="fl">3.5</span>, <span class="fl">3.6</span>, <span class="fl">3.7</span></span>
+<span id="cb54-9"><a href="intervalos-de-confianza.html#cb54-9" tabindex="-1"></a>  ),</span>
+<span id="cb54-10"><a href="intervalos-de-confianza.html#cb54-10" tabindex="-1"></a>  </span>
+<span id="cb54-11"><a href="intervalos-de-confianza.html#cb54-11" tabindex="-1"></a>  <span class="at">horas_estudio =</span> <span class="fu">c</span>(</span>
+<span id="cb54-12"><a href="intervalos-de-confianza.html#cb54-12" tabindex="-1"></a>    <span class="dv">8</span>, <span class="dv">9</span>, <span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">10</span>, <span class="dv">12</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">13</span>,</span>
+<span id="cb54-13"><a href="intervalos-de-confianza.html#cb54-13" tabindex="-1"></a>    <span class="dv">14</span>, <span class="dv">13</span>, <span class="dv">15</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>,</span>
+<span id="cb54-14"><a href="intervalos-de-confianza.html#cb54-14" tabindex="-1"></a>    <span class="dv">17</span>, <span class="dv">16</span>, <span class="dv">18</span>, <span class="dv">17</span>, <span class="dv">12</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">11</span>,</span>
+<span id="cb54-15"><a href="intervalos-de-confianza.html#cb54-15" tabindex="-1"></a>    <span class="dv">10</span>, <span class="dv">9</span>, <span class="dv">14</span>, <span class="dv">15</span>, <span class="dv">16</span>, <span class="dv">17</span>, <span class="dv">13</span>, <span class="dv">14</span>, <span class="dv">15</span></span>
+<span id="cb54-16"><a href="intervalos-de-confianza.html#cb54-16" tabindex="-1"></a>  ),</span>
+<span id="cb54-17"><a href="intervalos-de-confianza.html#cb54-17" tabindex="-1"></a>  </span>
+<span id="cb54-18"><a href="intervalos-de-confianza.html#cb54-18" tabindex="-1"></a>  <span class="at">edad =</span> <span class="fu">c</span>(</span>
+<span id="cb54-19"><a href="intervalos-de-confianza.html#cb54-19" tabindex="-1"></a>    <span class="dv">18</span>, <span class="dv">19</span>, <span class="dv">19</span>, <span class="dv">20</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">20</span>, <span class="dv">21</span>, <span class="dv">22</span>,</span>
+<span id="cb54-20"><a href="intervalos-de-confianza.html#cb54-20" tabindex="-1"></a>    <span class="dv">22</span>, <span class="dv">21</span>, <span class="dv">23</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>,</span>
+<span id="cb54-21"><a href="intervalos-de-confianza.html#cb54-21" tabindex="-1"></a>    <span class="dv">25</span>, <span class="dv">24</span>, <span class="dv">26</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">20</span>,</span>
+<span id="cb54-22"><a href="intervalos-de-confianza.html#cb54-22" tabindex="-1"></a>    <span class="dv">19</span>, <span class="dv">18</span>, <span class="dv">22</span>, <span class="dv">23</span>, <span class="dv">24</span>, <span class="dv">25</span>, <span class="dv">21</span>, <span class="dv">22</span>, <span class="dv">23</span></span>
+<span id="cb54-23"><a href="intervalos-de-confianza.html#cb54-23" tabindex="-1"></a>  ),</span>
+<span id="cb54-24"><a href="intervalos-de-confianza.html#cb54-24" tabindex="-1"></a>  </span>
+<span id="cb54-25"><a href="intervalos-de-confianza.html#cb54-25" tabindex="-1"></a>  <span class="at">estrato =</span> <span class="fu">c</span>(</span>
+<span id="cb54-26"><a href="intervalos-de-confianza.html#cb54-26" tabindex="-1"></a>    <span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,</span>
+<span id="cb54-27"><a href="intervalos-de-confianza.html#cb54-27" tabindex="-1"></a>    <span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,</span>
+<span id="cb54-28"><a href="intervalos-de-confianza.html#cb54-28" tabindex="-1"></a>    <span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">5</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">2</span>,</span>
+<span id="cb54-29"><a href="intervalos-de-confianza.html#cb54-29" tabindex="-1"></a>    <span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">4</span>,<span class="dv">4</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span></span>
+<span id="cb54-30"><a href="intervalos-de-confianza.html#cb54-30" tabindex="-1"></a>  ),</span>
+<span id="cb54-31"><a href="intervalos-de-confianza.html#cb54-31" tabindex="-1"></a>  </span>
+<span id="cb54-32"><a href="intervalos-de-confianza.html#cb54-32" tabindex="-1"></a>  <span class="at">transporte =</span> <span class="fu">rep</span>(<span class="st">&quot;Beneficiario&quot;</span>, <span class="dv">36</span>)</span>
+<span id="cb54-33"><a href="intervalos-de-confianza.html#cb54-33" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="intervalos-de-confianza.html#cb55-1" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<pre><code>##   id nota horas_estudio edad estrato   transporte
+## 1  1  3.1             8   18       1 Beneficiario
+## 2  2  3.2             9   19       1 Beneficiario
+## 3  3  3.3            10   19       2 Beneficiario
+## 4  4  3.3            11   20       2 Beneficiario
+## 5  5  3.4            10   20       2 Beneficiario
+## 6  6  3.4            12   21       3 Beneficiario</code></pre>
+<p><strong>Exploración inicial de la variable de interés</strong></p>
+<p>Antes de realizar cualquier inferencia, se exploran los datos, en específico las notas.</p>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="intervalos-de-confianza.html#cb57-1" tabindex="-1"></a><span class="fu">summary</span>(datos<span class="sc">$</span>nota)</span></code></pre></div>
+<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.100   3.400   3.600   3.581   3.725   3.900</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="intervalos-de-confianza.html#cb59-1" tabindex="-1"></a><span class="fu">hist</span>(datos<span class="sc">$</span>nota,</span>
+<span id="cb59-2"><a href="intervalos-de-confianza.html#cb59-2" tabindex="-1"></a>     <span class="at">col =</span> <span class="st">&quot;lightblue&quot;</span>,</span>
+<span id="cb59-3"><a href="intervalos-de-confianza.html#cb59-3" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Distribución de Notas&quot;</span>,</span>
+<span id="cb59-4"><a href="intervalos-de-confianza.html#cb59-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Notas&quot;</span>)</span></code></pre></div>
+<p><img src="Estad%C3%ADstica-Inferencial-en-Rstudio_files/figure-html/unnamed-chunk-30-1.png" width="672" /></p>
+<p><strong>Verificación del supuesto de normalidad (Prueba de Shapiro-Wilk)</strong></p>
+<p>H0: los datos provienen de una distribución normal</p>
+<p>H1: los datos no provienen de una distribución normal</p>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="intervalos-de-confianza.html#cb60-1" tabindex="-1"></a><span class="fu">shapiro.test</span>(datos<span class="sc">$</span>nota)</span></code></pre></div>
+<pre><code>## 
+##  Shapiro-Wilk normality test
+## 
+## data:  datos$nota
+## W = 0.95383, p-value = 0.138</code></pre>
+<p>Si el p-valor es mayor que 0.05, no se rechaza la hipótesis de nula.<br />
+Por tanto, el supuesto de normalidad es razonable para esta muestra.</p>
+<p><strong>Prueba de hipótesis para la media poblacional</strong></p>
+<p>Prueba t de Student para una muestra. Se compara la media muestral con el valor poblacional hipotético (3.5)</p>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="intervalos-de-confianza.html#cb62-1" tabindex="-1"></a>prueba_t <span class="ot">&lt;-</span> <span class="fu">t.test</span>(datos<span class="sc">$</span>nota,<span class="at">mu =</span> <span class="fl">3.5</span>, <span class="at">alternative =</span> <span class="st">&quot;two.sided&quot;</span>,<span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb62-2"><a href="intervalos-de-confianza.html#cb62-2" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="intervalos-de-confianza.html#cb62-3" tabindex="-1"></a>prueba_t</span></code></pre></div>
+<pre><code>## 
+##  One Sample t-test
+## 
+## data:  datos$nota
+## t = 2.2218, df = 35, p-value = 0.03286
+## alternative hypothesis: true mean is not equal to 3.5
+## 95 percent confidence interval:
+##  3.506949 3.654162
+## sample estimates:
+## mean of x 
+##  3.580556</code></pre>
+<p><strong>Interpretación estadística:</strong></p>
+<ul>
+<li>El p-valor indica si la diferencia observada es estadísticamente significativa.<br />
+</li>
+<li>Si el p-valor &lt; 0.05, se rechaza <span class="math inline">\(H_0\)</span>.</li>
+</ul>
+<p><strong>Conclusión:</strong></p>
+<p>Con un nivel de significancia del 5 %, la evidencia estadística indica que el promedio poblacional de notas de los estudiantes beneficiarios <strong>es significativamente distinto</strong> (y mayor de acuerdo con el intervalo de confianza) que el valor institucional de 3.5.</p>
+<p>En términos prácticos, el programa de becas de transporte parece estar asociado con un rendimiento académico adecuado.</p>
+<hr />
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="distribuciones-muestrales.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="análisis-bivariado-1.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/03-inertvalosconf.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Estadística Inferencial en Rstudio.pdf", "Estadística Inferencial en Rstudio.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

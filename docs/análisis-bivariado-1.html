@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Lección 5 Análisis Bivariado | Estadística Inferencial en Rstudio</title>
+  <meta name="description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  <meta name="generator" content="bookdown 0.46 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Lección 5 Análisis Bivariado | Estadística Inferencial en Rstudio" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  <meta name="github-repo" content="rstudio/bookdown-demo" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Lección 5 Análisis Bivariado | Estadística Inferencial en Rstudio" />
+  
+  <meta name="twitter:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
+  
+
+<meta name="author" content="Endy P. Salom" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intervalos-de-confianza.html"/>
+
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#instalación-y-configuración-de-r-studio"><i class="fa fa-check"></i><b>1.1</b> Instalación y Configuración de R-STUDIO</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="index.html"><a href="index.html#rstudio-en-tu-equipo-escritorio"><i class="fa fa-check"></i><b>1.1.1</b> Rstudio en tu equipo (escritorio)</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#primeros-pasos"><i class="fa fa-check"></i><b>1.2</b> Primeros pasos</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="index.html"><a href="index.html#creación-de-reportes-en-r-con-r-markdown"><i class="fa fa-check"></i><b>1.2.1</b> Creación de reportes en R con R Markdown:</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#conceptos-básicos-de-programación-en-r"><i class="fa fa-check"></i><b>1.3</b> Conceptos básicos de programación en R:</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="index.html"><a href="index.html#tipos-de-variables-en-r"><i class="fa fa-check"></i><b>1.3.1</b> Tipos de variables en R:</a></li>
+<li class="chapter" data-level="1.3.2" data-path="index.html"><a href="index.html#estructuras-de-datos-en-r"><i class="fa fa-check"></i><b>1.3.2</b> Estructuras de Datos en R:</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html"><i class="fa fa-check"></i><b>2</b> Exploración y Análisis de Datos (EDA)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#dataframes-bases-de-datos"><i class="fa fa-check"></i><b>2.1</b> Dataframes (bases de datos)</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#creación-de-dataframes"><i class="fa fa-check"></i><b>2.1.1</b> Creación de Dataframes</a></li>
+<li class="chapter" data-level="2.1.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#importar-un-dataframe-desde-un-archivo-csv"><i class="fa fa-check"></i><b>2.1.2</b> Importar un Dataframe desde un archivo CSV</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#pre-procesamiento-de-una-base-de-datos-preinstalada-en-r"><i class="fa fa-check"></i><b>2.2</b> Pre procesamiento de una Base de Datos Preinstalada en R</a></li>
+<li class="chapter" data-level="2.3" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#análilsis-exploratorio-de-datos-eda-básico"><i class="fa fa-check"></i><b>2.3</b> Análilsis exploratorio de Datos (EDA) básico</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#ejemplo-contexto"><i class="fa fa-check"></i><b>2.3.1</b> Ejemplo (Contexto):</a></li>
+<li class="chapter" data-level="2.3.2" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#cargar-base-de-datos"><i class="fa fa-check"></i><b>2.3.2</b> Cargar base de datos:</a></li>
+<li class="chapter" data-level="2.3.3" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-faltantes-na"><i class="fa fa-check"></i><b>2.3.3</b> Revisión de valores faltantes (N/A):</a></li>
+<li class="chapter" data-level="2.3.4" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#revisión-de-valores-atípicos-outliers"><i class="fa fa-check"></i><b>2.3.4</b> Revisión de valores atípicos (outliers)</a></li>
+<li class="chapter" data-level="2.3.5" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#exploración-de-variables"><i class="fa fa-check"></i><b>2.3.5</b> Exploración de variables:</a></li>
+<li class="chapter" data-level="2.3.6" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#gráficos"><i class="fa fa-check"></i><b>2.3.6</b> Gráficos:</a></li>
+<li class="chapter" data-level="2.3.7" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#análisis-bivariado"><i class="fa fa-check"></i><b>2.3.7</b> Análisis Bivariado</a></li>
+<li class="chapter" data-level="2.3.8" data-path="exploración-y-análisis-de-datos-eda.html"><a href="exploración-y-análisis-de-datos-eda.html#conlusiones"><i class="fa fa-check"></i><b>2.3.8</b> Conlusiones</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html"><i class="fa fa-check"></i><b>3</b> Distribuciones Muestrales</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#estadísticos"><i class="fa fa-check"></i><b>3.1</b> Estadísticos:</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#datos-númericos-media-varianza-y-desviación-estándar"><i class="fa fa-check"></i><b>3.1.1</b> Datos númericos (media, varianza y desviación estándar)</a></li>
+<li class="chapter" data-level="3.1.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#datos-categóricos-proporción"><i class="fa fa-check"></i><b>3.1.2</b> Datos categóricos (proporción)</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#comandos-dpqr-para-distribuciones-de-probabilidad"><i class="fa fa-check"></i><b>3.2</b> Comandos <code>dpqr</code> para distribuciones de probabilidad</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#d-densidad-funcion-de-densidad-de-probabilidad-pdf"><i class="fa fa-check"></i><b>3.2.1</b> <font color="red"> d </font> (densidad): Funcion de Densidad de Probabilidad (PDF)</a></li>
+<li class="chapter" data-level="3.2.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#p-probabilidad-acumulada-funcion-de-distribucion-acumulada"><i class="fa fa-check"></i><b>3.2.2</b> <font color="red"> p </font> (probabilidad acumulada): Funcion de Distribucion Acumulada:</a></li>
+<li class="chapter" data-level="3.2.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#r-ramdom-values-generacion-de-valores-aleatorios"><i class="fa fa-check"></i><b>3.2.3</b> <font color="red"> r </font> (ramdom values): Generacion de Valores Aleatorios</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-de-probabilidad-discretas"><i class="fa fa-check"></i><b>3.3</b> Distribuciones de probabilidad discretas</a>
+<ul>
+<li class="chapter" data-level="3.3.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-de-bernoulli"><i class="fa fa-check"></i><b>3.3.1</b> Distribucion de Bernoulli</a></li>
+<li class="chapter" data-level="3.3.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-binomial"><i class="fa fa-check"></i><b>3.3.2</b> Distribucion Binomial</a></li>
+</ul></li>
+<li class="chapter" data-level="3.4" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-de-probabilidad-continuas"><i class="fa fa-check"></i><b>3.4</b> Distribuciones de probabilidad continuas</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-normal"><i class="fa fa-check"></i><b>3.4.1</b> Distribucion Normal</a></li>
+<li class="chapter" data-level="3.4.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-normal-estandar"><i class="fa fa-check"></i><b>3.4.2</b> Distribucion Normal Estandar</a></li>
+<li class="chapter" data-level="3.4.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-t-de-student"><i class="fa fa-check"></i><b>3.4.3</b> Distribucion t de Student</a></li>
+<li class="chapter" data-level="3.4.4" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-chi-cuadrado"><i class="fa fa-check"></i><b>3.4.4</b> Distribucion Chi-cuadrado</a></li>
+<li class="chapter" data-level="3.4.5" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribucion-f"><i class="fa fa-check"></i><b>3.4.5</b> Distribucion F</a></li>
+</ul></li>
+<li class="chapter" data-level="3.5" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-muestrales-simulaciones-de-múltiples-muestras"><i class="fa fa-check"></i><b>3.5</b> Distribuciones muestrales: Simulaciones de múltiples muestras</a>
+<ul>
+<li class="chapter" data-level="3.5.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#simulación-de-la-distribución-muestral-de-la-media"><i class="fa fa-check"></i><b>3.5.1</b> Simulación de la distribución muestral de la media</a></li>
+<li class="chapter" data-level="3.5.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#simulación-de-la-distribucion-muestral-de-la-varianza"><i class="fa fa-check"></i><b>3.5.2</b> Simulación de la distribucion Muestral de la Varianza</a></li>
+<li class="chapter" data-level="3.5.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#simulación-de-la-distribucion-muestral-de-la-proporción"><i class="fa fa-check"></i><b>3.5.3</b> Simulación de la distribucion Muestral de la Proporción</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html"><i class="fa fa-check"></i><b>4</b> Intervalos de confianza</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#media"><i class="fa fa-check"></i><b>4.1</b> MEDIA</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalos-de-confianza-para-la-media"><i class="fa fa-check"></i><b>4.1.1</b> Intervalos de confianza para la media</a></li>
+<li class="chapter" data-level="4.1.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejemplo-intervalo-de-confianza-para-media-poblacional"><i class="fa fa-check"></i><b>4.1.2</b> Ejemplo intervalo de confianza para media poblacional:</a></li>
+<li class="chapter" data-level="4.1.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#prueba-de-hipótesis-para-la-media"><i class="fa fa-check"></i><b>4.1.3</b> Prueba de hipótesis para la media</a></li>
+<li class="chapter" data-level="4.1.4" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejemplo-prueba-de-hipótesis-para-media-poblacional"><i class="fa fa-check"></i><b>4.1.4</b> Ejemplo prueba de hipótesis para media poblacional:</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#proporción"><i class="fa fa-check"></i><b>4.2</b> PROPORCIÓN</a>
+<ul>
+<li class="chapter" data-level="4.2.1" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#intervalo-de-confianza-para-la-proporción"><i class="fa fa-check"></i><b>4.2.1</b> Intervalo de confianza para la proporción</a></li>
+<li class="chapter" data-level="4.2.2" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#ejemplo-intervalo-de-confianza-para-la-proporción"><i class="fa fa-check"></i><b>4.2.2</b> Ejemplo intervalo de confianza para la proporción</a></li>
+</ul></li>
+<li class="chapter" data-level="4.3" data-path="intervalos-de-confianza.html"><a href="intervalos-de-confianza.html#cómo-se-aplica-caso-simulado"><i class="fa fa-check"></i><b>4.3</b> ¿Cómo se aplica?: Caso simulado</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html"><i class="fa fa-check"></i><b>5</b> Análisis Bivariado</a>
+<ul>
+<li class="chapter" data-level="5.0.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#construcción-de-la-base-de-datos-simulada"><i class="fa fa-check"></i><b>5.0.1</b> Construcción de la base de datos simulada</a></li>
+<li class="chapter" data-level="5.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#variable-numérica-cuantitativa-y-variable-categórica-cualitativa"><i class="fa fa-check"></i><b>5.1</b> Variable numérica (cuantitativa) y variable categórica (cualitativa)</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-t-para-comparación-de-medias"><i class="fa fa-check"></i><b>5.1.1</b> Prueba t para comparación de medias</a></li>
+<li class="chapter" data-level="5.1.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#anova-análisis-de-varianza-de-un-factor"><i class="fa fa-check"></i><b>5.1.2</b> ANOVA (Análisis de varianza de un factor)</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#dos-variables-categóricas-cualitativas"><i class="fa fa-check"></i><b>5.2</b> Dos variables categóricas (cualitativas)</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-de-diferencia-de-proporciones"><i class="fa fa-check"></i><b>5.2.1</b> Prueba de diferencia de proporciones</a></li>
+<li class="chapter" data-level="5.2.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-chi-cuadrado"><i class="fa fa-check"></i><b>5.2.2</b> Prueba Chi-cuadrado</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#dos-variables-numéricas-cuantitativas"><i class="fa fa-check"></i><b>5.3</b> Dos variables numéricas (cuantitativas)</a>
+<ul>
+<li class="chapter" data-level="5.3.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#coeficiente-de-correlación-de-pearson"><i class="fa fa-check"></i><b>5.3.1</b> Coeficiente de correlación de Pearson</a></li>
+<li class="chapter" data-level="5.3.2" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#regresión-lineal-simple"><i class="fa fa-check"></i><b>5.3.2</b> Regresión lineal simple</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#conclusiones"><i class="fa fa-check"></i><b>5.4</b> Conclusiones</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">
+  Published with bookdown
+</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Estadística Inferencial en Rstudio</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="análisis-bivariado-1" class="section level1 hasAnchor" number="5">
+<h1><span class="header-section-number">Lección 5</span> Análisis Bivariado<a href="análisis-bivariado-1.html#análisis-bivariado-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div id="construcción-de-la-base-de-datos-simulada" class="section level3 hasAnchor" number="5.0.1">
+<h3><span class="header-section-number">5.0.1</span> Construcción de la base de datos simulada<a href="análisis-bivariado-1.html#construcción-de-la-base-de-datos-simulada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Contexto:</strong> La siguiente base de datos representa un conjunto de información simulada sobre 100 personas adultas entre 25 y 60 años, residentes en zonas urbanas y rurales de Colombia. Se incluyen variables relevantes para el estudio de desigualdad socioeconómica: ingresos, años de educación, nivel educativo, sexo, tipo de empleo y ubicación geográfica. Esta base nos servirá como hilo conductor para aplicar distintas pruebas estadísticas inferenciales.</p>
+<div class="note">
+<p>Tenga en cuenta que en esta ocasión estamos generando datos simulados. En caso de disponer una base de datos, el primer paso es importarla</p>
+</div>
+<p><strong>Cargar librerías necesarias</strong></p>
+<p><strong>Base de datos</strong></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-bivariado-1.html#cb1-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2025</span>) <span class="co">#Sembrar semilla para generar datos aleatorios una única vez</span></span>
+<span id="cb1-2"><a href="análisis-bivariado-1.html#cb1-2" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="análisis-bivariado-1.html#cb1-3" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="análisis-bivariado-1.html#cb1-4" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb1-5"><a href="análisis-bivariado-1.html#cb1-5" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-6"><a href="análisis-bivariado-1.html#cb1-6" tabindex="-1"></a>  <span class="at">zona =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Urbana&quot;</span>, <span class="st">&quot;Rural&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>)),</span>
+<span id="cb1-7"><a href="análisis-bivariado-1.html#cb1-7" tabindex="-1"></a>  <span class="at">educacion =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Básica&quot;</span>, <span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Universitaria&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>)),</span>
+<span id="cb1-8"><a href="análisis-bivariado-1.html#cb1-8" tabindex="-1"></a>  <span class="at">educacion_anios =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-9"><a href="análisis-bivariado-1.html#cb1-9" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Básica&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-10"><a href="análisis-bivariado-1.html#cb1-10" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Media&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb1-11"><a href="análisis-bivariado-1.html#cb1-11" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Universitaria&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">18</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-12"><a href="análisis-bivariado-1.html#cb1-12" tabindex="-1"></a>  ),</span>
+<span id="cb1-13"><a href="análisis-bivariado-1.html#cb1-13" tabindex="-1"></a>  <span class="at">empleo =</span> <span class="fu">case_when</span>(</span>
+<span id="cb1-14"><a href="análisis-bivariado-1.html#cb1-14" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Básica&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.8</span>)),</span>
+<span id="cb1-15"><a href="análisis-bivariado-1.html#cb1-15" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Media&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>)),</span>
+<span id="cb1-16"><a href="análisis-bivariado-1.html#cb1-16" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Universitaria&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
+<span id="cb1-17"><a href="análisis-bivariado-1.html#cb1-17" tabindex="-1"></a>  ),</span>
+<span id="cb1-18"><a href="análisis-bivariado-1.html#cb1-18" tabindex="-1"></a>  <span class="at">ingreso =</span> <span class="dv">1000000</span> <span class="sc">+</span> <span class="dv">200000</span> <span class="sc">*</span> educacion_anios <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">500000</span>)</span>
+<span id="cb1-19"><a href="análisis-bivariado-1.html#cb1-19" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb1-20"><a href="análisis-bivariado-1.html#cb1-20" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb1-21"><a href="análisis-bivariado-1.html#cb1-21" tabindex="-1"></a>    <span class="at">educacion =</span> <span class="fu">fct_relevel</span>(educacion, <span class="st">&quot;Básica&quot;</span>, <span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Universitaria&quot;</span>),</span>
+<span id="cb1-22"><a href="análisis-bivariado-1.html#cb1-22" tabindex="-1"></a>    <span class="at">empleo_formal =</span> <span class="fu">if_else</span>(empleo <span class="sc">==</span> <span class="st">&quot;Formal&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb1-23"><a href="análisis-bivariado-1.html#cb1-23" tabindex="-1"></a>)</span></code></pre></div>
+<p><strong>Diccionario de variables:</strong></p>
+<table>
+<colgroup>
+<col width="22%" />
+<col width="16%" />
+<col width="61%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Tipo</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>ingreso</code></td>
+<td>Cuantitativa</td>
+<td>Ingreso mensual en pesos colombianos</td>
+</tr>
+<tr class="even">
+<td><code>sexo</code></td>
+<td>Cualitativa</td>
+<td>Género de la persona (Hombre, Mujer)</td>
+</tr>
+<tr class="odd">
+<td><code>educacion</code></td>
+<td>Cualitativa</td>
+<td>Nivel educativo alcanzado</td>
+</tr>
+<tr class="even">
+<td><code>zona</code></td>
+<td>Cualitativa</td>
+<td>Zona de residencia (Urbana, Rural)</td>
+</tr>
+<tr class="odd">
+<td><code>empleo</code></td>
+<td>Cualitativa</td>
+<td>Tipo de empleo (Formal, Informal)</td>
+</tr>
+<tr class="even">
+<td><code>educacion_anios</code></td>
+<td>Cuantitativa</td>
+<td>Años de educación formal</td>
+</tr>
+<tr class="odd">
+<td><code>empleo_formal</code></td>
+<td>Binaria</td>
+<td>Variable derivada: 1 si formal, 0 si informal</td>
+</tr>
+</tbody>
+</table>
+<p>Ver primeras filas de base de datos generada:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="análisis-bivariado-1.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<pre><code>## # A tibble: 6 × 7
+##   sexo   zona   educacion educacion_anios empleo    ingreso empleo_formal
+##   &lt;chr&gt;  &lt;chr&gt;  &lt;fct&gt;               &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
+## 1 Hombre Rural  Básica                  6 Informal 1653509.             0
+## 2 Mujer  Rural  Media                  11 Informal 4258150.             0
+## 3 Mujer  Urbana Media                  10 Informal 3786379.             0
+## 4 Mujer  Rural  Media                  12 Formal   4263075.             1
+## 5 Hombre Urbana Básica                  9 Informal 2315832.             0
+## 6 Hombre Rural  Básica                  9 Informal 2213163.             0</code></pre>
+</div>
+<div id="variable-numérica-cuantitativa-y-variable-categórica-cualitativa" class="section level2 hasAnchor" number="5.1">
+<h2><span class="header-section-number">5.1</span> Variable numérica (cuantitativa) y variable categórica (cualitativa)<a href="análisis-bivariado-1.html#variable-numérica-cuantitativa-y-variable-categórica-cualitativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-t-para-comparación-de-medias" class="section level3 hasAnchor" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Prueba t para comparación de medias<a href="análisis-bivariado-1.html#prueba-t-para-comparación-de-medias" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se utiliza para comparar las medias de una variable cuantitativa entre dos grupos independientes. Recuerde que mientras más grande sea la muestra, la distribución t se aproxima a la distribución Normal Estándar.
+<strong><em>En casos aplicados, se utiliza la prueba t: no es tan común conocer las desviaciones estándar poblacionales</em></strong></p>
+<p><strong>Hipótesis:</strong>
+<span class="math display">\[
+H_0: \mu_1 = \mu_2 \quad vs \quad H_1: \mu_1 \ne \mu_2
+\]</span></p>
+<p><strong>Estadístico de prueba:</strong>
+<span class="math display">\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+\]</span></p>
+<p><strong>Prueba t para comparar ingreso (numérica) según sexo (categórica: 2 categorías)</strong></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="análisis-bivariado-1.html#cb4-1" tabindex="-1"></a><span class="fu">t.test</span>(ingreso <span class="sc">~</span> sexo, <span class="at">data =</span> datos, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>## 
+##  Welch Two Sample t-test
+## 
+## data:  ingreso by sexo
+## t = 0.2789, df = 97.426, p-value = 0.7809
+## alternative hypothesis: true difference in means between group Hombre and group Mujer is not equal to 0
+## 95 percent confidence interval:
+##  -326967.8  433892.2
+## sample estimates:
+## mean in group Hombre  mean in group Mujer 
+##              3248527              3195065</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="análisis-bivariado-1.html#cb6-1" tabindex="-1"></a><span class="co"># Comando var.equal sirve para indicarle a R que las varianzas poblacionales son diferentes o iguales. Por defecto se asumen diferentes</span></span></code></pre></div>
+<p>Note que la prueba t en R arroja:<br />
+- Valor del estadístico de prueba t<br />
+- Grados de libertad (df)
+- <strong><em>p-valor (cuando es menor al nivel de significancia (alfa) se rechaza Ho)</em></strong><br />
+- Hipótesis alternativa<br />
+- Intervalo de confianza al 95%</p>
+<p><strong>Interpretación:</strong>
+La prueba t para muestras independientes permite contrastar si el ingreso mensual promedio difiere significativamente entre hombres y mujeres. El valor-p obtenido fue 0.7809. Como este valor es mayor al nivel de significancia habitual de 0.05, NO se rechaza la hipótesis nula y concluimos que <strong>No existe una diferencia estadísticamente significativa</strong> entre los ingresos medios por sexo.</p>
+</div>
+<div id="anova-análisis-de-varianza-de-un-factor" class="section level3 hasAnchor" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> ANOVA (Análisis de varianza de un factor)<a href="análisis-bivariado-1.html#anova-análisis-de-varianza-de-un-factor" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se utiliza para comparar las medias de más de dos grupos a partir de una variable categórica con más de dos categorías.</p>
+<p><strong>Hipótesis:</strong>
+<span class="math display">\[
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k \quad vs \quad H_1: \text{al menos una media es diferente}
+\]</span></p>
+<p><strong>Estadístico de prueba:</strong>
+<span class="math display">\[
+F = \frac{\text{MS}_{\text{entre}}}{\text{MS}_{\text{dentro}}} = \frac{SC_{\text{entre}} / (k - 1)}{SC_{\text{dentro}} / (n - k)}
+\]</span></p>
+<p><strong>Anova para comparar ingreso (numérica) según nivel de educación (categórica: más de 2 categorías)</strong></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="análisis-bivariado-1.html#cb7-1" tabindex="-1"></a>prueba_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(ingreso <span class="sc">~</span> educacion, <span class="at">data =</span> datos) <span class="co">#Hacer prueba y guardarla en un objeto</span></span>
+<span id="cb7-2"><a href="análisis-bivariado-1.html#cb7-2" tabindex="-1"></a><span class="fu">summary</span>(prueba_anova)<span class="co">#Visualizar el resultado</span></span></code></pre></div>
+<pre><code>##             Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
+## educacion    2 5.628e+13 2.814e+13   81.01 &lt;2e-16 ***
+## Residuals   97 3.370e+13 3.474e+11                   
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+<p><strong>Interpretación:</strong>
+La prueba ANOVA se usa cuando se desea comparar la media de una variable cuantitativa en tres o más grupos. El valor-p del análisis fue menor a 0.05, por lo que se concluye que <strong>existen diferencias significativas en el ingreso promedio según el nivel educativo alcanzado</strong>. En consecuencia, podríamos afirmar que la educación tiene un efecto significativo sobre los ingresos.</p>
+<hr />
+</div>
+</div>
+<div id="dos-variables-categóricas-cualitativas" class="section level2 hasAnchor" number="5.2">
+<h2><span class="header-section-number">5.2</span> Dos variables categóricas (cualitativas)<a href="análisis-bivariado-1.html#dos-variables-categóricas-cualitativas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="prueba-de-diferencia-de-proporciones" class="section level3 hasAnchor" number="5.2.1">
+<h3><span class="header-section-number">5.2.1</span> Prueba de diferencia de proporciones<a href="análisis-bivariado-1.html#prueba-de-diferencia-de-proporciones" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se usa para comparar proporciones entre dos grupos independientes. Para comparar una misma proporción entre dos grupos independientes.</p>
+<p><strong>Hipótesis:</strong>
+<span class="math display">\[
+H_0: p_1 = p_2 \quad vs \quad H_1: p_1 \ne p_2
+\]</span></p>
+<p><strong>Estadístico de prueba:</strong>
+<span class="math display">\[
+z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1 - \hat{p})(\frac{1}{n_1} + \frac{1}{n_2})}}
+\]</span></p>
+<p>Donde <span class="math inline">\(\hat{p} = \frac{x_1 + x_2}{n_1 + n_2}\)</span></p>
+<p><strong>Diferencia de proporciones: Empleo formal según zona</strong></p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="análisis-bivariado-1.html#cb9-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">table</span>(datos<span class="sc">$</span>zona, datos<span class="sc">$</span>empleo_formal))</span></code></pre></div>
+<pre><code>## 
+##  2-sample test for equality of proportions with continuity correction
+## 
+## data:  table(datos$zona, datos$empleo_formal)
+## X-squared = 6.1054e-31, df = 1, p-value = 1
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.2268736  0.1962778
+## sample estimates:
+##    prop 1    prop 2 
+## 0.5217391 0.5370370</code></pre>
+<p><strong>Interpretación:</strong>
+La prueba de diferencia de proporciones compara la proporción de empleo formal en las zonas urbana y rural. El valor-p fue mayor que 0.05. Por lo tanto, se <strong>no se rechaza la hipótesis nula</strong>: la proporción de empleo formal <strong>no varía significativamente entre zonas</strong>.</p>
+</div>
+<div id="prueba-chi-cuadrado" class="section level3 hasAnchor" number="5.2.2">
+<h3><span class="header-section-number">5.2.2</span> Prueba Chi-cuadrado<a href="análisis-bivariado-1.html#prueba-chi-cuadrado" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Se utiliza para determinar si dos variables categóricas (de cualquier número de niveles) están asociadas. Generaliza la comparación a tablas mayores que 2x2.</p>
+<p><strong>Hipótesis:</strong>
+<span class="math display">\[
+H_0: \text{Las variables son independientes} \quad vs \quad H_1: \text{Las variables están asociadas}
+\]</span></p>
+<p><strong>Estadístico de prueba:</strong>
+<span class="math display">\[
+\chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+\]</span></p>
+<p>Donde <span class="math inline">\(E_{ij} = \frac{(\text{total fila}_i)(\text{total columna}_j)}{n}\)</span></p>
+<p><strong>Prueba chi-cuadrado: Educación vs. Tipo de empleo</strong></p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="análisis-bivariado-1.html#cb11-1" tabindex="-1"></a>tabla_chi <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>educacion, datos<span class="sc">$</span>empleo) <span class="co">#Se crea la tabla de contingencia</span></span>
+<span id="cb11-2"><a href="análisis-bivariado-1.html#cb11-2" tabindex="-1"></a><span class="fu">chisq.test</span>(tabla_chi) <span class="co"># Prueba Chi basada en la tabla de contingencia creada</span></span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s Chi-squared test
+## 
+## data:  tabla_chi
+## X-squared = 34.084, df = 2, p-value = 3.969e-08</code></pre>
+<p><strong>Interpretación:</strong>
+La prueba chi-cuadrado evalúa si existe asociación entre dos variables cualitativas. En este caso, el valor-p menor a 0.05 indica una <strong>asociación significativa</strong> entre el nivel educativo y el tipo de empleo. Esto sugiere que las personas con mayor nivel educativo tienen más probabilidad de acceder al empleo formal.</p>
+<hr />
+</div>
+</div>
+<div id="dos-variables-numéricas-cuantitativas" class="section level2 hasAnchor" number="5.3">
+<h2><span class="header-section-number">5.3</span> Dos variables numéricas (cuantitativas)<a href="análisis-bivariado-1.html#dos-variables-numéricas-cuantitativas" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="coeficiente-de-correlación-de-pearson" class="section level3 hasAnchor" number="5.3.1">
+<h3><span class="header-section-number">5.3.1</span> Coeficiente de correlación de Pearson<a href="análisis-bivariado-1.html#coeficiente-de-correlación-de-pearson" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Mide la fuerza y dirección de la relación lineal entre dos variables cuantitativas.</p>
+<p><strong>Hipótesis:</strong>
+<span class="math display">\[
+H_0: \rho = 0 \quad vs \quad H_1: \rho \ne 0
+\]</span></p>
+<p><strong>Estadístico de prueba:</strong>
+<span class="math display">\[
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+\]</span></p>
+<p><strong>Correlación: Años de educación vs. ingreso</strong></p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="análisis-bivariado-1.html#cb13-1" tabindex="-1"></a><span class="fu">cor.test</span>(datos<span class="sc">$</span>educacion_anios, datos<span class="sc">$</span>ingreso)</span></code></pre></div>
+<pre><code>## 
+##  Pearson&#39;s product-moment correlation
+## 
+## data:  datos$educacion_anios and datos$ingreso
+## t = 14.768, df = 98, p-value &lt; 2.2e-16
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7578810 0.8830005
+## sample estimates:
+##       cor 
+## 0.8306476</code></pre>
+<p><strong>Interpretación:</strong>
+La correlación de Pearson evalúa la relación lineal entre dos variables cuantitativas. Se obtuvo un coeficiente de 0.83 con un valor-p menor a 0.05, lo que indica una <strong>correlación positiva y significativa</strong>. Es decir, a mayor número de años de educación, mayor ingreso mensual, en línea con teorías económicas de capital humano.</p>
+</div>
+<div id="regresión-lineal-simple" class="section level3 hasAnchor" number="5.3.2">
+<h3><span class="header-section-number">5.3.2</span> Regresión lineal simple<a href="análisis-bivariado-1.html#regresión-lineal-simple" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Modelo para estimar una variable cuantitativa (Y) en función de otra (X):</p>
+<p><span class="math display">\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]</span></p>
+<p>Se estima por mínimos cuadrados:
+<span class="math display">\[
+\hat{\beta}_1 = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}, \quad \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}
+\]</span></p>
+<p><strong>Predecir ingreso por educación</strong></p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="análisis-bivariado-1.html#cb15-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(ingreso <span class="sc">~</span> educacion_anios, <span class="at">data =</span> datos) <span class="co">#correr modelo y guardarlo</span></span>
+<span id="cb15-2"><a href="análisis-bivariado-1.html#cb15-2" tabindex="-1"></a><span class="fu">summary</span>(modelo) <span class="co">#Resumen </span></span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = ingreso ~ educacion_anios, data = datos)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1248215  -370080   -22128   285160  1261533 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)       717475     177838   4.034 0.000109 ***
+## educacion_anios   223297      15120  14.768  &lt; 2e-16 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 533500 on 98 degrees of freedom
+## Multiple R-squared:   0.69,  Adjusted R-squared:  0.6868 
+## F-statistic: 218.1 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+<p><strong>Interpretación:</strong>
+El modelo de regresión lineal simple estima la relación entre los años de educación y el ingreso mensual. El coeficiente de pendiente indica que <strong>por cada año adicional de educación, el ingreso mensual aumenta en promedio en aproximadamente 200 mil pesos</strong>. El valor-p asociado al coeficiente de <code>educacion_anios</code> es significativo, lo que respalda la utilidad predictiva del modelo. El R² indica qué proporción de la variabilidad del ingreso se explica por la educación formal.</p>
+<hr />
+</div>
+</div>
+<div id="conclusiones" class="section level2 hasAnchor" number="5.4">
+<h2><span class="header-section-number">5.4</span> Conclusiones<a href="análisis-bivariado-1.html#conclusiones" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Cada una de las pruebas utilizadas respondió a preguntas diferentes sobre la desigualdad:</p>
+<ul>
+<li>La prueba t evidenció que no existe una brecha de género en la población estudiada.</li>
+<li>El ANOVA mostró que los ingresos difieren significativamente por nivel educativo.</li>
+<li>La chi-cuadrado mostró asociación entre educación y empleo.</li>
+<li>La correlación validó la relación positiva entre educación e ingreso.</li>
+<li>La regresión lineal planteó que la educación tiene un efecto significativo sobre el ingreso.</li>
+</ul>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intervalos-de-confianza.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/USERNAME/REPO/edit/BRANCH/04-bivariado.Rmd",
+"text": "Edit"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["Estadística Inferencial en Rstudio.pdf", "Estadística Inferencial en Rstudio.epub"],
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,296 @@
+# Análisis Bivariado 
+
+
+### Construcción de la base de datos simulada
+
+**Contexto:** La siguiente base de datos representa un conjunto de información simulada sobre 100 personas adultas entre 25 y 60 años, residentes en zonas urbanas y rurales de Colombia. Se incluyen variables relevantes para el estudio de desigualdad socioeconómica: ingresos, años de educación, nivel educativo, sexo, tipo de empleo y ubicación geográfica. Esta base nos servirá como hilo conductor para aplicar distintas pruebas estadísticas inferenciales.
+
+::: note
+Tenga en cuenta que en esta ocasión estamos generando datos simulados. En caso de disponer una base de datos, el primer paso es importarla
+:::
+
+
+**Cargar librerías necesarias**
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning = FALSE, message = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(janitor)
+library(infer)
+library(dplyr)
+library(forcats)
+```
+
+
+
+**Base de datos**
+
+```{r}
+set.seed(2025) #Sembrar semilla para generar datos aleatorios una única vez
+
+
+datos <- tibble(
+  sexo = sample(c("Hombre", "Mujer"), 100, replace = TRUE),
+  zona = sample(c("Urbana", "Rural"), 100, replace = TRUE, prob = c(0.6, 0.4)),
+  educacion = sample(c("Básica", "Media", "Universitaria"), 100, replace = TRUE, prob = c(0.3, 0.4, 0.3)),
+  educacion_anios = case_when(
+    educacion == "Básica" ~ sample(5:9, 100, replace = TRUE),
+    educacion == "Media" ~ sample(10:12, 100, replace = TRUE),
+    educacion == "Universitaria" ~ sample(13:18, 100, replace = TRUE)
+  ),
+  empleo = case_when(
+    educacion == "Básica" ~ sample(c("Formal", "Informal"), 100, replace = TRUE, prob = c(0.2, 0.8)),
+    educacion == "Media" ~ sample(c("Formal", "Informal"), 100, replace = TRUE, prob = c(0.4, 0.6)),
+    educacion == "Universitaria" ~ sample(c("Formal", "Informal"), 100, replace = TRUE, prob = c(0.7, 0.3))
+  ),
+  ingreso = 1000000 + 200000 * educacion_anios + rnorm(100, 0, 500000)
+) %>%
+  mutate(
+    educacion = fct_relevel(educacion, "Básica", "Media", "Universitaria"),
+    empleo_formal = if_else(empleo == "Formal", 1, 0)
+)
+
+
+```
+
+
+
+**Diccionario de variables:**
+
+| Variable           | Tipo         | Descripción                                        |
+|-------------------|--------------|----------------------------------------------------|
+| `ingreso`         | Cuantitativa | Ingreso mensual en pesos colombianos              |
+| `sexo`            | Cualitativa  | Género de la persona (Hombre, Mujer)              |
+| `educacion`       | Cualitativa  | Nivel educativo alcanzado                         |
+| `zona`            | Cualitativa  | Zona de residencia (Urbana, Rural)                |
+| `empleo`          | Cualitativa  | Tipo de empleo (Formal, Informal)                 |
+| `educacion_anios` | Cuantitativa | Años de educación formal                          |
+| `empleo_formal`   | Binaria      | Variable derivada: 1 si formal, 0 si informal     |
+
+
+Ver primeras filas de base de datos generada:
+
+```{r}
+head(datos)
+```
+
+## Variable numérica (cuantitativa) y variable categórica (cualitativa)
+
+
+### Prueba t para comparación de medias
+
+Se utiliza para comparar las medias de una variable cuantitativa entre dos grupos independientes. Recuerde que mientras más grande sea la muestra, la distribución t se aproxima a la distribución Normal Estándar.
+***En casos aplicados, se utiliza la prueba t: no es tan común conocer las desviaciones estándar poblacionales***  
+
+
+**Hipótesis:**
+\[
+H_0: \mu_1 = \mu_2 \quad vs \quad H_1: \mu_1 \ne \mu_2
+\]
+
+**Estadístico de prueba:**
+\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+\]
+
+
+
+
+**Prueba t para comparar ingreso (numérica) según sexo (categórica: 2 categorías)**
+
+```{r}
+
+t.test(ingreso ~ sexo, data = datos, var.equal = FALSE)
+# Comando var.equal sirve para indicarle a R que las varianzas poblacionales son diferentes o iguales. Por defecto se asumen diferentes
+
+```
+
+Note que la prueba t en R arroja:  
+- Valor del estadístico de prueba t  
+- Grados de libertad (df)
+- ***p-valor (cuando es menor al nivel de significancia (alfa) se rechaza Ho)***  
+- Hipótesis alternativa  
+- Intervalo de confianza al 95%  
+
+
+
+**Interpretación:**
+La prueba t para muestras independientes permite contrastar si el ingreso mensual promedio difiere significativamente entre hombres y mujeres. El valor-p obtenido fue 0.7809. Como este valor es mayor al nivel de significancia habitual de 0.05, NO se rechaza la hipótesis nula y concluimos que **No existe una diferencia estadísticamente significativa** entre los ingresos medios por sexo. 
+
+
+
+### ANOVA (Análisis de varianza de un factor)
+
+Se utiliza para comparar las medias de más de dos grupos a partir de una variable categórica con más de dos categorías.
+
+**Hipótesis:**
+\[
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k \quad vs \quad H_1: \text{al menos una media es diferente}
+\]
+
+**Estadístico de prueba:**
+\[
+F = \frac{\text{MS}_{\text{entre}}}{\text{MS}_{\text{dentro}}} = \frac{SC_{\text{entre}} / (k - 1)}{SC_{\text{dentro}} / (n - k)}
+\]
+
+
+**Anova para comparar ingreso (numérica) según nivel de educación (categórica: más de 2 categorías)**
+
+
+```{r}
+
+prueba_anova <- aov(ingreso ~ educacion, data = datos) #Hacer prueba y guardarla en un objeto
+summary(prueba_anova)#Visualizar el resultado
+
+```
+
+**Interpretación:**
+La prueba ANOVA se usa cuando se desea comparar la media de una variable cuantitativa en tres o más grupos. El valor-p del análisis fue menor a 0.05, por lo que se concluye que **existen diferencias significativas en el ingreso promedio según el nivel educativo alcanzado**. En consecuencia, podríamos afirmar que la educación tiene un efecto significativo sobre los ingresos.
+
+
+---
+
+
+##  Dos variables categóricas (cualitativas)
+
+
+
+
+### Prueba de diferencia de proporciones
+
+Se usa para comparar proporciones entre dos grupos independientes. Para comparar una misma proporción entre dos grupos independientes.
+
+
+
+**Hipótesis:**
+\[
+H_0: p_1 = p_2 \quad vs \quad H_1: p_1 \ne p_2
+\]
+
+**Estadístico de prueba:**
+\[
+z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1 - \hat{p})(\frac{1}{n_1} + \frac{1}{n_2})}}
+\]
+
+Donde \( \hat{p} = \frac{x_1 + x_2}{n_1 + n_2} \)
+
+
+
+
+**Diferencia de proporciones: Empleo formal según zona**
+
+
+```{r}
+
+prop.test(table(datos$zona, datos$empleo_formal))
+
+```
+
+**Interpretación:**
+La prueba de diferencia de proporciones compara la proporción de empleo formal en las zonas urbana y rural. El valor-p fue mayor que 0.05. Por lo tanto, se **no se rechaza la hipótesis nula**: la proporción de empleo formal **no varía significativamente entre zonas**.
+
+
+
+### Prueba Chi-cuadrado
+
+Se utiliza para determinar si dos variables categóricas (de cualquier número de niveles) están asociadas. Generaliza la comparación a tablas mayores que 2x2.
+
+**Hipótesis:**
+\[
+H_0: \text{Las variables son independientes} \quad vs \quad H_1: \text{Las variables están asociadas}
+\]
+
+**Estadístico de prueba:**
+\[
+\chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+\]
+
+Donde \( E_{ij} = \frac{(\text{total fila}_i)(\text{total columna}_j)}{n} \)
+
+
+
+**Prueba chi-cuadrado: Educación vs. Tipo de empleo**
+
+```{r}
+tabla_chi <- table(datos$educacion, datos$empleo) #Se crea la tabla de contingencia
+chisq.test(tabla_chi) # Prueba Chi basada en la tabla de contingencia creada
+
+```
+
+**Interpretación:**
+La prueba chi-cuadrado evalúa si existe asociación entre dos variables cualitativas. En este caso, el valor-p menor a 0.05 indica una **asociación significativa** entre el nivel educativo y el tipo de empleo. Esto sugiere que las personas con mayor nivel educativo tienen más probabilidad de acceder al empleo formal.
+
+
+---
+
+
+## Dos variables numéricas (cuantitativas)
+
+
+
+
+### Coeficiente de correlación de Pearson
+
+Mide la fuerza y dirección de la relación lineal entre dos variables cuantitativas.
+
+**Hipótesis:**
+\[
+H_0: \rho = 0 \quad vs \quad H_1: \rho \ne 0
+\]
+
+**Estadístico de prueba:**
+\[
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+\]
+
+
+**Correlación: Años de educación vs. ingreso**
+
+```{r}
+cor.test(datos$educacion_anios, datos$ingreso)
+
+```
+
+**Interpretación:**
+La correlación de Pearson evalúa la relación lineal entre dos variables cuantitativas. Se obtuvo un coeficiente de 0.83 con un valor-p menor a 0.05, lo que indica una **correlación positiva y significativa**. Es decir, a mayor número de años de educación, mayor ingreso mensual, en línea con teorías económicas de capital humano.
+
+
+
+### Regresión lineal simple
+
+Modelo para estimar una variable cuantitativa (Y) en función de otra (X):
+
+\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]
+
+Se estima por mínimos cuadrados:
+\[
+\hat{\beta}_1 = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}, \quad \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}
+\]
+
+
+**Predecir ingreso por educación**
+
+```{r}
+modelo <- lm(ingreso ~ educacion_anios, data = datos) #correr modelo y guardarlo
+summary(modelo) #Resumen 
+```
+
+**Interpretación:**
+El modelo de regresión lineal simple estima la relación entre los años de educación y el ingreso mensual. El coeficiente de pendiente indica que **por cada año adicional de educación, el ingreso mensual aumenta en promedio en aproximadamente 200 mil pesos**. El valor-p asociado al coeficiente de `educacion_anios` es significativo, lo que respalda la utilidad predictiva del modelo. El R² indica qué proporción de la variabilidad del ingreso se explica por la educación formal.
+
+---
+
+## Conclusiones
+
+Cada una de las pruebas utilizadas respondió a preguntas diferentes sobre la desigualdad:
+
+- La prueba t evidenció que no existe una brecha de género en la población estudiada.
+- El ANOVA mostró que los ingresos difieren significativamente por nivel educativo.
+- La chi-cuadrado mostró asociación entre educación y empleo.
+- La correlación validó la relación positiva entre educación e ingreso.
+- La regresión lineal planteó que la educación tiene un efecto significativo sobre el ingreso.
+
+
