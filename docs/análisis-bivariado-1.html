@@ -139,7 +139,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">A Minimal Book Example</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> url: your book url like https://bookdown.org/yihui/bookdown</a>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Conoce Rstudio</a>
 <ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#instalación-y-configuración-de-r-studio"><i class="fa fa-check"></i><b>1.1</b> Instalación y Configuración de R-STUDIO</a>
 <ul>
@@ -226,7 +226,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html"><i class="fa fa-check"></i><b>5</b> Análisis Bivariado</a>
 <ul>
-<li class="chapter" data-level="5.0.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#construcción-de-la-base-de-datos-simulada"><i class="fa fa-check"></i><b>5.0.1</b> Construcción de la base de datos simulada</a></li>
 <li class="chapter" data-level="5.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#variable-numérica-cuantitativa-y-variable-categórica-cualitativa"><i class="fa fa-check"></i><b>5.1</b> Variable numérica (cuantitativa) y variable categórica (cualitativa)</a>
 <ul>
 <li class="chapter" data-level="5.1.1" data-path="análisis-bivariado-1.html"><a href="análisis-bivariado-1.html#prueba-t-para-comparación-de-medias"><i class="fa fa-check"></i><b>5.1.1</b> Prueba t para comparación de medias</a></li>
@@ -268,37 +267,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="análisis-bivariado-1" class="section level1 hasAnchor" number="5">
 <h1><span class="header-section-number">Lección 5</span> Análisis Bivariado<a href="análisis-bivariado-1.html#análisis-bivariado-1" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<div id="construcción-de-la-base-de-datos-simulada" class="section level3 hasAnchor" number="5.0.1">
-<h3><span class="header-section-number">5.0.1</span> Construcción de la base de datos simulada<a href="análisis-bivariado-1.html#construcción-de-la-base-de-datos-simulada" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><strong>Construcción de la base de datos simulada</strong></p>
 <p><strong>Contexto:</strong> La siguiente base de datos representa un conjunto de información simulada sobre 100 personas adultas entre 25 y 60 años, residentes en zonas urbanas y rurales de Colombia. Se incluyen variables relevantes para el estudio de desigualdad socioeconómica: ingresos, años de educación, nivel educativo, sexo, tipo de empleo y ubicación geográfica. Esta base nos servirá como hilo conductor para aplicar distintas pruebas estadísticas inferenciales.</p>
 <div class="note">
 <p>Tenga en cuenta que en esta ocasión estamos generando datos simulados. En caso de disponer una base de datos, el primer paso es importarla</p>
 </div>
 <p><strong>Cargar librerías necesarias</strong></p>
 <p><strong>Base de datos</strong></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="análisis-bivariado-1.html#cb1-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2025</span>) <span class="co">#Sembrar semilla para generar datos aleatorios una única vez</span></span>
-<span id="cb1-2"><a href="análisis-bivariado-1.html#cb1-2" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="análisis-bivariado-1.html#cb1-3" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="análisis-bivariado-1.html#cb1-4" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
-<span id="cb1-5"><a href="análisis-bivariado-1.html#cb1-5" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-6"><a href="análisis-bivariado-1.html#cb1-6" tabindex="-1"></a>  <span class="at">zona =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Urbana&quot;</span>, <span class="st">&quot;Rural&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>)),</span>
-<span id="cb1-7"><a href="análisis-bivariado-1.html#cb1-7" tabindex="-1"></a>  <span class="at">educacion =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Básica&quot;</span>, <span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Universitaria&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>)),</span>
-<span id="cb1-8"><a href="análisis-bivariado-1.html#cb1-8" tabindex="-1"></a>  <span class="at">educacion_anios =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-9"><a href="análisis-bivariado-1.html#cb1-9" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Básica&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-10"><a href="análisis-bivariado-1.html#cb1-10" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Media&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
-<span id="cb1-11"><a href="análisis-bivariado-1.html#cb1-11" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Universitaria&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">18</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb1-12"><a href="análisis-bivariado-1.html#cb1-12" tabindex="-1"></a>  ),</span>
-<span id="cb1-13"><a href="análisis-bivariado-1.html#cb1-13" tabindex="-1"></a>  <span class="at">empleo =</span> <span class="fu">case_when</span>(</span>
-<span id="cb1-14"><a href="análisis-bivariado-1.html#cb1-14" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Básica&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.8</span>)),</span>
-<span id="cb1-15"><a href="análisis-bivariado-1.html#cb1-15" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Media&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>)),</span>
-<span id="cb1-16"><a href="análisis-bivariado-1.html#cb1-16" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Universitaria&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
-<span id="cb1-17"><a href="análisis-bivariado-1.html#cb1-17" tabindex="-1"></a>  ),</span>
-<span id="cb1-18"><a href="análisis-bivariado-1.html#cb1-18" tabindex="-1"></a>  <span class="at">ingreso =</span> <span class="dv">1000000</span> <span class="sc">+</span> <span class="dv">200000</span> <span class="sc">*</span> educacion_anios <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">500000</span>)</span>
-<span id="cb1-19"><a href="análisis-bivariado-1.html#cb1-19" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
-<span id="cb1-20"><a href="análisis-bivariado-1.html#cb1-20" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
-<span id="cb1-21"><a href="análisis-bivariado-1.html#cb1-21" tabindex="-1"></a>    <span class="at">educacion =</span> <span class="fu">fct_relevel</span>(educacion, <span class="st">&quot;Básica&quot;</span>, <span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Universitaria&quot;</span>),</span>
-<span id="cb1-22"><a href="análisis-bivariado-1.html#cb1-22" tabindex="-1"></a>    <span class="at">empleo_formal =</span> <span class="fu">if_else</span>(empleo <span class="sc">==</span> <span class="st">&quot;Formal&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
-<span id="cb1-23"><a href="análisis-bivariado-1.html#cb1-23" tabindex="-1"></a>)</span></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="análisis-bivariado-1.html#cb292-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">2025</span>) <span class="co">#Sembrar semilla para generar datos aleatorios una única vez</span></span>
+<span id="cb292-2"><a href="análisis-bivariado-1.html#cb292-2" tabindex="-1"></a></span>
+<span id="cb292-3"><a href="análisis-bivariado-1.html#cb292-3" tabindex="-1"></a></span>
+<span id="cb292-4"><a href="análisis-bivariado-1.html#cb292-4" tabindex="-1"></a>datos <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb292-5"><a href="análisis-bivariado-1.html#cb292-5" tabindex="-1"></a>  <span class="at">sexo =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Hombre&quot;</span>, <span class="st">&quot;Mujer&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb292-6"><a href="análisis-bivariado-1.html#cb292-6" tabindex="-1"></a>  <span class="at">zona =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Urbana&quot;</span>, <span class="st">&quot;Rural&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.6</span>, <span class="fl">0.4</span>)),</span>
+<span id="cb292-7"><a href="análisis-bivariado-1.html#cb292-7" tabindex="-1"></a>  <span class="at">educacion =</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Básica&quot;</span>, <span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Universitaria&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.3</span>, <span class="fl">0.4</span>, <span class="fl">0.3</span>)),</span>
+<span id="cb292-8"><a href="análisis-bivariado-1.html#cb292-8" tabindex="-1"></a>  <span class="at">educacion_anios =</span> <span class="fu">case_when</span>(</span>
+<span id="cb292-9"><a href="análisis-bivariado-1.html#cb292-9" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Básica&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb292-10"><a href="análisis-bivariado-1.html#cb292-10" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Media&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">12</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb292-11"><a href="análisis-bivariado-1.html#cb292-11" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Universitaria&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="dv">13</span><span class="sc">:</span><span class="dv">18</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb292-12"><a href="análisis-bivariado-1.html#cb292-12" tabindex="-1"></a>  ),</span>
+<span id="cb292-13"><a href="análisis-bivariado-1.html#cb292-13" tabindex="-1"></a>  <span class="at">empleo =</span> <span class="fu">case_when</span>(</span>
+<span id="cb292-14"><a href="análisis-bivariado-1.html#cb292-14" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Básica&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.2</span>, <span class="fl">0.8</span>)),</span>
+<span id="cb292-15"><a href="análisis-bivariado-1.html#cb292-15" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Media&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.4</span>, <span class="fl">0.6</span>)),</span>
+<span id="cb292-16"><a href="análisis-bivariado-1.html#cb292-16" tabindex="-1"></a>    educacion <span class="sc">==</span> <span class="st">&quot;Universitaria&quot;</span> <span class="sc">~</span> <span class="fu">sample</span>(<span class="fu">c</span>(<span class="st">&quot;Formal&quot;</span>, <span class="st">&quot;Informal&quot;</span>), <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">TRUE</span>, <span class="at">prob =</span> <span class="fu">c</span>(<span class="fl">0.7</span>, <span class="fl">0.3</span>))</span>
+<span id="cb292-17"><a href="análisis-bivariado-1.html#cb292-17" tabindex="-1"></a>  ),</span>
+<span id="cb292-18"><a href="análisis-bivariado-1.html#cb292-18" tabindex="-1"></a>  <span class="at">ingreso =</span> <span class="dv">1000000</span> <span class="sc">+</span> <span class="dv">200000</span> <span class="sc">*</span> educacion_anios <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="dv">0</span>, <span class="dv">500000</span>)</span>
+<span id="cb292-19"><a href="análisis-bivariado-1.html#cb292-19" tabindex="-1"></a>) <span class="sc">%&gt;%</span></span>
+<span id="cb292-20"><a href="análisis-bivariado-1.html#cb292-20" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb292-21"><a href="análisis-bivariado-1.html#cb292-21" tabindex="-1"></a>    <span class="at">educacion =</span> <span class="fu">fct_relevel</span>(educacion, <span class="st">&quot;Básica&quot;</span>, <span class="st">&quot;Media&quot;</span>, <span class="st">&quot;Universitaria&quot;</span>),</span>
+<span id="cb292-22"><a href="análisis-bivariado-1.html#cb292-22" tabindex="-1"></a>    <span class="at">empleo_formal =</span> <span class="fu">if_else</span>(empleo <span class="sc">==</span> <span class="st">&quot;Formal&quot;</span>, <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb292-23"><a href="análisis-bivariado-1.html#cb292-23" tabindex="-1"></a>)</span></code></pre></div>
 <p><strong>Diccionario de variables:</strong></p>
 <table>
 <colgroup>
@@ -352,7 +350,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </tbody>
 </table>
 <p>Ver primeras filas de base de datos generada:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="análisis-bivariado-1.html#cb2-1" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="análisis-bivariado-1.html#cb293-1" tabindex="-1"></a><span class="fu">head</span>(datos)</span></code></pre></div>
 <pre><code>## # A tibble: 6 × 7
 ##   sexo   zona   educacion educacion_anios empleo    ingreso empleo_formal
 ##   &lt;chr&gt;  &lt;chr&gt;  &lt;fct&gt;               &lt;int&gt; &lt;chr&gt;       &lt;dbl&gt;         &lt;dbl&gt;
@@ -362,7 +360,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4 Mujer  Rural  Media                  12 Formal   4263075.             1
 ## 5 Hombre Urbana Básica                  9 Informal 2315832.             0
 ## 6 Hombre Rural  Básica                  9 Informal 2213163.             0</code></pre>
-</div>
 <div id="variable-numérica-cuantitativa-y-variable-categórica-cualitativa" class="section level2 hasAnchor" number="5.1">
 <h2><span class="header-section-number">5.1</span> Variable numérica (cuantitativa) y variable categórica (cualitativa)<a href="análisis-bivariado-1.html#variable-numérica-cuantitativa-y-variable-categórica-cualitativa" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="prueba-t-para-comparación-de-medias" class="section level3 hasAnchor" number="5.1.1">
@@ -378,7 +375,7 @@ H_0: \mu_1 = \mu_2 \quad vs \quad H_1: \mu_1 \ne \mu_2
 t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 \]</span></p>
 <p><strong>Prueba t para comparar ingreso (numérica) según sexo (categórica: 2 categorías)</strong></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="análisis-bivariado-1.html#cb4-1" tabindex="-1"></a><span class="fu">t.test</span>(ingreso <span class="sc">~</span> sexo, <span class="at">data =</span> datos, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="análisis-bivariado-1.html#cb295-1" tabindex="-1"></a><span class="fu">t.test</span>(ingreso <span class="sc">~</span> sexo, <span class="at">data =</span> datos, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -390,7 +387,7 @@ t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
 ## sample estimates:
 ## mean in group Hombre  mean in group Mujer 
 ##              3248527              3195065</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="análisis-bivariado-1.html#cb6-1" tabindex="-1"></a><span class="co"># Comando var.equal sirve para indicarle a R que las varianzas poblacionales son diferentes o iguales. Por defecto se asumen diferentes</span></span></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb297-1"><a href="análisis-bivariado-1.html#cb297-1" tabindex="-1"></a><span class="co"># Comando var.equal sirve para indicarle a R que las varianzas poblacionales son diferentes o iguales. Por defecto se asumen diferentes</span></span></code></pre></div>
 <p>Note que la prueba t en R arroja:<br />
 - Valor del estadístico de prueba t<br />
 - Grados de libertad (df)
@@ -412,11 +409,11 @@ H_0: \mu_1 = \mu_2 = \cdots = \mu_k \quad vs \quad H_1: \text{al menos una media
 F = \frac{\text{MS}_{\text{entre}}}{\text{MS}_{\text{dentro}}} = \frac{SC_{\text{entre}} / (k - 1)}{SC_{\text{dentro}} / (n - k)}
 \]</span></p>
 <p><strong>Anova para comparar ingreso (numérica) según nivel de educación (categórica: más de 2 categorías)</strong></p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="análisis-bivariado-1.html#cb7-1" tabindex="-1"></a>prueba_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(ingreso <span class="sc">~</span> educacion, <span class="at">data =</span> datos) <span class="co">#Hacer prueba y guardarla en un objeto</span></span>
-<span id="cb7-2"><a href="análisis-bivariado-1.html#cb7-2" tabindex="-1"></a><span class="fu">summary</span>(prueba_anova)<span class="co">#Visualizar el resultado</span></span></code></pre></div>
-<pre><code>##             Df    Sum Sq   Mean Sq F value Pr(&gt;F)    
-## educacion    2 5.628e+13 2.814e+13   81.01 &lt;2e-16 ***
-## Residuals   97 3.370e+13 3.474e+11                   
+<div class="sourceCode" id="cb298"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb298-1"><a href="análisis-bivariado-1.html#cb298-1" tabindex="-1"></a>prueba_anova <span class="ot">&lt;-</span> <span class="fu">aov</span>(ingreso <span class="sc">~</span> educacion, <span class="at">data =</span> datos) <span class="co">#Hacer prueba y guardarla en un objeto</span></span>
+<span id="cb298-2"><a href="análisis-bivariado-1.html#cb298-2" tabindex="-1"></a><span class="fu">summary</span>(prueba_anova)<span class="co">#Visualizar el resultado</span></span></code></pre></div>
+<pre><code>##             Df         Sum Sq        Mean Sq F value              Pr(&gt;F)    
+## educacion    2 56284478322819 28142239161409   81.01 &lt;0.0000000000000002 ***
+## Residuals   97 33697715181164   347399125579                                
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
 <p><strong>Interpretación:</strong>
@@ -439,12 +436,12 @@ z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1 - \hat{p})(\frac{1}{n_1} + \fra
 \]</span></p>
 <p>Donde <span class="math inline">\(\hat{p} = \frac{x_1 + x_2}{n_1 + n_2}\)</span></p>
 <p><strong>Diferencia de proporciones: Empleo formal según zona</strong></p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="análisis-bivariado-1.html#cb9-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">table</span>(datos<span class="sc">$</span>zona, datos<span class="sc">$</span>empleo_formal))</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="análisis-bivariado-1.html#cb300-1" tabindex="-1"></a><span class="fu">prop.test</span>(<span class="fu">table</span>(datos<span class="sc">$</span>zona, datos<span class="sc">$</span>empleo_formal))</span></code></pre></div>
 <pre><code>## 
 ##  2-sample test for equality of proportions with continuity correction
 ## 
 ## data:  table(datos$zona, datos$empleo_formal)
-## X-squared = 6.1054e-31, df = 1, p-value = 1
+## X-squared = 0.00000000000000000000000000000061054, df = 1, p-value = 1
 ## alternative hypothesis: two.sided
 ## 95 percent confidence interval:
 ##  -0.2268736  0.1962778
@@ -467,13 +464,13 @@ H_0: \text{Las variables son independientes} \quad vs \quad H_1: \text{Las varia
 \]</span></p>
 <p>Donde <span class="math inline">\(E_{ij} = \frac{(\text{total fila}_i)(\text{total columna}_j)}{n}\)</span></p>
 <p><strong>Prueba chi-cuadrado: Educación vs. Tipo de empleo</strong></p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="análisis-bivariado-1.html#cb11-1" tabindex="-1"></a>tabla_chi <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>educacion, datos<span class="sc">$</span>empleo) <span class="co">#Se crea la tabla de contingencia</span></span>
-<span id="cb11-2"><a href="análisis-bivariado-1.html#cb11-2" tabindex="-1"></a><span class="fu">chisq.test</span>(tabla_chi) <span class="co"># Prueba Chi basada en la tabla de contingencia creada</span></span></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb302-1"><a href="análisis-bivariado-1.html#cb302-1" tabindex="-1"></a>tabla_chi <span class="ot">&lt;-</span> <span class="fu">table</span>(datos<span class="sc">$</span>educacion, datos<span class="sc">$</span>empleo) <span class="co">#Se crea la tabla de contingencia</span></span>
+<span id="cb302-2"><a href="análisis-bivariado-1.html#cb302-2" tabindex="-1"></a><span class="fu">chisq.test</span>(tabla_chi) <span class="co"># Prueba Chi basada en la tabla de contingencia creada</span></span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s Chi-squared test
 ## 
 ## data:  tabla_chi
-## X-squared = 34.084, df = 2, p-value = 3.969e-08</code></pre>
+## X-squared = 34.084, df = 2, p-value = 0.00000003969</code></pre>
 <p><strong>Interpretación:</strong>
 La prueba chi-cuadrado evalúa si existe asociación entre dos variables cualitativas. En este caso, el valor-p menor a 0.05 indica una <strong>asociación significativa</strong> entre el nivel educativo y el tipo de empleo. Esto sugiere que las personas con mayor nivel educativo tienen más probabilidad de acceder al empleo formal.</p>
 <hr />
@@ -493,12 +490,12 @@ H_0: \rho = 0 \quad vs \quad H_1: \rho \ne 0
 t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
 \]</span></p>
 <p><strong>Correlación: Años de educación vs. ingreso</strong></p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="análisis-bivariado-1.html#cb13-1" tabindex="-1"></a><span class="fu">cor.test</span>(datos<span class="sc">$</span>educacion_anios, datos<span class="sc">$</span>ingreso)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="análisis-bivariado-1.html#cb304-1" tabindex="-1"></a><span class="fu">cor.test</span>(datos<span class="sc">$</span>educacion_anios, datos<span class="sc">$</span>ingreso)</span></code></pre></div>
 <pre><code>## 
 ##  Pearson&#39;s product-moment correlation
 ## 
 ## data:  datos$educacion_anios and datos$ingreso
-## t = 14.768, df = 98, p-value &lt; 2.2e-16
+## t = 14.768, df = 98, p-value &lt; 0.00000000000000022
 ## alternative hypothesis: true correlation is not equal to 0
 ## 95 percent confidence interval:
 ##  0.7578810 0.8830005
@@ -519,8 +516,8 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 \hat{\beta}_1 = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}, \quad \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}
 \]</span></p>
 <p><strong>Predecir ingreso por educación</strong></p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="análisis-bivariado-1.html#cb15-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(ingreso <span class="sc">~</span> educacion_anios, <span class="at">data =</span> datos) <span class="co">#correr modelo y guardarlo</span></span>
-<span id="cb15-2"><a href="análisis-bivariado-1.html#cb15-2" tabindex="-1"></a><span class="fu">summary</span>(modelo) <span class="co">#Resumen </span></span></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb306-1"><a href="análisis-bivariado-1.html#cb306-1" tabindex="-1"></a>modelo <span class="ot">&lt;-</span> <span class="fu">lm</span>(ingreso <span class="sc">~</span> educacion_anios, <span class="at">data =</span> datos) <span class="co">#correr modelo y guardarlo</span></span>
+<span id="cb306-2"><a href="análisis-bivariado-1.html#cb306-2" tabindex="-1"></a><span class="fu">summary</span>(modelo) <span class="co">#Resumen </span></span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = ingreso ~ educacion_anios, data = datos)
@@ -530,15 +527,15 @@ Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
 ## -1248215  -370080   -22128   285160  1261533 
 ## 
 ## Coefficients:
-##                 Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)       717475     177838   4.034 0.000109 ***
-## educacion_anios   223297      15120  14.768  &lt; 2e-16 ***
+##                 Estimate Std. Error t value             Pr(&gt;|t|)    
+## (Intercept)       717475     177838   4.034             0.000109 ***
+## educacion_anios   223297      15120  14.768 &lt; 0.0000000000000002 ***
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
 ## Residual standard error: 533500 on 98 degrees of freedom
 ## Multiple R-squared:   0.69,  Adjusted R-squared:  0.6868 
-## F-statistic: 218.1 on 1 and 98 DF,  p-value: &lt; 2.2e-16</code></pre>
+## F-statistic: 218.1 on 1 and 98 DF,  p-value: &lt; 0.00000000000000022</code></pre>
 <p><strong>Interpretación:</strong>
 El modelo de regresión lineal simple estima la relación entre los años de educación y el ingreso mensual. El coeficiente de pendiente indica que <strong>por cada año adicional de educación, el ingreso mensual aumenta en promedio en aproximadamente 200 mil pesos</strong>. El valor-p asociado al coeficiente de <code>educacion_anios</code> es significativo, lo que respalda la utilidad predictiva del modelo. El R² indica qué proporción de la variabilidad del ingreso se explica por la educación formal.</p>
 <hr />

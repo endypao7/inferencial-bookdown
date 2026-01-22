@@ -1,7 +1,6 @@
 # Análisis Bivariado 
 
-
-### Construcción de la base de datos simulada
+**Construcción de la base de datos simulada**
 
 **Contexto:** La siguiente base de datos representa un conjunto de información simulada sobre 100 personas adultas entre 25 y 60 años, residentes en zonas urbanas y rurales de Colombia. Se incluyen variables relevantes para el estudio de desigualdad socioeconómica: ingresos, años de educación, nivel educativo, sexo, tipo de empleo y ubicación geográfica. Esta base nos servirá como hilo conductor para aplicar distintas pruebas estadísticas inferenciales.
 

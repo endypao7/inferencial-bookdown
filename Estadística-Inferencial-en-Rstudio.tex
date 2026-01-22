@@ -1,0 +1,3996 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{book}
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math} % this also loads fontspec
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else
+  % xetex/luatex font selection
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{5}
+\usepackage{booktabs}
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\usepackage[]{natbib}
+\bibliographystyle{plainnat}
+\usepackage{bookmark}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same}
+\hypersetup{
+  pdftitle={Estadística Inferencial en Rstudio},
+  pdfauthor={Endy P. Salom},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+
+\title{Estadística Inferencial en Rstudio}
+\author{Endy P. Salom}
+\date{}
+
+\begin{document}
+\maketitle
+
+{
+\setcounter{tocdepth}{1}
+\tableofcontents
+}
+\includegraphics[width=1.5625in,height=\textheight]{IMAGES/Logo_UN.jpg}
+
+\textbf{BIENVENIDO A LA GUÍA DE RSTUDIO PARA ESTADÍSTICA INFERENCIAL}
+
+Aquí encontrarás todo lo que necesitas, desde cómo instalar el programa hasta los primeros pasos
+
+\chapter{Conoce Rstudio}\label{conoce-rstudio}
+
+\section{Instalación y Configuración de R-STUDIO}\label{instalaciuxf3n-y-configuraciuxf3n-de-r-studio}
+
+\subsection{Rstudio en tu equipo (escritorio)}\label{rstudio-en-tu-equipo-escritorio}
+
+Para comenzar a usar R, el primer paso es instalarlo en tu computadora. R es compatible con casi todas las plataformas, incluyendo los sistemas operativos más comunes. \emph{Windows, Mac OS X y Linux}. \href{https://posit.co/download/rstudio-desktop/}{Links de descarga para y RStudio}. \textbf{Nota:} Antes de instalar Rstudio, debes instalar R (el motor)
+
+RStudio es un entorno de desarrollo integrado (IDE) disponible para R, el cual tiene un buen editor con resaltado de sintaxis, un visor de objetos de R y un gran número de características agradables que están integradas.Ademas, esta dedicado a la computación estadística y gráficos.
+
+\textbf{Otra opción: Rstudio en la nube}
+
+Puedes utilizar Rstudio en cualquier dispositivo conectado a internet y guardar todos tus archivos en la nube. Encontras todo tal como lo dejaste en cualquier equipo. Recuerda que esta versión tiene un límite de horas de uso mensual. \href{https://posit.cloud/}{Link de acceso a RStudio Cloud}
+
+\section{Primeros pasos}\label{primeros-pasos}
+
+\textbf{Rscript}
+
+Puede resultar de mucha utilidad trabajar y guardar los comandos usados en un ``script'' de R. El script es básicamente un documento de texto donde puedes ir escribiendo todos los comandos a ejecutar, es la hoja de ruta que el programa seguirá para analizar tus datos. Considera el hecho de que si se antepone a una línea de comando el signo \#, este no será ejecutado y el programa lo considerará como un comentario.
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/Rscript.png}
+
+\textbf{Paquetes o librerías en R}
+
+Las librerías en R son colecciones de funciones, datos y documentación que amplían las capacidades del lenguaje base. También se les llama paquetes (packages). Estas librerías permiten a los usuarios realizar análisis de datos, visualización, modelado estadístico, aprendizaje automático, entre otras tareas, sin necesidad de programar todo desde cero.
+
+\emph{Ejemplo: ``Mundo'' Tidyverse en R-Studio}
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/RTIDY.png}
+
+El \textbf{Tidyverse} es una colección de paquetes del R que permiten preparar, procesar y graficar bases de datos. Se destacan los siguientes:
+
+\begin{itemize}
+\item
+  \textbf{\href{https://ggplot2.tidyverse.org/}{ggplot}}: permite crear visualizaciones elegantes de los datos de una manera relativamente sencilla.
+\item
+  \textbf{\href{https://stringr.tidyverse.org/}{stringr}}: permite manipular cadenas de caracteres con el fin de realizar sustituciones, detectar duplicados, analizar patrones, etc.
+\item
+  \textbf{\href{https://tidyr.tidyverse.org/}{tidyr}}: tiene como objetivo obtener datos ordenados. Destacan funciones como \texttt{gather} para crear factores con base en nombres de columnas y \texttt{separate} para crear factores separando los caracteres de una columna.
+\item
+  \textbf{\href{https://readr.tidyverse.org/}{readr}}: permite importar y exportar bases de datos en diferentes formatos y tiene implementada la función \texttt{problems} que detecta problemas en nuestras bases.
+\end{itemize}
+
+Para más información visitar la página web:\\
+\url{https://www.tidyverse.org/packages/}
+
+Para instalar librerías: Install.pachages(``nombre de la librería'') por primera vez y para llamarla o utilizarla library(nombre de la librería) o en su defecto, require(nombre de la librería)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Instalar la librería (solo la primera vez)}
+\CommentTok{\#install.packages("tidyverse")}
+
+\CommentTok{\# Cargar la librería}
+\FunctionTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## -- Attaching core tidyverse packages ------------------------ tidyverse 2.0.0 --
+## v dplyr     1.1.4     v readr     2.1.5
+## v forcats   1.0.0     v stringr   1.5.1
+## v ggplot2   4.0.0     v tibble    3.3.0
+## v lubridate 1.9.4     v tidyr     1.3.1
+## v purrr     1.0.2     
+## -- Conflicts ------------------------------------------ tidyverse_conflicts() --
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()
+## i Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors
+\end{verbatim}
+
+\subsection{Creación de reportes en R con R Markdown:}\label{creaciuxf3n-de-reportes-en-r-con-r-markdown}
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/datos_R.png}
+
+R Markdown es un formato de documento que combina código R, texto y visualizaciones en un solo archivo, permitiendo generar informes dinámicos en varios formatos como HTML, PDF y Word. Es ampliamente utilizado en análisis de datos, reportes automatizados y documentación reproducible.
+
+Se basa en el lenguaje Markdown para formatear el texto y en R para ejecutar código dentro del documento.
+
+\emph{¿Cómo funciona Rmarkdown?}
+
+\begin{itemize}
+\tightlist
+\item
+  En RStudio, ve a File \textgreater{} New File \textgreater{} R Markdown\\
+\item
+  Selecciona el formato de salida (HTML, PDF, Word).\\
+\item
+  Se generará un archivo con extensión .Rmd.
+\end{itemize}
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/newrm.png}
+
+\textbf{Un archivo .Rmd tiene tres partes principales:}
+
+\begin{itemize}
+\tightlist
+\item
+  Encabezado YAML: Define el título, autor y formato de salida.
+\item
+  Texto en Markdown: Usa sintaxis Markdown para formatear el contenido.
+\item
+  Chunks de código R: Secciones de código R que pueden ejecutarse y mostrar resultados.
+\end{itemize}
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/encabezrm.png}
+
+Si escribes sobre este tipo de ventana, estarás generando solo texto, pero puedes incluir chunks o ``trozos'' de código a lo largo de todo tu trabajo y crear informes como este que estas leyendo.
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/chunks.png}
+
+\textbf{Renderizar el documento}
+
+\begin{itemize}
+\tightlist
+\item
+  Para generar el documento final, haz clic en ``Knit'' en RStudio.
+\item
+  Selecciona el formato de salida (HTML, PDF o Word).
+\item
+  Se creará un archivo con los resultados y el código ejecutado.
+\end{itemize}
+
+\includegraphics[width=5.20833in,height=\textheight]{IMAGES/KNIT.png}
+
+\section{Conceptos básicos de programación en R:}\label{conceptos-buxe1sicos-de-programaciuxf3n-en-r}
+
+Si quieres aprender R, primero necesitas entender cómo funcionan los lenguajes de programación en general
+
+Todos los lenguajes (incluyendo R) tienen ciertas bases comunes:
+
+\begin{itemize}
+\tightlist
+\item
+  Variables → Almacenan datos.
+\item
+  Operadores → Realizan cálculos o comparaciones.
+\item
+  Estructuras de control → Permiten tomar decisiones y repetir tareas.
+\item
+  Funciones → Agrupan código reutilizable.
+\end{itemize}
+
+\textbf{Creación de Objetos}
+
+R es un lenguaje orientado a objetos. Los objetos pueden ser usados para guardar valores y pueden madificarse mediante funciones como por ejemplo sumar dos objetos o calcular la media.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X }\OtherTok{\textless{}{-}} \DecValTok{4}
+\NormalTok{Y }\OtherTok{\textless{}{-}} \DecValTok{2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{X}\SpecialCharTok{+}\NormalTok{Y}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\textbf{R como calculadora}
+
+Puedes hacer operaciones matemáticas básicas como +, -, *, /.\\
+- También puedes calcular potencias (\^{}), raíces cuadradas (sqrt()), logaritmos (log()) y funciones trigonométricas (sin(), cos(), tan()).
+- print() se usa para mostrar los resultados en la consola.
+
+\begin{itemize}
+\tightlist
+\item
+  Prueba este código en RStudio y verás cómo R funciona como una calculadora avanzada.
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Operaciones básicas}
+\DecValTok{5} \SpecialCharTok{+} \DecValTok{3}       \CommentTok{\# Suma}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{10} \SpecialCharTok{{-}} \DecValTok{4}     \CommentTok{\# Resta}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{6} \SpecialCharTok{*} \DecValTok{7}  \CommentTok{\# Multiplicación}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 42
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\DecValTok{20} \SpecialCharTok{/} \DecValTok{5}   \CommentTok{\# División}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Potencias y raíces}
+\DecValTok{2}\SpecialCharTok{\^{}}\DecValTok{3}     \CommentTok{\# 2 elevado a la 3}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 8
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sqrt}\NormalTok{(}\DecValTok{16}\NormalTok{)  }\CommentTok{\# Raíz cuadrada de 16}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 4
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Operaciones avanzadas}
+\FunctionTok{log}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{base =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# Logaritmo base 10}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{exp}\NormalTok{(}\DecValTok{2}\NormalTok{)   }\CommentTok{\# e\^{}2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 7.389056
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sin}\NormalTok{(pi }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)  }\CommentTok{\# Seno de 90 grados (π/2 radianes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1
+\end{verbatim}
+
+\subsection{Tipos de variables en R:}\label{tipos-de-variables-en-r}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1609}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4368}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.4023}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Tipo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Ejemplo}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Descripción}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Numeric} & \texttt{3.14,\ -2.5} & Números con decimales \\
+\textbf{Integer} & \texttt{10L,\ -5L} & Números enteros \\
+\textbf{Character} & \texttt{"Hola"} & Texto o cadenas de caracteres \\
+\textbf{Logical} & \texttt{TRUE,\ FALSE} & Valores lógicos (booleanos) \\
+\textbf{Factor} & \texttt{factor("azul",\ "rojo")} & Variables categóricas \\
+\textbf{Date} & \texttt{as.Date("2024-02-05")} & Fechas \\
+\textbf{POSIXct} & \texttt{as.POSIXct("2024-02-05\ 14:30:00")} & Fechas y horas \\
+\end{longtable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Numéricas (Numeric)}
+\NormalTok{num }\OtherTok{\textless{}{-}} \FloatTok{3.14}  \CommentTok{\# Número decimal}
+\FunctionTok{class}\NormalTok{(num)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Enteros (Integer)}
+\NormalTok{entero }\OtherTok{\textless{}{-}} \DecValTok{10}\DataTypeTok{L}  \CommentTok{\# Número entero}
+\FunctionTok{class}\NormalTok{(entero)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "integer"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cadenas de Texto (Character)}
+\NormalTok{texto }\OtherTok{\textless{}{-}} \StringTok{"Hola, mundo"}
+\FunctionTok{class}\NormalTok{(texto)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "character"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Lógicos (Logical)}
+\NormalTok{logico }\OtherTok{\textless{}{-}} \ConstantTok{TRUE}
+\FunctionTok{class}\NormalTok{(logico)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "logical"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Factores (Factor)}
+\NormalTok{colores }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rojo"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"verde"}\NormalTok{, }\StringTok{"rojo"}\NormalTok{))}
+\FunctionTok{class}\NormalTok{(colores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "factor"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{levels}\NormalTok{(colores)  }\CommentTok{\# Ver categorías}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "azul"  "rojo"  "verde"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Fechas y Tiempos (Date y POSIXct)}
+\NormalTok{fecha }\OtherTok{\textless{}{-}} \FunctionTok{as.Date}\NormalTok{(}\StringTok{"2024{-}02{-}05"}\NormalTok{)  }\CommentTok{\# Convertir a fecha}
+\NormalTok{hora }\OtherTok{\textless{}{-}} \FunctionTok{as.POSIXct}\NormalTok{(}\StringTok{"2024{-}02{-}05 14:30:00"}\NormalTok{)  }\CommentTok{\# Fecha y hora}
+\FunctionTok{class}\NormalTok{(fecha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Date"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{class}\NormalTok{(hora)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "POSIXct" "POSIXt"
+\end{verbatim}
+
+\emph{Nota: La función class permite ver qué tipo de variable estamos utilizando}
+
+\subsection{Estructuras de Datos en R:}\label{estructuras-de-datos-en-r}
+
+En R, los datos se pueden organizar en diferentes estructuras según la forma en que se almacena y manipula la información.
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1524}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.5048}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.3429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Estructura}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Descripción}
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+\textbf{Ejemplo}
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\textbf{Vector} & Secuencia de elementos del mismo tipo & \texttt{c(1,\ 2,\ 3,\ 4,\ 5)} \\
+\textbf{Matrix} & Tabla bidimensional con el mismo tipo de dato & \texttt{matrix(1:9,\ nrow\ =\ 3,\ ncol\ =\ 3)} \\
+\textbf{List} & Contiene diferentes tipos de datos & \texttt{list(nombre\ =\ "Ana",\ edad\ =\ 25)} \\
+\textbf{Data Frame} & Tabla con columnas de diferentes tipos & \texttt{data.frame(Nombre\ =\ c("Ana",\ "Carlos"),\ Edad\ =\ c(25,\ 30))} \\
+\textbf{Factor} & Variable categórica con niveles & \texttt{factor(c("rojo",\ "azul",\ "verde"))} \\
+\textbf{Array} & Estructura multidimensional & \texttt{array(1:8,\ dim\ =\ c(2,2,2))} \\
+\end{longtable}
+
+\emph{Vectores}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Vector numérico}
+\NormalTok{vector }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{2}\NormalTok{, }\DecValTok{3}\NormalTok{, }\DecValTok{4}\NormalTok{, }\DecValTok{5}\NormalTok{)}
+\NormalTok{vector}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1 2 3 4 5
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Vector de caracteres}
+\NormalTok{caracteres}\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"rojo"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"verde"}\NormalTok{)}
+\NormalTok{caracteres}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "rojo"  "azul"  "verde"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Vector lógico}
+\NormalTok{logico }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{logico}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  TRUE FALSE  TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mostrar tipo}
+\FunctionTok{class}\NormalTok{(vector)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "numeric"
+\end{verbatim}
+
+\emph{Factor}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear un factor con categorías}
+\NormalTok{colores }\OtherTok{\textless{}{-}} \FunctionTok{factor}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"rojo"}\NormalTok{, }\StringTok{"azul"}\NormalTok{, }\StringTok{"verde"}\NormalTok{, }\StringTok{"rojo"}\NormalTok{))}
+
+\CommentTok{\# Ver niveles}
+\FunctionTok{levels}\NormalTok{(colores)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "azul"  "rojo"  "verde"
+\end{verbatim}
+
+\emph{Matriz}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear una matriz 3x3 con números del 1 al 9}
+\NormalTok{matriz }\OtherTok{\textless{}{-}} \FunctionTok{matrix}\NormalTok{(}\DecValTok{1}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\AttributeTok{nrow =} \DecValTok{3}\NormalTok{, }\AttributeTok{ncol =} \DecValTok{3}\NormalTok{)}
+\NormalTok{matriz}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Mostrar matriz}
+\FunctionTok{print}\NormalTok{(matriz)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##      [,1] [,2] [,3]
+## [1,]    1    4    7
+## [2,]    2    5    8
+## [3,]    3    6    9
+\end{verbatim}
+
+\emph{Lista}
+
+Puede contener diferentes tipos de datos (vectores, matrices, data frames, etc.).
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear una lista con diferentes tipos de datos}
+\NormalTok{mi\_lista }\OtherTok{\textless{}{-}} \FunctionTok{list}\NormalTok{(}\AttributeTok{nombre =} \StringTok{"Ana"}\NormalTok{, }\AttributeTok{edad =} \DecValTok{25}\NormalTok{, }\AttributeTok{notas =} \FunctionTok{c}\NormalTok{(}\DecValTok{9}\NormalTok{, }\DecValTok{8}\NormalTok{, }\DecValTok{10}\NormalTok{))}
+
+\CommentTok{\# Mostrar contenido de la lista}
+\FunctionTok{print}\NormalTok{(mi\_lista)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## $nombre
+## [1] "Ana"
+## 
+## $edad
+## [1] 25
+## 
+## $notas
+## [1]  9  8 10
+\end{verbatim}
+
+\emph{Dataframe}
+
+Es una tabla donde cada columna puede tener diferentes tipos de datos.\\
+Es la estructura más utilizada en análisis de datos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear un data frame}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}\AttributeTok{Nombre =} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{, }\StringTok{"Luis"}\NormalTok{),  }\AttributeTok{Edad =} \FunctionTok{c}\NormalTok{(}\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{22}\NormalTok{), }\AttributeTok{Aprobado =} \FunctionTok{c}\NormalTok{(}\ConstantTok{TRUE}\NormalTok{, }\ConstantTok{FALSE}\NormalTok{, }\ConstantTok{TRUE}\NormalTok{))}
+
+\CommentTok{\# Mostrar data frame}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   Nombre Edad Aprobado
+## 1    Ana   25     TRUE
+## 2 Carlos   30    FALSE
+## 3   Luis   22     TRUE
+\end{verbatim}
+
+\emph{Condicional if-else.}
+
+En R, la sintáxis del condicional consiste en:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{\texttt{if\ (A)}}: evalúa si se cumple la condición A.
+\item
+  \textbf{\texttt{else\ if\ (B)}}: si no se cumple la condición o condiciones anteriores, entonces evalúe si se cumple la condición B.
+\item
+  \textbf{\texttt{else}}: si no se cumple ninguna de las condiciones anteriores entonces haga lo siguiente.
+\end{itemize}
+
+\textbf{Ejemplo:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{a}\OtherTok{\textless{}{-}}\DecValTok{9}
+ \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\textless{}}\DecValTok{0}\NormalTok{)\{}
+ \FunctionTok{print}\NormalTok{(}\StringTok{"a es negativo"}\NormalTok{)}
+\NormalTok{ \}}\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (a}\SpecialCharTok{\textgreater{}}\DecValTok{0}\NormalTok{)\{}
+ \FunctionTok{print}\NormalTok{(}\StringTok{"a es positivo"}\NormalTok{)}
+\NormalTok{ \}}\ControlFlowTok{else}\NormalTok{\{}
+ \FunctionTok{print}\NormalTok{(}\StringTok{"a es igual a cero"}\NormalTok{)}
+\NormalTok{ \}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a es positivo"
+\end{verbatim}
+
+\emph{Bucles for:}
+
+Usado para repetir un bloque específico de código, siguiendo una secuencia dada.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{suma}\OtherTok{\textless{}{-}}\DecValTok{0}
+ \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{10}\NormalTok{)\{}
+\NormalTok{ suma}\OtherTok{\textless{}{-}}\NormalTok{suma}\SpecialCharTok{+}\NormalTok{i}
+\NormalTok{ \}}
+\NormalTok{ suma}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 55
+\end{verbatim}
+
+\emph{Operadores de comparación en R:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Asignación de valores}
+\NormalTok{a }\OtherTok{\textless{}{-}} \DecValTok{1}
+\NormalTok{b }\OtherTok{\textless{}{-}} \DecValTok{3}
+
+\CommentTok{\# Operaciones y comentarios explicativos}
+
+\CommentTok{\# ¿b es diferente de a?}
+\NormalTok{b }\SpecialCharTok{!=}\NormalTok{ a  }\CommentTok{\# TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ¿es a igual a b?}
+\FunctionTok{isTRUE}\NormalTok{(a }\SpecialCharTok{==}\NormalTok{ b)  }\CommentTok{\# FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Negar que a es menor que b}
+\SpecialCharTok{!}\NormalTok{(a }\SpecialCharTok{\textless{}}\NormalTok{ b)  }\CommentTok{\# FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ¿es a menor que b o b menor que a?}
+\NormalTok{(a }\SpecialCharTok{\textless{}}\NormalTok{ b }\SpecialCharTok{|}\NormalTok{ b }\SpecialCharTok{\textless{}}\NormalTok{ a)  }\CommentTok{\# TRUE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# ¿es a menor o igual a b o b igual a a?}
+\NormalTok{(a }\SpecialCharTok{\textless{}=}\NormalTok{ b }\SpecialCharTok{\&}\NormalTok{ b }\SpecialCharTok{==}\NormalTok{ a)  }\CommentTok{\# FALSE}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] FALSE
+\end{verbatim}
+
+\chapter{Exploración y Análisis de Datos (EDA)}\label{exploraciuxf3n-y-anuxe1lisis-de-datos-eda}
+
+Aquí encontraras las herramientas básicas para realizar un análisis exploratorio de Datos en Rstudio.El objetivo es conocer la información, qué primeras impresiones o tendencias mrevelan los datos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Dataframes (bases de datos)}\label{dataframes-bases-de-datos}
+
+Un \textbf{dataframe} en Rstudio es una estructura de datos similar a una tabla o base de datos, donde las columnas representan variables y las filas representan observaciones.
+
+\includegraphics[width=6.25in,height=\textheight]{IMAGES/structures.jpg}
+
+\subsection{Creación de Dataframes}\label{creaciuxf3n-de-dataframes}
+
+Es posible crear un dataframe a partir de la unión de vectores con la función \texttt{data.frame()}.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Vectores o listas}
+\NormalTok{nombre }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Ana"}\NormalTok{, }\StringTok{"Luis"}\NormalTok{, }\StringTok{"Carlos"}\NormalTok{, }\StringTok{"Sofia"}\NormalTok{)}
+\NormalTok{edad }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{23}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{30}\NormalTok{, }\DecValTok{22}\NormalTok{)}
+\NormalTok{ciudad }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\StringTok{"Bogota"}\NormalTok{, }\StringTok{"Medellin"}\NormalTok{, }\StringTok{"Cali"}\NormalTok{, }\StringTok{"Barranquilla"}\NormalTok{)}
+\NormalTok{ingresos }\OtherTok{=} \FunctionTok{c}\NormalTok{(}\DecValTok{2500000}\NormalTok{, }\DecValTok{3000000}\NormalTok{, }\DecValTok{2800000}\NormalTok{, }\DecValTok{2700000}\NormalTok{)}
+
+
+
+\CommentTok{\# Crear un dataframe manualmente}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(nombre,edad,ciudad,ingresos)}
+  
+\CommentTok{\# Ver el dataframe}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad       ciudad ingresos
+## 1    Ana   23       Bogota  2500000
+## 2   Luis   25     Medellin  3000000
+## 3 Carlos   30         Cali  2800000
+## 4  Sofia   22 Barranquilla  2700000
+\end{verbatim}
+
+\textbf{Acceso a los Datos del dataframe}
+
+Para acceder a las columnas de un dataframe existen varias maneras
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Acceder a una columna específica}
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{nombre}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Ana"    "Luis"   "Carlos" "Sofia"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Acceder a una fila específica}
+\NormalTok{df[}\DecValTok{2}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad   ciudad ingresos
+## 2   Luis   25 Medellin    3e+06
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Acceder a una celda específica}
+\NormalTok{df[}\DecValTok{3}\NormalTok{, }\DecValTok{2}\NormalTok{]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 30
+\end{verbatim}
+
+\textbf{Modificación de Dataframes}
+
+Es posible agregar, modificar o eliminar columnas y filas en un dataframe
+
+Agregar una nueva columna
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Agregar una nueva columna}
+
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{puntaje }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{85}\NormalTok{, }\DecValTok{90}\NormalTok{, }\DecValTok{78}\NormalTok{, }\DecValTok{88}\NormalTok{)}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad       ciudad ingresos puntaje
+## 1    Ana   23       Bogota  2500000      85
+## 2   Luis   25     Medellin  3000000      90
+## 3 Carlos   30         Cali  2800000      78
+## 4  Sofia   22 Barranquilla  2700000      88
+\end{verbatim}
+
+Modificar un valor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Modificar un valor}
+
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{ingresos[}\DecValTok{1}\NormalTok{] }\OtherTok{\textless{}{-}} \DecValTok{2600000}
+\end{Highlighting}
+\end{Shaded}
+
+Eliminar una columna
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Eliminar una columna}
+
+\NormalTok{df}\SpecialCharTok{$}\NormalTok{ciudad }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\NormalTok{df}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad ingresos puntaje
+## 1    Ana   23  2600000      85
+## 2   Luis   25  3000000      90
+## 3 Carlos   30  2800000      78
+## 4  Sofia   22  2700000      88
+\end{verbatim}
+
+\textbf{Filtrado de Datos}
+
+También, es posible filtrar filas que cumplen ciertas condiciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filtrar personas con ingresos mayores a 2.8 millones}
+\FunctionTok{subset}\NormalTok{(df, ingresos }\SpecialCharTok{\textgreater{}} \DecValTok{2800000}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad ingresos puntaje
+## 2   Luis   25    3e+06      90
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filtrar personas con puntaje mayor a 80}
+\NormalTok{df[df}\SpecialCharTok{$}\NormalTok{puntaje }\SpecialCharTok{\textgreater{}} \DecValTok{80}\NormalTok{, ]}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad ingresos puntaje
+## 1    Ana   23  2600000      85
+## 2   Luis   25  3000000      90
+## 4  Sofia   22  2700000      88
+\end{verbatim}
+
+\textbf{Ordenamiento de Dataframes}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ordenar por edad}
+\NormalTok{df\_ordenado }\OtherTok{\textless{}{-}}\NormalTok{ df[}\FunctionTok{order}\NormalTok{(df}\SpecialCharTok{$}\NormalTok{edad), ]}
+\NormalTok{df\_ordenado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad ingresos puntaje
+## 4  Sofia   22  2700000      88
+## 1    Ana   23  2600000      85
+## 2   Luis   25  3000000      90
+## 3 Carlos   30  2800000      78
+\end{verbatim}
+
+\textbf{Guardar Dataframes}
+
+Guardar un dataframe como un archivo CSV (Este es un formato muy común en el que se suelen encontrar las bases de datos):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Guardar dataframe en un archivo CSV}
+
+\FunctionTok{write.csv}\NormalTok{(df, }\StringTok{"datos.csv"}\NormalTok{, }\AttributeTok{row.names =} \ConstantTok{FALSE}\NormalTok{)}
+\FunctionTok{help}\NormalTok{(}\StringTok{"write.csv"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## starting httpd help server ... done
+\end{verbatim}
+
+\subsection{Importar un Dataframe desde un archivo CSV}\label{importar-un-dataframe-desde-un-archivo-csv}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Leer un archivo CSV}
+
+\NormalTok{df\_importado }\OtherTok{\textless{}{-}} \FunctionTok{read.csv}\NormalTok{(}\StringTok{"datos.csv"}\NormalTok{)}
+\NormalTok{df\_importado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   nombre edad ingresos puntaje
+## 1    Ana   23  2600000      85
+## 2   Luis   25  3000000      90
+## 3 Carlos   30  2800000      78
+## 4  Sofia   22  2700000      88
+\end{verbatim}
+
+Otra forma para importar datos, es a través de la ventana de archivos
+
+\includegraphics[width=6.25in,height=\textheight]{IMAGES/import_manual.png}
+
+También es posible importar datos directamente desde donde esté guardada la base de datos en el equipo (cuando se utiliza la versión Rstudio de escritorio) La línea de código sería la siguiente:
+
+\section{Pre procesamiento de una Base de Datos Preinstalada en R}\label{pre-procesamiento-de-una-base-de-datos-preinstalada-en-r}
+
+R incluye varias bases de datos preinstaladas. En este ejemplo, usaremos \texttt{mtcars}, una base de datos con información sobre automóviles.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Cargar la base de datos mtcars}
+\FunctionTok{data}\NormalTok{(}\StringTok{"mtcars"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}}\NormalTok{ mtcars}
+\FunctionTok{head}\NormalTok{(datos)}\CommentTok{\# Ver las primeras filas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3    2
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3    1
+\end{verbatim}
+
+\textbf{Exploración de Datos}
+
+Para ver las dimensiones del dataframe o el tamaño de mi base de datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Dimensiones del dataframe}
+\FunctionTok{dim}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 32 11
+\end{verbatim}
+
+Ver los tipos de datos o variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ver estructura de los datos}
+\FunctionTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    32 obs. of  11 variables:
+##  $ mpg : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp: num  160 160 108 258 360 ...
+##  $ hp  : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat: num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt  : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec: num  16.5 17 18.6 19.4 17 ...
+##  $ vs  : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am  : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear: num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ carb: num  4 4 1 1 2 1 4 2 2 4 ...
+\end{verbatim}
+
+Hacer un resumen estadístico (muy general). Esta es la primera impresión de todas las variables
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Resumen estadístico general}
+\FunctionTok{summary}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       mpg             cyl             disp             hp       
+##  Min.   :10.40   Min.   :4.000   Min.   : 71.1   Min.   : 52.0  
+##  1st Qu.:15.43   1st Qu.:4.000   1st Qu.:120.8   1st Qu.: 96.5  
+##  Median :19.20   Median :6.000   Median :196.3   Median :123.0  
+##  Mean   :20.09   Mean   :6.188   Mean   :230.7   Mean   :146.7  
+##  3rd Qu.:22.80   3rd Qu.:8.000   3rd Qu.:326.0   3rd Qu.:180.0  
+##  Max.   :33.90   Max.   :8.000   Max.   :472.0   Max.   :335.0  
+##       drat             wt             qsec             vs        
+##  Min.   :2.760   Min.   :1.513   Min.   :14.50   Min.   :0.0000  
+##  1st Qu.:3.080   1st Qu.:2.581   1st Qu.:16.89   1st Qu.:0.0000  
+##  Median :3.695   Median :3.325   Median :17.71   Median :0.0000  
+##  Mean   :3.597   Mean   :3.217   Mean   :17.85   Mean   :0.4375  
+##  3rd Qu.:3.920   3rd Qu.:3.610   3rd Qu.:18.90   3rd Qu.:1.0000  
+##  Max.   :4.930   Max.   :5.424   Max.   :22.90   Max.   :1.0000  
+##        am              gear            carb      
+##  Min.   :0.0000   Min.   :3.000   Min.   :1.000  
+##  1st Qu.:0.0000   1st Qu.:3.000   1st Qu.:2.000  
+##  Median :0.0000   Median :4.000   Median :2.000  
+##  Mean   :0.4062   Mean   :3.688   Mean   :2.812  
+##  3rd Qu.:1.0000   3rd Qu.:4.000   3rd Qu.:4.000  
+##  Max.   :1.0000   Max.   :5.000   Max.   :8.000
+\end{verbatim}
+
+\textbf{Verificación y Manejo de Datos Faltantes}
+
+Verificar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Verificar valores faltantes}
+\FunctionTok{sum}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(datos))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+Eliminar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Si hubiera valores NA, podríamos eliminarlos con:}
+\NormalTok{df }\OtherTok{\textless{}{-}} \FunctionTok{na.omit}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+La solución a los datos faltantes NO SIEMPRE va a ser eliminarlos. Es muy importante dar el tratamiento correcto.
+
+\textbf{Eliminación de Columnas Innecesarias}
+
+Si algunas columnas no son relevantes para el análisis, es posible eliminarlas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Eliminar la columna \textquotesingle{}carb\textquotesingle{}}
+\NormalTok{datos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                      mpg cyl  disp  hp drat    wt  qsec vs am gear carb
+## Mazda RX4           21.0   6 160.0 110 3.90 2.620 16.46  0  1    4    4
+## Mazda RX4 Wag       21.0   6 160.0 110 3.90 2.875 17.02  0  1    4    4
+## Datsun 710          22.8   4 108.0  93 3.85 2.320 18.61  1  1    4    1
+## Hornet 4 Drive      21.4   6 258.0 110 3.08 3.215 19.44  1  0    3    1
+## Hornet Sportabout   18.7   8 360.0 175 3.15 3.440 17.02  0  0    3    2
+## Valiant             18.1   6 225.0 105 2.76 3.460 20.22  1  0    3    1
+## Duster 360          14.3   8 360.0 245 3.21 3.570 15.84  0  0    3    4
+## Merc 240D           24.4   4 146.7  62 3.69 3.190 20.00  1  0    4    2
+## Merc 230            22.8   4 140.8  95 3.92 3.150 22.90  1  0    4    2
+## Merc 280            19.2   6 167.6 123 3.92 3.440 18.30  1  0    4    4
+## Merc 280C           17.8   6 167.6 123 3.92 3.440 18.90  1  0    4    4
+## Merc 450SE          16.4   8 275.8 180 3.07 4.070 17.40  0  0    3    3
+## Merc 450SL          17.3   8 275.8 180 3.07 3.730 17.60  0  0    3    3
+## Merc 450SLC         15.2   8 275.8 180 3.07 3.780 18.00  0  0    3    3
+## Cadillac Fleetwood  10.4   8 472.0 205 2.93 5.250 17.98  0  0    3    4
+## Lincoln Continental 10.4   8 460.0 215 3.00 5.424 17.82  0  0    3    4
+## Chrysler Imperial   14.7   8 440.0 230 3.23 5.345 17.42  0  0    3    4
+## Fiat 128            32.4   4  78.7  66 4.08 2.200 19.47  1  1    4    1
+## Honda Civic         30.4   4  75.7  52 4.93 1.615 18.52  1  1    4    2
+## Toyota Corolla      33.9   4  71.1  65 4.22 1.835 19.90  1  1    4    1
+## Toyota Corona       21.5   4 120.1  97 3.70 2.465 20.01  1  0    3    1
+## Dodge Challenger    15.5   8 318.0 150 2.76 3.520 16.87  0  0    3    2
+## AMC Javelin         15.2   8 304.0 150 3.15 3.435 17.30  0  0    3    2
+## Camaro Z28          13.3   8 350.0 245 3.73 3.840 15.41  0  0    3    4
+## Pontiac Firebird    19.2   8 400.0 175 3.08 3.845 17.05  0  0    3    2
+## Fiat X1-9           27.3   4  79.0  66 4.08 1.935 18.90  1  1    4    1
+## Porsche 914-2       26.0   4 120.3  91 4.43 2.140 16.70  0  1    5    2
+## Lotus Europa        30.4   4  95.1 113 3.77 1.513 16.90  1  1    5    2
+## Ford Pantera L      15.8   8 351.0 264 4.22 3.170 14.50  0  1    5    4
+## Ferrari Dino        19.7   6 145.0 175 3.62 2.770 15.50  0  1    5    6
+## Maserati Bora       15.0   8 301.0 335 3.54 3.570 14.60  0  1    5    8
+## Volvo 142E          21.4   4 121.0 109 4.11 2.780 18.60  1  1    4    2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{carb }\OtherTok{\textless{}{-}} \ConstantTok{NULL}
+\FunctionTok{head}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3
+\end{verbatim}
+
+\textbf{Filtrado de Datos}
+
+Se pueden filtrar observaciones basadas en condiciones específicas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Filtrar autos con más de 20 millas por galón (mpg)}
+
+\NormalTok{df\_filtrado }\OtherTok{\textless{}{-}} \FunctionTok{subset}\NormalTok{(datos, mpg }\SpecialCharTok{\textgreater{}} \DecValTok{20}\NormalTok{)}
+\NormalTok{df\_filtrado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 mpg cyl  disp  hp drat    wt  qsec vs am gear
+## Mazda RX4      21.0   6 160.0 110 3.90 2.620 16.46  0  1    4
+## Mazda RX4 Wag  21.0   6 160.0 110 3.90 2.875 17.02  0  1    4
+## Datsun 710     22.8   4 108.0  93 3.85 2.320 18.61  1  1    4
+## Hornet 4 Drive 21.4   6 258.0 110 3.08 3.215 19.44  1  0    3
+## Merc 240D      24.4   4 146.7  62 3.69 3.190 20.00  1  0    4
+## Merc 230       22.8   4 140.8  95 3.92 3.150 22.90  1  0    4
+## Fiat 128       32.4   4  78.7  66 4.08 2.200 19.47  1  1    4
+## Honda Civic    30.4   4  75.7  52 4.93 1.615 18.52  1  1    4
+## Toyota Corolla 33.9   4  71.1  65 4.22 1.835 19.90  1  1    4
+## Toyota Corona  21.5   4 120.1  97 3.70 2.465 20.01  1  0    3
+## Fiat X1-9      27.3   4  79.0  66 4.08 1.935 18.90  1  1    4
+## Porsche 914-2  26.0   4 120.3  91 4.43 2.140 16.70  0  1    5
+## Lotus Europa   30.4   4  95.1 113 3.77 1.513 16.90  1  1    5
+## Volvo 142E     21.4   4 121.0 109 4.11 2.780 18.60  1  1    4
+\end{verbatim}
+
+\textbf{Transformación de Datos}
+
+Podemos agregar columnas nuevas basadas en cálculos.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear una nueva columna con consumo en km por litro}
+
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{km\_per\_l }\OtherTok{\textless{}{-}}\NormalTok{ datos}\SpecialCharTok{$}\NormalTok{mpg }\SpecialCharTok{*} \FloatTok{0.425144}
+\FunctionTok{head}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    mpg cyl disp  hp drat    wt  qsec vs am gear km_per_l
+## Mazda RX4         21.0   6  160 110 3.90 2.620 16.46  0  1    4 8.928024
+## Mazda RX4 Wag     21.0   6  160 110 3.90 2.875 17.02  0  1    4 8.928024
+## Datsun 710        22.8   4  108  93 3.85 2.320 18.61  1  1    4 9.693283
+## Hornet 4 Drive    21.4   6  258 110 3.08 3.215 19.44  1  0    3 9.098082
+## Hornet Sportabout 18.7   8  360 175 3.15 3.440 17.02  0  0    3 7.950193
+## Valiant           18.1   6  225 105 2.76 3.460 20.22  1  0    3 7.695106
+\end{verbatim}
+
+\textbf{Cambio de Tipo de Variable}
+
+Podemos convertir una variable numérica en categórica.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    32 obs. of  11 variables:
+##  $ mpg     : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl     : num  6 6 4 6 8 6 8 4 4 6 ...
+##  $ disp    : num  160 160 108 258 360 ...
+##  $ hp      : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat    : num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt      : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec    : num  16.5 17 18.6 19.4 17 ...
+##  $ vs      : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am      : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear    : num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ km_per_l: num  8.93 8.93 9.69 9.1 7.95 ...
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Convertir la variable \textquotesingle{}cyl\textquotesingle{} (cilindros) en factor}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{cyl }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{cyl)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ver estructura para confirmar el cambio}
+\FunctionTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 'data.frame':    32 obs. of  11 variables:
+##  $ mpg     : num  21 21 22.8 21.4 18.7 18.1 14.3 24.4 22.8 19.2 ...
+##  $ cyl     : Factor w/ 3 levels "4","6","8": 2 2 1 2 3 2 3 1 1 2 ...
+##  $ disp    : num  160 160 108 258 360 ...
+##  $ hp      : num  110 110 93 110 175 105 245 62 95 123 ...
+##  $ drat    : num  3.9 3.9 3.85 3.08 3.15 2.76 3.21 3.69 3.92 3.92 ...
+##  $ wt      : num  2.62 2.88 2.32 3.21 3.44 ...
+##  $ qsec    : num  16.5 17 18.6 19.4 17 ...
+##  $ vs      : num  0 0 1 1 0 1 0 1 1 1 ...
+##  $ am      : num  1 1 1 0 0 0 0 0 0 0 ...
+##  $ gear    : num  4 4 4 3 3 3 3 4 4 4 ...
+##  $ km_per_l: num  8.93 8.93 9.69 9.1 7.95 ...
+\end{verbatim}
+
+\textbf{Ordenamiento de Datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Ordenar por caballos de fuerza (hp)}
+\NormalTok{df\_ordenado }\OtherTok{\textless{}{-}}\NormalTok{ datos[}\FunctionTok{order}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{hp), ]}
+\FunctionTok{head}\NormalTok{(df\_ordenado)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                 mpg cyl  disp hp drat    wt  qsec vs am gear km_per_l
+## Honda Civic    30.4   4  75.7 52 4.93 1.615 18.52  1  1    4 12.92438
+## Merc 240D      24.4   4 146.7 62 3.69 3.190 20.00  1  0    4 10.37351
+## Toyota Corolla 33.9   4  71.1 65 4.22 1.835 19.90  1  1    4 14.41238
+## Fiat 128       32.4   4  78.7 66 4.08 2.200 19.47  1  1    4 13.77467
+## Fiat X1-9      27.3   4  79.0 66 4.08 1.935 18.90  1  1    4 11.60643
+## Porsche 914-2  26.0   4 120.3 91 4.43 2.140 16.70  0  1    5 11.05374
+\end{verbatim}
+
+\textbf{Actividades para practicar}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \textbf{Crea un dataframe} con datos de 5 amigos, incluyendo nombre, edad y ciudad.
+\item
+  \textbf{Filtra} las personas mayores de 25 años.
+\item
+  \textbf{Agrega una nueva columna} con su ocupación.
+\item
+  \textbf{Guarda el dataframe} en un archivo CSV y vuelve a importarlo en R.
+\end{enumerate}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Análilsis exploratorio de Datos (EDA) básico}\label{anuxe1lilsis-exploratorio-de-datos-eda-buxe1sico}
+
+El análisis exploratorio de datos (\href{https://www.youtube.com/watch?v=UeMpYEktLfU&ab_channel=Comunicaci\%C3\%B3nNum\%C3\%A9rica}{Ver video}) (EDA por sus siglas en inglés) implica el uso de gráficos y visualizaciones para explorar y analizar un conjunto de datos. El objetivo es explorar, investigar y aprender, no confirmar hipótesis estadísticas.
+
+\textbf{¿Cuándo debo utilizarlo?}
+
+El análisis exploratorio de datos es una potente herramienta para explorar un conjunto de datos. Incluso cuando su objetivo es efectuar análisis planificados, el EDA puede utilizarse para limpiar datos, para análisis de subgrupos o simplemente para comprender mejor los datos. Un paso inicial importante en cualquier análisis de datos es representar los datos gráficamente.
+
+\textbf{No gráfico:} Calcula estadísticas descriptivas de las variables
+
+\textbf{Gráfico:} Calcula estadísticas de forma gráfica
+
+\textbf{Univariado:} Analiza una sola variable a la vez
+
+\textbf{Multivariado:} Analiza dos o más variables
+
+A su vez, cada uno de esas dividisiones puede subdividirse según los tipos de datos con los que trabajemos: categóricos o numéricos.
+
+\subsection{Ejemplo (Contexto):}\label{ejemplo-contexto}
+
+El presente estudio se basa en una encuesta aplicada a una muestra representativa de 500 ciudadanos de la ciudad de Springfield, con el objetivo de analizar su nivel de confianza en el gobierno, entre otras. Además, se examina el impacto de las redes sociales en la formación de la opinión pública y su posible influencia en el comportamiento electoral.
+
+Para garantizar la calidad de los datos y obtener conclusiones válidas, es necesario realizar un Análisis Exploratorio de Datos (EDA) antes de proceder con cualquier modelado estadístico o inferencia.
+
+\textbf{La base de datos contiene las siguientes variables:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.3846}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1758}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.2967}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 6\tabcolsep) * \real{0.1429}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipo de Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Categoría/Tipo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+Edad & Numérica & Continua & Años cumplidos \\
+Género & Categórica & Nominal & Identificación de género (Masculino, Femenino, No Binario) \\
+Nivel de Educación & Categórica & Ordinal & Último nivel educativo alcanzado (Primaria, Secundaria, Universitaria, Posgrado) \\
+Ingreso Mensual & Numérica & Continua & Ingresos mensuales en moneda local \\
+Interés en Política & Categórica & Ordinal & Nivel de interés en política (Escala Likert del 1 al 5) \\
+Frecuencia de Voto & Categórica & Ordinal & Frecuencia con la que vota (Nunca, A veces, Siempre) \\
+Ideología Política & Categórica & Nominal & Identificación ideológica (Izquierda, Centro, Derecha) \\
+Confianza en el Gobierno & Categórica & Ordinal & Nivel de confianza en el gobierno (Escala Likert del 1 al 10) \\
+Uso de Redes para Informarse & Categórica & Ordinal & Nivel de uso de redes sociales para informarse (Bajo, Medio, Alto) \\
+Participación en Protestas & Categórica & Nominal & Si ha participado en protestas (Sí, No) \\
+\end{longtable}
+
+\textbf{\emph{Instalar y Cargar paquetes}}
+
+Lo primero que tenemos que hacer es cargar los paquetes que vamos a utilizar para el análisis. En este caso vamos a usar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{library}\NormalTok{(tidyverse)}\CommentTok{\# Incluye paquetes de importación, visualización entre otros}
+\FunctionTok{library}\NormalTok{(dplyr)}\CommentTok{\# Manipulación de Datos}
+\FunctionTok{library}\NormalTok{(ggplot2)}\CommentTok{\# Visualización de datos }
+\FunctionTok{library}\NormalTok{(readxl)}\CommentTok{\# Importación de datos}
+\FunctionTok{library}\NormalTok{(tibble)}\CommentTok{\# Tablas}
+\FunctionTok{library}\NormalTok{(readr) }\CommentTok{\#Para cargar la base de datos}
+\end{Highlighting}
+\end{Shaded}
+
+Si no ha instalado estos paquetes debe correr primero el comando: \textbf{\texttt{install.packages("nombre\ del\ paquete")}}, \textbf{Recuerde que los paquetes deben instalarse una única vez, posteriormente se pueden llamar utilizando la función ``library''}
+
+\subsection{Cargar base de datos:}\label{cargar-base-de-datos}
+
+Tenga en cuenta que debe utilizar la dirección de donde está guardada la base de datos en caso de usar Rstudio descargado en su equipo, o importarlo en la carpeta files en caso de estar trabajando en Rstudio cloud.
+\textbf{Aquí puede ir a un video acerca de importación de datos o datasets: }(\href{https://www.youtube.com/watch?v=agkPSaYEDgQ}{Ver video para Rstudio de escritorio}) o también (\href{https://www.youtube.com/watch?v=anWyri9tbzk}{Ver video para Rstudio Cloud})**
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{read\_csv}\NormalTok{(}\StringTok{"DATA/dataset\_opinion\_publica.csv"}\NormalTok{) }\CommentTok{\#Ojo esta es la dirección en la que la profe tenía guardados sus datos, es necesario cambiarla.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Rows: 500 Columns: 10
+## -- Column specification --------------------------------------------------------
+## Delimiter: ","
+## chr (6): genero, nivel_de_educacion, frecuencia_de_voto, ideologia_politica,...
+## dbl (4): edad, ingreso_mensual, interes_en_politica, confianza_en_gobierno
+## 
+## i Use `spec()` to retrieve the full column specification for this data.
+## i Specify the column types or set `show_col_types = FALSE` to quiet this message.
+\end{verbatim}
+
+\textbf{Nombres de variables}
+Aquí podemos ver qué variables fueron importadas en nuestro Data Frame:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{names}\NormalTok{(datos)}\CommentTok{\# nombres de variables}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] "edad"                    "genero"                 
+##  [3] "nivel_de_educacion"      "ingreso_mensual"        
+##  [5] "interes_en_politica"     "frecuencia_de_voto"     
+##  [7] "ideologia_politica"      "confianza_en_gobierno"  
+##  [9] "uso_de_redes_informarse" "participacion_protestas"
+\end{verbatim}
+
+\textbf{Mostrar o llamar una variable}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{nivel\_de\_educacion) }\CommentTok{\#Se utiliza el simbilo $ despues del nombre de la base. Se uba la función head para mostrar solo los primero sdatos y no todos.}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Secundaria"    "Universitaria" "Universitaria" "Posgrado"     
+## [5] "Universitaria" "Universitaria"
+\end{verbatim}
+
+\textbf{Dimensiones}
+
+Es importante conocer las dimensiones del Dataset cargado para asegurarse que se incluyeron todas las variables y observaciones.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{dim}\NormalTok{(datos) }\CommentTok{\#Dimensiones: num filas x num columnas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 500  10
+\end{verbatim}
+
+\textbf{Mostrar las primeras filas de la base de datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 10
+##    edad genero     nivel_de_educacion ingreso_mensual interes_en_politica
+##   <dbl> <chr>      <chr>                        <dbl>               <dbl>
+## 1    56 Femenino   Secundaria                   2333.                   4
+## 2    69 No binario Universitaria                1692.                   1
+## 3    46 Masculino  Universitaria                6550.                   3
+## 4    32 Masculino  Posgrado                     3327.                   1
+## 5    60 Femenino   Universitaria                5944.                   5
+## 6    25 Masculino  Universitaria                4389.                   4
+## # i 5 more variables: frecuencia_de_voto <chr>, ideologia_politica <chr>,
+## #   confianza_en_gobierno <dbl>, uso_de_redes_informarse <chr>,
+## #   participacion_protestas <chr>
+\end{verbatim}
+
+\textbf{Tipos de datos}
+Con esto es posible verificar que los datos están correctamente cargados de acuerdo a la naturaleza de cada variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spc_tbl_ [500 x 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ edad                   : num [1:500] 56 69 46 32 60 25 78 38 56 75 ...
+##  $ genero                 : chr [1:500] "Femenino" "No binario" "Masculino" "Masculino" ...
+##  $ nivel_de_educacion     : chr [1:500] "Secundaria" "Universitaria" "Universitaria" "Posgrado" ...
+##  $ ingreso_mensual        : num [1:500] 2333 1692 6550 3327 5944 ...
+##  $ interes_en_politica    : num [1:500] 4 1 3 1 5 4 7 5 10 4 ...
+##  $ frecuencia_de_voto     : chr [1:500] "A veces" "Siempre" "Siempre" "Siempre" ...
+##  $ ideologia_politica     : chr [1:500] "Centro" "Derecha" "Centro" "Centro" ...
+##  $ confianza_en_gobierno  : num [1:500] 1 6 5 9 2 8 5 2 10 6 ...
+##  $ uso_de_redes_informarse: chr [1:500] "Alto" "Medio" "Medio" "Alto" ...
+##  $ participacion_protestas: chr [1:500] "No" "No" "No" "No" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   edad = col_double(),
+##   ..   genero = col_character(),
+##   ..   nivel_de_educacion = col_character(),
+##   ..   ingreso_mensual = col_double(),
+##   ..   interes_en_politica = col_double(),
+##   ..   frecuencia_de_voto = col_character(),
+##   ..   ideologia_politica = col_character(),
+##   ..   confianza_en_gobierno = col_double(),
+##   ..   uso_de_redes_informarse = col_character(),
+##   ..   participacion_protestas = col_character()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+\end{verbatim}
+
+Supongamos que las variables \textbf{Interés en política} y \textbf{Confianza en el gobierno} se deben manejar como variables categóricas, pero R las lee como numéricas. Es posible cambiar el tipo de variable:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Convertir variables en factores}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{interes\_en\_politica }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{interes\_en\_politica) }\CommentTok{\#OJO: con el signo "$" llamo a una variable específica de mi dataset}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{confianza\_en\_gobierno }\OtherTok{\textless{}{-}} \FunctionTok{as.factor}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{confianza\_en\_gobierno)}
+\end{Highlighting}
+\end{Shaded}
+
+Revisar nuevamente el Dataset:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{str}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## spc_tbl_ [500 x 10] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+##  $ edad                   : num [1:500] 56 69 46 32 60 25 78 38 56 75 ...
+##  $ genero                 : chr [1:500] "Femenino" "No binario" "Masculino" "Masculino" ...
+##  $ nivel_de_educacion     : chr [1:500] "Secundaria" "Universitaria" "Universitaria" "Posgrado" ...
+##  $ ingreso_mensual        : num [1:500] 2333 1692 6550 3327 5944 ...
+##  $ interes_en_politica    : Factor w/ 10 levels "1","2","3","4",..: 4 1 3 1 5 4 7 5 10 4 ...
+##  $ frecuencia_de_voto     : chr [1:500] "A veces" "Siempre" "Siempre" "Siempre" ...
+##  $ ideologia_politica     : chr [1:500] "Centro" "Derecha" "Centro" "Centro" ...
+##  $ confianza_en_gobierno  : Factor w/ 10 levels "1","2","3","4",..: 1 6 5 9 2 8 5 2 10 6 ...
+##  $ uso_de_redes_informarse: chr [1:500] "Alto" "Medio" "Medio" "Alto" ...
+##  $ participacion_protestas: chr [1:500] "No" "No" "No" "No" ...
+##  - attr(*, "spec")=
+##   .. cols(
+##   ..   edad = col_double(),
+##   ..   genero = col_character(),
+##   ..   nivel_de_educacion = col_character(),
+##   ..   ingreso_mensual = col_double(),
+##   ..   interes_en_politica = col_double(),
+##   ..   frecuencia_de_voto = col_character(),
+##   ..   ideologia_politica = col_character(),
+##   ..   confianza_en_gobierno = col_double(),
+##   ..   uso_de_redes_informarse = col_character(),
+##   ..   participacion_protestas = col_character()
+##   .. )
+##  - attr(*, "problems")=<externalptr>
+\end{verbatim}
+
+\subsection{Revisión de valores faltantes (N/A):}\label{revisiuxf3n-de-valores-faltantes-na}
+
+Sumar N/As por cada columna (variable)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Contar valores faltantes por variable}
+\FunctionTok{colSums}\NormalTok{(}\FunctionTok{is.na}\NormalTok{(datos))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                    edad                  genero      nivel_de_educacion 
+##                       0                       0                       0 
+##         ingreso_mensual     interes_en_politica      frecuencia_de_voto 
+##                      10                       0                       0 
+##      ideologia_politica   confianza_en_gobierno uso_de_redes_informarse 
+##                      10                       0                       0 
+## participacion_protestas 
+##                      10
+\end{verbatim}
+
+\textbf{Nota importante:} Cuando se identifican datos faltantes en un conjunto de datos durante un Análisis Exploratorio de Datos (EDA), es fundamental evaluar su impacto en el análisis y decidir el mejor método para tratarlos. El primer paso consiste en cuantificar la cantidad de valores ausentes y analizar su distribución a lo largo de las variables. Si los valores perdidos son escasos y aleatorios, una opción válida puede ser eliminarlos sin afectar significativamente los resultados. Sin embargo, cuando los valores faltantes son numerosos o siguen un patrón sistemático, es recomendable aplicar métodos de imputación, como el reemplazo por la media o mediana en variables numéricas, o el uso de la moda en variables categóricas. También pueden emplearse técnicas más avanzadas, como la imputación por regresión o el uso de modelos de aprendizaje automático.
+
+En cualquier caso, \textbf{la decisión sobre el tratamiento de los datos ausentes debe tomarse considerando el contexto del estudio y asegurando que no se introduzcan sesgos que afecten la validez de las conclusiones.}
+
+\subsection{Revisión de valores atípicos (outliers)}\label{revisiuxf3n-de-valores-atuxedpicos-outliers}
+
+\textbf{Nota importante:} La detección de valores atípicos es un paso crucial en un Análisis Exploratorio de Datos (EDA), ya que estos pueden influir en la interpretación de los resultados y en la robustez de los modelos estadísticos. \textbf{Un valor atípico es una observación que se aleja significativamente del resto de los datos} y puede ser causado por errores de medición, registros incorrectos o, en algunos casos, por la naturaleza de la propia distribución de los datos. Para identificarlos, se pueden utilizar técnicas gráficas como los gráficos de caja y bigotes.
+
+Una vez detectados, es importante analizar su origen: si los valores son producto de errores, pueden ser corregidos o eliminados; si son casos extremos pero válidos, se pueden utilizar transformaciones más complejas para reducir su impacto. \textbf{La decisión de mantener, corregir o eliminar valores atípicos debe basarse en la naturaleza del problema y el contexto del estudio, asegurando que el análisis refleje con precisión la realidad de los datos.}
+
+Un resumen estadístico general de las variables nos puede mostrar el resumen de los cinco números para las variables numéricas: (mínimo, primer cuartil, segundo cuartil (que equivale a la mediana), tercer cuartil y valor máximo). Estos cinco números nos brindan una idea de la distribución de los datos: \textbf{la media se ve alterada por valores extremos, mientras que la mediana no}, cuando la media se aleja mucho de la mediana, puede ser un indicador de datos atípicos o extremos.
+
+En este caso, las variables numéricas son \textbf{Edad e Ingreso mensual:}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Resumen estadístico general}
+\FunctionTok{summary}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       edad          genero          nivel_de_educacion ingreso_mensual   
+##  Min.   :18.00   Length:500         Length:500         Min.   :   125.6  
+##  1st Qu.:35.00   Class :character   Class :character   1st Qu.:  2634.0  
+##  Median :50.00   Mode  :character   Mode  :character   Median :  5268.8  
+##  Mean   :50.34                                         Mean   :  6040.2  
+##  3rd Qu.:66.00                                         3rd Qu.:  7264.7  
+##  Max.   :80.00                                         Max.   :412545.0  
+##                                                        NA's   :10        
+##  interes_en_politica frecuencia_de_voto ideologia_politica
+##  4      : 56         Length:500         Length:500        
+##  5      : 56         Class :character   Class :character  
+##  8      : 56         Mode  :character   Mode  :character  
+##  10     : 53                                              
+##  6      : 49                                              
+##  9      : 49                                              
+##  (Other):181                                              
+##  confianza_en_gobierno uso_de_redes_informarse participacion_protestas
+##  6      : 59           Length:500              Length:500             
+##  8      : 56           Class :character        Class :character       
+##  10     : 54           Mode  :character        Mode  :character       
+##  7      : 52                                                          
+##  1      : 50                                                          
+##  3      : 50                                                          
+##  (Other):179
+\end{verbatim}
+
+Note que la media y mediana de la edad son muy similares, mientras que en el caso de ingreso mensual, se alejan un poco más. Note también que el valor máximo en esta última variable se encuentra alejado del tercer cuartil. Todo esto lo podemos visualizar mejor en un gráfico de Caja y Bigotes.
+
+\textbf{Caja y bigotes para la variable edad}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{boxplot}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{edad, }\AttributeTok{horizontal=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}steelblue\textquotesingle{}}\NormalTok{, }\AttributeTok{main=}\StringTok{"Boxplot de edad"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-52-1.pdf}
+
+\textbf{Caja y bigotes para la variable Ingreso mensual}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Desactivar notación científica (cuando las cifras son muy largas)}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen=}\DecValTok{999}\NormalTok{)}
+
+\CommentTok{\# Generar el boxplot sin notación científica}
+\FunctionTok{boxplot}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual, }\AttributeTok{horizontal=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}cadetblue4\textquotesingle{}}\NormalTok{, }\AttributeTok{main=}\StringTok{"Boxplot de Ingreso Mensual"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-53-1.pdf}
+
+El gráfico se ve de esta manera por los valores extremos. Así se vería sin esos datos atípicos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Desactivar notación científica}
+\FunctionTok{options}\NormalTok{(}\AttributeTok{scipen=}\DecValTok{999}\NormalTok{)}
+
+\CommentTok{\# Generar boxplot sin valores extremos}
+\FunctionTok{boxplot}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual, }\AttributeTok{horizontal=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}cadetblue4\textquotesingle{}}\NormalTok{, }
+        \AttributeTok{main=}\StringTok{"Boxplot de Ingreso Mensual (Sin Valores Extremos)"}\NormalTok{, }
+        \AttributeTok{outline=}\ConstantTok{FALSE}\NormalTok{)  }\CommentTok{\# Esto elimina los valores atípicos visualmente}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-54-1.pdf}
+En esta ocasión, reemplazaremos los atípicos por el valor de la mediana a manera de imputación:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Calcular la mediana del ingreso mensual}
+\NormalTok{mediana }\OtherTok{\textless{}{-}} \FunctionTok{median}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual, }\AttributeTok{na.rm=}\ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Reemplazar valores atípicos con la mediana}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual }\OtherTok{\textless{}{-}} \FunctionTok{ifelse}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual }\SpecialCharTok{\%in\%} \FunctionTok{boxplot.stats}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual)}\SpecialCharTok{$}\NormalTok{out, }
+\NormalTok{                                mediana, }
+\NormalTok{                                datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual)}
+
+\CommentTok{\# Verificar con un nuevo boxplot}
+\FunctionTok{boxplot}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual, }\AttributeTok{horizontal=}\ConstantTok{TRUE}\NormalTok{, }\AttributeTok{col=}\StringTok{\textquotesingle{}cadetblue4\textquotesingle{}}\NormalTok{, }
+        \AttributeTok{main=}\StringTok{"Boxplot de Ingreso Mensual (Atípicos Reemplazados con Mediana)"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-55-1.pdf}
+
+\subsection{Exploración de variables:}\label{exploraciuxf3n-de-variables}
+
+\textbf{Representación en tablas:}
+
+Tabla de Frecuencia para Nivel de Educación
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de Frecuencia para Nivel de Educación}
+\NormalTok{tabla\_educacion }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{nivel\_de\_educacion)}
+\FunctionTok{print}\NormalTok{(tabla\_educacion)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##      Posgrado      Primaria    Secundaria Universitaria 
+##            78            51           189           182
+\end{verbatim}
+
+Tabla de Frecuencia para Ideología Política
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de Frecuencia para Ideología Política}
+\NormalTok{tabla\_ideologia }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ideologia\_politica)}
+\FunctionTok{print}\NormalTok{(tabla\_ideologia)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##    Centro   Derecha Izquierda 
+##       181       156       153
+\end{verbatim}
+
+Tabla de Frecuencia para interés en política
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Tabla de Frecuencia para interés en política}
+\NormalTok{tabla\_interes\_pol }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{interes\_en\_politica)}
+\FunctionTok{print}\NormalTok{(tabla\_interes\_pol)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  1  2  3  4  5  6  7  8  9 10 
+## 46 44 47 56 56 49 44 56 49 53
+\end{verbatim}
+
+Tabla de frecuencia agrupada para ingreso mensual
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Determinar automáticamente el número de intervalos con la regla de Sturges}
+\NormalTok{num\_intervals }\OtherTok{\textless{}{-}} \FunctionTok{nclass.Sturges}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual)}
+
+\CommentTok{\# Agrupar ingresos en intervalos automáticos}
+\NormalTok{datos}\SpecialCharTok{$}\NormalTok{ingreso\_grupo }\OtherTok{\textless{}{-}} \FunctionTok{cut}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_mensual, }\AttributeTok{breaks =}\NormalTok{ num\_intervals, }\AttributeTok{include.lowest =} \ConstantTok{TRUE}\NormalTok{)}
+
+\CommentTok{\# Crear la tabla de frecuencia}
+\NormalTok{tabla\_ingreso }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{ingreso\_grupo)}
+
+\CommentTok{\# Convertir en data frame para mejor presentación}
+\NormalTok{tabla\_ingreso\_df }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(tabla\_ingreso)}
+\FunctionTok{colnames}\NormalTok{(tabla\_ingreso\_df) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Rango de Ingreso"}\NormalTok{, }\StringTok{"Frecuencia"}\NormalTok{)}
+
+\CommentTok{\# Calcular la frecuencia relativa}
+\NormalTok{frecuencia\_relativa }\OtherTok{\textless{}{-}} \FunctionTok{prop.table}\NormalTok{(tabla\_ingreso) }\SpecialCharTok{*} \DecValTok{100}  \CommentTok{\# Convertir a porcentaje}
+\NormalTok{tabla\_ingreso\_df}\SpecialCharTok{$}\NormalTok{frecuencia\_relativa }\OtherTok{\textless{}{-}} \FunctionTok{round}\NormalTok{(frecuencia\_relativa, }\DecValTok{2}\NormalTok{)  }\CommentTok{\# Agregar columna con \% y redondear}
+
+\NormalTok{tabla\_ingreso\_df }\CommentTok{\#Mostrar la tabla resultante}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##       Rango de Ingreso Frecuencia frecuencia_relativa
+## 1       [113,1.38e+03]         52               10.61
+## 2  (1.38e+03,2.63e+03]         70               14.29
+## 3  (2.63e+03,3.88e+03]         56               11.43
+## 4  (3.88e+03,5.14e+03]         61               12.45
+## 5  (5.14e+03,6.39e+03]         89               18.16
+## 6  (6.39e+03,7.64e+03]         58               11.84
+## 7  (7.64e+03,8.89e+03]         60               12.24
+## 8  (8.89e+03,1.01e+04]         43                8.78
+## 9  (1.01e+04,1.14e+04]          0                0.00
+## 10 (1.14e+04,1.27e+04]          1                0.20
+\end{verbatim}
+
+\subsection{Gráficos:}\label{gruxe1ficos}
+
+\textbf{Nota:} Encuentra aquí la guía de colores para tus gráficos \textgreater{} **(\href{https://www.datanovia.com/en/blog/awesome-list-of-657-r-color-names/}{guía de colores})
+
+Gráfico para la variable genero:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ genero, }\AttributeTok{fill =}\NormalTok{ genero)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_bar}\NormalTok{() }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribución de Género"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Género"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-60-1.pdf}
+
+Gráfico para la variable edad:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ edad)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{, }\AttributeTok{fill =} \StringTok{"steelblue"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribución de Edades"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Edad"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-61-1.pdf}
+
+Gráfico para ingreso mensual
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ingreso\_mensual)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_histogram}\NormalTok{(}\AttributeTok{bins =} \DecValTok{10}\NormalTok{, }\AttributeTok{fill =} \StringTok{"cyan4"}\NormalTok{, }\AttributeTok{color =} \StringTok{"black"}\NormalTok{, }\AttributeTok{alpha =} \FloatTok{0.7}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribución del Ingreso Mensual"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Ingreso Mensual"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing non-finite outside the scale range
+## (`stat_bin()`).
+\end{verbatim}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-62-1.pdf}
+
+Gráfico para ideología
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ ideologia\_politica, }\AttributeTok{fill =}\NormalTok{ ideologia\_politica)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_bar}\NormalTok{() }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribución de la Ideología Política"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Ideología Política"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Frecuencia"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-63-1.pdf}
+
+Gráfico circular para voto
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tabla\_voto }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{frecuencia\_de\_voto)}
+\NormalTok{df\_voto }\OtherTok{\textless{}{-}} \FunctionTok{as.data.frame}\NormalTok{(tabla\_voto)}
+\FunctionTok{colnames}\NormalTok{(df\_voto) }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"Frecuencia de Voto"}\NormalTok{, }\StringTok{"Frecuencia"}\NormalTok{)}
+
+\FunctionTok{ggplot}\NormalTok{(df\_voto, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =} \StringTok{""}\NormalTok{, }\AttributeTok{y =}\NormalTok{ Frecuencia, }\AttributeTok{fill =} \StringTok{\textasciigrave{}}\AttributeTok{Frecuencia de Voto}\StringTok{\textasciigrave{}}\NormalTok{)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{stat =} \StringTok{"identity"}\NormalTok{, }\AttributeTok{width =} \DecValTok{1}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{coord\_polar}\NormalTok{(}\StringTok{"y"}\NormalTok{, }\AttributeTok{start =} \DecValTok{0}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Frecuencia de Voto (Gráfico Circular)"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_void}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-64-1.pdf}
+
+\subsection{Análisis Bivariado}\label{anuxe1lisis-bivariado}
+
+diagrama de barras agrupadas genero vs votos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear gráfico de barras agrupadas}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ frecuencia\_de\_voto, }\AttributeTok{fill =}\NormalTok{ genero)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_bar}\NormalTok{(}\AttributeTok{position =} \StringTok{"dodge"}\NormalTok{) }\SpecialCharTok{+}  \CommentTok{\# "dodge" agrupa las barras}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Frecuencia de Voto por Género"}\NormalTok{, }\AttributeTok{x =} \StringTok{"Frecuencia de Voto"}\NormalTok{, }\AttributeTok{y =} \StringTok{"Cantidad de Personas"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-65-1.pdf}
+
+diagrama de cajas y bigotes genero vs ingresos mensuales
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear el boxplot de ingreso mensual según género}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ genero, }\AttributeTok{y =}\NormalTok{ ingreso\_mensual, }\AttributeTok{fill =}\NormalTok{ genero)) }\SpecialCharTok{+}  
+  \FunctionTok{geom\_boxplot}\NormalTok{() }\SpecialCharTok{+}  \CommentTok{\# Agregar boxplot}
+  \FunctionTok{labs}\NormalTok{(}\AttributeTok{title =} \StringTok{"Distribución del Ingreso Mensual por Género"}\NormalTok{, }
+       \AttributeTok{x =} \StringTok{"Género"}\NormalTok{, }
+       \AttributeTok{y =} \StringTok{"Ingreso Mensual"}\NormalTok{) }\SpecialCharTok{+}  
+  \FunctionTok{theme\_minimal}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing non-finite outside the scale range
+## (`stat_boxplot()`).
+\end{verbatim}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-66-1.pdf}
+
+Diagrama de dispersión Edad vs ingreso
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Relación entre edad e ingreso}
+\FunctionTok{ggplot}\NormalTok{(datos, }\FunctionTok{aes}\NormalTok{(}\AttributeTok{x =}\NormalTok{ edad, }\AttributeTok{y =}\NormalTok{ ingreso\_mensual)) }\SpecialCharTok{+}
+  \FunctionTok{geom\_point}\NormalTok{(}\AttributeTok{alpha =} \FloatTok{0.5}\NormalTok{, }\AttributeTok{color =} \StringTok{"blue"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{geom\_smooth}\NormalTok{(}\AttributeTok{method =} \StringTok{"lm"}\NormalTok{, }\AttributeTok{color =} \StringTok{"red"}\NormalTok{) }\SpecialCharTok{+}
+  \FunctionTok{theme\_minimal}\NormalTok{() }\SpecialCharTok{+}
+  \FunctionTok{ggtitle}\NormalTok{(}\StringTok{"Relación entre Edad e Ingreso"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## `geom_smooth()` using formula = 'y ~ x'
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing non-finite outside the scale range
+## (`stat_smooth()`).
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 10 rows containing missing values or values outside the scale range
+## (`geom_point()`).
+\end{verbatim}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-67-1.pdf}
+
+Matriz de correlación entre variables numéricas
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Correlación entre variables numéricas }
+
+\CommentTok{\# Cargar librería necesaria}
+\FunctionTok{library}\NormalTok{(corrplot)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## corrplot 0.95 loaded
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Seleccionar solo las variables numéricas de interés}
+\NormalTok{datos\_correlacion }\OtherTok{\textless{}{-}}\NormalTok{ datos[, }\FunctionTok{c}\NormalTok{(}\StringTok{"edad"}\NormalTok{, }\StringTok{"ingreso\_mensual"}\NormalTok{)]}
+
+\CommentTok{\# Calcular la matriz de correlación}
+\NormalTok{matriz\_cor }\OtherTok{\textless{}{-}} \FunctionTok{cor}\NormalTok{(datos\_correlacion, }\AttributeTok{use =} \StringTok{"complete.obs"}\NormalTok{)}
+
+\CommentTok{\# Mostrar matriz de correlación en consola}
+\FunctionTok{print}\NormalTok{(matriz\_cor)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##                       edad ingreso_mensual
+## edad            1.00000000      0.04279635
+## ingreso_mensual 0.04279635      1.00000000
+\end{verbatim}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Conlusiones}\label{conlusiones}
+
+El Análisis Exploratorio de Datos (EDA) realizado sobre la encuesta de opinión pública permitió identificar patrones y relaciones clave entre variables sociodemográficas y políticas. A través del análisis de distribuciones, correlaciones y visualizaciones, se detectaron valores faltantes y valores atípicos. El EDA es un paso esencial y no opcional en cualquier investigación cuantitativa, ya que proporciona una comprensión profunda de los datos y permite tomar decisiones informadas sobre el tratamiento de variables y la aplicación de modelos.
+
+\textbf{Hallazgos}
+
+\begin{itemize}
+\item
+  \textbf{Edad} : La distribución de edades es relativamente uniforme, sin concentraciones extremas en grupos específicos.
+\item
+  \textbf{Género}: Se observó una distribución equilibrada de género en la muestra. El análisis de caja y bigotes mostró que existen diferencias en los ingresos según el género, con una mediana salarial mayor en ciertos grupos.
+\item
+  \textbf{Nivel de Educación}: La mayoría de los encuestados tienen estudios universitarios, seguidos de aquellos con educación secundaria. .
+\item
+  \textbf{Ingreso Mensual}: Se identificaron valores atípicos, lo que indica la presencia de individuos con ingresos significativamente mayores que el resto. La distribución de ingresos no es homogénea, con una concentración en los rangos medios y menores diferencias por edad.
+\item
+  \textbf{Frecuencia de Voto}️ : La mayoría de los encuestados afirmaron votar siempre o a veces, con pocos casos de abstención total.
+\end{itemize}
+
+\chapter{Distribuciones Muestrales}\label{distribuciones-muestrales}
+
+En esta sección exploraremos las principales distribuciones de probabilidad utilizadas en estadistica, su interpretacion, su aplicacion en R y la manera en que pueden ser visualizadas.
+
+\section{Estadísticos:}\label{estaduxedsticos}
+
+Con estos ejercicios vamos a simular que calculamos estadísticos para algunas variables.
+
+\subsection{Datos númericos (media, varianza y desviación estándar)}\label{datos-nuxfamericos-media-varianza-y-desviaciuxf3n-estuxe1ndar}
+
+Crear una secuencia de datos numéricos
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{) }\CommentTok{\#Crear un vector 100 números desde el 1 hasta el 5}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 1.000000 1.040404 1.080808 1.121212 1.161616 1.202020 1.242424 1.282828
+##   [9] 1.323232 1.363636 1.404040 1.444444 1.484848 1.525253 1.565657 1.606061
+##  [17] 1.646465 1.686869 1.727273 1.767677 1.808081 1.848485 1.888889 1.929293
+##  [25] 1.969697 2.010101 2.050505 2.090909 2.131313 2.171717 2.212121 2.252525
+##  [33] 2.292929 2.333333 2.373737 2.414141 2.454545 2.494949 2.535354 2.575758
+##  [41] 2.616162 2.656566 2.696970 2.737374 2.777778 2.818182 2.858586 2.898990
+##  [49] 2.939394 2.979798 3.020202 3.060606 3.101010 3.141414 3.181818 3.222222
+##  [57] 3.262626 3.303030 3.343434 3.383838 3.424242 3.464646 3.505051 3.545455
+##  [65] 3.585859 3.626263 3.666667 3.707071 3.747475 3.787879 3.828283 3.868687
+##  [73] 3.909091 3.949495 3.989899 4.030303 4.070707 4.111111 4.151515 4.191919
+##  [81] 4.232323 4.272727 4.313131 4.353535 4.393939 4.434343 4.474747 4.515152
+##  [89] 4.555556 4.595960 4.636364 4.676768 4.717172 4.757576 4.797980 4.838384
+##  [97] 4.878788 4.919192 4.959596 5.000000
+\end{verbatim}
+
+\textbf{Media}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\textbf{Desviación estándar}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.172181
+\end{verbatim}
+
+\subsection{Datos categóricos (proporción)}\label{datos-categuxf3ricos-proporciuxf3n}
+
+En R, puedes crear un vector dicotómico que represente, por ejemplo, si una persona tiene o no tiene acceso a Internet en su hogar
+
+Vector categórico
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear un vector categórico con "S" (Sí) y "N" (No)}
+\NormalTok{acceso\_internet }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"N"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{\emph{Proporción: Función mean}}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear un vector categórico con "S" (Sí) y "N" (No)}
+\NormalTok{acceso\_internet }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"S"}\NormalTok{, }\StringTok{"N"}\NormalTok{, }\StringTok{"N"}\NormalTok{)}
+
+\CommentTok{\# Calcular la proporción de "S" y "N"}
+\NormalTok{prop\_S2 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(acceso\_internet }\SpecialCharTok{==} \StringTok{"S"}\NormalTok{)  }\CommentTok{\# Proporción de "S"}
+\NormalTok{prop\_N2 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(acceso\_internet }\SpecialCharTok{==} \StringTok{"N"}\NormalTok{)  }\CommentTok{\# Proporción de "N"}
+\end{Highlighting}
+\end{Shaded}
+
+Proporciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop\_S2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.6
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop\_N2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.4
+\end{verbatim}
+
+**Cuando se representa con (1 = Sí, 0 = No). Luego, puedes calcular la proporción de cada categoría solo calculando la media,
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Crear un vector dicotómico (1 = Tiene acceso a Internet, 0 = No tiene)}
+\NormalTok{y }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{,}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Proporciones:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop\_1 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(acceso\_internet }\SpecialCharTok{==} \DecValTok{1}\NormalTok{)  }\CommentTok{\# Proporción de personas con acceso}
+\NormalTok{prop\_0 }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(acceso\_internet }\SpecialCharTok{==} \DecValTok{0}\NormalTok{)  }\CommentTok{\# Proporción de personas sin acceso}
+
+\NormalTok{prop\_1}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prop\_0}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0
+\end{verbatim}
+
+\section{\texorpdfstring{Comandos \texttt{dpqr} para distribuciones de probabilidad}{Comandos dpqr para distribuciones de probabilidad}}\label{comandos-dpqr-para-distribuciones-de-probabilidad}
+
+R proporciona cuatro funciones fundamentales para manejar distribuciones de probabilidad, se utilizan \textbf{comando + distribución}*:
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{d}: Calcula la funcion de densidad de probabilidad (PDF) o la funcion de masa de probabilidad (PMF) para una distribucion.\\
+\item
+  \textbf{p}: Calcula la funcion de distribucion acumulada (CDF), que nos dice la probabilidad de obtener un valor menor o igual a un punto dado.\\
+\item
+  \textbf{q}: Calcula cuantiles o percentiles de la distribucion.\\
+\item
+  \textbf{r}: Genera valores aleatorios a partir de la distribucion especificada.
+\end{itemize}
+
+\subsection{\texorpdfstring{ d (densidad): Funcion de Densidad de Probabilidad (PDF)}{ d  (densidad): Funcion de Densidad de Probabilidad (PDF)}}\label{d-densidad-funcion-de-densidad-de-probabilidad-pdf}
+
+\textbf{La densidad de probabilidad} es una función matemática que describe la probabilidad relativa de que una variable aleatoria tome un valor específico dentro de un rango. En el caso de una distribución continua, como la normal, la probabilidad exacta de un solo punto es cero, por lo que en su lugar analizamos la densidad de probabilidad.
+
+Ejemplo, creamos un vector numéricos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 1.000000 1.040404 1.080808 1.121212 1.161616 1.202020 1.242424 1.282828
+##   [9] 1.323232 1.363636 1.404040 1.444444 1.484848 1.525253 1.565657 1.606061
+##  [17] 1.646465 1.686869 1.727273 1.767677 1.808081 1.848485 1.888889 1.929293
+##  [25] 1.969697 2.010101 2.050505 2.090909 2.131313 2.171717 2.212121 2.252525
+##  [33] 2.292929 2.333333 2.373737 2.414141 2.454545 2.494949 2.535354 2.575758
+##  [41] 2.616162 2.656566 2.696970 2.737374 2.777778 2.818182 2.858586 2.898990
+##  [49] 2.939394 2.979798 3.020202 3.060606 3.101010 3.141414 3.181818 3.222222
+##  [57] 3.262626 3.303030 3.343434 3.383838 3.424242 3.464646 3.505051 3.545455
+##  [65] 3.585859 3.626263 3.666667 3.707071 3.747475 3.787879 3.828283 3.868687
+##  [73] 3.909091 3.949495 3.989899 4.030303 4.070707 4.111111 4.151515 4.191919
+##  [81] 4.232323 4.272727 4.313131 4.353535 4.393939 4.434343 4.474747 4.515152
+##  [89] 4.555556 4.595960 4.636364 4.676768 4.717172 4.757576 4.797980 4.838384
+##  [97] 4.878788 4.919192 4.959596 5.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 3
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.172181
+\end{verbatim}
+
+\textbf{Usamos la función d + la distribución} esta funcion devuelve la densidad de probabilidad en un punto especifico de la distribucion normal estandar. Nos dice \textbf{que tan probable es que un valor especifico ocurra}. Obtendremos las probabilidades para cada valor de x:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Aquí se utiliza la función d:}
+
+\NormalTok{densidad }\OtherTok{\textless{}{-}} \FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean =} \DecValTok{3}\NormalTok{ , }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{densidad}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 0.05399097 0.05848724 0.06325461 0.06829898 0.07362533 0.07923761
+##   [7] 0.08513860 0.09132982 0.09781147 0.10458224 0.11163931 0.11897819
+##  [13] 0.12659268 0.13447478 0.14261464 0.15100051 0.15961869 0.16845351
+##  [19] 0.17748736 0.18670064 0.19607183 0.20557752 0.21519246 0.22488967
+##  [25] 0.23464051 0.24441479 0.25418095 0.26390617 0.27355653 0.28309726
+##  [31] 0.29249286 0.30170735 0.31070449 0.31944801 0.32790184 0.33603039
+##  [37] 0.34379874 0.35117292 0.35812016 0.36460914 0.37061018 0.37609553
+##  [43] 0.38103951 0.38541877 0.38921247 0.39240239 0.39497314 0.39691225
+##  [49] 0.39821028 0.39886088 0.39886088 0.39821028 0.39691225 0.39497314
+##  [55] 0.39240239 0.38921247 0.38541877 0.38103951 0.37609553 0.37061018
+##  [61] 0.36460914 0.35812016 0.35117292 0.34379874 0.33603039 0.32790184
+##  [67] 0.31944801 0.31070449 0.30170735 0.29249286 0.28309726 0.27355653
+##  [73] 0.26390617 0.25418095 0.24441479 0.23464051 0.22488967 0.21519246
+##  [79] 0.20557752 0.19607183 0.18670064 0.17748736 0.16845351 0.15961869
+##  [85] 0.15100051 0.14261464 0.13447478 0.12659268 0.11897819 0.11163931
+##  [91] 0.10458224 0.09781147 0.09132982 0.08513860 0.07923761 0.07362533
+##  [97] 0.06829898 0.06325461 0.05848724 0.05399097
+\end{verbatim}
+
+Graficar la densidad (probabilidad para cada valor de x):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(x, densidad, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Densidad de Probabilidad Normal"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-79-1.pdf}
+
+En el grafico, los valores cercanos a la media (0) tienen mayor probabilidad.
+
+\subsection{\texorpdfstring{ p (probabilidad acumulada): Funcion de Distribucion Acumulada:}{ p  (probabilidad acumulada): Funcion de Distribucion Acumulada:}}\label{p-probabilidad-acumulada-funcion-de-distribucion-acumulada}
+
+Esta funcion devuelve la \textbf{probabilidad acumulada} de que un valor sea menor o igual a un punto dado.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Probabilidad acumulada Z hasta 1.96}
+\FunctionTok{pnorm}\NormalTok{(}\FloatTok{1.96}\NormalTok{, }\AttributeTok{mean=}\DecValTok{0}\NormalTok{, }\AttributeTok{sd=}\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.9750021
+\end{verbatim}
+
+La probabilidad acumulada hasta que Z valga 1.96 es del 0.975.
+Recuerde que estamos hablando de una distribución Z porque usamos la función p + norm (normal) con media = o y desviación = 1.
+
+Si \texttt{pnorm(1.96,\ mean=0,\ sd=1)} da 0.975, significa que el 97.5\% de los valores en una normal estandar son menores a 1.96 en otras palabras.
+
+\subsubsection{\texorpdfstring{ q (cuartiles - valores de la variable x): Cuantiles o Percentiles}{ q  (cuartiles - valores de la variable x): Cuantiles o Percentiles}}\label{q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles}
+
+Esta funcion devuelve el valor \textbf{correspondiente a un percentil dado}, no aroja probabilidad, si no, el valor que tomaría X de acuerdo a la posición percentil.
+
+Ejemplo:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.975}\NormalTok{, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+Note que esta función hace lo contrario a la anterior, \textbf{\emph{Le ingresamos una probabilidad y nos arroja el valor de x, en este caso Z}}
+
+\subsection{\texorpdfstring{ r (ramdom values): Generacion de Valores Aleatorios}{ r  (ramdom values): Generacion de Valores Aleatorios}}\label{r-ramdom-values-generacion-de-valores-aleatorios}
+
+Esta funcion genera valores aleatorios de una distribucion con los parametros dados, en este caso normal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\# Para reproducibilidad, para que se generen siempre los mismos valores, si no se usa, cada vez que ejecute las líneas de código, se crearán valores aleatorios nuevos.}
+
+\NormalTok{datos }\OtherTok{=} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\NormalTok{datos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] -0.560475647 -0.230177489  1.558708314  0.070508391  0.129287735
+##   [6]  1.715064987  0.460916206 -1.265061235 -0.686852852 -0.445661970
+##  [11]  1.224081797  0.359813827  0.400771451  0.110682716 -0.555841135
+##  [16]  1.786913137  0.497850478 -1.966617157  0.701355902 -0.472791408
+##  [21] -1.067823706 -0.217974915 -1.026004448 -0.728891229 -0.625039268
+##  [26] -1.686693311  0.837787044  0.153373118 -1.138136937  1.253814921
+##  [31]  0.426464221 -0.295071483  0.895125661  0.878133488  0.821581082
+##  [36]  0.688640254  0.553917654 -0.061911711 -0.305962664 -0.380471001
+##  [41] -0.694706979 -0.207917278 -1.265396352  2.168955965  1.207961998
+##  [46] -1.123108583 -0.402884835 -0.466655354  0.779965118 -0.083369066
+##  [51]  0.253318514 -0.028546755 -0.042870457  1.368602284 -0.225770986
+##  [56]  1.516470604 -1.548752804  0.584613750  0.123854244  0.215941569
+##  [61]  0.379639483 -0.502323453 -0.333207384 -1.018575383 -1.071791226
+##  [66]  0.303528641  0.448209779  0.053004227  0.922267468  2.050084686
+##  [71] -0.491031166 -2.309168876  1.005738524 -0.709200763 -0.688008616
+##  [76]  1.025571370 -0.284773007 -1.220717712  0.181303480 -0.138891362
+##  [81]  0.005764186  0.385280401 -0.370660032  0.644376549 -0.220486562
+##  [86]  0.331781964  1.096839013  0.435181491 -0.325931586  1.148807618
+##  [91]  0.993503856  0.548396960  0.238731735 -0.627906076  1.360652449
+##  [96] -0.600259587  2.187332993  1.532610626 -0.235700359 -1.026420900
+\end{verbatim}
+
+\textbf{\emph{Se crearon 100 números aleatorios que siguen una distribución normal estándar.}}
+
+set.seed() es una función en R que establece una semilla aleatoria para la generación de números pseudoaleatorios. Esto significa que garantiza que los resultados de cálculos aleatorios sean reproducibles cada vez que se ejecuta el código. \textbf{Si no se fija una semilla con set.seed(), cada vez que ejecutes el código obtendrás diferentes valores aleatorios.}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(datos, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Muestra Aleatoria de distribución Normal"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-81-1.pdf}
+
+Aqui generamos 1000 valores aleatorios de una normal estandar y los visualizamos en un histograma.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Distribuciones de probabilidad discretas}\label{distribuciones-de-probabilidad-discretas}
+
+A continuacion, exploramos tres distribuciones discretas: \textbf{Bernoulli, Binomial y Poisson}.
+
+\subsection{Distribucion de Bernoulli}\label{distribucion-de-bernoulli}
+
+La distribucion de Bernoulli modela experimentos con solo dos posibles resultados: \textbf{exito (1) o fracaso (0)}. La funcion de masa de probabilidad (PMF) es:
+
+\[
+P(X = x) = p^x (1-p)^{1-x}, \quad x \in \{0,1\}
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{p }\OtherTok{\textless{}{-}} \FloatTok{0.5}  \CommentTok{\# Probabilidad de exito}
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+
+\NormalTok{densidad\_bernoulli }\OtherTok{\textless{}{-}} \FunctionTok{dbinom}\NormalTok{(x, }\AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{prob =}\NormalTok{ p)}
+
+\FunctionTok{barplot}\NormalTok{(densidad\_bernoulli, }\AttributeTok{names.arg =}\NormalTok{ x, }\AttributeTok{col =} \StringTok{"steelblue"}\NormalTok{,}
+        \AttributeTok{main =} \StringTok{"Distribucion de Bernoulli"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Probabilidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/bernoulli-1.pdf}
+
+\subsection{Distribucion Binomial}\label{distribucion-binomial}
+
+La distribucion binomial modela el numero de exitos en \texttt{n} ensayos independientes de Bernoulli con probabilidad \texttt{p}. Su PMF es:
+
+\[
+P(X = k) = \binom{n}{k} p^k (1-p)^{n-k}, \quad k = 0,1,\dots,n
+\]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{densidad\_binomial }\OtherTok{\textless{}{-}} \FunctionTok{dbinom}\NormalTok{(}\DecValTok{0}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\AttributeTok{size =} \DecValTok{10}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.5}\NormalTok{) }\CommentTok{\# size = número de ensayos y prob = Probabilidad de exito}
+
+\FunctionTok{barplot}\NormalTok{(densidad\_binomial, }\AttributeTok{names.arg =} \DecValTok{0}\SpecialCharTok{:}\DecValTok{10}\NormalTok{, }\AttributeTok{col =} \StringTok{"steelblue"}\NormalTok{,}
+        \AttributeTok{main =} \StringTok{"Distribucion Binomial"}\NormalTok{, }\AttributeTok{ylab =} \StringTok{"Probabilidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Numero de exitos"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/binomial-1.pdf}
+
+\section{Distribuciones de probabilidad continuas}\label{distribuciones-de-probabilidad-continuas}
+
+\subsection{Distribucion Normal}\label{distribucion-normal}
+
+La distribucion normal es una de las mas utilizadas en estadistica debido a su presencia en fenomenos naturales y cientificos. Se caracteriza por dos parametros:
+- \textbf{Media (\texttt{mu})}: Indica el centro de la distribucion.
+- \textbf{Desviacion estandar (\texttt{sigma})}: Define la dispersion de los datos.
+
+La funcion de densidad de probabilidad para la distribucion normal es:
+
+\[ f(x) = \frac{1}{\sigma \sqrt{2\pi}} e^{-\frac{(x-\mu)^2}{2\sigma^2}} \]
+
+En R podemos visualizarla de la siguiente manera:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{4}\NormalTok{, }\DecValTok{8}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{) }\CommentTok{\#Crear una secuencia de 100 números del {-}4 al 4}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 4.000000 4.040404 4.080808 4.121212 4.161616 4.202020 4.242424 4.282828
+##   [9] 4.323232 4.363636 4.404040 4.444444 4.484848 4.525253 4.565657 4.606061
+##  [17] 4.646465 4.686869 4.727273 4.767677 4.808081 4.848485 4.888889 4.929293
+##  [25] 4.969697 5.010101 5.050505 5.090909 5.131313 5.171717 5.212121 5.252525
+##  [33] 5.292929 5.333333 5.373737 5.414141 5.454545 5.494949 5.535354 5.575758
+##  [41] 5.616162 5.656566 5.696970 5.737374 5.777778 5.818182 5.858586 5.898990
+##  [49] 5.939394 5.979798 6.020202 6.060606 6.101010 6.141414 6.181818 6.222222
+##  [57] 6.262626 6.303030 6.343434 6.383838 6.424242 6.464646 6.505051 6.545455
+##  [65] 6.585859 6.626263 6.666667 6.707071 6.747475 6.787879 6.828283 6.868687
+##  [73] 6.909091 6.949495 6.989899 7.030303 7.070707 7.111111 7.151515 7.191919
+##  [81] 7.232323 7.272727 7.313131 7.353535 7.393939 7.434343 7.474747 7.515152
+##  [89] 7.555556 7.595960 7.636364 7.676768 7.717172 7.757576 7.797980 7.838384
+##  [97] 7.878788 7.919192 7.959596 8.000000
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{densidad }\OtherTok{\textless{}{-}} \FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean =} \DecValTok{6}\NormalTok{, }\AttributeTok{sd =} \FloatTok{0.5}\NormalTok{) }\CommentTok{\#obtener las densidades (p) de cada número para la distribución Normal estandar y guardarlos en el objeto "densidad"}
+\NormalTok{densidad}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] 0.0002676605 0.0003685906 0.0005042761 0.0006854197 0.0009255692
+##   [6] 0.0012417246 0.0016550295 0.0021915444 0.0028830946 0.0037681796
+##  [11] 0.0048929229 0.0063120326 0.0080897328 0.0103006160 0.0130303565
+##  [16] 0.0163762131 0.0204472422 0.0253641367 0.0312585990 0.0382721634
+##  [21] 0.0465543853 0.0562603283 0.0675473021 0.0805708292 0.0954798526
+##  [26] 0.1124112370 0.1314836630 0.1527910596 0.1763957719 0.2023217069
+##  [31] 0.2305477404 0.2610017025 0.2935552764 0.3280201494 0.3641457400
+##  [36] 0.4016187924 0.4400650707 0.4790533174 0.5181015431 0.5566856162
+##  [41] 0.5942500061 0.6302204191 0.6640179600 0.6950743503 0.7228476598
+##  [46] 0.7468379475 0.7666021883 0.7817678624 0.7920446268 0.7972335586
+##  [51] 0.7972335586 0.7920446268 0.7817678624 0.7666021883 0.7468379475
+##  [56] 0.7228476598 0.6950743503 0.6640179600 0.6302204191 0.5942500061
+##  [61] 0.5566856162 0.5181015431 0.4790533174 0.4400650707 0.4016187924
+##  [66] 0.3641457400 0.3280201494 0.2935552764 0.2610017025 0.2305477404
+##  [71] 0.2023217069 0.1763957719 0.1527910596 0.1314836630 0.1124112370
+##  [76] 0.0954798526 0.0805708292 0.0675473021 0.0562603283 0.0465543853
+##  [81] 0.0382721634 0.0312585990 0.0253641367 0.0204472422 0.0163762131
+##  [86] 0.0130303565 0.0103006160 0.0080897328 0.0063120326 0.0048929229
+##  [91] 0.0037681796 0.0028830946 0.0021915444 0.0016550295 0.0012417246
+##  [96] 0.0009255692 0.0006854197 0.0005042761 0.0003685906 0.0002676605
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(x, densidad, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"blue"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Distribucion Normal"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-83-1.pdf}
+
+\subsection{Distribucion Normal Estandar}\label{distribucion-normal-estandar}
+
+Es un caso especial de la normal con media 0 y desviacion estandar 1.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\NormalTok{densidad }\OtherTok{\textless{}{-}} \FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(x, densidad, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Densidad de la distribución Normal Estandar"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-84-1.pdf}
+
+\subsection{Distribucion t de Student}\label{distribucion-t-de-student}
+
+Esta distribucion se utiliza cuando el tamano de la muestra es pequeno y la varianza poblacional es desconocida. Su funcion de densidad es:
+
+\[ f(t) = \frac{\Gamma((v+1)/2)}{\sqrt{v\pi} \Gamma(v/2)} \left( 1 + \frac{t^2}{v} \right)^{-(v+1)/2} \]
+
+donde \(v\) es el numero de grados de libertad.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\NormalTok{densidad\_t }\OtherTok{\textless{}{-}} \FunctionTok{dt}\NormalTok{(x, }\AttributeTok{df =} \DecValTok{10}\NormalTok{) }\CommentTok{\#df significa: Grados de libertad}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{plot}\NormalTok{(x, densidad\_t, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"green"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Distribucion t de Student"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-85-1.pdf}
+
+\textbf{\emph{Los grados de libertad en la distribución t:}}
+
+Para visualizar la convergencia de la distribucion t a la normal estandar a medida que aumentan los grados de libertad, graficamos ambas en la misma figura.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\SpecialCharTok{{-}}\DecValTok{4}\NormalTok{, }\DecValTok{4}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\CommentTok{\# Definir los grados de libertad}
+\NormalTok{grados\_libertad }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\DecValTok{1}\NormalTok{, }\DecValTok{5}\NormalTok{, }\DecValTok{28}\NormalTok{)}
+\NormalTok{colores }\OtherTok{\textless{}{-}} \FunctionTok{c}\NormalTok{(}\StringTok{"red"}\NormalTok{, }\StringTok{"green"}\NormalTok{, }\StringTok{"orange"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+Graficando en comparación con la distribución Normal Estándar:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Graficar la distribucion normal estandar}
+\FunctionTok{plot}\NormalTok{(x, }\FunctionTok{dnorm}\NormalTok{(x, }\AttributeTok{mean =} \DecValTok{0}\NormalTok{, }\AttributeTok{sd =} \DecValTok{1}\NormalTok{), }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"black"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Comparacion entre la Distribucion t y la Normal Estandar"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{, }\AttributeTok{ylim =} \FunctionTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\FloatTok{0.45}\NormalTok{))}
+
+\CommentTok{\# Agregar las distribuciones t con diferentes grados de libertad}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\FunctionTok{length}\NormalTok{(grados\_libertad)) \{}
+  \FunctionTok{lines}\NormalTok{(x, }\FunctionTok{dt}\NormalTok{(x, }\AttributeTok{df =}\NormalTok{ grados\_libertad[i]), }\AttributeTok{col =}\NormalTok{ colores[i], }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\NormalTok{\}}
+
+\CommentTok{\# Agregar una leyenda}
+\FunctionTok{legend}\NormalTok{(}\StringTok{"topright"}\NormalTok{, }\AttributeTok{legend =} \FunctionTok{c}\NormalTok{(}\StringTok{"Normal Estandar"}\NormalTok{, }\FunctionTok{paste}\NormalTok{(}\StringTok{"t (df="}\NormalTok{, grados\_libertad, }\StringTok{")"}\NormalTok{)),}
+       \AttributeTok{col =} \FunctionTok{c}\NormalTok{(}\StringTok{"black"}\NormalTok{, colores), }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/t-vs-normal-1.pdf}
+
+\subsection{Distribucion Chi-cuadrado}\label{distribucion-chi-cuadrado}
+
+Esta distribucion se usa en pruebas de hipotesis y analisis de varianza. Se obtiene como la suma de los cuadrados de \(k\) variables aleatorias normales estandar.
+
+Su funcion de densidad es:
+\[ f(x) = \frac{x^{(k/2)-1} e^{-x/2}}{2^{k/2} \Gamma(k/2)} \]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{20}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)}
+
+\NormalTok{densidad\_chi2 }\OtherTok{\textless{}{-}} \FunctionTok{dchisq}\NormalTok{(x, }\AttributeTok{df =} \DecValTok{5}\NormalTok{) }\CommentTok{\#df significa grados de libertad}
+
+\FunctionTok{plot}\NormalTok{(x, densidad\_chi2, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"purple"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Distribucion Chi{-}cuadrado"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/chi-cuadrado-1.pdf}
+
+\subsection{Distribucion F}\label{distribucion-f}
+
+Se usa para comparar varianzas en pruebas de hipotesis. Es la razon de dos distribuciones Chi-cuadrado divididas por sus respectivos grados de libertad:
+
+\[ F = \frac{(\chi^2_{df1} / df1)}{(\chi^2_{df2} / df2)} \]
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x }\OtherTok{\textless{}{-}} \FunctionTok{seq}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{5}\NormalTok{, }\AttributeTok{length =} \DecValTok{100}\NormalTok{)}
+\NormalTok{densidad\_f }\OtherTok{\textless{}{-}} \FunctionTok{df}\NormalTok{(x, }\AttributeTok{df1 =} \DecValTok{5}\NormalTok{, }\AttributeTok{df2 =} \DecValTok{10}\NormalTok{) }\CommentTok{\#df1 y df2 son lso grados de libertad}
+
+
+\FunctionTok{plot}\NormalTok{(x, densidad\_f, }\AttributeTok{type =} \StringTok{"l"}\NormalTok{, }\AttributeTok{col =} \StringTok{"orange"}\NormalTok{, }\AttributeTok{main =} \StringTok{"Distribucion F"}\NormalTok{,}
+     \AttributeTok{ylab =} \StringTok{"Densidad"}\NormalTok{, }\AttributeTok{xlab =} \StringTok{"Valores"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/f-distribucion-1.pdf}
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Distribuciones muestrales: Simulaciones de múltiples muestras}\label{distribuciones-muestrales-simulaciones-de-muxfaltiples-muestras}
+
+Las distribuciones muestrales describen la variabilidad de un estadístico muestral (como la media, proporción o varianza) a través de diferentes muestras tomadas de una misma población.
+
+\textbf{Diferencia clave}\\
+Mientras que una distribución de probabilidad describe cómo se comporta una sola variable aleatoria,
+Una distribución muestral describe \textbf{cómo varía un estadístico}, como la media muestral, al tomar muchas muestras.
+
+\subsection{Simulación de la distribución muestral de la media}\label{simulaciuxf3n-de-la-distribuciuxf3n-muestral-de-la-media}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\#Sembrar semilla para que solo se generen valores aletorios una vez}
+\NormalTok{medias }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\DecValTok{1000}\NormalTok{)  }\CommentTok{\# Vector vacío para guardar las medias}
+\end{Highlighting}
+\end{Shaded}
+
+Se crean 1000 muestras de 30 observaciones cada, cada una a partir de una distribución normal com media 50 y desviación estándar de 10.
+Luego, se guardan todas las medias muestrales.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Esto es un blucle: acción repetitiva:}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{) \{ }\CommentTok{\#Para cada i desde 1 hasta 1000, generar una muestra a partir de una distribución normal}
+\NormalTok{  muestra }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \DecValTok{50}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{)  }\CommentTok{\# Cada muestra tiene 30 observaciones y sigue distribución normal con media 50 y desvición estándar de 10}
+\NormalTok{  medias[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(muestra)  }\CommentTok{\# Guardamos las medias muestrales en el vector medias}
+\NormalTok{\}}
+
+\FunctionTok{head}\NormalTok{(medias) }\CommentTok{\#Mostrar las primeras medias generadas}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 49.52896 51.78338 50.24420 49.06111 48.16420 51.53717
+\end{verbatim}
+
+Graficando la media de cada muestra en un histograma:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(medias, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{, }\AttributeTok{probability =} \ConstantTok{TRUE}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Distribucion Muestral de la Media"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Media Muestral"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(medias), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)  }\CommentTok{\# Agregamos la curva de densidad}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-89-1.pdf}
+
+La forma de campana describe cómo el histograma se aproxima a una distribución normal.
+
+\subsection{Simulación de la distribucion Muestral de la Varianza}\label{simulaciuxf3n-de-la-distribucion-muestral-de-la-varianza}
+
+La distribucion de la varianza muestral sigue una \textbf{distribucion chi-cuadrado}.
+
+Ahora vamos a generar nuevamente 1000 muestras de tamaño 30 que sigan distribución normal con media 50 y desviación estándar de 30:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{) }\CommentTok{\#Semilla para que no se generen valores diferentes cada vez que se corra el código}
+\NormalTok{varianzas }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\DecValTok{1000}\NormalTok{) }\CommentTok{\# Crear vector númerico con el tamaño de las n muestras}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Crear en bucle las 1000 muestras y calcular la varianza de cada una}
+
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  muestra }\OtherTok{\textless{}{-}} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{30}\NormalTok{, }\AttributeTok{mean =} \DecValTok{50}\NormalTok{, }\AttributeTok{sd =} \DecValTok{10}\NormalTok{) }\CommentTok{\#generar muestras normales con media 50 y desviación estándar de 10}
+\NormalTok{  varianzas[i] }\OtherTok{\textless{}{-}} \FunctionTok{var}\NormalTok{(muestra) }\CommentTok{\#Guardar las varianzas de cada muestra.}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+Graficando en un histograma las 1000 varianzas calculadas (una para cada muestra):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(varianzas, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"pink"}\NormalTok{, }\AttributeTok{probability =} \ConstantTok{TRUE}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Distribucion Muestral de la Varianza"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Varianza Muestral"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(varianzas), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-91-1.pdf}
+
+Se puede apreciar la forma muy similar a la distribución chi cuadrada.
+
+\subsection{Simulación de la distribucion Muestral de la Proporción}\label{simulaciuxf3n-de-la-distribucion-muestral-de-la-proporciuxf3n}
+
+Si tomamos muestras de una población binomial, la proporcion de ``exitos'' en cada muestra sigue una distribucion aproximadamente normal si el tamaño de la muestra es suficientemente grande.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{123}\NormalTok{)}
+\NormalTok{poblacion }\OtherTok{\textless{}{-}} \FunctionTok{rbinom}\NormalTok{(}\DecValTok{10000}\NormalTok{, }\AttributeTok{size =} \DecValTok{1}\NormalTok{, }\AttributeTok{prob =} \FloatTok{0.4}\NormalTok{)  }\CommentTok{\# Poblacion binaria con p = 0.4}
+\NormalTok{proporciones }\OtherTok{\textless{}{-}} \FunctionTok{numeric}\NormalTok{(}\DecValTok{1000}\NormalTok{)}\CommentTok{\# Crear vector númerico con el tamaño de las n muestras}
+\end{Highlighting}
+\end{Shaded}
+
+Se crean 1000 muestras, cada una a partir de una distribución binomial com probabilidad de éxito de 0.4. Luego, se guardan todas las proporciones de éxito muestrales.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\SpecialCharTok{:}\DecValTok{1000}\NormalTok{) \{}
+\NormalTok{  muestra }\OtherTok{\textless{}{-}} \FunctionTok{sample}\NormalTok{(poblacion, }\DecValTok{50}\NormalTok{)}
+\NormalTok{  proporciones[i] }\OtherTok{\textless{}{-}} \FunctionTok{mean}\NormalTok{(muestra) }\CommentTok{\#Calcular la proporción de exitos en cada muestra}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(proporciones, }\AttributeTok{breaks =} \DecValTok{30}\NormalTok{, }\AttributeTok{col =} \StringTok{"lightgreen"}\NormalTok{, }\AttributeTok{probability =} \ConstantTok{TRUE}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Distribucion Muestral de la Proporcion"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Proporcion Muestral"}\NormalTok{)}
+\FunctionTok{lines}\NormalTok{(}\FunctionTok{density}\NormalTok{(proporciones), }\AttributeTok{col =} \StringTok{"red"}\NormalTok{, }\AttributeTok{lwd =} \DecValTok{2}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-93-1.pdf}
+
+Se puede apreciar como la distribución binomial se acerca mucho a la distribución normal.
+
+\chapter{Intervalos de confianza}\label{intervalos-de-confianza}
+
+\textbf{Paquetes necesarios}
+
+\section{MEDIA}\label{media}
+
+\includegraphics{IMAGES/media_estima.png}
+
+\subsection{Intervalos de confianza para la media}\label{intervalos-de-confianza-para-la-media}
+
+Para calcular el intervalo de confianza para la media, se deben conocer tres componentes: la media muestral, el error muestral y el valor de la distribución correspondiente al nivel de confianza asignado para el intervalo.
+
+\includegraphics{IMAGES/media_estima2.png}
+
+El intervalo de confianza para estimar la media poblacional \(\mu\) se construye de la siguiente manera:
+
+\[
+IC_{\mu} = (\bar{X} - Z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}} \leq \mu \leq \bar{X} + Z_{\alpha/2} \cdot  \frac{\sigma}{\sqrt{n}})
+\]
+Para el caso con distribución t:
+
+\[IC_{\mu} = (\bar{X} - t_{\alpha/2,n-1gdl} \cdot  \frac{s}{\sqrt{n}} \leq \mu \leq \bar{X} + t_{\alpha/2,n-1gdl} \cdot  \frac{s}{\sqrt{n}})\]
+
+Veamos parte por parte cómo hacerlo:
+
+\textbf{Calcular la Media muestral}
+
+La media muestral: \[\bar{X}\]
+
+es el promedio calculado a partir de una muestra aleatoria. En R disponemos de la función \texttt{mean} para calcularla facilmente a partir de un conjunto de datos.
+
+\textbf{Calcular el Error muestral}
+
+\[ \frac{\sigma}{\sqrt n}\]
+
+\(\sigma\) es la desviación estándar poblacional y \(n\) es el tamaño
+de la muestra.
+
+Cuando la desviación estándar poblacional no es conocida, se utiliza la desviación
+estándar muestral (\(s\)):
+
+\[ \frac{s}{\sqrt n}.\]
+
+\textbf{Calcular el Valor Crítico}
+
+Teniendo en cuenta los supuestos, podemos determinar si la media sigue una \textbf{distribución Normal (Z)} (datos normales, desviación estándar poblacional conocida y muestra lo suficientemente grande) o \textbf{distribución t-student (t)} (datos no normales, desviación estándar poblacional desconocida y muestra pequeña)
+
+También debemos recordar que los intervalos de confianza son aleatorios puesto que se contruyen a partir de una muestra aleatoria, por lo tanto, existe un nivel de confianza \(1-\alpha\) y un margen de error conocido \(\alpha\) para estimar el parámtero.
+
+Ese valor \(\alpha\) se divide entre 2 para distribuirlo a cada lado del intervalo de confianza.
+
+Es por esto que, Una vez determinada la distribución apropiada para el caso, se define el valor crítico para \(\alpha/2\):
+
+\begin{itemize}
+\tightlist
+\item
+  \(Z_{\alpha/2}\) para el caso Normal
+\item
+  \(t_{\alpha/2}\) para el caso t-student
+\end{itemize}
+
+\textbf{\emph{Ya conocemos también las funciones \texttt{d,\ p,\ q,\ r} que nos permitían realizar operaciones a partir de las distribuciones de probabilidad}}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{d}: Calcula la funcion de densidad de probabilidad (PDF) o la funcion de masa de probabilidad (PMF) para una distribucion.\\
+\item
+  \textbf{p}: Calcula la funcion de distribucion acumulada (CDF), que nos dice la probabilidad de obtener un valor menor o igual a un punto dado.\\
+\item
+  \textbf{q}: Calcula cuantiles o percentiles de la distribucion.\\
+\item
+  \textbf{r}: Genera valores aleatorios a partir de la distribucion especificada.
+\end{itemize}
+
+Para calcular el valor crítico utilizaremos la función \texttt{q}, que calcula el valor de Z o de t a partir de una probabilidad dada:
+
+\textbf{\emph{Para el caso \(1-\alpha = 95%
+\), con \(\alpha = 5\% = 0.05\):}}
+
+Distribución normal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+Distribución t con 9 grados de libertad (ejemplo):
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#df = Grados de libertad}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.262157
+\end{verbatim}
+
+Nota: el parámetro ´lower.tail = FALSE´ se utiliza para que el valor crítico sea el de la derecha (positivo). Ya sabemos que estas dos distribuciones son siméticas y el valor es el mismo para cada lado del intervalo\_
+
+\textbf{Calcular el Intervalo de Confianza}
+
+Entonces, para calcular el intervalo de confianza se debe tener la estructura:
+
+límite inferior (izquierda) del intervalo de confianza:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{limite\_inf }\OtherTok{=}\NormalTok{ media muestral }\SpecialCharTok{{-}} \FunctionTok{qdistribucion}\NormalTok{(valor correspondiente) }\SpecialCharTok{*}\NormalTok{ error\_muestral}
+\end{Highlighting}
+\end{Shaded}
+
+Para el límite superior (derecha) del intervalo de confianza:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{limite\_sup }\OtherTok{=}\NormalTok{ media muestral }\SpecialCharTok{+} \FunctionTok{qdistribucion}\NormalTok{(valor correspondiente) }\SpecialCharTok{*}\NormalTok{ error\_muestral}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplo intervalo de confianza para media poblacional:}\label{ejemplo-intervalo-de-confianza-para-media-poblacional}
+
+Un grupo de investigadores quiere estimar el tiempo promedio que los ciudadanos de un país dedican diariamente a informarse con los noticieros. Se toma una muestra aleatoria de 1,500 personas, obteniendo una media muestral de 45 minutos diarios. Estudios previos indican que la desviación estándar poblacional es de 20 minutos. Calcular un intervalo de confianza del 95\% para el tiempo promedio que la población dedica a informarse a través de noticieros.
+
+Primero, organizar los datos y guardarlos en objetos con los nombres que consideremos adecuados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos}
+\NormalTok{x\_barra }\OtherTok{\textless{}{-}} \DecValTok{45}       \CommentTok{\# media muestral}
+\NormalTok{desv\_est }\OtherTok{\textless{}{-}} \DecValTok{20}       \CommentTok{\# desviación estándar poblacional}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{1500}         \CommentTok{\# tamaño de muestra}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+\end{Highlighting}
+\end{Shaded}
+
+Teniendo en cuenta el ejercicio, la media sigue en este caso una distribución Normal, ya que se trata de un amuestra grande y la desviación estándar poblacional es conocida.
+Ahora se debe determinar el valor crítico \(Z_{\alpha/2}\)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valor crítico Z}
+
+\NormalTok{z\_alpha\_2 }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#El valor de Z para alpha/2}
+\NormalTok{z\_alpha\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+Calcular el error, en este caso: \$ \frac{\sigma}{\sqrt n}\$
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Error:}
+\NormalTok{error }\OtherTok{\textless{}{-}}\NormalTok{ desv\_est }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n) }\CommentTok{\#sqrt calcula la raiz}
+\CommentTok{\#Tenga en cuenta que cada dato proporcionado por el ejercicio ya lo habíamos guardado con nombres apropiados.}
+
+
+\NormalTok{error}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.5163978
+\end{verbatim}
+
+Construir el ntervalo de confianza:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Intervalo de confianza}
+\NormalTok{ic\_izquierda }\OtherTok{\textless{}{-}}\NormalTok{ x\_barra }\SpecialCharTok{{-}}\NormalTok{ z\_alpha\_2 }\SpecialCharTok{*}\NormalTok{ error}
+\NormalTok{ic\_derecha }\OtherTok{\textless{}{-}}\NormalTok{ x\_barra }\SpecialCharTok{+}\NormalTok{ z\_alpha\_2 }\SpecialCharTok{*}\NormalTok{ error}
+
+\FunctionTok{c}\NormalTok{(ic\_izquierda, ic\_derecha) }\CommentTok{\#Esto permite concatenar los dos números para que se muestren juntos}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 43.98788 46.01212
+\end{verbatim}
+
+\textbf{Respuesta:} Con un 95\% de confianza, el tiempo promedio que los ciudadanos dedican a informarse sobre política está entre 43.99 y 46.01 minutos
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\subsection{Prueba de hipótesis para la media}\label{prueba-de-hipuxf3tesis-para-la-media}
+
+Recordemos que:
+
+Una prueba de hipótesis es un procedimiento estadístico utilizado para tomar decisiones sobre un parámetro poblacional basándose en una muestra. Matemáticamente, se trata de evaluar la validez de una afirmación acerca de una población utilizando teoría de probabilidades y distribuciones muestrales
+
+\textbf{\emph{El objetivo de una prueba de hipótesis es evaluar si los datos de una muestra proporcionan evidencia estadísticamente significativa para rechazar una hipótesis sobre la media poblacional}}
+
+\begin{itemize}
+\item
+  \textbf{Hipótesis nula \(H_0\)} La hipótesis que se debe comprobar. Inicialmente se asume como verdadera.
+\item
+  \textbf{Hipótesis alternativa \(H_1\)} Se establece como el ``complemento'' de \(H_0\)
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Prueba bilateral: \(H_1: \mu \neq \mu_0\)
+  \item
+    Prueba unilateral derecha: \(H_1: \mu > \mu_0\)
+  \item
+    Prueba unilateral izquierda: \(H_A: \mu < \mu_0\)
+  \end{itemize}
+\end{itemize}
+
+\textbf{Seleccionar el estadístico de prueba}
+
+\emph{\textbf{Caso 1: Desviación estándar poblacional }conocida\textbf{ (prueba Z)}}
+
+\[
+Z = \frac{\bar{X} - \mu}{\sigma / \sqrt{n}}
+\]
+
+\emph{\textbf{Caso 2: Desviación estándar poblacional }desconocida\textbf{ (prueba t de Student)}}
+
+\[
+T = \frac{\bar{X} - \mu}{S / \sqrt{n}}, \quad T \sim t_{n-1}
+\]
+
+\textbf{Calcular el Valor o valores Críticos:}
+
+\textbf{\emph{Volvemos a utilizar las funcionas \texttt{d,\ p,\ q,\ r} para las distribuciones de probabilidad}}
+
+Nuevamente, teniendo en cuenta los supuestos, podemos determinar si la media sigue una \textbf{distribución Normal (Z)} (datos normales, desviación estándar poblacional conocida y muestra lo suficientemente grande) o \textbf{distribución t-student (t)} (datos no normales, desviación estándar poblacional desconocida y muestra pequeña)
+
+También debemos recordar que las pruebas de hipótesis tienen un nivel de significancia \(\alpha\).
+
+Una vez determinada la distribución apropiada para el caso,y el tipo de prueba \textbf{\emph{(bilateral o unilateral)}} se define el valor crítico para \(\alpha\) o \(\alpha/2\).
+
+\includegraphics{IMAGES/colas_ph.png}
+
+\textbf{\emph{Caso bilateral con \(\alpha = 5\%\)}}
+
+\(H_1: \mu \neq \mu_0\)
+
+En este caso el valor \(\alpha\) se divide entre 2 para encontrar los valores críticos de cada lado. Es decir, existen dos valores críticos.
+
+\begin{itemize}
+\tightlist
+\item
+  Ejemplo: Caso con distribución Normal \(Z_{\alpha/2}\) (bilateral)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{) }\CommentTok{\#Valor crítico por la izquierda}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.959964
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#Valor crítico por la derecha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Ejemplo: Caso con distribución t con 9 grados de libertad \(t_{\alpha/2,n-1 gdl}\) (bilateral)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Valor crítico por la izquierda}
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{) }\CommentTok{\#df = Grados de libertad}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.262157
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\#Valor crítico por la derecha}
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{df=}\DecValTok{9}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#df = Grados de libertad}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 2.262157
+\end{verbatim}
+
+\textbf{\emph{Caso Unilateral cola derecha con \(\alpha = 5\%\)}}
+
+\(H_1: \mu > \mu_0\)
+
+En este caso el valor \(\alpha\) NO divide entre 2. Es decir, sólo se tiene un valor crítico por la derecha.
+
+\begin{itemize}
+\tightlist
+\item
+  Ejemplo: Caso con distribución Normal \(Z_{\alpha}\) (Unilateral derecha)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#Valor crítico por la derecha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.644854
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Ejemplo: Caso con distribución t con 9 grados de libertal \(t_{\alpha,n-1 gdl}\) (Unilateral derecha)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\AttributeTok{df=} \DecValTok{9}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#Valor crítico por la derecha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.833113
+\end{verbatim}
+
+\textbf{\emph{Caso Unilateral cola izquierda con \(\alpha = 5\%\)}}
+
+\(H_1: \mu < \mu_0\)
+
+En este caso el valor \(\alpha\) NO divide entre 2. Es decir, sólo se tiene un valor crítico por la izquierda.
+
+\begin{itemize}
+\tightlist
+\item
+  Ejemplo: Caso con distribución Normal \(Z_{\alpha}\) (Unilateral izquierda)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.05}\NormalTok{) }\CommentTok{\#Valor crítico por la izquierda}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.644854
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  Ejemplo: Caso con distribución t con 9 grados de libertal \(t_{\alpha,n-1 gdl}\) (Unilateral izquierda)
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qt}\NormalTok{(}\FloatTok{0.05}\NormalTok{, }\AttributeTok{df=} \DecValTok{9}\NormalTok{) }\CommentTok{\#Valor crítico por la derecha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.833113
+\end{verbatim}
+
+\textbf{Calcular el p valor}
+
+El p-valor es la probabilidad, bajo la suposición de que la hipótesis nula \(H_0\) es cierta, de obtener un valor de la estadística de prueba tan extremo o más extremo que el observado.
+
+En otras palabras, mide qué tan probable es el resultado muestral si \(H_0\) fuera verdadera.
+
+\textbf{\emph{Aquí el comando utilizado es ´p´ para calcular la probabilidad:}}
+
+\begin{itemize}
+\tightlist
+\item
+  P valor para una prueba bilateral (se multiplica por 2 al ser de dos colas):
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pvalor\_z }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*} \FunctionTok{pnorm}\NormalTok{(}\FunctionTok{abs}\NormalTok{(z), }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)        }\CommentTok{\# si se usa distribución Z}
+
+\NormalTok{pvalor\_t }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*} \FunctionTok{pt}\NormalTok{(}\FunctionTok{abs}\NormalTok{(T), }\AttributeTok{df=}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{ gdl, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)       }\CommentTok{\# si se usa t de Student}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  P valor Para una prueba Unilateral derecha:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pvalor\_z }\OtherTok{\textless{}{-}} \FunctionTok{pnorm}\NormalTok{(z, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+
+\NormalTok{pvalor\_t }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pt}\NormalTok{(T, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{ gdl, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  P valor Para una prueba Unilateral izquierda:
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{pvalor\_z }\OtherTok{\textless{}{-}} \FunctionTok{pnorm}\NormalTok{(Z)}
+
+\NormalTok{pvalor\_t }\OtherTok{\textless{}{-}} \DecValTok{1} \SpecialCharTok{{-}} \FunctionTok{pt}\NormalTok{(T, }\AttributeTok{df =}\NormalTok{ n}\DecValTok{{-}1}\NormalTok{ gdl)}
+\end{Highlighting}
+\end{Shaded}
+
+Recuerde que lower.tail = FALSE es para que calcule la probabilidad acumulada por la derecha\_
+
+\textbf{Tomar la decisión}
+
+\begin{itemize}
+\tightlist
+\item
+  \textbf{Usando valor crítico}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Se rechaza \(H_0\) si el estadístico de prueba cae fuera del intervalo definido por el o los valores críticos.
+  \end{itemize}
+\item
+  \textbf{Usando p-valor}:
+
+  \begin{itemize}
+  \tightlist
+  \item
+    Se rechaza \(H_0\) si \(p \leq \alpha\).
+  \end{itemize}
+\end{itemize}
+
+\subsection{Ejemplo prueba de hipótesis para media poblacional:}\label{ejemplo-prueba-de-hipuxf3tesis-para-media-poblacional}
+
+La pobreza puede influir en el desarrollo del lenguaje en la infancia debido a factores como el acceso limitado a recursos educativos y la menor exposición a vocabulario variado en el hogar. Se estima que, en el país la población general de niños de 5 años, el tamaño promedio del vocabulario es de 2,000 palabras, con una desviación estándar de 300 palabras. Sin embargo, no se sabe con certeza si este valor se mantiene en niños que crecen en contextos de pobreza.
+Para investigar esto, un grupo de psicólogos selecciona una muestra de 180 niños en situación de pobreza y encuentra que su vocabulario promedio es de 1,950 palabras. ¿El tamaño del vocabulario en niños de 5 años en pobreza del país es realmente 2,000 palabras, o hay evidencia de que es diferente? Tenga en cuenta una significancia del 5\%.
+
+Plantear las hipótesis:
+
+\[
+\begin{aligned}
+H_0\!:\! & \quad \mu = 2000 \quad \text{(el tamaño promedio del vocabulario es 2000 palabras)} \\
+H_A\!:\! & \quad \mu \neq 2000 \quad \text{(el tamaño promedio del vocabulario es diferente de 2000 palabras)}
+\end{aligned}
+\]
+
+Organizar los datos porporcionados:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos}
+\NormalTok{x\_bar }\OtherTok{\textless{}{-}} \DecValTok{1950}         \CommentTok{\# media muestral}
+\NormalTok{u }\OtherTok{\textless{}{-}} \DecValTok{2000}          \CommentTok{\# valor de la hipótesis nula}
+\NormalTok{sigma }\OtherTok{\textless{}{-}} \DecValTok{300}          \CommentTok{\# desviación estándar poblacional}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{180}              \CommentTok{\# tamaño de la muestra}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}         \CommentTok{\# nivel de significancia}
+\end{Highlighting}
+\end{Shaded}
+
+Calcular el estadístico de prueba:
+Al tratarse de una muestra grande con desviación estándar poblacional conocida, se utilizará Z.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{Z }\OtherTok{\textless{}{-}}\NormalTok{ (x\_bar }\SpecialCharTok{{-}}\NormalTok{ u) }\SpecialCharTok{/}\NormalTok{ (sigma }\SpecialCharTok{/} \FunctionTok{sqrt}\NormalTok{(n))}
+\NormalTok{Z}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -2.236068
+\end{verbatim}
+
+Calcular valores críticos. Al se runa prueba bilateral, alpha se divide entre 2 (Son dos valores críticos)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valor crítico para prueba bilateral}
+\NormalTok{z\_izquierda }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(alpha }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)}
+\NormalTok{z\_izquierda}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.959964
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valor crítico para prueba bilateral}
+\NormalTok{z\_derecha }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(alpha }\SpecialCharTok{/} \DecValTok{2}\NormalTok{, }\AttributeTok{lower.tail=}\ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{z\_derecha}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+Calcular p valor
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valor crítico para prueba bilateral}
+\NormalTok{z\_izquierda }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(alpha }\SpecialCharTok{/} \DecValTok{2}\NormalTok{)}
+\NormalTok{z\_izquierda}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -1.959964
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# p{-}valor}
+\NormalTok{p\_valor }\OtherTok{\textless{}{-}} \DecValTok{2} \SpecialCharTok{*} \FunctionTok{pnorm}\NormalTok{(}\FunctionTok{abs}\NormalTok{(Z), }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\NormalTok{p\_valor}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.02534732
+\end{verbatim}
+
+Decisión:
+
+\begin{itemize}
+\item
+  Como Z = -2.23, cae en la región crítica, (menor a -1.96), se rechaza \(H_0\)
+\item
+  El p-valor será aproximadamente 0.025, este valor es menor que \(\alpha= 0.05\), se rechaza \(H_0\) (esta es otra manera de decidir)
+\end{itemize}
+
+\textbf{\emph{Respuesta:}} Hay suficiente evidencia estadística para afirmar que el tamaño promedio del vocabulario en niños de 5 años en situación de pobreza es significativamente diferente de 2,000 palabras.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{PROPORCIÓN}\label{proporciuxf3n}
+
+\subsection{Intervalo de confianza para la proporción}\label{intervalo-de-confianza-para-la-proporciuxf3n}
+
+Para calcular los intervalos de confianza para la proporción, se deben conocer tres componentes: la media muestral, el error muestral y el valor de la distribución correspondiente al nivel de confianza asignado para el intervalo.
+
+\[
+IC_{p} = (\bar{p} - Z_{\alpha/2} \cdot  \sqrt \frac{\overline{p}(1-\overline{p})}{n} \leq p \leq \bar{p} + Z_{\alpha/2} \cdot  \sqrt \frac{\overline{p}(1-\overline{p})}{n})
+\]
+
+\textbf{Error muestral}
+
+El error muestral de la proporción es
+
+\[\sqrt \frac{\overline{p}(1-\overline{p})}{n}\]
+
+donde \(\overline{p}\) es la proporción muestral y \(n\) es el tamaño
+de la muestra.
+
+\textbf{Calcular el Valor Crítico}
+
+Teniendo en cuenta los supuestos, la proporción sigue una \textbf{distribución Normal (Z)}
+
+El valor \(1-\alpha\) se divide entre 2 para distribuirlo a cada lado del intervalo de confianza y se busca el valor \(Z_{\alpha/2}\).
+
+\textbf{\emph{Para el caso \(1-\alpha = 95%
+\), con \(\alpha = 5\% = 0.05\):}}
+
+Distribución normal:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+El parámetro ´lower.tail = FALSE´ se utiliza para que el valor crítico sea el de la derecha (positivo). Ya sabemos que estas dos distribuciones son siméticas y el valor es el mismo para cada lado del intervalo\_
+
+\textbf{Calcular el Intervalo de Confianza}
+
+Entonces, para calcular el intervalo de confianza se debe tener la estructura:
+
+límite inferior (izquierda) del intervalo de confianza:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{limite\_inf }\OtherTok{=}\NormalTok{ proporción muestral }\SpecialCharTok{{-}} \FunctionTok{qnorm}\NormalTok{(valor correspondiente) }\SpecialCharTok{*}\NormalTok{ error\_muestral}
+\end{Highlighting}
+\end{Shaded}
+
+Para el límite superior (derecha) del intervalo de confianza:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{limite\_sup }\OtherTok{=}\NormalTok{ proporción muestral }\SpecialCharTok{+} \FunctionTok{qnorm}\NormalTok{(valor correspondiente) }\SpecialCharTok{*}\NormalTok{ error\_muestral}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{Ejemplo intervalo de confianza para la proporción}\label{ejemplo-intervalo-de-confianza-para-la-proporciuxf3n}
+
+Un estudio quiere analizar la brecha de acceso a servicios de salud mental en comunidades rurales. Se estima que, a nivel nacional, el 40\% de los adultos tiene acceso a estos servicios (𝑝 = 0.40). Para evaluar si este porcentaje es menor en zonas rurales, un investigador encuestó a 300 adultos de comunidades rurales y encontró que 98 de ellos tienen acceso a atención psicológica.
+Calcular un intervalo de confianza del 95\% para la proporción de adultos con acceso a servicios de salud mental en la muestra (rural) y analizar los resultados.
+
+Organizar los datos:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Datos}
+\NormalTok{n }\OtherTok{\textless{}{-}} \DecValTok{300}        \CommentTok{\# tamaño de la muestra}
+\NormalTok{x }\OtherTok{\textless{}{-}} \DecValTok{98}         \CommentTok{\# número de adultos con acceso}
+\NormalTok{p\_gorro }\OtherTok{\textless{}{-}}\NormalTok{ x }\SpecialCharTok{/}\NormalTok{ n  }\CommentTok{\# proporción muestral}
+\NormalTok{alpha }\OtherTok{\textless{}{-}} \FloatTok{0.05}
+\end{Highlighting}
+\end{Shaded}
+
+Teniendo en cuenta el ejercicio, la proporción sigue en este caso una distribución Normal, ya que se trata de una muestra grande.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Valor crítico Z}
+
+\NormalTok{z\_alpha\_2 }\OtherTok{\textless{}{-}} \FunctionTok{qnorm}\NormalTok{(}\FloatTok{0.025}\NormalTok{, }\AttributeTok{lower.tail =} \ConstantTok{FALSE}\NormalTok{) }\CommentTok{\#El valor de Z para alpha/2}
+\NormalTok{z\_alpha\_2}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.959964
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Error estándar}
+\NormalTok{error\_p }\OtherTok{\textless{}{-}} \FunctionTok{sqrt}\NormalTok{(p\_gorro }\SpecialCharTok{*}\NormalTok{ (}\DecValTok{1} \SpecialCharTok{{-}}\NormalTok{ p\_gorro) }\SpecialCharTok{/}\NormalTok{ n)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Intervalo de confianza}
+\NormalTok{izquierda }\OtherTok{=}\NormalTok{ p\_gorro }\SpecialCharTok{{-}}\NormalTok{ (z\_alpha\_2 }\SpecialCharTok{*}\NormalTok{ error\_p)}
+\NormalTok{derecha }\OtherTok{=}\NormalTok{ p\_gorro }\SpecialCharTok{+}\NormalTok{ (z\_alpha\_2 }\SpecialCharTok{*}\NormalTok{ error\_p)}
+
+\FunctionTok{c}\NormalTok{(izquierda, derecha)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.2735960 0.3797374
+\end{verbatim}
+
+\section{¿Cómo se aplica?: Caso simulado}\label{cuxf3mo-se-aplica-caso-simulado}
+
+\textbf{¿El programa de becas de transporte garantiza condiciones académicas justas?}
+
+En muchas universidades públicas, los estudiantes de estratos socioeconómicos bajos reciben una \textbf{beca de transporte} con el objetivo de reducir barreras de acceso y permanencia.
+
+La universidad desea evaluar si, \textbf{en promedio}, los estudiantes beneficiarios del programa mantienen un rendimiento académico acorde con el estándar institucional.
+
+El reglamento académico establece que un rendimiento promedio \textbf{adecuado} corresponde a una \textbf{nota de 3.5} (en una escala de 0 a 5).
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Pregunta de investigación}
+
+¿El promedio poblacional de los estudiantes beneficiarios del programa de transporte es \textbf{distinto de 3.5}?
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Parámetro de interés}
+
+Sea\\
+\[\mu\]
+la media poblacional de la nota de los estudiantes beneficiarios del programa de transporte.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Formulación de hipótesis}
+
+\[
+H_0: \mu = 3.5
+\]
+
+\[
+H_1: \mu \neq 3.5
+\]
+
+Se plantea una \textbf{prueba bilateral}, ya que no se asume a priori si el rendimiento es mayor o menor que el estándar.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Nivel de significancia}
+
+\[
+\alpha = 0.05
+\]
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\textbf{Base de datos}
+
+Se tomó una muestra de \textbf{36 estudiantes beneficiarios}.\\
+La base de datos contiene cinco variables relevantes para el análisis académico y social.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{data.frame}\NormalTok{(}
+  \AttributeTok{id =} \DecValTok{1}\SpecialCharTok{:}\DecValTok{36}\NormalTok{,}
+  
+  \AttributeTok{nota =} \FunctionTok{c}\NormalTok{(}
+    \FloatTok{3.1}\NormalTok{, }\FloatTok{3.2}\NormalTok{, }\FloatTok{3.3}\NormalTok{, }\FloatTok{3.3}\NormalTok{, }\FloatTok{3.4}\NormalTok{, }\FloatTok{3.4}\NormalTok{, }\FloatTok{3.4}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{3.5}\NormalTok{,}
+    \FloatTok{3.5}\NormalTok{, }\FloatTok{3.6}\NormalTok{, }\FloatTok{3.6}\NormalTok{, }\FloatTok{3.6}\NormalTok{, }\FloatTok{3.7}\NormalTok{, }\FloatTok{3.7}\NormalTok{, }\FloatTok{3.7}\NormalTok{, }\FloatTok{3.8}\NormalTok{, }\FloatTok{3.8}\NormalTok{,}
+    \FloatTok{3.8}\NormalTok{, }\FloatTok{3.9}\NormalTok{, }\FloatTok{3.9}\NormalTok{, }\FloatTok{3.9}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{3.6}\NormalTok{, }\FloatTok{3.7}\NormalTok{, }\FloatTok{3.8}\NormalTok{, }\FloatTok{3.4}\NormalTok{,}
+    \FloatTok{3.3}\NormalTok{, }\FloatTok{3.2}\NormalTok{, }\FloatTok{3.6}\NormalTok{, }\FloatTok{3.7}\NormalTok{, }\FloatTok{3.8}\NormalTok{, }\FloatTok{3.9}\NormalTok{, }\FloatTok{3.5}\NormalTok{, }\FloatTok{3.6}\NormalTok{, }\FloatTok{3.7}
+\NormalTok{  ),}
+  
+  \AttributeTok{horas\_estudio =} \FunctionTok{c}\NormalTok{(}
+    \DecValTok{8}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{10}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{11}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{13}\NormalTok{,}
+    \DecValTok{14}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{16}\NormalTok{,}
+    \DecValTok{17}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{12}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{11}\NormalTok{,}
+    \DecValTok{10}\NormalTok{, }\DecValTok{9}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{15}\NormalTok{, }\DecValTok{16}\NormalTok{, }\DecValTok{17}\NormalTok{, }\DecValTok{13}\NormalTok{, }\DecValTok{14}\NormalTok{, }\DecValTok{15}
+\NormalTok{  ),}
+  
+  \AttributeTok{edad =} \FunctionTok{c}\NormalTok{(}
+    \DecValTok{18}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{19}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{20}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{,}
+    \DecValTok{22}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{,}
+    \DecValTok{25}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{26}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{20}\NormalTok{,}
+    \DecValTok{19}\NormalTok{, }\DecValTok{18}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}\NormalTok{, }\DecValTok{24}\NormalTok{, }\DecValTok{25}\NormalTok{, }\DecValTok{21}\NormalTok{, }\DecValTok{22}\NormalTok{, }\DecValTok{23}
+\NormalTok{  ),}
+  
+  \AttributeTok{estrato =} \FunctionTok{c}\NormalTok{(}
+    \DecValTok{1}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}
+    \DecValTok{3}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}
+    \DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{5}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}
+    \DecValTok{2}\NormalTok{,}\DecValTok{1}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{4}\NormalTok{,}\DecValTok{2}\NormalTok{,}\DecValTok{3}\NormalTok{,}\DecValTok{3}
+\NormalTok{  ),}
+  
+  \AttributeTok{transporte =} \FunctionTok{rep}\NormalTok{(}\StringTok{"Beneficiario"}\NormalTok{, }\DecValTok{36}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   id nota horas_estudio edad estrato   transporte
+## 1  1  3.1             8   18       1 Beneficiario
+## 2  2  3.2             9   19       1 Beneficiario
+## 3  3  3.3            10   19       2 Beneficiario
+## 4  4  3.3            11   20       2 Beneficiario
+## 5  5  3.4            10   20       2 Beneficiario
+## 6  6  3.4            12   21       3 Beneficiario
+\end{verbatim}
+
+\textbf{Exploración inicial de la variable de interés}
+
+Antes de realizar cualquier inferencia, se exploran los datos, en específico las notas.
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{summary}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{nota)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##   3.100   3.400   3.600   3.581   3.725   3.900
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{hist}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{nota,}
+     \AttributeTok{col =} \StringTok{"lightblue"}\NormalTok{,}
+     \AttributeTok{main =} \StringTok{"Distribución de Notas"}\NormalTok{,}
+     \AttributeTok{xlab =} \StringTok{"Notas"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\includegraphics{Estadística-Inferencial-en-Rstudio_files/figure-latex/unnamed-chunk-123-1.pdf}
+
+\textbf{Verificación del supuesto de normalidad (Prueba de Shapiro-Wilk)}
+
+H0: los datos provienen de una distribución normal
+
+H1: los datos no provienen de una distribución normal
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{shapiro.test}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{nota)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Shapiro-Wilk normality test
+## 
+## data:  datos$nota
+## W = 0.95383, p-value = 0.138
+\end{verbatim}
+
+Si el p-valor es mayor que 0.05, no se rechaza la hipótesis de nula.\\
+Por tanto, el supuesto de normalidad es razonable para esta muestra.
+
+\textbf{Prueba de hipótesis para la media poblacional}
+
+Prueba t de Student para una muestra. Se compara la media muestral con el valor poblacional hipotético (3.5)
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prueba\_t }\OtherTok{\textless{}{-}} \FunctionTok{t.test}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{nota,}\AttributeTok{mu =} \FloatTok{3.5}\NormalTok{, }\AttributeTok{alternative =} \StringTok{"two.sided"}\NormalTok{,}\AttributeTok{conf.level =} \FloatTok{0.95}\NormalTok{)}
+
+\NormalTok{prueba\_t}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  One Sample t-test
+## 
+## data:  datos$nota
+## t = 2.2218, df = 35, p-value = 0.03286
+## alternative hypothesis: true mean is not equal to 3.5
+## 95 percent confidence interval:
+##  3.506949 3.654162
+## sample estimates:
+## mean of x 
+##  3.580556
+\end{verbatim}
+
+\textbf{Interpretación estadística:}
+
+\begin{itemize}
+\tightlist
+\item
+  El p-valor indica si la diferencia observada es estadísticamente significativa.\\
+\item
+  Si el p-valor \textless{} 0.05, se rechaza \(H_0\).
+\end{itemize}
+
+\textbf{Conclusión:}
+
+Con un nivel de significancia del 5 \%, la evidencia estadística indica que el promedio poblacional de notas de los estudiantes beneficiarios \textbf{es significativamente distinto} (y mayor de acuerdo con el intervalo de confianza) que el valor institucional de 3.5.
+
+En términos prácticos, el programa de becas de transporte parece estar asociado con un rendimiento académico adecuado.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\chapter{Análisis Bivariado}\label{anuxe1lisis-bivariado-1}
+
+\subsection{Construcción de la base de datos simulada}\label{construcciuxf3n-de-la-base-de-datos-simulada}
+
+\textbf{Contexto:} La siguiente base de datos representa un conjunto de información simulada sobre 100 personas adultas entre 25 y 60 años, residentes en zonas urbanas y rurales de Colombia. Se incluyen variables relevantes para el estudio de desigualdad socioeconómica: ingresos, años de educación, nivel educativo, sexo, tipo de empleo y ubicación geográfica. Esta base nos servirá como hilo conductor para aplicar distintas pruebas estadísticas inferenciales.
+
+Tenga en cuenta que en esta ocasión estamos generando datos simulados. En caso de disponer una base de datos, el primer paso es importarla
+
+\textbf{Cargar librerías necesarias}
+
+\textbf{Base de datos}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{set.seed}\NormalTok{(}\DecValTok{2025}\NormalTok{) }\CommentTok{\#Sembrar semilla para generar datos aleatorios una única vez}
+
+
+\NormalTok{datos }\OtherTok{\textless{}{-}} \FunctionTok{tibble}\NormalTok{(}
+  \AttributeTok{sexo =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Hombre"}\NormalTok{, }\StringTok{"Mujer"}\NormalTok{), }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
+  \AttributeTok{zona =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Urbana"}\NormalTok{, }\StringTok{"Rural"}\NormalTok{), }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.6}\NormalTok{, }\FloatTok{0.4}\NormalTok{)),}
+  \AttributeTok{educacion =} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Básica"}\NormalTok{, }\StringTok{"Media"}\NormalTok{, }\StringTok{"Universitaria"}\NormalTok{), }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.3}\NormalTok{, }\FloatTok{0.4}\NormalTok{, }\FloatTok{0.3}\NormalTok{)),}
+  \AttributeTok{educacion\_anios =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    educacion }\SpecialCharTok{==} \StringTok{"Básica"} \SpecialCharTok{\textasciitilde{}} \FunctionTok{sample}\NormalTok{(}\DecValTok{5}\SpecialCharTok{:}\DecValTok{9}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
+\NormalTok{    educacion }\SpecialCharTok{==} \StringTok{"Media"} \SpecialCharTok{\textasciitilde{}} \FunctionTok{sample}\NormalTok{(}\DecValTok{10}\SpecialCharTok{:}\DecValTok{12}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{),}
+\NormalTok{    educacion }\SpecialCharTok{==} \StringTok{"Universitaria"} \SpecialCharTok{\textasciitilde{}} \FunctionTok{sample}\NormalTok{(}\DecValTok{13}\SpecialCharTok{:}\DecValTok{18}\NormalTok{, }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{)}
+\NormalTok{  ),}
+  \AttributeTok{empleo =} \FunctionTok{case\_when}\NormalTok{(}
+\NormalTok{    educacion }\SpecialCharTok{==} \StringTok{"Básica"} \SpecialCharTok{\textasciitilde{}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Formal"}\NormalTok{, }\StringTok{"Informal"}\NormalTok{), }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.2}\NormalTok{, }\FloatTok{0.8}\NormalTok{)),}
+\NormalTok{    educacion }\SpecialCharTok{==} \StringTok{"Media"} \SpecialCharTok{\textasciitilde{}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Formal"}\NormalTok{, }\StringTok{"Informal"}\NormalTok{), }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.4}\NormalTok{, }\FloatTok{0.6}\NormalTok{)),}
+\NormalTok{    educacion }\SpecialCharTok{==} \StringTok{"Universitaria"} \SpecialCharTok{\textasciitilde{}} \FunctionTok{sample}\NormalTok{(}\FunctionTok{c}\NormalTok{(}\StringTok{"Formal"}\NormalTok{, }\StringTok{"Informal"}\NormalTok{), }\DecValTok{100}\NormalTok{, }\AttributeTok{replace =} \ConstantTok{TRUE}\NormalTok{, }\AttributeTok{prob =} \FunctionTok{c}\NormalTok{(}\FloatTok{0.7}\NormalTok{, }\FloatTok{0.3}\NormalTok{))}
+\NormalTok{  ),}
+  \AttributeTok{ingreso =} \DecValTok{1000000} \SpecialCharTok{+} \DecValTok{200000} \SpecialCharTok{*}\NormalTok{ educacion\_anios }\SpecialCharTok{+} \FunctionTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{500000}\NormalTok{)}
+\NormalTok{) }\SpecialCharTok{\%\textgreater{}\%}
+  \FunctionTok{mutate}\NormalTok{(}
+    \AttributeTok{educacion =} \FunctionTok{fct\_relevel}\NormalTok{(educacion, }\StringTok{"Básica"}\NormalTok{, }\StringTok{"Media"}\NormalTok{, }\StringTok{"Universitaria"}\NormalTok{),}
+    \AttributeTok{empleo\_formal =} \FunctionTok{if\_else}\NormalTok{(empleo }\SpecialCharTok{==} \StringTok{"Formal"}\NormalTok{, }\DecValTok{1}\NormalTok{, }\DecValTok{0}\NormalTok{)}
+\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\textbf{Diccionario de variables:}
+
+\begin{longtable}[]{@{}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.2235}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.1647}}
+  >{\raggedright\arraybackslash}p{(\columnwidth - 4\tabcolsep) * \real{0.6118}}@{}}
+\toprule\noalign{}
+\begin{minipage}[b]{\linewidth}\raggedright
+Variable
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Tipo
+\end{minipage} & \begin{minipage}[b]{\linewidth}\raggedright
+Descripción
+\end{minipage} \\
+\midrule\noalign{}
+\endhead
+\bottomrule\noalign{}
+\endlastfoot
+\texttt{ingreso} & Cuantitativa & Ingreso mensual en pesos colombianos \\
+\texttt{sexo} & Cualitativa & Género de la persona (Hombre, Mujer) \\
+\texttt{educacion} & Cualitativa & Nivel educativo alcanzado \\
+\texttt{zona} & Cualitativa & Zona de residencia (Urbana, Rural) \\
+\texttt{empleo} & Cualitativa & Tipo de empleo (Formal, Informal) \\
+\texttt{educacion\_anios} & Cuantitativa & Años de educación formal \\
+\texttt{empleo\_formal} & Binaria & Variable derivada: 1 si formal, 0 si informal \\
+\end{longtable}
+
+Ver primeras filas de base de datos generada:
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{head}\NormalTok{(datos)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 6 x 7
+##   sexo   zona   educacion educacion_anios empleo    ingreso empleo_formal
+##   <chr>  <chr>  <fct>               <int> <chr>       <dbl>         <dbl>
+## 1 Hombre Rural  Básica                  6 Informal 1653509.             0
+## 2 Mujer  Rural  Media                  11 Informal 4258150.             0
+## 3 Mujer  Urbana Media                  10 Informal 3786379.             0
+## 4 Mujer  Rural  Media                  12 Formal   4263075.             1
+## 5 Hombre Urbana Básica                  9 Informal 2315832.             0
+## 6 Hombre Rural  Básica                  9 Informal 2213163.             0
+\end{verbatim}
+
+\section{Variable numérica (cuantitativa) y variable categórica (cualitativa)}\label{variable-numuxe9rica-cuantitativa-y-variable-categuxf3rica-cualitativa}
+
+\subsection{Prueba t para comparación de medias}\label{prueba-t-para-comparaciuxf3n-de-medias}
+
+Se utiliza para comparar las medias de una variable cuantitativa entre dos grupos independientes. Recuerde que mientras más grande sea la muestra, la distribución t se aproxima a la distribución Normal Estándar.
+\textbf{\emph{En casos aplicados, se utiliza la prueba t: no es tan común conocer las desviaciones estándar poblacionales}}
+
+\textbf{Hipótesis:}
+\[
+H_0: \mu_1 = \mu_2 \quad vs \quad H_1: \mu_1 \ne \mu_2
+\]
+
+\textbf{Estadístico de prueba:}
+\[
+t = \frac{\bar{X}_1 - \bar{X}_2}{\sqrt{\frac{s_1^2}{n_1} + \frac{s_2^2}{n_2}}}
+\]
+
+\textbf{Prueba t para comparar ingreso (numérica) según sexo (categórica: 2 categorías)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{t.test}\NormalTok{(ingreso }\SpecialCharTok{\textasciitilde{}}\NormalTok{ sexo, }\AttributeTok{data =}\NormalTok{ datos, }\AttributeTok{var.equal =} \ConstantTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Welch Two Sample t-test
+## 
+## data:  ingreso by sexo
+## t = 0.2789, df = 97.426, p-value = 0.7809
+## alternative hypothesis: true difference in means between group Hombre and group Mujer is not equal to 0
+## 95 percent confidence interval:
+##  -326967.8  433892.2
+## sample estimates:
+## mean in group Hombre  mean in group Mujer 
+##              3248527              3195065
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\CommentTok{\# Comando var.equal sirve para indicarle a R que las varianzas poblacionales son diferentes o iguales. Por defecto se asumen diferentes}
+\end{Highlighting}
+\end{Shaded}
+
+Note que la prueba t en R arroja:\\
+- Valor del estadístico de prueba t\\
+- Grados de libertad (df)
+- \textbf{\emph{p-valor (cuando es menor al nivel de significancia (alfa) se rechaza Ho)}}\\
+- Hipótesis alternativa\\
+- Intervalo de confianza al 95\%
+
+\textbf{Interpretación:}
+La prueba t para muestras independientes permite contrastar si el ingreso mensual promedio difiere significativamente entre hombres y mujeres. El valor-p obtenido fue 0.7809. Como este valor es mayor al nivel de significancia habitual de 0.05, NO se rechaza la hipótesis nula y concluimos que \textbf{No existe una diferencia estadísticamente significativa} entre los ingresos medios por sexo.
+
+\subsection{ANOVA (Análisis de varianza de un factor)}\label{anova-anuxe1lisis-de-varianza-de-un-factor}
+
+Se utiliza para comparar las medias de más de dos grupos a partir de una variable categórica con más de dos categorías.
+
+\textbf{Hipótesis:}
+\[
+H_0: \mu_1 = \mu_2 = \cdots = \mu_k \quad vs \quad H_1: \text{al menos una media es diferente}
+\]
+
+\textbf{Estadístico de prueba:}
+\[
+F = \frac{\text{MS}_{\text{entre}}}{\text{MS}_{\text{dentro}}} = \frac{SC_{\text{entre}} / (k - 1)}{SC_{\text{dentro}} / (n - k)}
+\]
+
+\textbf{Anova para comparar ingreso (numérica) según nivel de educación (categórica: más de 2 categorías)}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{prueba\_anova }\OtherTok{\textless{}{-}} \FunctionTok{aov}\NormalTok{(ingreso }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educacion, }\AttributeTok{data =}\NormalTok{ datos) }\CommentTok{\#Hacer prueba y guardarla en un objeto}
+\FunctionTok{summary}\NormalTok{(prueba\_anova)}\CommentTok{\#Visualizar el resultado}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##             Df         Sum Sq        Mean Sq F value              Pr(>F)    
+## educacion    2 56284478322819 28142239161409   81.01 <0.0000000000000002 ***
+## Residuals   97 33697715181164   347399125579                                
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+\end{verbatim}
+
+\textbf{Interpretación:}
+La prueba ANOVA se usa cuando se desea comparar la media de una variable cuantitativa en tres o más grupos. El valor-p del análisis fue menor a 0.05, por lo que se concluye que \textbf{existen diferencias significativas en el ingreso promedio según el nivel educativo alcanzado}. En consecuencia, podríamos afirmar que la educación tiene un efecto significativo sobre los ingresos.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Dos variables categóricas (cualitativas)}\label{dos-variables-categuxf3ricas-cualitativas}
+
+\subsection{Prueba de diferencia de proporciones}\label{prueba-de-diferencia-de-proporciones}
+
+Se usa para comparar proporciones entre dos grupos independientes. Para comparar una misma proporción entre dos grupos independientes.
+
+\textbf{Hipótesis:}
+\[
+H_0: p_1 = p_2 \quad vs \quad H_1: p_1 \ne p_2
+\]
+
+\textbf{Estadístico de prueba:}
+\[
+z = \frac{\hat{p}_1 - \hat{p}_2}{\sqrt{\hat{p}(1 - \hat{p})(\frac{1}{n_1} + \frac{1}{n_2})}}
+\]
+
+Donde \(\hat{p} = \frac{x_1 + x_2}{n_1 + n_2}\)
+
+\textbf{Diferencia de proporciones: Empleo formal según zona}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{prop.test}\NormalTok{(}\FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{zona, datos}\SpecialCharTok{$}\NormalTok{empleo\_formal))}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  2-sample test for equality of proportions with continuity correction
+## 
+## data:  table(datos$zona, datos$empleo_formal)
+## X-squared = 0.00000000000000000000000000000061054, df = 1, p-value = 1
+## alternative hypothesis: two.sided
+## 95 percent confidence interval:
+##  -0.2268736  0.1962778
+## sample estimates:
+##    prop 1    prop 2 
+## 0.5217391 0.5370370
+\end{verbatim}
+
+\textbf{Interpretación:}
+La prueba de diferencia de proporciones compara la proporción de empleo formal en las zonas urbana y rural. El valor-p fue mayor que 0.05. Por lo tanto, se \textbf{no se rechaza la hipótesis nula}: la proporción de empleo formal \textbf{no varía significativamente entre zonas}.
+
+\subsection{Prueba Chi-cuadrado}\label{prueba-chi-cuadrado}
+
+Se utiliza para determinar si dos variables categóricas (de cualquier número de niveles) están asociadas. Generaliza la comparación a tablas mayores que 2x2.
+
+\textbf{Hipótesis:}
+\[
+H_0: \text{Las variables son independientes} \quad vs \quad H_1: \text{Las variables están asociadas}
+\]
+
+\textbf{Estadístico de prueba:}
+\[
+\chi^2 = \sum \frac{(O_{ij} - E_{ij})^2}{E_{ij}}
+\]
+
+Donde \(E_{ij} = \frac{(\text{total fila}_i)(\text{total columna}_j)}{n}\)
+
+\textbf{Prueba chi-cuadrado: Educación vs.~Tipo de empleo}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{tabla\_chi }\OtherTok{\textless{}{-}} \FunctionTok{table}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{educacion, datos}\SpecialCharTok{$}\NormalTok{empleo) }\CommentTok{\#Se crea la tabla de contingencia}
+\FunctionTok{chisq.test}\NormalTok{(tabla\_chi) }\CommentTok{\# Prueba Chi basada en la tabla de contingencia creada}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's Chi-squared test
+## 
+## data:  tabla_chi
+## X-squared = 34.084, df = 2, p-value = 0.00000003969
+\end{verbatim}
+
+\textbf{Interpretación:}
+La prueba chi-cuadrado evalúa si existe asociación entre dos variables cualitativas. En este caso, el valor-p menor a 0.05 indica una \textbf{asociación significativa} entre el nivel educativo y el tipo de empleo. Esto sugiere que las personas con mayor nivel educativo tienen más probabilidad de acceder al empleo formal.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Dos variables numéricas (cuantitativas)}\label{dos-variables-numuxe9ricas-cuantitativas}
+
+\subsection{Coeficiente de correlación de Pearson}\label{coeficiente-de-correlaciuxf3n-de-pearson}
+
+Mide la fuerza y dirección de la relación lineal entre dos variables cuantitativas.
+
+\textbf{Hipótesis:}
+\[
+H_0: \rho = 0 \quad vs \quad H_1: \rho \ne 0
+\]
+
+\textbf{Estadístico de prueba:}
+\[
+t = \frac{r \sqrt{n - 2}}{\sqrt{1 - r^2}}
+\]
+
+\textbf{Correlación: Años de educación vs.~ingreso}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\FunctionTok{cor.test}\NormalTok{(datos}\SpecialCharTok{$}\NormalTok{educacion\_anios, datos}\SpecialCharTok{$}\NormalTok{ingreso)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+##  Pearson's product-moment correlation
+## 
+## data:  datos$educacion_anios and datos$ingreso
+## t = 14.768, df = 98, p-value < 0.00000000000000022
+## alternative hypothesis: true correlation is not equal to 0
+## 95 percent confidence interval:
+##  0.7578810 0.8830005
+## sample estimates:
+##       cor 
+## 0.8306476
+\end{verbatim}
+
+\textbf{Interpretación:}
+La correlación de Pearson evalúa la relación lineal entre dos variables cuantitativas. Se obtuvo un coeficiente de 0.83 con un valor-p menor a 0.05, lo que indica una \textbf{correlación positiva y significativa}. Es decir, a mayor número de años de educación, mayor ingreso mensual, en línea con teorías económicas de capital humano.
+
+\subsection{Regresión lineal simple}\label{regresiuxf3n-lineal-simple}
+
+Modelo para estimar una variable cuantitativa (Y) en función de otra (X):
+
+\[
+Y_i = \beta_0 + \beta_1 X_i + \varepsilon_i
+\]
+
+Se estima por mínimos cuadrados:
+\[
+\hat{\beta}_1 = \frac{\sum (X_i - \bar{X})(Y_i - \bar{Y})}{\sum (X_i - \bar{X})^2}, \quad \hat{\beta}_0 = \bar{Y} - \hat{\beta}_1 \bar{X}
+\]
+
+\textbf{Predecir ingreso por educación}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{modelo }\OtherTok{\textless{}{-}} \FunctionTok{lm}\NormalTok{(ingreso }\SpecialCharTok{\textasciitilde{}}\NormalTok{ educacion\_anios, }\AttributeTok{data =}\NormalTok{ datos) }\CommentTok{\#correr modelo y guardarlo}
+\FunctionTok{summary}\NormalTok{(modelo) }\CommentTok{\#Resumen }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Call:
+## lm(formula = ingreso ~ educacion_anios, data = datos)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -1248215  -370080   -22128   285160  1261533 
+## 
+## Coefficients:
+##                 Estimate Std. Error t value             Pr(>|t|)    
+## (Intercept)       717475     177838   4.034             0.000109 ***
+## educacion_anios   223297      15120  14.768 < 0.0000000000000002 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 533500 on 98 degrees of freedom
+## Multiple R-squared:   0.69,  Adjusted R-squared:  0.6868 
+## F-statistic: 218.1 on 1 and 98 DF,  p-value: < 0.00000000000000022
+\end{verbatim}
+
+\textbf{Interpretación:}
+El modelo de regresión lineal simple estima la relación entre los años de educación y el ingreso mensual. El coeficiente de pendiente indica que \textbf{por cada año adicional de educación, el ingreso mensual aumenta en promedio en aproximadamente 200 mil pesos}. El valor-p asociado al coeficiente de \texttt{educacion\_anios} es significativo, lo que respalda la utilidad predictiva del modelo. El R² indica qué proporción de la variabilidad del ingreso se explica por la educación formal.
+
+\begin{center}\rule{0.5\linewidth}{0.5pt}\end{center}
+
+\section{Conclusiones}\label{conclusiones}
+
+Cada una de las pruebas utilizadas respondió a preguntas diferentes sobre la desigualdad:
+
+\begin{itemize}
+\tightlist
+\item
+  La prueba t evidenció que no existe una brecha de género en la población estudiada.
+\item
+  El ANOVA mostró que los ingresos difieren significativamente por nivel educativo.
+\item
+  La chi-cuadrado mostró asociación entre educación y empleo.
+\item
+  La correlación validó la relación positiva entre educación e ingreso.
+\item
+  La regresión lineal planteó que la educación tiene un efecto significativo sobre el ingreso.
+\end{itemize}
+
+  \bibliography{book.bib,packages.bib}
+
+\end{document}
