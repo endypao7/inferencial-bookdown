@@ -855,7 +855,7 @@ Para aplicar una prueba de proporción basada en la aproximación normal, se req
 
 ```{r}
 
-n <- nrow(datos)
+n <- nrow(datos_transporte)
 p0 <- 0.70
 
 n * p0
