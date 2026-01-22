@@ -1,6 +1,6 @@
 --- 
 title: "Estadística Inferencial en Rstudio"
-author: "Endy P. Salom"
+author: "Endy Paola Salon"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib, packages.bib]

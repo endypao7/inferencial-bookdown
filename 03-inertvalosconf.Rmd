@@ -117,7 +117,7 @@ Para el límite superior (derecha) del intervalo de confianza:
 limite_sup = media muestral + qdistribucion(valor correspondiente) * error_muestral
 ```
 
-### Ejemplo intervalo de confianza para media poblacional:
+### Ejemplo (teórico) intervalo de confianza para media poblacional:
 
 Un grupo de investigadores quiere estimar el tiempo promedio que los ciudadanos de un país dedican diariamente a informarse con los noticieros. Se toma una muestra aleatoria de 1,500 personas, obteniendo una media muestral de 45 minutos diarios. Estudios previos indican que la desviación estándar poblacional es de 20 minutos. Calcular un intervalo de confianza del 95% para el tiempo promedio que la población dedica a informarse a través de noticieros.
 
@@ -340,7 +340,7 @@ Recuerde que lower.tail = FALSE es para que calcule la probabilidad acumulada po
 
 
 
-### Ejemplo prueba de hipótesis para media poblacional:
+### Ejemplo (teórico) prueba de hipótesis para media poblacional:
 
 La pobreza puede influir en el desarrollo del lenguaje en la infancia debido a factores como el acceso limitado a recursos educativos y la menor exposición a vocabulario variado en el hogar. Se estima que, en el país la población general de niños de 5 años, el tamaño promedio del vocabulario es de 2,000 palabras, con una desviación estándar de 300 palabras. Sin embargo, no se sabe con certeza si este valor se mantiene en niños que crecen en contextos de pobreza. 
 Para investigar esto, un grupo de psicólogos selecciona una muestra de 180 niños en situación de pobreza y encuentra que su vocabulario promedio es de 1,950 palabras. ¿El tamaño del vocabulario en niños de 5 años en pobreza del país es realmente 2,000 palabras, o hay evidencia de que es diferente? Tenga en cuenta una significancia del 5%.
@@ -412,6 +412,162 @@ Decisión:
 ***Respuesta:*** Hay suficiente evidencia estadística para afirmar que el tamaño promedio del vocabulario en niños de 5 años en situación de pobreza es significativamente diferente de 2,000 palabras. 
 
 
+::: note
+Esta manera de calcular intervalo de confianza y prueba de hipóteis es manual, utilizando la fórmula y Rstudio como calculadora. A continuación verás como se utiliza Rstudio para este tipo de análisis
+:::
+
+
+
+## Caso aplicado: Media
+
+**¿El programa de becas de transporte garantiza condiciones académicas justas?**
+
+En muchas universidades públicas, los estudiantes de estratos socioeconómicos bajos reciben una **beca de transporte** con el objetivo de reducir barreras de acceso y permanencia.
+
+La universidad desea evaluar si, **en promedio**, los estudiantes beneficiarios del programa mantienen un rendimiento académico acorde con el estándar institucional.
+
+El reglamento académico establece que un rendimiento promedio **adecuado** corresponde a una **nota de 3.5** (en una escala de 0 a 5).
+
+---
+
+**Pregunta de investigación**
+
+¿El promedio poblacional de los estudiantes beneficiarios del programa de transporte es **distinto de 3.5**?
+
+---
+
+**Parámetro de interés**
+
+Sea  
+\[\mu\]
+la media poblacional de la nota de los estudiantes beneficiarios del programa de transporte.
+
+---
+
+**Formulación de hipótesis**
+
+\[
+H_0: \mu = 3.5
+\]
+
+\[
+H_1: \mu \neq 3.5
+\]
+
+Se plantea una **prueba bilateral**, ya que no se asume a priori si el rendimiento es mayor o menor que el estándar.
+
+---
+
+**Nivel de significancia**
+
+\[
+\alpha = 0.05
+\]
+
+---
+
+**Base de datos**
+
+Se tomó una muestra de **36 estudiantes beneficiarios**.  
+La base de datos contiene cinco variables relevantes para el análisis académico y social.
+
+```{r}
+datos_transporte <- data.frame(
+  id = 1:36,
+  
+  nota = c(
+    3.1, 3.2, 3.3, 3.3, 3.4, 3.4, 3.4, 3.5, 3.5,
+    3.5, 3.6, 3.6, 3.6, 3.7, 3.7, 3.7, 3.8, 3.8,
+    3.8, 3.9, 3.9, 3.9, 3.5, 3.6, 3.7, 3.8, 3.4,
+    3.3, 3.2, 3.6, 3.7, 3.8, 3.9, 3.5, 3.6, 3.7
+  ),
+  
+  horas_estudio = c(
+    8, 9, 10, 11, 10, 12, 11, 12, 13,
+    14, 13, 15, 14, 15, 16, 14, 15, 16,
+    17, 16, 18, 17, 12, 13, 14, 15, 11,
+    10, 9, 14, 15, 16, 17, 13, 14, 15
+  ),
+  
+  edad = c(
+    18, 19, 19, 20, 20, 21, 20, 21, 22,
+    22, 21, 23, 22, 23, 24, 22, 23, 24,
+    25, 24, 26, 25, 21, 22, 23, 24, 20,
+    19, 18, 22, 23, 24, 25, 21, 22, 23
+  ),
+  
+  estrato = c(
+    1,1,2,2,2,3,2,3,3,
+    3,2,3,3,4,4,3,4,4,
+    4,4,5,4,2,3,3,4,2,
+    2,1,3,3,4,4,2,3,3
+  ),
+  
+  transporte = rep("Beneficiario", 36)
+)
+```
+
+
+```{r}
+head(datos_transporte)
+```
+
+
+**Exploración inicial de la variable de interés**
+
+Antes de realizar cualquier inferencia, se exploran los datos, en específico las notas.
+
+```{r}
+summary(datos_transporte$nota)
+```
+
+```{r}
+hist(datos_transporte$nota,
+     col = "lightblue",
+     main = "Distribución de Notas",
+     xlab = "Notas")
+```
+
+
+**Verificación del supuesto de normalidad (Prueba de Shapiro-Wilk)**
+
+H0: los datos provienen de una distribución normal  
+
+H1: los datos no provienen de una distribución normal
+
+```{r}
+shapiro.test(datos_transporte$nota)
+```
+
+Si el p-valor es mayor que 0.05, no se rechaza la hipótesis de nula.  
+Por tanto, el supuesto de normalidad es razonable para esta muestra.
+
+
+
+**Prueba de hipótesis para la media poblacional**
+
+Prueba t de Student para una muestra. Se compara la media muestral con el valor poblacional hipotético (3.5)
+
+
+```{r}
+
+prueba_t <- t.test(datos_transporte$nota,mu = 3.5, alternative = "two.sided",conf.level = 0.95)
+
+prueba_t
+```
+
+**Interpretación estadística:**  
+
+- El p-valor indica si la diferencia observada es estadísticamente significativa.  
+- Si el p-valor < 0.05, se rechaza \(H_0\).  
+
+**Conclusión:**  
+
+Con un nivel de significancia del 5 %, la evidencia estadística indica que el promedio poblacional de notas de los estudiantes beneficiarios **es significativamente distinto** (y mayor de acuerdo con el intervalo de confianza) que el valor institucional de 3.5.  
+
+En términos prácticos, el programa de becas de transporte parece estar asociado con un rendimiento académico adecuado.
+
+
 
 ---
 
@@ -477,7 +633,7 @@ Para el límite superior (derecha) del intervalo de confianza:
 limite_sup = proporción muestral + qnorm(valor correspondiente) * error_muestral
 ```
 
-### Ejemplo intervalo de confianza para la proporción
+### Ejemplo (teórico) intervalo de confianza para la proporción
 
 Un estudio quiere analizar la brecha de acceso a servicios de salud mental en comunidades rurales. Se estima que, a nivel nacional, el 40% de los adultos tiene acceso a estos servicios (𝑝 = 0.40). Para evaluar si este porcentaje es menor en zonas rurales, un investigador encuestó a 300 adultos de comunidades rurales y encontró que 98 de ellos tienen acceso a atención psicológica.
 Calcular un intervalo de confianza del 95% para la proporción de adultos con acceso a servicios de salud mental en la muestra (rural) y analizar los resultados.
@@ -521,46 +677,135 @@ derecha = p_gorro + (z_alpha_2 * error_p)
 c(izquierda, derecha)
 ```
 
+### Ejemplo (teórico) prueba de hipótesis para la proporción
 
-## ¿Cómo se aplica?: Caso simulado
+El acceso a servicios de salud mental es un indicador clave de bienestar social.  
+A nivel nacional, se estima que el **40%** de los adultos tiene acceso a atención psicológica.
+
+Un investigador desea evaluar si este porcentaje es **menor en comunidades rurales**, donde históricamente existen barreras de acceso.
+
+
+Sea \(p\) la proporción poblacional de adultos en comunidades rurales con acceso a servicios de salud mental.
+
+Se plantea la siguiente prueba de hipótesis:
+
+\[
+H_0: p = 0.40
+\]
+
+\[
+H_1: p < 0.40
+\]
+
+Se utiliza un nivel de significancia \(\alpha = 0.05\).
+
+
+En una muestra de **300 adultos** de comunidades rurales:
+
+- Adultos con acceso a servicios de salud mental: **98**
+- Adultos sin acceso: **202**
+
+
+
+```{r}
+n <- 300        # tamaño de la muestra
+x <- 98         # número de personas con acceso
+p0 <- 0.40      # proporción poblacional hipotética
+
+# Proporción muestral
+p_hat <- x / n
+p_hat
+```
+
+El estadístico de prueba para una proporción es:
+
+\[
+Z = \frac{\hat{p} - p_0}{\sqrt{\frac{p_0(1 - p_0)}{n}}}
+\]
+
+
+```{r}
+Z <- (p_hat - p0) / sqrt(p0 * (1 - p0) / n)
+Z
+```
+
+
+Dado que la hipótesis alternativa es **unilateral a la izquierda**, el p-valor se calcula como:
+
+\[
+p\text{-valor} = P(Z \le z_{\text{observado}})
+\]
+
+
+```{r}
+p_valor <- pnorm(Z)
+p_valor
+```
+
+**Interpretación:**  
+Dado que el p-valor es menor que 0.05, se **rechaza la hipótesis nula**. Con un nivel de significancia del 5 %, existe evidencia estadísticamente significativa para concluir que la proporción de adultos con acceso a servicios de salud mental en comunidades rurales **es menor** que el 40 % estimado a nivel nacional.
+
+Desde una perspectiva social, estos resultados sugieren una **brecha de acceso** que puede justificar políticas públicas focalizadas en salud mental rural.
+
+
+
+
+::: note
+Nuevamente, esta manera de calcular intervalo de confianza y prueba de hipóteis es manual, utilizando la fórmula y Rstudio como calculadora. A continuación verás como se utiliza Rstudio para este tipo de análisis
+:::
+
+
+
+## Caso aplicado: Proporción
 
 **¿El programa de becas de transporte garantiza condiciones académicas justas?**
 
-En muchas universidades públicas, los estudiantes de estratos socioeconómicos bajos reciben una **beca de transporte** con el objetivo de reducir barreras de acceso y permanencia.
+La universidad no solo evalúa el rendimiento promedio de los estudiantes beneficiarios del programa de transporte, sino también **qué proporción de ellos alcanza el estándar académico mínimo**.
 
-La universidad desea evaluar si, **en promedio**, los estudiantes beneficiarios del programa mantienen un rendimiento académico acorde con el estándar institucional.
+Según el reglamento institucional, se considera que un estudiante tiene una **condición académica justa** si obtiene una **nota mayor o igual a 3.5** (escala de 0 a 5).
 
-El reglamento académico establece que un rendimiento promedio **adecuado** corresponde a una **nota de 3.5** (en una escala de 0 a 5).
+A nivel institucional, se espera que **al menos el 70 %** de los estudiantes beneficiarios cumpla este criterio.
+
+---
+
+**¿La proporción de estudiantes beneficiarios del programa de transporte que alcanza una nota ≥ 3.5 es distinta del 70%?**
+
 
 ---
 
-**Pregunta de investigación**
 
-¿El promedio poblacional de los estudiantes beneficiarios del programa de transporte es **distinto de 3.5**?
+**Base de datos**
 
----
+Utilizaremos la misma base de datos del caso aplicado para la media:
+
+```{r}
+
+head(datos_transporte)
+```
+
 
 **Parámetro de interés**
 
 Sea  
-\[\mu\]
-la media poblacional de la nota de los estudiantes beneficiarios del programa de transporte.
-
----
-
-**Formulación de hipótesis**
-
 \[
-H_0: \mu = 3.5
+p
+\]
+la proporción poblacional de estudiantes beneficiarios que cumplen con el estándar académico.
+
+
+
+**Planteamiento de Hipótesis**
+\[
+H_0: p = 0.70
 \]
 
 \[
-H_1: \mu \neq 3.5
+H_1: p \neq 0.70
 \]
 
-Se plantea una **prueba bilateral**, ya que no se asume a priori si el rendimiento es mayor o menor que el estándar.
+Se utiliza una **prueba bilateral**, ya que no se presupone si la proporción es mayor o menor al valor de referencia.
 
----
+
 
 **Nivel de significancia**
 
@@ -568,107 +813,80 @@ Se plantea una **prueba bilateral**, ya que no se asume a priori si el rendimien
 \alpha = 0.05
 \]
 
+
 ---
 
-**Base de datos**
+ Definición de la variable de interés
 
-Se tomó una muestra de **36 estudiantes beneficiarios**.  
-La base de datos contiene cinco variables relevantes para el análisis académico y social.
+En la práctica, las pruebas de proporción **no trabajan con variables continuas**, sino con resultados binarios.
+En este caso, vamos a crear una variable nueva llamada "Condición_justa", que tomará los siguientes valores: 1: notas mmayores o iguales a 3.5, 0: Notas menres a 3.5.  
+
+Con esto, obtenemos una variable binaria (cualitativa), con dos opciones: estar por encima o por debajo del promedio.
 
 ```{r}
-datos <- data.frame(
-  id = 1:36,
-  
-  nota = c(
-    3.1, 3.2, 3.3, 3.3, 3.4, 3.4, 3.4, 3.5, 3.5,
-    3.5, 3.6, 3.6, 3.6, 3.7, 3.7, 3.7, 3.8, 3.8,
-    3.8, 3.9, 3.9, 3.9, 3.5, 3.6, 3.7, 3.8, 3.4,
-    3.3, 3.2, 3.6, 3.7, 3.8, 3.9, 3.5, 3.6, 3.7
-  ),
-  
-  horas_estudio = c(
-    8, 9, 10, 11, 10, 12, 11, 12, 13,
-    14, 13, 15, 14, 15, 16, 14, 15, 16,
-    17, 16, 18, 17, 12, 13, 14, 15, 11,
-    10, 9, 14, 15, 16, 17, 13, 14, 15
-  ),
-  
-  edad = c(
-    18, 19, 19, 20, 20, 21, 20, 21, 22,
-    22, 21, 23, 22, 23, 24, 22, 23, 24,
-    25, 24, 26, 25, 21, 22, 23, 24, 20,
-    19, 18, 22, 23, 24, 25, 21, 22, 23
-  ),
-  
-  estrato = c(
-    1,1,2,2,2,3,2,3,3,
-    3,2,3,3,4,4,3,4,4,
-    4,4,5,4,2,3,3,4,2,
-    2,1,3,3,4,4,2,3,3
-  ),
-  
-  transporte = rep("Beneficiario", 36)
+
+datos_transporte$condicion_justa <- ifelse(datos_transporte$nota >= 3.5, 1, 0)
+```
+
+---
+
+**Proporción muestral**
+
+Proporción de estudiantes con notas superiores (total valores 1/total obervaciones)
+
+```{r}
+
+mean(datos_transporte$condicion_justa)
+```
+
+**Interpretación:**  
+Aproximadamente el **72%** de los estudiantes beneficiarios alcanza el estándar académico.
+
+**Verificación de supuestos (ANTES de la prueba)**
+
+Para aplicar una prueba de proporción basada en la aproximación normal, se requiere:
+
+- Muestra aleatoria (supuesto del diseño del estudio)
+- Tamaño muestral suficiente:
+  \[
+  np_0 \ge 10 \quad \text{y} \quad n(1 - p_0) \ge 10
+  \]
+
+
+```{r}
+
+n <- nrow(datos)
+p0 <- 0.70
+
+n * p0
+n * (1 - p0)
+```
+
+**Interpretación:**  
+Ambas condiciones se cumplen, por lo que es válido aplicar la prueba de proporciones.
+
+---
+
+**Prueba de hipótesis**
+
+En la práctica profesional, la prueba se realiza directamente con funciones estadísticas validadas.
+
+```{r}
+
+prueba_prop <- prop.test(
+  x = sum(datos_transporte$condicion_justa),
+  n = n,
+  p = p0,
+  alternative = "two.sided",
+  correct = FALSE
 )
+
+prueba_prop
 ```
 
+**Interpretación aplicada**
 
-```{r}
-head(datos)
-```
+Con un nivel de significancia del 5 %, el análisis estadístico indica que la **proporción de estudiantes beneficiarios que alcanza el estándar académico no coincide con el 70 % esperado institucionalmente**.
 
+Este resultado sugiere que evaluar únicamente el promedio puede ocultar desigualdades internas: aunque el rendimiento promedio sea adecuado, **una fracción relevante de estudiantes no alcanza el estándar mínimo**, lo que tiene implicaciones directas para el diseño y seguimiento del programa de becas.
 
-**Exploración inicial de la variable de interés**
-
-Antes de realizar cualquier inferencia, se exploran los datos, en específico las notas.
-
-```{r}
-summary(datos$nota)
-```
-
-```{r}
-hist(datos$nota,
-     col = "lightblue",
-     main = "Distribución de Notas",
-     xlab = "Notas")
-```
-
-
-**Verificación del supuesto de normalidad (Prueba de Shapiro-Wilk)**
-
-H0: los datos provienen de una distribución normal  
-
-H1: los datos no provienen de una distribución normal
-
-```{r}
-shapiro.test(datos$nota)
-```
-
-Si el p-valor es mayor que 0.05, no se rechaza la hipótesis de nula.  
-Por tanto, el supuesto de normalidad es razonable para esta muestra.
-
-
-
-**Prueba de hipótesis para la media poblacional**
-
-Prueba t de Student para una muestra. Se compara la media muestral con el valor poblacional hipotético (3.5)
-
-
-```{r}
-
-prueba_t <- t.test(datos$nota,mu = 3.5, alternative = "two.sided",conf.level = 0.95)
-
-prueba_t
-```
-
-**Interpretación estadística:**  
-
-- El p-valor indica si la diferencia observada es estadísticamente significativa.  
-- Si el p-valor < 0.05, se rechaza \(H_0\).  
-
-**Conclusión:**  
-
-Con un nivel de significancia del 5 %, la evidencia estadística indica que el promedio poblacional de notas de los estudiantes beneficiarios **es significativamente distinto** (y mayor de acuerdo con el intervalo de confianza) que el valor institucional de 3.5.  
-
-En términos prácticos, el programa de becas de transporte parece estar asociado con un rendimiento académico adecuado.
-
----

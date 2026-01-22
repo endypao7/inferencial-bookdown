@@ -282,7 +282,7 @@ El modelo de regresión lineal simple estima la relación entre los años de edu
 
 ---
 
-## Conclusiones
+### Conclusiones
 
 Cada una de las pruebas utilizadas respondió a preguntas diferentes sobre la desigualdad:
 

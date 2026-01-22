@@ -20,7 +20,7 @@
   <meta name="twitter:description" content="Esta es una guía completa, complementaria al curso de Estadística Inferencial ¡Bienvenid@!." />
   
 
-<meta name="author" content="Endy P. Salom" />
+<meta name="author" content="Endy Paola Salon" />
 
 
 
@@ -186,7 +186,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#d-densidad-funcion-de-densidad-de-probabilidad-pdf"><i class="fa fa-check"></i><b>3.2.1</b> <font color="red"> d </font> (densidad): Funcion de Densidad de Probabilidad (PDF)</a></li>
 <li class="chapter" data-level="3.2.2" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#p-probabilidad-acumulada-funcion-de-distribucion-acumulada"><i class="fa fa-check"></i><b>3.2.2</b> <font color="red"> p </font> (probabilidad acumulada): Funcion de Distribucion Acumulada:</a></li>
-<li class="chapter" data-level="3.2.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#r-ramdom-values-generacion-de-valores-aleatorios"><i class="fa fa-check"></i><b>3.2.3</b> <font color="red"> r </font> (ramdom values): Generacion de Valores Aleatorios</a></li>
+<li class="chapter" data-level="3.2.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles"><i class="fa fa-check"></i><b>3.2.3</b> <font color="red"> q </font> (cuartiles - valores de la variable x): Cuantiles o Percentiles</a></li>
+<li class="chapter" data-level="3.2.4" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#r-ramdom-values-generacion-de-valores-aleatorios"><i class="fa fa-check"></i><b>3.2.4</b> <font color="red"> r </font> (ramdom values): Generacion de Valores Aleatorios</a></li>
 </ul></li>
 <li class="chapter" data-level="3.3" data-path="distribuciones-muestrales.html"><a href="distribuciones-muestrales.html#distribuciones-de-probabilidad-discretas"><i class="fa fa-check"></i><b>3.3</b> Distribuciones de probabilidad discretas</a>
 <ul>
@@ -399,8 +400,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>La probabilidad acumulada hasta que Z valga 1.96 es del 0.975.
 Recuerde que estamos hablando de una distribución Z porque usamos la función p + norm (normal) con media = o y desviación = 1.</p>
 <p>Si <code>pnorm(1.96, mean=0, sd=1)</code> da 0.975, significa que el 97.5% de los valores en una normal estandar son menores a 1.96 en otras palabras.</p>
-<div id="q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles" class="section level4 hasAnchor" number="3.2.2.1">
-<h4><span class="header-section-number">3.2.2.1</span> <font color="red"> q </font> (cuartiles - valores de la variable x): Cuantiles o Percentiles<a href="distribuciones-muestrales.html#q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+</div>
+<div id="q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles" class="section level3 hasAnchor" number="3.2.3">
+<h3><span class="header-section-number">3.2.3</span> <font color="red"> q </font> (cuartiles - valores de la variable x): Cuantiles o Percentiles<a href="distribuciones-muestrales.html#q-cuartiles---valores-de-la-variable-x-cuantiles-o-percentiles" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Esta funcion devuelve el valor <strong>correspondiente a un percentil dado</strong>, no aroja probabilidad, si no, el valor que tomaría X de acuerdo a la posición percentil.</p>
 <p>Ejemplo:</p>
 <div class="sourceCode" id="cb199"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb199-1"><a href="distribuciones-muestrales.html#cb199-1" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.975</span>, <span class="at">mean =</span> <span class="dv">0</span>, <span class="at">sd =</span> <span class="dv">1</span>)</span></code></pre></div>
@@ -409,9 +411,8 @@ Recuerde que estamos hablando de una distribución Z porque usamos la función p
 <p>Note que esta función hace lo contrario a la anterior, <strong><em>Le ingresamos una probabilidad y nos arroja el valor de x, en este caso Z</em></strong></p>
 </div>
 </div>
-</div>
-<div id="r-ramdom-values-generacion-de-valores-aleatorios" class="section level3 hasAnchor" number="3.2.3">
-<h3><span class="header-section-number">3.2.3</span> <font color="red"> r </font> (ramdom values): Generacion de Valores Aleatorios<a href="distribuciones-muestrales.html#r-ramdom-values-generacion-de-valores-aleatorios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="r-ramdom-values-generacion-de-valores-aleatorios" class="section level3 hasAnchor" number="3.2.4">
+<h3><span class="header-section-number">3.2.4</span> <font color="red"> r </font> (ramdom values): Generacion de Valores Aleatorios<a href="distribuciones-muestrales.html#r-ramdom-values-generacion-de-valores-aleatorios" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Esta funcion genera valores aleatorios de una distribucion con los parametros dados, en este caso normal:</p>
 <div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="distribuciones-muestrales.html#cb201-1" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># Para reproducibilidad, para que se generen siempre los mismos valores, si no se usa, cada vez que ejecute las líneas de código, se crearán valores aleatorios nuevos.</span></span>
 <span id="cb201-2"><a href="distribuciones-muestrales.html#cb201-2" tabindex="-1"></a></span>

@@ -144,7 +144,7 @@ Recuerde que estamos hablando de una distribución Z porque usamos la función p
 Si `pnorm(1.96, mean=0, sd=1)` da 0.975, significa que el 97.5% de los valores en una normal estandar son menores a 1.96 en otras palabras.
 
 
-#### <font color="red"> q </font> (cuartiles - valores de la variable x): Cuantiles o Percentiles
+### <font color="red"> q </font> (cuartiles - valores de la variable x): Cuantiles o Percentiles
 Esta funcion devuelve el valor **correspondiente a un percentil dado**, no aroja probabilidad, si no, el valor que tomaría X de acuerdo a la posición percentil.
 
 Ejemplo:
